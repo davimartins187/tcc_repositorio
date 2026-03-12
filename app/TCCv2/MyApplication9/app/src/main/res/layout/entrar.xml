@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="ENTRAR"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@id/txtLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtLogin"
+        android:layout_width="250dp"
+        android:layout_height="53dp"
+        android:hint="E-mail ou nome de usuário"
+        android:inputType="text"
+        android:textColorHint="#000000"
+        android:textStyle="bold|italic"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:id="@+id/txtSenha"
+        android:layout_width="250dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:hint="Digite a Senha"
+        android:inputType="textPassword"
+        android:textAlignment="viewStart"
+        android:textColorHint="#000000"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtLogin" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="250dp"
+        android:layout_height="52dp"
+        android:text="Entrar"
+        android:backgroundTint="#02B52F"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintTop_toBottomOf="@id/txtSenha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="48dp"
+        android:layout_height="29dp"
+        android:layout_marginEnd="204dp"
+        android:layout_marginBottom="324dp"
+        android:fontFamily="sans-serif"
+        android:text="ou"
+        android:textAlignment="center"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCadastro"
+        android:layout_width="76dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="228dp"
+        android:text="Criar conta"
+        android:textAlignment="center"
+        android:textColor="#39C150"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="132dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="223dp"
+        android:text="Não tem uma Conta?"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/txtCadastro" />
+
+    <TextView
+        android:id="@+id/txt4"
+        android:layout_width="262dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="157dp"
+        android:text="Ao entrar no Mycourse, voce concorda com os nossos termoes e politicas de privacidade"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnEsqueci"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Esqueceu?"
+        android:textAlignment="textStart"
+        android:textColor="#454141"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
