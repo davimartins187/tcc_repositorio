@@ -65,3 +65,12 @@
     margin-left: auto;
       padding-right: 10px;
 }
+
+.Cabecalho a
+{
+    justify-content: space-between;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    color: var(--Branco);
+}
