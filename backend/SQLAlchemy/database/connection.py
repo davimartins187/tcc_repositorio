@@ -12,7 +12,9 @@ load_dotenv() #Lê o arquivo .env e reconhece as variáveis dentro do arquivo .e
 DATABASE_URL = os.getenv("DATABASE_URL") #Crio uma variável que recebe uma variável do .env
 
 engine = create_engine(
-    DATABASE_URL,
-    connect_args={"sslmode": "require"}
+    DATABASE_URL
 ) ##Crio a conexão com o banco de dados
+#connect_args={"sslmode": "require"}
+
+
 

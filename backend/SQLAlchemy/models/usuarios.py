@@ -31,6 +31,7 @@ class Usuarios(Base):
     senha_hash = Column(Text,nullable=True)
     email_verificado = Column(Boolean,default=False)
     ativo = Column(Boolean,default=True)
+    coin = Column(Integer,default=0)
 
     #Data de criação e Data de Alteração
 
@@ -41,14 +42,14 @@ class Usuarios(Base):
     oauths = relationship("UsuariosOauth",backref="usuarios")
 
     # Criando atributos PARA O PYTHON (Naõ altera nada no banco de dados)
-    def __init__(self,nome,email,telefone,senha_hash,email_verificado,ativo):
+    def __init__(self,nome,email,telefone,senha_hash,email_verificado,ativo,coin):
         self.nome = nome
         self.email = email
         self.telefone = telefone
         self.senha_hash = senha_hash
         self.email_verificado = email_verificado
         self.ativo = ativo
-
+        self.coin = coin
 
 
 
