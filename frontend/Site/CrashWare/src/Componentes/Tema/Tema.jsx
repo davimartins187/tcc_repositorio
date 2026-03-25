@@ -5,7 +5,7 @@ const Tema = () =>
 {
     return (
         <>
-            <img className={Style} src={FTema} alt="" />
+            <img src={FTema} alt="" style={{ width: '50px', height: '50px', marginRight: '20px' }} />    
         </>
     )
 }

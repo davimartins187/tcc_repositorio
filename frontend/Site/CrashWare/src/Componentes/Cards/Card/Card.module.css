@@ -16,7 +16,8 @@
     flex-direction: column;
     align-items: center;
     text-align: justify;
-    width: 65%;
+    width: 100%;
+    border: 0.1px solid rgba(255, 255, 255, 0.295);
 }
 
 .Card img
@@ -33,7 +34,7 @@
 
 .Card p
 {
-    font-size: 25px;
+    font-size: 1rem;
     padding: 10px;
     border: 10px;
     text-align: center;

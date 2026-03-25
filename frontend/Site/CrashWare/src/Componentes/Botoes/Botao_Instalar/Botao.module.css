@@ -1,15 +1,17 @@
 .Botao a {
     display: flex;
     align-items: center;
-    gap: 12px;
+    align-self: center;
+    padding: 12px;
     background-color: var(--Cards-Azul-Escuro); /* azul escuro */
-    padding: 10px;
+
     border-radius: 10px;
     text-decoration: none;
     color: var(--Branco);
     font-size: 20px;
     font-weight: 600;
     transition: 0.3s;
+    border: 0.1px solid rgba(255, 255, 255, 0.295);
 }
 
 .Botao a:hover {
