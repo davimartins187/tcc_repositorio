@@ -63,7 +63,7 @@ p span{
     color: #54ca7bef;
 }
 
-.btnLogar{
+.btnCriarConta{
 
     /* botão em sí */
     background-color: #54CA7B;
@@ -124,8 +124,14 @@ button:hover{
     color: var(--Branco);
 }
 
-.btnLogar:disabled
+
+.btnCriarConta:disabled
 {
     cursor: not-allowed;
     opacity: 0.5;
+}
+
+button
+{
+    cursor: pointer;
 }

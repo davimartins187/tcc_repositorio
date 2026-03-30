@@ -1,4 +1,4 @@
-import { TIPO_BOTAO } from "./constantes";
+import { TIPO_BOTAO } from "../constantes";
 import style from './BotaoForm.module.css';
 
 const BotoesForm = (props) =>

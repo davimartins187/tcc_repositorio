@@ -37,7 +37,7 @@
     width: 60%;
 }
 
-input {
+.inputtt {
     background-color: #0F172A;
     border: 1px solid rgba(255, 255, 255, 0.788);
     width: 80%; /* ← era 17vw, agora se adapta */
@@ -85,9 +85,6 @@ p span{
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.685);
 }
 
-.btncadastro{
-    color: white;
-}
 
 button:hover{
     transition: 0.3s;
@@ -113,8 +110,6 @@ button:hover{
 }
 }
 
-
-
 .btncadastro
 {
     position: absolute;
@@ -122,6 +117,7 @@ button:hover{
     top: 13%;
     /* transform: translate(-50%,-50%); */
     height: 10vh;
+    color: white;
     background-color: #54CA7B;
     border: 1px solid rgba(26, 26, 26, 0.788);
     width: 10%;
