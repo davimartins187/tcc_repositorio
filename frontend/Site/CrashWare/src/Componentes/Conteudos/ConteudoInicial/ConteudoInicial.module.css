@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ===== CONTAINER ===== */
+.Container {
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 0px;
+  padding-top: 9vh;
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.263);
+}
+
+/* ===== TOPO ===== */
+.Conteudo {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  color: var(--Cinza-Medio);
+  background-color: var(--Primaria-Azul-Escuro);
+}
+
+.Conteudo h3 {
+  font-size: clamp(28px, 5vw, 50px);
+  max-width: 700px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  padding: 0px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.hardware {
+  color: var(--verde_text);
+  text-shadow: 0 0 10px var(--verde_escuro_text);
+}
+
+.software{
+  color: var(--azul_text);
+  text-shadow: 0 0 10px var(--azul_escuro_text);
+}
+
+.Conteudo_img img { 
+  width: 100%;
+  max-width: 700px;
+  filter: drop-shadow(0 8px 32px var(--verde_escuro_text));
+}
+
+.btns {
+  margin-right: auto;
+  display: flex;
+  gap: 0.5rem;
+  margin: auto;
+}
+
+.btnCadastro {
+  background: linear-gradient(135deg, var(--verde_text), var(--verde_escuro_text));
+  border: none;
+  width: 150px;
+  height: 60px;
+  border-radius: 16px;
+  box-shadow: 0 0 14px var(--verde_escuro_text);
+  margin-left: 20px;
+
+  color: #fff;
+  font-size: 16px;
+  font-weight: bolder;
+  font-family: "Montserrat", sans-serif;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.btnCadastro:hover {
+  transition: 0.3s;
+  background: var(linear-gradient(135deg, var(--verde_text), var(--azul_text)));
+  box-shadow:  0 0 22px var(--azul_escuro_text);
+  transform: scale(1.10);
+  color: #000000cb;
+  text-shadow: none;
+}
+
+/* ===== TEXTOS ===== */
+.Textos {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+.Textos hr {
+  width: 85%;
+  margin: auto;
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--verde_escuro_text), transparent);
+}
+
+.Textos h2 {
+  font-size: clamp(30px, 5vw, 60px);
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+.Textos h2:nth-of-type(1) {
+  color: var(--verde_text);
+  text-shadow: 0 0 14px var(--verde_text), 0 0 32px var(--verde_escuro_text);
+}
+
+.Textos h2:nth-of-type(2) {
+  color: var(--azul_text);
+  text-shadow: 0 0 14px var(--azul_escuro_text);
+}
+
+.Textos h4 {
+  font-size: clamp(20px, 3vw, 33px);
+  padding: 10px 0;
+  margin-left: 10%;
+
+ /* antes que voces perguntem sim eu usei cha pra colorir os subtitulos e os titulos*/
+  background: linear-gradient(90deg, var(--verde_text), var(--azul_text));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 2px 2px 8px var(--verde_escuro_text);
+
+  padding-left: 14px;
+}
+
+.Textos p {
+  padding: 10px 0 20px;
+  font-size: clamp(14px, 2.2vw, 20px);
+  color: var(--Branco);
+  margin-left: 10%;
+  width: 80%;
+  text-indent: 20px;
+}
+
+/* ===== TEXTO FINAL ===== */
+.TextoFinal {
+  margin-top: 30px;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.TextoFinal h2 {
+  padding-top: 10px;
+  font-size: 50px;
+  color: #fff;
+  text-shadow: 0 0 16px var(--verde_escuro_text), 0 0 32px var(--azul_escuro_text);
+}
+
+.TextoFinal p {
+  font-size: clamp(12px, 1vw, 15px);
+  margin: auto;
+}
+
+/* ===== MAIN ===== */
+main {
+  width: 100%;
+    background-color: var(--Primaria-Azul-Escuro);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  .Conteudo {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .Textos {
+    text-align: center;
+  }
+
+  .Textos h4 {
+    margin: auto;
+  }
+
+  .Conteudo h3 {
+    margin-right: 0px;
+    padding: 0px;
+  }
+
+  .btns {
+    margin: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .Conteudo {
+    padding: 0px 0px;
+  }
+
+  .Textos h2 {
+    padding-top: 20px;
+  }
+}

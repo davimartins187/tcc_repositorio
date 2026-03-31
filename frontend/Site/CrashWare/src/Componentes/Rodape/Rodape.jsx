@@ -19,9 +19,15 @@ const Rodape = () =>
                     <Link to='sobre-nos'>
                         <p>Sobre Nós</p>
                     </Link>
-                    <p>Politica de Privacidade</p>
-                    <p>Compromisso com a IntegSridade</p>
-                    <p>Termos de Uso</p>
+                    <Link to="*">
+                        <p>Politica de Privacidade</p>
+                    </Link>
+                    <Link to="*">
+                        <p>Compromisso com a IntegSridade</p>
+                    </Link>
+                    <Link to="*">
+                        <p>Termos de Uso</p>
+                    </Link>
                 </div>
             </footer>
         </>

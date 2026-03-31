@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.corpo{
+    width: 100%;
+    height: 84.3vh; 
+    background: linear-gradient(to left, #15172E, #23264dc2, #15172E);
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container{
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.container h1{
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 3rem;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 15px;
+    text-shadow:  2px 2px 1px rgba(0, 0, 0, 0.842);;
+}
+
+
+.inputClasse{
+     justify-items: flex-start;
+    width: 65%;
+    background-color: #0F172A;
+    border: 1px solid rgba(255, 255, 255, 0.788);
+     /* ← era 17vw, agora se adapta */
+    height: 50px;
+    border-radius: 6px;
+    margin-top: 20px;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.685);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    opacity: 0.9;
+    padding: 20px;
+    padding-left: 30px;
+}
+
+.TermosUso{
+    color: rgba(255, 255, 255, 0.808);
+    font-family: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 400px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+p span{
+    color: #54ca7bef;
+}
+
+.btnLogar{
+
+    /* botão em sí */
+    background-color: #54CA7B;
+    border: 1px solid rgba(26, 26, 26, 0.788);
+    width: 60%;
+    height: 60px;
+    border-radius: 6px;
+    box-shadow:  2px 2px 1px rgba(0, 0, 0, 0.555);
+
+
+    /* texto do botão */
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-weight: bolder;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.685);
+}
+
+button:hover{
+    transition: 0.3s;
+    background-color: #2e8f4e;
+    color: rgba(255, 255, 255, 0.829);
+    transform: scale(1.05);
+}
+
+.erro{
+    color: white;
+    margin-top: 30px;
+    font-weight: bolder;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    color: rgb(182, 3, 3);
+}
+
+@media (max-width: 700px) {
+    
+    form{
+    width: 100vw;
+    height: 82.5vh;
+}
+}
+
+
+.btncadastro
+{
+    position: absolute;
+    right: 3%;
+    top: 13%;
+    /* transform: translate(-50%,-50%); */
+    height: 10vh;
+    background-color: #54CA7B;
+    border: 1px solid rgba(26, 26, 26, 0.788);
+    width: 10%;
+    height: 60px;
+    border-radius: 6px;
+    box-shadow:  2px 2px 1px rgba(0, 0, 0, 0.555);
+    font-size: 25px;  
+    font-weight: bolder;
+    color: var(--Branco);
+}
+
+.btnLogar:disabled
+{
+    cursor: not-allowed;
+    opacity: 0.5;
+}

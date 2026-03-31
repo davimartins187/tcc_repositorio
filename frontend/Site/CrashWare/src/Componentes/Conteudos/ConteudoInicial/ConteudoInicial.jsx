@@ -1,6 +1,6 @@
-import FMenina from '../../fotos/menina_estudando.png';
-import { Botoes } from '../Botoes/Botoes';
-import { Cards } from '../Cards/Cards';
+import FMenina from '../../../fotos/menina_estudando.png';
+import { Botoes } from '../../Botoes';
+import { Cards } from '../../Cards';
 import { Link } from "react-router-dom";
 import Style from './ConteudoInicial.module.css';
 
@@ -10,16 +10,16 @@ const ConteudoInicial = () =>
         <>
             <div className={Style.Container}>
                 <div className={Style.Conteudo}> {/*Parte de cima*/}
-                    <h3>Aprenda <span>Hardware</span> e <span>Software</span> de forma prática e envolvente</h3>
+                    <h3>Aprenda <span className = {Style.hardware}>Hardware</span> e <span className = {Style.software}>Software</span> de forma prática e envolvente</h3>
                     <div className={Style.Conteudo_img}>
                         <img src={FMenina} alt="" />
                     </div>
 
                     <div className = {Style.btns}>
-                        <Link to="/login">
+                        <Link to="login">
                             <button className = {Style.btnCadastro}>Fazer Login</button>
                         </Link>
-                        <Link to="/Cadastro">
+                        <Link to="cadastro">
                             <button className = {Style.btnCadastro}>Se Cadastrar</button>
                         </Link>
                     </div>

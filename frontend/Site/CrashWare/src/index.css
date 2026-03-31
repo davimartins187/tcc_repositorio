@@ -8,6 +8,12 @@
   --Cinza-Medio: #a2a0a2;
   --Branco: #ffffff;
   --Preto: #000000;
+
+  /* cores de textos */
+  --verde_text: #00ff88;
+  --azul_text: #00c8ff;
+  --azul_escuro_text: #00c8ff60;
+  --verde_escuro_text: #00ff8860;
 }
 
 [data-theme="light"]
@@ -23,4 +29,5 @@ body
   border: 0;
   margin: 0;
   background-color: var(--Fundo);
+  /* overflow-x: hidden; */
 }

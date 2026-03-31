@@ -16,10 +16,14 @@
     height: 9vh;
     color: var(--Branco);
     background-color: var(--Primaria-Azul-Escuro);
+    padding-top: 40px;
+    padding-bottom: 40px;
     padding-left: 10px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
-    position: fixed;
+    position: sticky;
+    position: 0;
     transition: all 0.3s ease;
+    z-index: 1;
 }
 
 .Cabecalho h5
@@ -30,7 +34,11 @@
     font-optical-sizing: auto;
     font-weight: 800;
     font-style: ExtraBold;
-    
+
+    color: transparent;
+    background: linear-gradient(135deg, #00ff88, #00c8ff);
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .logo_legal
