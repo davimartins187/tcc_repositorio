@@ -14,7 +14,7 @@ O **CrashWare** é uma plataforma educacional desenvolvida como Trabalho de Conc
 | Nome |
 |------|
 | Davi Souza Martins |
-| Felipe Barbosa |
+| Felipe Barbosa Ribeiro |
 | Fernando Rodrigues Souza |
 | Gabriel de Sousa Costa |
 | Gabriela da Rocha Reis |
