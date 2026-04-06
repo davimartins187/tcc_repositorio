@@ -34,12 +34,13 @@ O **CrashWare** é uma plataforma educacional desenvolvida como Trabalho de Conc
 - Java + XML + Android Studio — desenvolvimento do aplicativo Android
 - Figma — prototipação e design das telas
 
-### Backend (Site)
-- Node.js — servidor e API REST do site
+### Backend 
+- Node.js — responsável pela lógica do sistema e integração entre as partes do projeto
+- FastAPI — framework para criação de rotas e gerenciamento da API REST
+- SQLAlchemy — ORM para manipulação e comunicação com o banco de dados
 
 ### Banco de Dados
-- MySQL — armazenamento e persistência de dados
-- Python — geração de tabelas e população do banco de dados
+- PostgreSQL — sistema de gerenciamento de banco de dados relacional
 
 ---
 
