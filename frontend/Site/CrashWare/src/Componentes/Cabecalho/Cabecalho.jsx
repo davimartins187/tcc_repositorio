@@ -12,8 +12,10 @@ const Cabecalho = () => {
     <>
       <div className={`${Style.Cabecalho} ${scrolled ? Style.Scrolled : ''}`}>
         <Link to="/">
-          <img className={Style.logo_legal} src={Logo} alt="" />
-          <h5>CRASHWARE</h5>
+          <div className={Style.infoCabecalho}>
+            <img className={Style.logo_legal} src={Logo} alt="" />
+            <h5>CRASHWARE</h5>
+          </div>
         </Link>
 
         <div className={Style.Direita}>

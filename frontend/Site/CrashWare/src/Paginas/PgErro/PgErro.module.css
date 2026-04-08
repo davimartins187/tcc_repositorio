@@ -3,4 +3,28 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 68vh;
+}
+
+.PgErro h1{
+    color: var(--font_secundario_escuro);
+    font-weight: 700;
+    font-size: 4.5vw;
+}
+
+.PgErro h3{
+    color: var(--font_secundario_escuro);
+    font-weight: 600;
+    font-size: 3vw;
+}
+
+@media (max-width: 500px){
+    .PgErro h1{
+        font-size: 45px;
+    }
+
+    .PgErro h3{
+        font-size: 25px;
+    }
 }

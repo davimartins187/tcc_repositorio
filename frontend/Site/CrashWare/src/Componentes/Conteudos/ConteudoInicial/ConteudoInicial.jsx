@@ -99,12 +99,12 @@ const ConteudoInicial = () => {
                 </section>
 
                 {/* ===== TEXTO FINAL ===== */}
-                <div className={Style.TextoFinal}>
+                <div className={Style.aplicativo}>
                     <h2>Leve o aprendizado com você</h2>
-                    <p>
+                    <p className={Style.textos}>
                         Estude <span className={Style.hardware}>Hardware</span> e{' '}
-                        <span className={Style.software}>Software</span> onde estiver.{' '}
-                        <br />Aprenda pelo celular, continue no computador e acompanhe seu progresso em tempo real.
+                        <span className={Style.software}>Software</span> onde estiver, {' '}
+                         Aprenda pelo celular, continue no computador e acompanhe seu progresso em tempo real.
                     </p>
                     <Botoes />
                 </div>
