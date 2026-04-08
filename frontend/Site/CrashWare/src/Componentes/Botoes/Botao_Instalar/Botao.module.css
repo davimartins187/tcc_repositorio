@@ -50,6 +50,9 @@
     }
 
     .Botao{
-
+        display: flex;
+        flex-direction: row-reverse;
+        width: 25%;
+        margin-left: 20px;
     }
 }
