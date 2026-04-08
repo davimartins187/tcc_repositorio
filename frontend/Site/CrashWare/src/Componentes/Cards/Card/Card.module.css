@@ -3,8 +3,8 @@
 .Card {
     padding: 28px 16px;
     border-radius: 15px;
-    background-color: var(--Cards-Azul-Escuro);
-    color: var(--Branco);
+    background-color: var(--fundo_secundario_escuro);
+    color: var(--font_secundaria_escuro);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,6 +50,7 @@
     text-align: center;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
-    color: var(--Branco);
+    color: var(--font_secundario_escuro);
     line-height: 1.4;
+    filter: drop-shadow( 2px 1px 10px #00ff8838);
 }

@@ -3,8 +3,6 @@
 .Rodape
 {   
     padding-left: 10px;
-    /* bottom: 0;
-    position: relative; */
     left: 0;
     width: 100%;
     box-sizing: border-box;
@@ -13,8 +11,8 @@
     align-items: flex-start;
     gap: 15px;
     padding: 10px;
-    background-color: var(--Primaria-Azul-Escuro);
-    color: var(--Branco);
+    background-color: var(--fundo_secundario_escuro);
+    color: var(--font_principal_escuro);
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;

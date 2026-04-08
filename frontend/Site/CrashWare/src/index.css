@@ -1,33 +1,33 @@
 :root
 {
-  --Primaria-Azul-Escuro: #0d1422;
-  --Fundo: #15172E;
-  --Cards-Azul-Escuro: #07142b;
-  --Azul-Destaque-Vivo: #169cff;
-  --Cinza-Claro: #656c76;
-  --Cinza-Medio: #a2a0a2;
-  --Branco: #ffffff;
-  --Preto: #000000;
+  /* tema escuro */
 
-  /* cores de textos */
+  --fundo_principal_escuro: #101122;
+  --fundo_secundario_escuro: #020C20;
+
+  --font_secundario_escuro: #E2E8F0;
+  --font_principal_escuro: #B9C7DB;
+
+  /* tema claro */
+
+  --fundo_principal_claro: #FEFDFD;
+  --fundo_secundario_claro: #E8E8E8; 
+
+  --font_principal_claro: #0F172A;
+  --font_secundaria_claro: #343434;
+
+  /* cores de textos e botoes */
+
   --verde_text: #00ff88;
   --azul_text: #00c8ff;
   --azul_escuro_text: #00c8ff60;
   --verde_escuro_text: #00ff8860;
 }
 
-[data-theme="light"]
-{
-  --Texto: #0F172A;
-  --Botão: #54CA7B;
-  --Fundo: #F3F2F3;
-  --FundoDestaque: #eef2f770;
+/* body.Claro {
+
 }
 
-body
-{
-  border: 0;
-  margin: 0;
-  background-color: var(--Fundo);
-  /* overflow-x: hidden; */
-}
+body.Escuro {
+
+} */

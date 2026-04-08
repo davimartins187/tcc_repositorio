@@ -1,5 +1,4 @@
 // importando componentes para ser ultilizados no ConteudoCadastro.jsx
-
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { BotoesCadLogin, BotoesForm, TIPO_BOTAO } from '../../Botoes';

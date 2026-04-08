@@ -7,7 +7,7 @@
 .corpo{
     width: 100%;
     height: 84.3vh; 
-    background: linear-gradient(to left, #15172E, #23264dc2, #15172E);
+    background-color: var(--fundo_principal_escuro);
     display: flex;
     flex-direction: column; 
     justify-content: center;
@@ -24,7 +24,7 @@
 }
 
 .container h1{
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--font_principal_escuro);
     font-size: 3rem;
     font-family: "Montserrat", sans-serif;
     margin-bottom: 15px;
@@ -35,14 +35,14 @@
 .inputClasse{
      justify-items: flex-start;
     width: 65%;
-    background-color: #0F172A;
-    border: 1px solid rgba(255, 255, 255, 0.788);
+    background-color: var(--fundo_principal_escuro);
+    border: 1px solid var(--font_principal_escuro);
      /* ← era 17vw, agora se adapta */
     height: 50px;
     border-radius: 6px;
     margin-top: 20px;
     box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.685);
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--font_secundario_escuro);
     font-size: 18px;
     opacity: 0.9;
     padding: 20px;
@@ -50,7 +50,7 @@
 }
 
 .TermosUso{
-    color: rgba(255, 255, 255, 0.808);
+    color: var(--font_secundario_escuro);
     font-family: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     width: 400px;

@@ -7,7 +7,7 @@
 
     border-radius: 10px;
     text-decoration: none;
-    color: var(--Branco);
+    color: var(--font_principal_escuro);
     font-size: 26px;
     font-weight: 600;
     transition: 0.3s;
@@ -16,22 +16,22 @@
 }
 
 .Botao a:hover {
-    background-color: #151a3f;
+    background-color: #151a3f7a;
     transform: scale(1.05);
     transform: translateY(-4px)
 }
 
 .Botao img {
-    width: 55px;
-    height: 55px;
+    width: 40px;
+    height: 30px;
     filter: drop-shadow(0 0 6px #00ff88);
 }
 
 .Botao p
 {
-    color: var(--Branco);
+    color: var(--font_principal_escuro);
     filter: drop-shadow(0 0 3px #00ff88);
-    transform: translateY(7px);
+    transform: translateY(18px);
 }
 
 .Botao
