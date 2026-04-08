@@ -1,6 +1,6 @@
 #Importando comandos do sql para o código.
 
-from sqlalchemy import Column, Integer, String, Text, Boolean, DateTime,text
+from sqlalchemy import Column, Integer, String, Text, Boolean, DateTime,text,ForeignKey
 from datetime import datetime
 
 from sqlalchemy.orm import relationship
@@ -19,7 +19,7 @@ session = Session()
 
 class Usuarios(Base):
     #Nome da tabela
-    __tablename__ = "usuarios"
+    __tablename__ = "usuario"
 
     #Campos da tabela
 
@@ -33,7 +33,8 @@ class Usuarios(Base):
     admin = Column(Boolean,default=False,server_default=text("false"))
     moedas = Column(Integer,default=0,server_default=text("0"))
     xp = Column(Integer,default=0,server_default=text("0"))
-    patente_id = Column(Integer,nullable=False)
+    patente_id = Column(Integer,ForeignKey("patente.id"),nullable=False,default=1,server_default=text("1"))
+
 
     #Data de criação e Data de Alteração
 
@@ -42,6 +43,7 @@ class Usuarios(Base):
 
     # Criando relação com objetos (relationship)
     oauths = relationship("UsuariosOauth",backref="usuarios")
+    patentes = relationship("Patente",backref="usuarios")
 
     # Criando atributos PARA O PYTHON (Naõ altera nada no banco de dados)
     def __init__(self,nome,email,telefone,senha_hash,email_verificado=False,ativo=True,admin=False,coin=0,xp = 0, patente_id = 1):
