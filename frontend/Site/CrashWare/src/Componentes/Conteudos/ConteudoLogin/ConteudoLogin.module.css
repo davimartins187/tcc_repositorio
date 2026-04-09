@@ -6,8 +6,13 @@
 
 .corpo{
     width: 100%;
+<<<<<<< HEAD
+    height: 91vh; 
+    background: var(--bg-principal);
+=======
     height: 70vh; 
     background-color: var(--fundo_principal);
+>>>>>>> b7b36519cfb590f95409ca397d87bdc65577bdac
     display: flex;
     flex-direction: column; 
     justify-content: center;
@@ -21,14 +26,24 @@
     width: 100%;
     height: auto;
     text-align: center;
+    margin-bottom: 100px;
 }
 
 .container h1{
+<<<<<<< HEAD
+    color: var(--cor-primaria);
+    font-size: 3rem;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 15px;
+    text-shadow:  2px 2px 4px rgba(0, 0, 0, 0.842);
+    text-shadow: 1px 1px 20px var(--cor-primaria), 1px 1px 20px var(--cor-primaria-hover);
+=======
     color: var(--texto-principal);
     font-size: 3rem;
     font-family: "Montserrat", sans-serif;
     margin-bottom: 15px;
     /* text-shadow:  2px 2px 4px rgba(0, 0, 0, 0.842); */
+>>>>>>> b7b36519cfb590f95409ca397d87bdc65577bdac
 }
 
 
@@ -40,8 +55,13 @@
     height: 50px;
     border-radius: 6px;
     margin-top: 20px;
+<<<<<<< HEAD
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.685);
+    color: var(--texto-secundario);
+=======
     box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.65);
     color: var(--Branco);
+>>>>>>> b7b36519cfb590f95409ca397d87bdc65577bdac
     font-size: 18px;
     opacity: 0.9;
     padding: 20px;
@@ -65,7 +85,11 @@ p span{
 .btnLogar{
 
     /* botão em sí */
+<<<<<<< HEAD
+    background-color: var(--cor-primaria);
+=======
     background-color:  var(--cor-primaria);
+>>>>>>> b7b36519cfb590f95409ca397d87bdc65577bdac
     border: 1px solid var(--borda);
     width: 60%;
     height: 60px;
@@ -74,7 +98,11 @@ p span{
 
 
     /* texto do botão */
+<<<<<<< HEAD
+    color: var(--texto-secundario);
+=======
     color: var(--texto-principal);
+>>>>>>> b7b36519cfb590f95409ca397d87bdc65577bdac
     font-size: 25px;
     font-weight: bolder;
     /* text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.685); */
@@ -126,7 +154,7 @@ p span{
 }
 
 .ou p{
-    color: var(--font_secundaria);
+    color: var(--texto-secundario);
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     margin: 10px 15px;
