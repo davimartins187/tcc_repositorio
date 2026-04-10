@@ -7,13 +7,16 @@ const Router = () =>
     return (
         <Routes>
             <Route path="/" element={<LayoutPadrao />}>
-                <Route path="/" element={<PgInicial />}/>
+                <Route index element={<PgInicial />}/>
                 <Route path="sobre-nos" element={<SobreNos />}/>
                 <Route path="*" element={<PgErro />} />
-                <Route path="RecuperarSenha" element={<PgRecuperarSenha />} />
+                <Route path="recuperar-senha" element={<PgRecuperarSenha />} />
             </Route>
-            <Route path="cadastro" element={<PgCadastro />}/>
-            <Route path="login" element={<PgLogin/>} />
+            
+            <Route path="/" element={<LayoutCadLogin />}>
+                <Route path="cadastro" element={<PgCadastro />}/>
+                <Route path="login" element={<PgLogin/>} />
+            </Route>
         </Routes>
     )
 }

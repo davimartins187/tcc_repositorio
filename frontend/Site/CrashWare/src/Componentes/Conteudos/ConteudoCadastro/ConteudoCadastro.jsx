@@ -1,11 +1,6 @@
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import { useState, useEffect } from 'react';
-import { BotoesCadLogin, TIPO_BOTAO } from '../../Botoes';
-=======
-import { useState } from 'react';
 import { BotoesForm, TIPO_BOTAO } from '../../Botoes';
->>>>>>> b7b36519cfb590f95409ca397d87bdc65577bdac
 import { CampoTexto } from '../../CampoTexto';
 import { Cabecalho } from '../../Cabecalho';
 
@@ -44,9 +39,17 @@ const ConteudoCadstro = () => {
         ? (isClaro ? verSenha_claro      : verSenha_escuro)
         : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
 
+const handleTelefone = (e) => {
+    let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 7) v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+    else if (v.length > 6) v = `(${v.slice(0,2)}) ${v.slice(2,6)}-${v.slice(6)}`;
+    else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+    else if (v.length > 0) v = `(${v}`;
+    setTelefone(v);
+};
+
     return (
        <> 
-    <Cabecalho />
         <div className={style.corpo}>
             <div className={style.container}>
                 <h1>Cadastre-se</h1>
@@ -72,12 +75,11 @@ const ConteudoCadstro = () => {
                 />
 
                 <CampoTexto 
-                    type="number" 
+                    type="tel" 
                     className={style.inputClasse}
-                    placeholder="N° de Telefone" 
+                    placeholder="(00) 00000-0000" 
                     value={telefone} 
-                    onChange={(e) => setTelefone(e.target.value)} 
-                    maxLength={11}
+                    onChange={handleTelefone}
                 />
 
                 <div className={style.senhaWrapper}>
@@ -131,7 +133,7 @@ const ConteudoCadstro = () => {
                     <hr />
                 </div>
 
-                <Link to='/Login'>
+                <Link to='/login'>
                     <BotoesForm 
                         texto="Entrar" 
                         tipo={TIPO_BOTAO.CADASTRO} 

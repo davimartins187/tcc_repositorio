@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CampoTexto } from "../../CampoTexto"
-<<<<<<< HEAD
-import { BotoesCadLogin, TIPO_BOTAO } from "../../Botoes";
-=======
 import { BotoesForm, TIPO_BOTAO } from "../../Botoes";
-import esconderSenha_icon from '../../../fotos/esconder_senha_icon.png';
-import verSenha_icon from '../../../fotos/mostrar_senha_icon.png';
->>>>>>> b7b36519cfb590f95409ca397d87bdc65577bdac
 
 import esconderSenha_claro from '../../../fotos/claro/nao_pode_ver_senha.svg';
 import verSenha_claro from '../../../fotos/claro/pode_ver_senha.svg';
@@ -40,7 +34,6 @@ const ConteudoLogin = () =>
 
     return (
         <>
-        <Cabecalho />
         <div className={style.corpo}>
             <div className={style.container}>
                 <h1>Login</h1>
@@ -70,41 +63,12 @@ const ConteudoLogin = () =>
                             onClick={() => setMostrar(!mostrar)}
                         />
                     </div>
-<<<<<<< HEAD
-=======
-
-                        </div>
-
-                        { erro && <p className={style.erro}>{erro}</p> }
-                        <p className = {style.TermosUso}>Ao entrar no <span>CrashWare</span>, você concorda com os nossos termos e politicas de privacidade.</p>
-                        
-                        <BotoesForm
-                            texto="Logar" 
-                            tipo={TIPO_BOTAO.CADASTRO} 
-                            className={style.btnLogar} 
-                            disabled={!PodeLogar}
-                        />
-
-                        <div className={style.ou}>
-                            <hr />
-                            <p>OU</p>
-                            <hr />
-                        </div>
-
-                        <Link to='/cadastro'>
-                            <BotoesForm
-                                texto="Cadastra-se" 
-                                tipo={TIPO_BOTAO.CADASTRO} 
-                                className={style.btnLogar} 
-                            />
-                        </Link>
->>>>>>> b7b36519cfb590f95409ca397d87bdc65577bdac
                 </div>
 
                 { erro && <p className={style.erro}>{erro}</p> }
                 <p className={style.TermosUso}>Ao entrar no <span>CrashWare</span>, você concorda com os nossos termos e politicas de privacidade.</p>
                 
-                <BotoesCadLogin 
+                <BotoesForm
                     texto="Logar" 
                     tipo={TIPO_BOTAO.CADASTRO} 
                     className={style.btnLogar} 
@@ -118,7 +82,7 @@ const ConteudoLogin = () =>
                 </div>
 
                 <Link to='/cadastro'>
-                    <BotoesCadLogin 
+                    <BotoesForm 
                         texto="Cadastra-se" 
                         tipo={TIPO_BOTAO.CADASTRO} 
                         className={style.btnLogar} 

@@ -9,17 +9,7 @@ import Appleicon_escuro from '../../fotos/escuro/apple_icon.svg';
 import { BotaoInstalar } from './Botao_Instalar';
 import Style from './Botoes.module.css';
 
-<<<<<<< HEAD
-const Botoes = () =>
-=======
-    const iconsFoto = 
-    [
-        { id: 1, titulo: "GooglePlay", icon: Playicon },
-        { id: 2, titulo: "AppleStore", icon: Appleicon },
-    ];
-
 const BotoesApp = () =>
->>>>>>> b7b36519cfb590f95409ca397d87bdc65577bdac
 {
     const [tema, setTema] = useState(localStorage.getItem('TemaSelecionado') || 'Claro');
 

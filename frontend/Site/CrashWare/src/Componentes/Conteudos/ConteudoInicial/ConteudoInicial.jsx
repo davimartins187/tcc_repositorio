@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import FMenina_claro from '../../../fotos/claro/menina_estudando.png';
 import FMenina_escuro from '../../../fotos/escuro/menina_estudando.png';
-import { Botoes } from '../../Botoes';
-=======
 // importando componentes para ser ultilizados no ConteudoInicial.jsx
-import FMenina from '../../../fotos/menina_estudando.png';
+import FMenina from '../../../fotos/claro/menina_estudando.png';
 import { BotoesApp, BotoesForm } from '../../Botoes';
->>>>>>> b7b36519cfb590f95409ca397d87bdc65577bdac
 import { Cards } from '../../Cards';
 import { Link } from "react-router-dom";
 
@@ -22,6 +18,7 @@ const ConteudoInicial = () => {
         window.addEventListener('temaAtualizado', checarTema);
         return () => window.removeEventListener('temaAtualizado', checarTema);
     }, []);
+
 
     const FMenina = tema === 'Claro' ? FMenina_claro : FMenina_escuro;
 
@@ -123,7 +120,7 @@ const ConteudoInicial = () => {
                         <span className={Style.software}>Software</span> onde estiver, {' '}
                          Aprenda pelo celular, continue no computador e acompanhe seu progresso em tempo real.
                     </p>
-                    <BotoesApp />
+                    <BotoesApp  />
                 </div>
 
             </main>
