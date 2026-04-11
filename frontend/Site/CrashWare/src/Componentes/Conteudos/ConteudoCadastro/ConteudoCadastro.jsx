@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { BotoesForm, TIPO_BOTAO } from '../../Botoes';
 import { CampoTexto } from '../../CampoTexto';
-import { Cabecalho } from '../../Cabecalho';
 
 import esconderSenha_claro from '../../../fotos/claro/nao_pode_ver_senha.svg';
 import verSenha_claro from '../../../fotos/claro/pode_ver_senha.svg';
@@ -13,16 +12,27 @@ import style from './ConteudoCadastro.module.css';
 
 /*Vocês vão começar a comentar o cod que dia? Vocês não tão fazendo um projeto qualquer não. */
 
+//Nao, se vira
+
 const ConteudoCadstro = () => {
 
-    const [nome, setNome] = useState("")
-    const [email, setEmail] = useState("");
+    //useState sao as variaveis q guardamos as informações
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("")
     const [telefone, setTelefone] = useState("");
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const [mostrar, setMostrar] = useState(false); 
     const [mostrarConfirmar, setMostrarConfirmar] = useState(false);
     const [tema, setTema] = useState(localStorage.getItem('TemaSelecionado') || 'Claro');
+
+    const [erros, setErros] = useState({
+        nome: "",
+        email: "",
+        telefone: "",
+        senha: "",
+        confirmarSenha: ""
+    });
 
     useEffect(() => {
         const checarTema = (e) => setTema(e.detail);
@@ -31,7 +41,7 @@ const ConteudoCadstro = () => {
     }, []);
 
     const isClaro = tema === 'Claro';
-    const PodeMostarBotao = senha !== "" && senha === confirmarSenha;
+    const PodeMostarBotao = nome !== "" && email !== "" &&  senha !== "" && senha === confirmarSenha;
 
     const iconeSenha = mostrar
         ? (isClaro ? verSenha_claro      : verSenha_escuro)
@@ -50,12 +60,57 @@ const handleTelefone = (e) => {
     setTelefone(v);
 };
 
+
 //Função que vai validar os dados e enviar para a API:
 const handleCadastro = () => {
-    //Validações de dados
 
-    
+    let novosErros = {
+            nome: "",
+            email: "",
+            telefone: "",
+            senha: "",
+            confirmarSenha: ""
+        };
+
+        let temErro = false;
+
+        // Nome
+        if (!nome.trim()) {
+            novosErros.nome = "Preencha o nome";
+            temErro = true;
+        }
+
+        // Email
+        if (!email.trim()) {
+            novosErros.email = "Campo obrigatório";
+            temErro = true;
+        } else if (!email.includes("@") || !email.includes(".")) {
+            novosErros.email = "Email inválido";
+            temErro = true;
+        }
+
+        // Telefone
+        const telefoneLimpo = telefone.replace(/\D/g, "");
+        if (telefoneLimpo.length !== 11) {
+            novosErros.telefone = "Telefone inválido";
+            temErro = true;
+        }
+
+        // Senha
+        if (senha.length < 8) {
+            novosErros.senha = "Senha muito curta";
+            temErro = true;
+        }
+
+        // Confirmar senha
+        if (senha !== confirmarSenha) {
+            novosErros.confirmarSenha = "Senhas não coincidem";
+            temErro = true;
+        }
+
+        setErros(novosErros);
 };
+
 
     return (
        <> 
@@ -66,36 +121,42 @@ const handleCadastro = () => {
                 <CampoTexto 
                     type="text" 
                     maxLength={100} 
-                    placeholder="Nome" 
+                    placeholder="Nome*" 
                     className={style.inputClasse} 
                     value={nome} 
                     onChange={(e) => setNome(e.target.value)}
                     autoComplete="new-password"
                 />
 
+                { erros.nome && <p className={style.erro}>{erros.nome}</p> }
+
                 <CampoTexto 
                     type="email" 
                     maxLength={200} 
-                    placeholder="E-mail" 
+                    placeholder="E-mail*" 
                     className={style.inputClasse} 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)}
                     autoComplete="new-password"
                 />
 
+                { erros.email && <p className={style.erro}>{erros.email}</p> }
+
                 <CampoTexto 
                     type="tel" 
                     className={style.inputClasse}
-                    placeholder="(00) 00000-0000" 
+                    placeholder="(00) 00000-0000*" 
                     value={telefone} 
                     onChange={handleTelefone}
                 />
+                
+                { erros.telefone && <p className={style.erro}>{erros.telefone}</p> }
 
                 <div className={style.senhaWrapper}>
                     <CampoTexto 
                         type={mostrar ? "text" : "password"}
                         className={style.inputClasse} 
-                        placeholder="Senha" 
+                        placeholder="Senha*" 
                         value={senha} 
                         onChange={(e) => setSenha(e.target.value)} 
                         maxLength={20}
@@ -108,14 +169,16 @@ const handleCadastro = () => {
                     />
                 </div>
 
+                { erros.senha && <p className={style.erro}>{erros.senha}</p> }
+
                 <div className={style.senhaWrapper}>
                     <CampoTexto 
                         type={mostrarConfirmar ? "text" : "password"}
                         className={style.inputClasse} 
-                        placeholder="Confirme sua Senha" 
+                        placeholder="Confirme sua Senha*" 
                         value={confirmarSenha} 
                         onChange={(e) => setConfirmarSenha(e.target.value)} 
-                        maxLength={20}
+                        maxLength={12}
                     />
                     <img 
                         src={iconeConfirmarSenha}
@@ -125,6 +188,8 @@ const handleCadastro = () => {
                     />
                 </div>
 
+                { erros.confirmarSenha && <p className={style.erro}>{erros.confirmarSenha}</p> }
+
                 <p className={style.TermosUso}>
                     Ao entrar no <span>CrashWare</span>, você concorda com os nossos termos e politicas de privacidade.
                 </p>
@@ -133,7 +198,7 @@ const handleCadastro = () => {
                     texto="Cadastrar" 
                     tipo={TIPO_BOTAO.CADASTRO} 
                     className={style.btnCriarConta} 
-                    /*disabled={!PodeMostarBotao}*/
+                    // disabled={!PodeMostarBotao}
                     
                     //Chamando a função para enviar dados:
                     onClick={handleCadastro}

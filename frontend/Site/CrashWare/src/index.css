@@ -14,7 +14,7 @@
 
   --borda: #2D2D44;
   --input-bg: #f3f3f3;
-  
+  --Vermelho: red;
 }
 
 
@@ -38,6 +38,7 @@
   --input-bg: #1A1A2E;
 
   --Branco: #f9eded;
+  --Vermelho: red;
 }
 
 :root
@@ -65,6 +66,9 @@
 
   /* Gradiente */
   
+
+
+    --Vermelho: red;
 }
 
 /* [data-theme="light"]

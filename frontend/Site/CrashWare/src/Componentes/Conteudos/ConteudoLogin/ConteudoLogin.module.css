@@ -171,6 +171,12 @@ p span{
     opacity: 1;
 }
 
+.erro
+{
+    color: var(--Vermelho);
+    padding-top: 5px;
+}
+
 @media (max-width: 700px) {
     
     form{

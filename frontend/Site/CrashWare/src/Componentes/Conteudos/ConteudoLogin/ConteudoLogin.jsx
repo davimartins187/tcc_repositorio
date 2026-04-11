@@ -8,16 +8,19 @@ import verSenha_claro from '../../../fotos/claro/pode_ver_senha.svg';
 import esconderSenha_escuro from '../../../fotos/escuro/nao_pode_ver_senha_claro.svg';
 import verSenha_escuro from '../../../fotos/escuro/pode_ver_senha_claro.svg';
 
-import { Cabecalho } from '../../Cabecalho'
 import style from './ConteudoLogin.module.css';
 
 const ConteudoLogin = () =>
 {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const [erro, setErro] = useState('');
     const [mostrar, setMostrar] = useState(false);
     const [tema, setTema] = useState(localStorage.getItem('TemaSelecionado') || 'Claro');
+
+        const [erros, setErros] = useState({
+        email: "",
+        senha: ""
+    });
 
     useEffect(() => {
         const checarTema = (e) => setTema(e.detail);
@@ -31,6 +34,38 @@ const ConteudoLogin = () =>
     const iconeSenha = mostrar
         ? (isClaro ? verSenha_claro      : verSenha_escuro)
         : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
+
+
+//Função que vai validar os dados e enviar para a API:
+const handleLogin = () => {
+
+    let novosErros = {
+            email: "",
+            senha: ""
+        };
+
+        let temErro = false;
+
+        // Email
+        if (!email.trim()) {
+            novosErros.email = "Campo obrigatório";
+            temErro = true;
+        } else if (!email.includes("@") || !email.includes(".")) {
+            novosErros.email = "Email inválido";
+            temErro = true;
+        }
+
+
+        // Senha
+        if (senha.length < 8) {
+            novosErros.senha = "Senha curta";
+            temErro = true;
+        }
+
+
+        setErros(novosErros);
+};
+
 
     return (
         <>
@@ -47,6 +82,8 @@ const ConteudoLogin = () =>
                         onChange={(e) => setEmail(e.target.value)}
                     />
 
+                    { erros.email && <p className={style.erro}>{erros.email}</p> }
+
                     <div className={style.senhaWrapper}>
                         <CampoTexto 
                             type={mostrar ? "text" : "password"}
@@ -54,7 +91,7 @@ const ConteudoLogin = () =>
                             placeholder="Senha" 
                             value={senha} 
                             onChange={(e) => setSenha(e.target.value)} 
-                            maxLength={14}
+                            maxLength={12}
                         />
                         <img 
                             src={iconeSenha}
@@ -65,14 +102,18 @@ const ConteudoLogin = () =>
                     </div>
                 </div>
 
-                { erro && <p className={style.erro}>{erro}</p> }
+                { erros.senha && <p className={style.erro}>{erros.senha}</p> }
+
                 <p className={style.TermosUso}>Ao entrar no <span>CrashWare</span>, você concorda com os nossos termos e politicas de privacidade.</p>
                 
                 <BotoesForm
                     texto="Logar" 
                     tipo={TIPO_BOTAO.CADASTRO} 
                     className={style.btnLogar} 
-                    disabled={!PodeLogar}
+                    // disabled={!PodeLogar}
+
+                    // Dados pra logar
+                    onClick={handleLogin}
                 />
 
                 <div className={style.ou}>
