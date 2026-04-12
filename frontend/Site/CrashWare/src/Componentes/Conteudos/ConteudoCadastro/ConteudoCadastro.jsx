@@ -109,15 +109,8 @@ const handleCadastro = async () => {
         // Se tiver erro, para aqui
         if (temErro) {
             return;
-        }else{
-            try{
-                const response = await fetch()
-            }
-
         }
-
-
-
+        
 
 };
 
