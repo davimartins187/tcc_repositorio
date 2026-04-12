@@ -6,6 +6,14 @@ const ConteudoRecSenha = () =>
 {
     const [email, setEmail] = useState("");
 
+        // if (!email.trim()) {
+        //     novosErros.email = "Campo obrigatório";
+        //     temErro = true;
+        // } else if (!email.includes("@") || !email.includes(".")) {
+        //     novosErros.email = "Email inválido";
+        //     temErro = true;
+        // }
+
     const PodeMostarBotao = email != " ";
     return(
         <div className={style.corpo}>
