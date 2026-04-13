@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.corpo{
+    width: 100%;
+    height: 84vh; 
+    background-color: var(--bg-secundario);
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container{
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.container h1{
+    color: var(--texto-principal);
+    font-size: 3rem;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 15px;
+    /* text-shadow:  2px 2px 1px rgba(0, 0, 0, 0.842); */
+}
+
+
+.inputClasse{
+    justify-items: flex-start;
+    width: 65%;
+    background-color: var(--input-bg);
+    border: 1px solid var(--borda);
+    height: 50px;
+    border-radius: 6px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.685);
+    color: var(--texto-secundario);
+    font-size: 18px;
+    opacity: 0.9;
+    padding: 20px;
+    padding-left: 30px;
+}
+
+.btnEnviar{
+
+    /* botão em sí */
+    background-color: var(--cor-primaria);
+    border: 1px solid var(--borda);
+    width: 60%;
+    height: 55px;
+    border-radius: 6px;
+    /* box-shadow:  2px 2px 1px rgba(0, 0, 0, 0.555); */
+    margin-top: 10px;
+
+    /* texto do botão */
+    color: var(--texto-principal);
+    font-size: 25px;
+    font-weight: bolder;
+    /* text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.685); */
+}
+
+button:hover{
+    transition: 0.3s;
+    background-color: var(--cor-primaria-hover);
+    color: var(--font_principal_escuro);
+    transform: scale(1.05);
+}
+
+.btnEnviar:disabled
+{
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+@media (max-width: 500px) {
+    
+    .corpo{
+        width: 97vw;
+        height: 80vh;
+    }
+
+    .container h1{
+        font-size: 2.5rem;
+    }
+}
