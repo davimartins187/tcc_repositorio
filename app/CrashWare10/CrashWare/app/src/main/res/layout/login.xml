@@ -114,7 +114,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/pt_sans_caption_bold"
         android:text="Esqueceu sua senha?"
-        android:textColor="@color/azul"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/txtSenhaLogin"
         app:layout_constraintTop_toBottomOf="@id/txtSenhaLogin" />
@@ -127,9 +127,10 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/bg_button_borda"
+        android:background="@drawable/bg_botaosborda"
         android:text="ENTRAR"
-        android:textAllCaps="true"
+        app:backgroundTint="@null"
+        app:backgroundTintMode="add"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="16sp"
@@ -156,7 +157,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="@color/linha_modoclaro" />
+            android:background="?attr/colorOnSurface" />
 
         <TextView
             android:id="@+id/tvOu"
@@ -165,17 +166,15 @@
             android:layout_marginHorizontal="16dp"
             android:fontFamily="@font/righteous"
             android:text="ou"
-            android:textColor="@color/texto_modoclaro"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="17sp" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="@color/linha_modoclaro" />
+            android:background="?attr/colorOnSurface" />
     </LinearLayout>
-
-    <!-- Botões sociais -->
 
     <!-- Criar conta -->
     <LinearLayout
@@ -197,7 +196,7 @@
         android:layout_marginBottom="350dp"
         android:fontFamily="@font/righteous"
         android:text="Não tem uma conta?"
-        android:textColor="#CC0F172A"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -211,9 +210,10 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/bg_button_borda"
+        android:background="@drawable/bg_botaosborda"
         android:text="CADASTRE-SE"
-        android:textAllCaps="true"
+        app:backgroundTint="@null"
+        app:backgroundTintMode="add"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="16sp"

@@ -53,13 +53,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
+    <EditText
+        android:id="@+id/txtNomeCad"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/bg_edittext_borda"
+        android:fontFamily="@font/pt_sans_caption_bold"
+        android:hint="Nome"
+        android:paddingHorizontal="16dp"
+        android:textColor="#000000"
+        android:textColorHint="@color/hint_modoclaro"
+        app:layout_constraintBottom_toTopOf="@+id/txtEmailCad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titulo" />
+
     <!-- Campo Email -->
     <EditText
         android:id="@+id/txtEmailCad"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/bg_edittext_borda"
         android:fontFamily="@font/pt_sans_caption_bold"
         android:hint="E-mail"
@@ -69,7 +86,7 @@
         app:layout_constraintBottom_toTopOf="@+id/txtTelCad"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titulo" />
+        app:layout_constraintTop_toBottomOf="@id/txtNomeCad" />
 
     <!--Nº de Telefone -->
     <EditText
@@ -181,9 +198,10 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/bg_button_borda"
+        android:background="@drawable/bg_botaosborda"
         android:text="CRIAR CONTA"
-        android:textAllCaps="true"
+        app:backgroundTint="@null"
+        app:backgroundTintMode="add"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="16sp"
@@ -211,7 +229,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="@color/linha_modoclaro" />
+            android:background="?attr/colorOnSurface" />
 
         <TextView
             android:id="@+id/tvOu"
@@ -220,14 +238,14 @@
             android:layout_marginHorizontal="16dp"
             android:fontFamily="@font/righteous"
             android:text="ou"
-            android:textColor="@color/texto_modoclaro"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="17sp" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="@color/linha_modoclaro" />
+            android:background="?attr/colorOnSurface" />
     </LinearLayout>
 
     <!-- Já tem uma conta? -->
@@ -235,7 +253,7 @@
         android:id="@+id/txtEntrarCad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="215dp"
         android:fontFamily="@font/righteous"
         android:text="Já tem uma conta?"
@@ -254,9 +272,10 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/bg_button_borda"
+        android:background="@drawable/bg_botaosborda"
         android:text="ENTRAR"
-        android:textAllCaps="true"
+        app:backgroundTint="@null"
+        app:backgroundTintMode="add"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="16sp"

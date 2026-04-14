@@ -73,6 +73,8 @@ public class Home extends AppCompatActivity {
             //telas existem ao mesmo tempo e no mesmo lugar, apenas alguns ficam ociosos e o atual é representado na tela
             // 😊 façamos o L devagar
 
+            menu.setSelectedItemId(R.id.nav_home);
+
             //
             ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainfragment), (v, insets) -> {
                 Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

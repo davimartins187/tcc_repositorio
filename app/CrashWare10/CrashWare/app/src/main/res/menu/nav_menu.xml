@@ -4,31 +4,31 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Anotações"
+        android:title=""
         android:icon="@drawable/caneta_icon"
         android:id="@+id/nav_anotacoes"/>
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Matérias"
+        android:title=""
         android:icon="@drawable/livrosvg"
         android:id="@+id/nav_materias"/>
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Home"
+        android:title=""
         android:icon="@drawable/inicio_icon"
         android:id="@+id/nav_home"/>
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Loja"
+        android:title=""
         android:icon="@drawable/loja_icon"
         android:id="@+id/nav_loja"/>
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Perfil"
+        android:title=""
         android:icon="@drawable/login_icon"
         android:id="@+id/nav_perfil"/>
 </menu>

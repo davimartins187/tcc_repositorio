@@ -28,8 +28,8 @@
 
             <ImageView
                 android:id="@+id/layoutLogo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:contentDescription="logo"
                 android:src="@drawable/logo_sem_fundo" />
@@ -40,7 +40,7 @@
                 android:layout_marginStart="15dp"
                 android:fontFamily="@font/righteous"
                 android:text="CRASHWARE"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="#0F172A"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -58,10 +58,11 @@
             android:id="@+id/card"
             android:layout_width="350dp"
             android:layout_height="110dp"
-            android:layout_margin="30dp"
+            android:layout_marginTop="15dp"
             android:padding="12dp"
             android:background="@drawable/bg_card"
             app:layout_constraintTop_toBottomOf="@id/header"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
             <!--Imagem de Perfil -->
@@ -206,7 +207,6 @@
                 android:textColor="#0F172A"
                 android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="@id/card2"
-                app:layout_constraintStart_toEOf="@id/card2"
                 app:layout_constraintTop_toBottomOf="@id/txtAulasConcluidas" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -243,7 +243,6 @@
                 android:textColor="#0F172A"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@id/card3"
-                app:layout_constraintStart_toEOf="@id/card3"
                 app:layout_constraintTop_toBottomOf="@id/txtAulasAndamento" />
 
 
@@ -460,6 +459,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                app:backgroundTint="@null"
+                app:backgroundTintMode="add"
                 app:layout_constraintEnd_toEndOf="@id/card6"
                 app:layout_constraintTop_toBottomOf="@id/txtTituloAula"
                 app:layout_constraintBottom_toBottomOf="@id/card6" />
@@ -473,15 +474,13 @@
             android:layout_marginTop="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/faustao"
+            android:padding="2dp"
             app:shapeAppearanceOverlay="@style/Imagemhome"
             app:strokeColor="#111827"
             app:strokeWidth="1dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card7"/>
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
