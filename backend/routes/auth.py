@@ -28,6 +28,13 @@ from datetime import datetime ,timedelta , timezone
 import smtplib
 import email.message
 
+#dotenv
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+PASSWORD_EMAIL = os.getenv("PASSWORD_EMAIL")
 
 #Funções
 def gerar_codigo():
@@ -38,30 +45,28 @@ def gerar_codigo():
     return codigo , expira_em
 
 
-def enviar_email(codigo, email):
+def enviar_email(codigo, destinario):
 
-    codigo = codigo
-    email = email
 
 	#Aqui vou colocar a mensagem que eu quero enviar.(A MENSAGEM TEM QUE ESTAR EM HTML)
 
 	corpo_email = f"""
 	<p>Olá,<p>
 	<p>Nós da CrashWare recebemos uma solicitação para verificar o seu e-mail em nossa plataforma.</p>
-	<p>Para continuar, utilize o código de verificação abaixo:<p>
-	<h1>Código: {codigo} <h1>
-	<p>Este código é válido por 10 minutos.<p>
-	<p>Se você não fez essa solicitação, ignore este e-mail.<p>
-	<p>Atenciosamente,<p>
-    <p>Equipe CrashWare<p>
+	<p>Para continuar, utilize o código de verificação abaixo:/<p>
+	<h1>Código: {codigo} </h1>
+	<p>Este código é válido por 10 minutos.</p>
+	<p>Se você não fez essa solicitação, ignore este e-mail.</p>
+	<p>Atenciosamente,</p>
+    <p>Equipe CrashWare</p>
 	"""
 
     #Enviando código para o email
     msg = email.message.Message()
     msg['Subject'] = "Verificação de e-mail - CrashWare"  # Assunto/Titulo do email
     msg['From'] = 'plataformacrashware@gmail.com'  #que vai enviar a mensagem
-    msg['To'] = f'{email}'  # Email que vai receber a mensagem
-    password = 'senha'  # Senha do remetente.
+    msg['To'] = f'{destinario}'  # Email que vai receber a mensagem
+    password = f'{PASSWORD_EMAIL}'  # Senha do remetente.
     msg.add_header('Content=Type', 'text/html')
     msg.set_payload(corpo_email)
 
