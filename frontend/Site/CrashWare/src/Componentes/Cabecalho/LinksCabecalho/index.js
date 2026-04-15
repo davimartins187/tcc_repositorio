@@ -1,2 +1,1 @@
-export * from './Cabecalho'
 export * from './LinksCabecalho'

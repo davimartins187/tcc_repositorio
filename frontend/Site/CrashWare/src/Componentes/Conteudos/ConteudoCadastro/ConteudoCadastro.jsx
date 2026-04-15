@@ -22,7 +22,7 @@ const ConteudoCadstro = () => {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
-    const [mostrar, setMostrar] = useState(false); 
+    const [mostrar, setMostrar] = useState(false);
     const [mostrarConfirmar, setMostrarConfirmar] = useState(false);
     const [tema, setTema] = useState(localStorage.getItem('TemaSelecionado') || 'Claro');
 
@@ -45,27 +45,27 @@ const ConteudoCadstro = () => {
     }, []);
 
     const isClaro = tema === 'Claro';
-    const PodeMostarBotao = nome !== "" && email !== "" &&  senha !== "" && senha === confirmarSenha;
+    const PodeMostarBotao = nome !== "" && email !== "" && senha !== "" && senha === confirmarSenha;
 
     const iconeSenha = mostrar
-        ? (isClaro ? verSenha_claro      : verSenha_escuro)
+        ? (isClaro ? verSenha_claro : verSenha_escuro)
         : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
 
     const iconeConfirmarSenha = mostrarConfirmar
-        ? (isClaro ? verSenha_claro      : verSenha_escuro)
+        ? (isClaro ? verSenha_claro : verSenha_escuro)
         : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
 
 
-//Função que verifica se a string tem  número:
-function temNumero(str) {
-  return /\d/.test(str)
-  //Retorna TRUE se tiver número OU FALSE se não tiver;
-}
+    //Função que verifica se a string tem  número:
+    function temNumero(str) {
+        return /\d/.test(str)
+        //Retorna TRUE se tiver número OU FALSE se não tiver;
+    }
 
-//Função que vai validar os dados e enviar para a API:
-const handleCadastro = async () => {
+    //Função que vai validar os dados e enviar para a API:
+    const handleCadastro = async () => {
 
-    let novosErros = {
+        let novosErros = {
             nome: "",
             email: "",
             //telefone: "",
@@ -79,14 +79,14 @@ const handleCadastro = async () => {
         if (!nome.trim()) {
             novosErros.nome = "Preencha o nome";
             temErro = true;
-        }else if(temNumero(nome) == true){
+        } else if (temNumero(nome) == true) {
             novosErros.nome = "Nome inválido";
             temErro = true;
-        }else if (nome.length < 5){
+        } else if (nome.length < 5) {
             novosErros.nome = "Digite pelo menos 5 caracteres";
             temErro = true;
         }
-    
+
 
         // Email
         if (!email.trim()) {
@@ -95,13 +95,13 @@ const handleCadastro = async () => {
         } else if (!email.includes("@") || !email.includes(".")) {
             novosErros.email = "Email inválido";
             temErro = true;
-        } 
+        }
 
         // Senha
         if (senha.length < 8) {
             novosErros.senha = "Senha muito curta";
             temErro = true;
-        } else if (senha.includes(" ")){
+        } else if (senha.includes(" ")) {
             novosErros.senha = "Senha não pode ter espaço";
             temErro = true;
         }
@@ -110,7 +110,7 @@ const handleCadastro = async () => {
         if (senha !== confirmarSenha) {
             novosErros.confirmarSenha = "Senhas não coincidem";
             temErro = true;
-        } else if (confirmarSenha.includes(" ")){
+        } else if (confirmarSenha.includes(" ")) {
             novosErros.confirmarSenha = "Senha não pode ter espaço";
             temErro = true;
         }
@@ -120,31 +120,31 @@ const handleCadastro = async () => {
         if (temErro) {
             // Se tiver erro, para aqui
             return;
-        }else{
-            try{
-                const response = await fetch("https://api-crashware.onrender.com/auth/cadastro",{
+        } else {
+            try {
+                const response = await fetch("https://api-crashware.onrender.com/auth/cadastro", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: 
+                    body:
                         JSON.stringify(
                             {
-                                nome_usuario : nome.trim(),
-                                email :  email.replace(/\s/g, "").toLowerCase(), //Tiro todos os espaços no meio.
-                                senha: senha 
+                                nome_usuario: nome.trim(),
+                                email: email.replace(/\s/g, "").toLowerCase(), //Tiro todos os espaços no meio.
+                                senha: senha
                             }
                         )
                 });
 
-                if (!response.ok){
+                if (!response.ok) {
                     const erro = await response.json()
                     setErros((prev) => ({
                         ...prev,
                         email: erro.detail
                     }));
                     return
-                } else{
+                } else {
                     const dados = await response.json();
                     //alert(dados.mensagem)
                     //Vai para a página de VERIFICAR EMAIL.
@@ -154,120 +154,120 @@ const handleCadastro = async () => {
                             nome: nome,
                             email: email
                         }
-                })
+                    })
                 }
 
             }
             catch (error) {
-            console.log("Erro de conexão:", error);
+                console.log("Erro de conexão:", error);
             }
         }
 
 
 
 
-};
+    };
 
 
 
     return (
-       <> 
-        <div className={style.corpo}>
-            <div className={style.container}>
-                <h1>Cadastre-se</h1>
+        <>
+            <div className={style.corpo}>
+                <div className={style.container}>
+                    <h1>Cadastre-se</h1>
 
-                <CampoTexto 
-                    type="text" 
-                    maxLength={100} 
-                    placeholder="Nome*" 
-                    className={style.inputClasse} 
-                    value={nome} 
-                    onChange={(e) => setNome(e.target.value)}
-                    autoComplete="new-password"
-                />
-
-                { erros.nome && <p className={style.erro}>{erros.nome}</p> }
-
-                <CampoTexto 
-                    type="email" 
-                    maxLength={200} 
-                    placeholder="E-mail*" 
-                    className={style.inputClasse} 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)}
-                    autoComplete="new-password"
-                />
-
-                { erros.email && <p className={style.erro}>{erros.email}</p> }
-
-
-                <div className={style.senhaWrapper}>
-                    <CampoTexto 
-                        type={mostrar ? "text" : "password"}
-                        className={style.inputClasse} 
-                        placeholder="Senha*" 
-                        value={senha} 
-                        onChange={(e) => setSenha(e.target.value)} 
-                        maxLength={20}
+                    <CampoTexto
+                        type="text"
+                        maxLength={100}
+                        placeholder="Nome*"
+                        className={style.inputClasse}
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
+                        autoComplete="new-password"
                     />
-                    <img 
-                        src={iconeSenha}
-                        alt="ver senha"
-                        className={style.imgSenha}
-                        onClick={() => setMostrar(!mostrar)}
+
+                    {erros.nome && <p className={style.erro}>{erros.nome}</p>}
+
+                    <CampoTexto
+                        type="email"
+                        maxLength={200}
+                        placeholder="E-mail*"
+                        className={style.inputClasse}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        autoComplete="new-password"
                     />
+
+                    {erros.email && <p className={style.erro}>{erros.email}</p>}
+
+
+                    <div className={style.senhaWrapper}>
+                        <CampoTexto
+                            type={mostrar ? "text" : "password"}
+                            className={style.inputClasse}
+                            placeholder="Senha*"
+                            value={senha}
+                            onChange={(e) => setSenha(e.target.value)}
+                            maxLength={20}
+                        />
+                        <img
+                            src={iconeSenha}
+                            alt="ver senha"
+                            className={style.imgSenha}
+                            onClick={() => setMostrar(!mostrar)}
+                        />
+                    </div>
+
+                    {erros.senha && <p className={style.erro}>{erros.senha}</p>}
+
+                    <div className={style.senhaWrapper}>
+                        <CampoTexto
+                            type={mostrarConfirmar ? "text" : "password"}
+                            className={style.inputClasse}
+                            placeholder="Confirme sua Senha*"
+                            value={confirmarSenha}
+                            onChange={(e) => setConfirmarSenha(e.target.value)}
+                            maxLength={12}
+                        />
+                        <img
+                            src={iconeConfirmarSenha}
+                            alt="ver confirmar senha"
+                            className={style.imgSenha}
+                            onClick={() => setMostrarConfirmar(!mostrarConfirmar)}
+                        />
+                    </div>
+
+                    {erros.confirmarSenha && <p className={style.erro}>{erros.confirmarSenha}</p>}
+
+                    <p className={style.TermosUso}>
+                        Ao entrar no <span>CrashWare</span>, você concorda com os nossos termos e politicas de privacidade.
+                    </p>
+
+                    <BotoesForm
+                        texto="Cadastrar"
+                        tipo={TIPO_BOTAO.CADASTRO}
+                        className={style.btnCriarConta}
+                        // disabled={!PodeMostarBotao}
+
+                        //Chamando a função para enviar dados:
+                        onClick={handleCadastro}
+                    />
+
+                    <div className={style.ou}>
+                        <hr />
+                        <p>OU</p>
+                        <hr />
+                    </div>
+
+                    <Link to='/login'>
+                        <BotoesForm
+                            texto="Entrar"
+                            tipo={TIPO_BOTAO.CADASTRO}
+                            className={style.btnCriarConta}
+                        />
+                    </Link>
                 </div>
-
-                { erros.senha && <p className={style.erro}>{erros.senha}</p> }
-
-                <div className={style.senhaWrapper}>
-                    <CampoTexto 
-                        type={mostrarConfirmar ? "text" : "password"}
-                        className={style.inputClasse} 
-                        placeholder="Confirme sua Senha*" 
-                        value={confirmarSenha} 
-                        onChange={(e) => setConfirmarSenha(e.target.value)} 
-                        maxLength={12}
-                    />
-                    <img 
-                        src={iconeConfirmarSenha}
-                        alt="ver confirmar senha"
-                        className={style.imgSenha}
-                        onClick={() => setMostrarConfirmar(!mostrarConfirmar)}
-                    />
-                </div>
-
-                { erros.confirmarSenha && <p className={style.erro}>{erros.confirmarSenha}</p> }
-
-                <p className={style.TermosUso}>
-                    Ao entrar no <span>CrashWare</span>, você concorda com os nossos termos e politicas de privacidade.
-                </p>
-
-                <BotoesForm 
-                    texto="Cadastrar" 
-                    tipo={TIPO_BOTAO.CADASTRO} 
-                    className={style.btnCriarConta} 
-                    // disabled={!PodeMostarBotao}
-                    
-                    //Chamando a função para enviar dados:
-                    onClick={handleCadastro}
-                />
-                
-                <div className={style.ou}>
-                    <hr />
-                    <p>OU</p>
-                    <hr />
-                </div>
-
-                <Link to='/login'>
-                    <BotoesForm 
-                        texto="Entrar" 
-                        tipo={TIPO_BOTAO.CADASTRO} 
-                        className={style.btnCriarConta} 
-                    />
-                </Link>
             </div>
-        </div>
         </>
     );
 };

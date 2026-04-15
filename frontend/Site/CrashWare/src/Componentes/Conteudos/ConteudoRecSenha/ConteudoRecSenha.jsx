@@ -14,7 +14,7 @@ const ConteudoRecSenha = () =>
         //     temErro = true;
         // }
 
-    const PodeMostarBotao = email != " ";
+    // const PodeMostarBotao = email != " ";
     return(
         <div className={style.corpo}>
             <div className={style.container}>
