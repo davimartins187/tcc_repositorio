@@ -75,7 +75,7 @@ const handleLogin = () => {
                 <div>
                     <CampoTexto 
                         type="email" 
-                        maxLength={120} 
+                        maxLength={200} 
                         placeholder="Email" 
                         className={style.inputClasse} 
                         value={email} 
@@ -91,7 +91,7 @@ const handleLogin = () => {
                             placeholder="Senha" 
                             value={senha} 
                             onChange={(e) => setSenha(e.target.value)} 
-                            maxLength={12}
+                            maxLength={30}
                         />
                         <img 
                             src={iconeSenha}

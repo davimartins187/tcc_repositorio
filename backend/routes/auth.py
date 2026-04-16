@@ -119,9 +119,9 @@ async def verificar_email(dados : VerificarEmailSchema , session = Depends(pegar
     session.commit()
     return {"mensagem": "Email verificado com sucesso!"}
 
-@auth.post("/reenviar_email")
-async def reenviar_email(dados : VerificarEmailSchema, session = Depends(pegar_sessao)):
-    usuario = session.query(Usuarios).filter(Usuarios.email == dados.email).first()
+@auth.post("/reenviar_codigo")
+async def reenviar_email(email : str, session = Depends(pegar_sessao)):
+    usuario = session.query(Usuarios).filter(Usuarios.email == email).first()
     if usuario is None:
         raise HTTPException(status_code=404,detail="Email não encontrado!! Faça o cadastro antes!")
 
@@ -133,7 +133,7 @@ async def reenviar_email(dados : VerificarEmailSchema, session = Depends(pegar_s
     usuario.codigo_expirado_em = expira
 
     #Envio email
-    enviar_email(codigo, dados.email)
+    enviar_email(codigo, email)
 
 
 

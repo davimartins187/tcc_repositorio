@@ -151,8 +151,8 @@ const ConteudoCadstro = () => {
                     Navegacao("/verificacao-email", {
                         state: {
                             mensagem: dados.mensagem,
-                            nome: nome,
-                            email: email
+                            nome: nome.toUpperCase(),
+                            email: email.toLowerCase()
                         }
                     })
                 }

@@ -71,7 +71,7 @@ const CVerificacaoEmail = () => {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        email
+                        email : email
                     })
                 }
             );
@@ -152,7 +152,7 @@ const CVerificacaoEmail = () => {
                     {/* </Link> */}
 
                     <BotoesForm
-                        texto={loading ? "Espere..." : timer > 0 ? `Reenviar em ${timer}s` : "Reenviar Email"} className={style.btnEnviar}
+                        texto={loading ? "Espere..." : timer > 0 ? `Reenviar em ${timer}s` : "Reenviar Código"} className={style.btnEnviar}
                         onClick={ReenviarCodigo}
                         disabled={timer > 0 || loading}
                     />
