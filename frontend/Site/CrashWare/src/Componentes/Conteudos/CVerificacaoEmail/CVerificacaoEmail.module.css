@@ -86,6 +86,11 @@ button:hover{
     opacity: 0.5;
 }
 
+.erro{
+    color: var(--Vermelho);
+    font-family: "Montserrat", sans-serif;
+}
+
 @media (max-width: 500px) {
     
     .corpo{

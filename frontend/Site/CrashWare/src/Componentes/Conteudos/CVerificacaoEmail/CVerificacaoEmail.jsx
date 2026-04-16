@@ -4,10 +4,22 @@ import { CampoTexto } from "../../CampoTexto";
 import { BotoesForm } from "../../Botoes";
 import style from './CVerificacaoEmail.module.css'
 
-const CVerificacaoEmail = () =>
-{
+const CVerificacaoEmail = () => {
+
+    //Timer de reenviar o código
+    const [timer, setTimer] = useState(60);
+
+    //Mensagem de loading
+    const [loading, setLoading] = useState(false);
+
+    //Verificador Automatico7
+    const [verificando, setVerificando] = useState(false);
+
     //useState que guardará a o codigo
     const [codigo, setCodigo] = useState("");
+
+    //Erro Código
+    const [erro, setErro] = useState("");
 
     //Receberá as informações da página anterior
     const location = useLocation();
@@ -18,7 +30,7 @@ const CVerificacaoEmail = () =>
     //Pega os dados
     const mensagem = location.state?.mensagem;
     const email = location.state?.email;
-    const nome =location.state?.nome;
+    const nome = location.state?.nome;
 
     //Proteção da url
     useEffect(() => {
@@ -27,106 +39,122 @@ const CVerificacaoEmail = () =>
         }
     }, []);
 
-    //Função de reenviar o código
-    const ReenviarCodigo = async =>
-    {
-        //Timer de reenviar o código
-        const [timer, setTimer] = useState(60);
-        //Mensagem de loading
-        const [loading, setLoading] = useState(false);
+    //Automação
+    useEffect(() => {
+        if (codigo.length === 6 && !verificando) {
+            handleVericarEmail()
+        }
+    }, [codigo]);
 
-        useEffect(() => {
+    //Temporizador
+    useEffect(() => {
         if (timer === 0) return;
-        
-        const intervalo = setInterval(() =>{
+
+        const intervalo = setInterval(() => {
             setTimer((prev) => prev - 1);
         }, 1000);
 
         return () => clearInterval(intervalo);
-        }, [timer]);
+    }, [timer]);
 
-        //Daqui pra baixo é API
-        async function handlerClick () {
-            if(loading || timer > 0) return;
+    //Função de reenviar o código
+    const ReenviarCodigo = async () => {
+        if (loading || timer > 0) return;
+        setLoading(true);
 
-            setLoading(true);
+        try {
+            const response = await fetch(
+                "https://api-crashware.onrender.com/auth/reenviar_codigo",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email
+                    })
+                }
+            );
 
-            // try{
-            //     const response = await fetch("https://api-crashware.onrender.com/auth/cadastro", {
-            //         method: "POST",
-            //         headers:{
-            //             "Content-Type": "application/json"
-            //         },
-            //         body:
-            //         JSON.stringify
-            //     })
-            // }
+            if (!response.ok) {
+                alert("Erro ao reenviar");
+            } else {
+                setTimer(60);
 
-
-            // felipe betinha
-
-
-        }
-    }
-
-const handleVericarEmail = async () => {
-    try {
-        const response = await fetch(
-            "https://api-crashware.onrender.com/auth/verificar_email",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    codigo: codigo.toString(),
-                    email: email
-                })
             }
-        );
 
-        if (response.ok === false) {
-            const erro = await response.json();
-
-            // erro.detail
-            alert("ERRO")
-        } else {
-            // Vai para LOGIN.
-            alert("Código verificado e gabriel é um beta")
+        } catch (error) {
+            console.log(error);
+            alert("Erro ao reenviar código");
+        } finally {
+            setLoading(false);
         }
 
-    } catch (error) {
-        console.log("Erro de conexão:", error);
+
     }
-};
+
+    const handleVericarEmail = async () => {
+        try {
+            const response = await fetch(
+                "https://api-crashware.onrender.com/auth/verificar_email",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        codigo: codigo.toString(),
+                        email: email
+                    })
+                }
+            );
+
+            if (response.ok === false) {
+
+                const erroCodigo = await response.json()
+                setErro(erroCodigo.detail)
+            } else {
+                setErro("");
+                Navegacao("/login")
+            }
+
+        } catch (error) {
+            console.log("Erro de conexão:", error);
+        }
+    };
 
 
     //Verificara se pode liberar o botao
     // const PodeMostarBotao = email != " ";
 
-    return(
+    return (
         <>
             <div className={style.corpo}>
                 <div className={style.container}>
                     <h1>Bem-Vindo {nome}!!!</h1>
                     <p className={style.texto}>Verifique o Código enviado para o email: {email} </p>
 
-                    <CampoTexto type="number" maxLength={6} placeholder="Código" 
-                        className={style.inputClasse} 
-                        value={codigo} 
+                    <CampoTexto type="number" placeholder="Código"
+                        className={style.inputClasse}
+                        value={codigo}
                         onChange={(e) => setCodigo(e.target.value)}
+                        max={6}
                     />
 
+                    {erro && <p className={style.erro}>{erro}</p>}
+                    
+
                     {/* <Link  to=""> */}
-                        <BotoesForm texto="Verificar" className={style.btnEnviar}
-                        onClick = {handleVericarEmail}
-                        //disabled={!PodeMostarBotao}
-                        />
+                    <BotoesForm texto="Verificar" className={style.btnEnviar}
+                        onClick={handleVericarEmail}
+                    //disabled={!PodeMostarBotao}
+                    />
                     {/* </Link> */}
 
-                    <BotoesForm 
-                    texto="Reenviar Email" className={style.btnEnviar}
-                    onClick={ReenviarCodigo}
+                    <BotoesForm
+                        texto={loading ? "Espere..." : timer > 0 ? `Reenviar em ${timer}s` : "Reenviar Email"} className={style.btnEnviar}
+                        onClick={ReenviarCodigo}
+                        disabled={timer > 0 || loading}
                     />
                 </div>
             </div>
