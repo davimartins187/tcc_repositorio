@@ -92,7 +92,7 @@ const handleLogin = async () => {
 
         if (response.status === 403){
 
-            const erroA = await response.json()
+            const erro = await response.json()
             const nome = erro.detail.nome
 
 
