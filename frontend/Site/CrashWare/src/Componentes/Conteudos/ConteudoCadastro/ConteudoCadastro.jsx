@@ -131,7 +131,7 @@ const ConteudoCadstro = () => {
                 state: {
                     mensagem: dados.mensagem,
                     nome: nome.toUpperCase(),
-                    email: email.toLowerCase()
+                    email: email.replace(/\s/g, "").toLowerCase()
                 }
             });
 
@@ -170,6 +170,7 @@ const ConteudoCadstro = () => {
                         className={style.inputClasse}
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
+                        autoComplete = 'name'
                     />
 
                     <CampoTexto
@@ -179,6 +180,7 @@ const ConteudoCadstro = () => {
                         className={style.inputClasse}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        autoComplete = 'email'
                     />
 
                     <div className={style.senhaWrapper}>

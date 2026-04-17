@@ -83,7 +83,7 @@ const ConteudoLogin = () =>
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    email : email.toLowerCase(),
+                    email : email.replace(/\s/g, "").toLowerCase(),
                     senha : senha
                 })
             }//Parâmetros
@@ -101,13 +101,12 @@ const ConteudoLogin = () =>
 
                 return;
             }else if(reponse.status == 403){
-                // Vai para a tela de verificar email
-                //Você precisa enviar esses dados:
-                
+            
+                alert("Email não autenticado")
                 Navegacao("/verificacao-email",{
                     state: {
                         email: email.toLowerCase(),
-                        nome: response.detail.nomet.toUpperCase()
+                        nome: response.detail.nome.toUpperCase()
                     }
                 });
                 //response.detail.nome
@@ -115,7 +114,10 @@ const ConteudoLogin = () =>
                 
 
             }
+            
             else{
+                alert("Email Autenticado")
+                
                 const dados = await response.json()
                 const token = dados.token
                 const refresh_token = dados.refresh_token

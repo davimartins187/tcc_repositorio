@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends,HTTPException
-from passlib.utils.compat import error_from
 
 from main import SECRET_KEY,  ALGORITIMO
 #Importando tabelas:
@@ -119,6 +118,7 @@ async def cadastro(dados : UsuarioSchema,session = Depends(pegar_sessao)):
             session.rollback()
             raise  exception
 
+#############
 
 @auth.post("/verificar_email")
 async def verificar_email(dados : VerificarEmailSchema , session = Depends(pegar_sessao)):
@@ -133,6 +133,8 @@ async def verificar_email(dados : VerificarEmailSchema , session = Depends(pegar
     usuario.email_verificado = True
     session.commit()
     return {"mensagem": "Email verificado com sucesso!"}
+
+####################
 
 @auth.post("/reenviar_codigo")
 async def reenviar_codigo( dados : ReenviarEmailSchema, session = Depends(pegar_sessao)):
@@ -152,12 +154,14 @@ async def reenviar_codigo( dados : ReenviarEmailSchema, session = Depends(pegar_
 
     return {"mensagem": "Código Reenviado!"}
 
+########################
+
 @auth.post("/login")
 async def login(dados : UsuarioLoginSchema , session = Depends(session)):
     usuario = session.query(Usuarios).filter(Usuarios.email == dados.email).first()
     if usuario is None:
         raise HTTPException(status_code=404,detail="Email não cadastrado")
-    elif criptografia.verify(dados.senha , usuario.senha) == False:
+    elif criptografia.verify(dados.senha , usuario.senha_hash) == False:
         raise HTTPException(status_code=401,detail="Senha incorreta")
     else:
         if usuario.email_verificado ==  False:
@@ -174,6 +178,7 @@ async def login(dados : UsuarioLoginSchema , session = Depends(session)):
                 "token_type": "bearer"
             }
 
+##################
 
 
 
