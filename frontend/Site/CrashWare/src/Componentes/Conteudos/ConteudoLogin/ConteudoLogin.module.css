@@ -9,7 +9,7 @@
 /* ===== LAYOUT ===== */
 
 .corpo {
-  min-height: 89vh;
+  min-height: 88.9vh;
   background: var(--bg-principal);
   display: flex;
   justify-content: center;
