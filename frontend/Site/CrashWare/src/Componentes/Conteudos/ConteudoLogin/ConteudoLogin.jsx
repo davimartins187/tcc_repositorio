@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { CampoTexto } from "../../CampoTexto";
 import { BotoesForm, TIPO_BOTAO } from "../../Botoes";
@@ -24,6 +24,14 @@ const ConteudoLogin = () =>
         window.addEventListener('temaAtualizado', checarTema);
         return () => window.removeEventListener('temaAtualizado', checarTema);
     }, []);
+
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
+
 
     const isClaro = tema === 'Claro';
 
@@ -53,7 +61,6 @@ const ConteudoLogin = () =>
         return null;
     };
 
-    // ✅ LOGIN
     const handleLogin = async () => {
 
         const erro = validarCampos();
@@ -126,6 +133,7 @@ const ConteudoLogin = () =>
 
                     <CampoTexto 
                         type="email" 
+                        ref={inputRef}
                         maxLength={200} 
                         placeholder="Email" 
                         className={style.inputClasse} 

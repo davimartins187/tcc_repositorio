@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BotoesForm, TIPO_BOTAO } from '../../Botoes';
 import { CampoTexto } from '../../CampoTexto';
 import { PopUp } from '../../pop-up';
@@ -30,6 +30,14 @@ const ConteudoCadstro = () => {
         return () => window.removeEventListener('temaAtualizado', checarTema);
     }, []);
 
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus(); // coloca o cursor no input
+    }, []);
+    
+
     const isClaro = tema === 'Claro';
 
     const iconeSenha = mostrar
@@ -40,7 +48,7 @@ const ConteudoCadstro = () => {
         ? (isClaro ? verSenha_claro : verSenha_escuro)
         : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
 
-    // ✅ VALIDAÇÃO DIRETA (retorna só 1 erro)
+    //  VALIDAÇÃO DIRETA (retorna só 1 erro)
     const validarCampos = () => {
 
         if (!nome.trim()) {
@@ -154,6 +162,7 @@ const ConteudoCadstro = () => {
                     <CampoTexto
                         type="text"
                         maxLength={100}
+                        ref={inputRef}
                         placeholder="Nome*"
                         className={style.inputClasse}
                         value={nome}
