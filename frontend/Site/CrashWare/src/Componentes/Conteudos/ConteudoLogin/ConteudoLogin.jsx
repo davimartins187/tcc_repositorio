@@ -159,8 +159,7 @@ const handleLogin = async () => {
             //const token = localStorage.getItemItem("token")
 
             //Aqui envia para a tela de HOME:
-
-
+            Navegacao("/perfil");
         }
 
     } catch (error) {
