@@ -6,79 +6,58 @@ import style from './CVerificacaoEmail.module.css'
 
 const CVerificacaoEmail = () => {
 
-    //Timer de reenviar o código
+    //useState/variaveis
     const [timer, setTimer] = useState(60);
-
-    //Mensagem de loading
     const [loading, setLoading] = useState(false);
-
-    //Verificador Automatico7
-    // const [verificando, setVerificando] = useState(false);
-
-    //useState que guardará a o codigo
+    const [verificando, setVerificando] = useState(false);
     const [codigo, setCodigo] = useState("");
-
-    //Erro Código
     const [erro, setErro] = useState("");
+    const [podeNavegar, setPodeNavegar] = useState(false);
+    const [mostrarModal, setMostrarModal] = useState(false);
 
-    //Receberá as informações da página anterior
+    //Navegação e recebimento de dados
     const location = useLocation();
     const Navegacao = useNavigate();
 
-    //Modal de confirmação
-    // const [mostrarModal, setMostrarModal] = useState(false);
-
-    //Bloquear atualizer página
-    // const Bloqueador = useBlocker(!podeNavegar);
-
-    // Bloqueia botão voltar do navegador
-    // useEffect(() => {
-    //     // Empurra um estado extra no histórico para capturar o "voltar"
-    //     window.history.pushState(null, '', window.location.href);
-
-    //     const handlePopState = () => {
-    //         // Quando usuário tenta voltar, empurra de volta e mostra modal
-    //         window.history.pushState(null, '', window.location.href);
-    //         setMostrarModal(true);
-    //     };
-
-    //     window.addEventListener('popstate', handlePopState);
-    //     return () => window.removeEventListener('popstate', handlePopState);
-    // }, []);
-
-    // Bloqueia F5, Ctrl+R e botão de recarregar do navegador
-    useEffect(() => {
-        const handleBeforeUnload = (e) => {
-            e.preventDefault();
-            e.returnValue = '';
-        };
-
-        const bloquearAtalhos = (e) => {
-            if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
-                e.preventDefault();
-            }
-        };
-
-        window.addEventListener('beforeunload', handleBeforeUnload);
-        window.addEventListener('keydown', bloquearAtalhos);
-
-        return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
-            window.removeEventListener('keydown', bloquearAtalhos);
-        };
-    }, []);
-
-    //Pega os dados
+    //Recebe Os dados
     const mensagem = location.state?.mensagem;
     const email = location.state?.email;
     const nome = location.state?.nome;
 
     //Nome maiusculo
-    const nomeM = nome.toUpperCase();
+    const nomeM = nome?.toUpperCase() || "";
+
+    //Block de navegação
+    useEffect(() => {
+        const handleBeforeUnload = (e) => {
+            if (!podeNavegar) {
+                e.preventDefault();
+                e.returnValue = "";
+            }
+        };
+
+        window.addEventListener("beforeunload", handleBeforeUnload);
+        return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+    }, [podeNavegar]);
+
+    useEffect(() => {
+        const handlePopState = () => {
+            if (!podeNavegar) {
+                window.history.pushState(null, "", window.location.href);
+                setMostrarModal(true);
+            }
+        };
+
+        window.history.pushState(null, "", window.location.href);
+        window.addEventListener("popstate", handlePopState);
+
+        return () => window.removeEventListener("popstate", handlePopState);
+    }, [podeNavegar]);
+
 
     //Proteção da url
     useEffect(() => {
-        if (!mensagem && !email && !nome) {
+        if (!mensagem && !email) {
             Navegacao('/cadastro');
         }
     }, []);
@@ -172,23 +151,27 @@ const CVerificacaoEmail = () => {
 
     return (
         <>
-        {/* modal */}
-            {/* {mostrarModal && (
+            {mostrarModal && (
                 <div className={style.modalOverlay}>
                     <div className={style.modal}>
                         <p>Tem certeza que deseja sair? O código será perdido.</p>
-                        <button onClick={() => {
+                        <BotoesForm onClick={() => {
                             setMostrarModal(false);
-                            Navegacao('/cadastro', { replace: true });
-                        }}>
+                            setPodeNavegar(true);
+                            blocker.proceed();
+                        }}
                             Sair
-                        </button>
-                        <button onClick={() => setMostrarModal(false)}>
+                        />
+                        <BotoesForm onClick={() => {
+                            setMostrarModal(false);
+                            blocker.reset();
+                        }}
                             Ficar
-                        </button>
+                        />
                     </div>
                 </div>
-            )} */}
+            )}
+
             <div className={style.corpo}>
                 <div className={style.container}>
                     <h1>Bem-Vindo {nomeM}!!!</h1>
