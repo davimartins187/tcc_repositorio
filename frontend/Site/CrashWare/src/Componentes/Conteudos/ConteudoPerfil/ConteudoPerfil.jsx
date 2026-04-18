@@ -68,6 +68,7 @@ const ConteudoPerfil = () => {
 
                 {/* Informações de Ofenciva e afins */}
                 <div className={style.blocos}>
+
                     {/* Ranking */}
                     <div className={style.Ranking}>
                         <img src={iconRanking} alt="" />
@@ -97,9 +98,19 @@ const ConteudoPerfil = () => {
                     </div> {/* XP */}
                 </div> {/*Blocos*/}
 
+                {/* Atividades */}
+                <div className={style.Atividades}>
+                    <h4>Atividade Recentes</h4>
+                    <h6>Bla Bla</h6>
+                    <h6>Bla Bla</h6>
+                    <h6>Bla Bla</h6>
+                </div> {/* Atividades */}
+                
                 {/* Conquistas */}
-                <div className={style.conquista}>
-
+                <div className={style.Conquistas}>
+                    <h4>Atividade Recentes</h4>
+                    <h6>...</h6>
+                    <h6>...</h6>
                 </div>
             </div>
         </div>

@@ -99,11 +99,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 60px;
-    color: var(--Branco);
+    gap: 10px;
+    color: var(--texto-principal);
     width: 100%;
     margin-top: 15px;
-    margin-left: 20px;
 }
 
 .Ranking{
@@ -117,7 +116,8 @@
     padding-bottom: 5px;
     padding-top: 5px;
     border-radius: 7px;
-    border: solid var(--Branco);
+    border: solid var(--Branco) 2px;
+    margin-right: 5px;
 }
 
 .Ranking img{
@@ -145,7 +145,7 @@
     padding-top: 5px;
     display: flex;
     flex-direction: row;
-    border: solid var(--Branco);
+    border: solid var(--Branco) 2px;
     border-radius: 7px;
     background-color: var(--bg-principal);
 }
@@ -175,9 +175,10 @@
     padding-top: 5px;
     display: flex;
     flex-direction: row;
-    border: solid var(--Branco);
+    border: solid var(--Branco) 2px;
     border-radius: 7px;
     background-color: var(--bg-principal);
+    margin-left: 5px
 }
 
 .xp p{
@@ -198,4 +199,50 @@
 .xp img{
     width: 35px;
     height: 35px;       
+}
+
+.Atividades{
+    margin-top: 25px;
+    border: solid var(--Branco) 2px;
+    width: 70.1%;
+    justify-self: center;
+    border-radius: 7px;
+    color: var(--texto-principal);
+    padding-bottom: 7px;
+    background-color: var(--atividade-titulo);
+}
+
+.Atividades h4{
+    background-color: var(--atividade-titulo);
+    border: solid var(--Branco) 2px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    padding: 5px;
+}
+
+.Atividades h6{
+    border: solid var(--Branco) 2px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    padding: 5px;
+    text-indent: 20px;
+    background: linear-gradient(to right, var(--gradiente1-atividades), var(--gradiente2-atividades), var(--gradiente3-atividades));
+}
+
+.Conquistas{
+    margin-top: 25px;
+    border: solid var(--Branco) 2px;
+    width: 70.1%;
+    justify-self: center;
+    border-radius: 7px;
+    color: var(--texto-principal);
+    padding-bottom: 7px;
+    background-color: var(--atividade-titulo);
+}
+
+.Conquistas h6{
+    background: linear-gradient(to right, var(--gradiente1-conquistas), var(--gradiente2-conquistas));
+    color: #000000;
 }

@@ -68,5 +68,16 @@
   --popup-aviso-texto: #fbbf24;
   --popup-aviso-icone-bg: #fbbf24;
   --popup-aviso-icone-cor: #1a0f00;
+
+
+  /* Atualização pro perfil */
+  --atividade-titulo: #23264D;
+
+  --gradiente1-atividades: #16182F;
+  --gradiente2-atividades: #2A3260;
+  --gradiente3-atividades: #0F172A;
+
+  --gradiente2-conquistas: #1593D2;
+  --gradiente1-conquistas: #FFFFFF;
 }
 
