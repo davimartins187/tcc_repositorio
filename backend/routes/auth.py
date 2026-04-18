@@ -86,7 +86,7 @@ def enviar_email(codigo, destinario):
 
 def gerar_token(id_usuario, validade = timedelta(minutes = 30)):
     data_expiracao = datetime.now(timezone.utc) + validade
-    informacoes = {"sub" : str(id_usuario) , "exp" : data_expiracao}
+    informacoes = {"sub" : str(id_usuario) , "exp" : data_expiracao.timestamp()}
     token = jwt.encode(informacoes, SECRET_KEY, ALGORITIMO)
     return  token
 

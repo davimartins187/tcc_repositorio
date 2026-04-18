@@ -76,6 +76,7 @@ const handleLogin = async () => {
         return;
     }
 
+    //Envio os dados para a API(na rota de login)
     try{
         const response = await fetch("https://api-crashware.onrender.com/auth/login",{
             method : "POST",
@@ -91,11 +92,13 @@ const handleLogin = async () => {
         // Erro causado por ação do usuário (dados inválidos, não autorizado, etc)
 
         if (response.status === 403){
+            //Caso o usuario não tenha verificado o email:
 
+            //Pego o nome
             const erro = await response.json()
             const nome = erro.detail.nome
 
-
+            //Envio novamente o codigo para o email , reutulizando outra requisição:
             try {
             const response = await fetch(
                 "https://api-crashware.onrender.com/auth/reenviar_codigo",
@@ -112,23 +115,24 @@ const handleLogin = async () => {
             {
                 //Precisa colocar esse erro no lugar certo davison.
                 console.log(error);
-                alert("Erro ao reenviar código");
                 return;
             }
 
 
+            //Envio o usuario na pagina de verificar EMAIL
             Navegacao("/verificacao-email",{
                 state: {
                     email: email.toLowerCase(),
                     nome: nome.toUpperCase()
                 }
             });
-            //response.detail.nome
-            //response.detail.erro
             
             
             
         }else if(!response.ok){
+            //Caso o usuario erre a senha, ou email não autenticado:
+
+            //Retorna erro
             const erro = await response.json()
             setPopup({
                 tipo: 'erro',
@@ -141,13 +145,22 @@ const handleLogin = async () => {
         }
         
         else{
-            alert("Email Autenticado")
+            // Usuario logou:
 
+            //Pego o token gerado pela API
             const dados = await response.json()
             const token = dados.token
             const refresh_token = dados.refresh_token
 
-            //A estrutura de guardar o token no storage e header eu faço na etec.
+            //Guardo no localStorage
+            localStorage.setItem("token",token)
+            localStorage.setItem("refresh_token",refresh_token)
+
+            //const token = localStorage.getItemItem("token")
+
+            //Aqui envia para a tela de HOME:
+
+
         }
 
     } catch (error) {
