@@ -22,7 +22,7 @@ const ConteudoCadstro = () => {
     const [tema, setTema] = useState(localStorage.getItem('TemaSelecionado') || 'Claro');
     const [popup, setPopup] = useState(null);
 
-    
+
 
     //Levará para a verificacao de email
     const Navegacao = useNavigate();
@@ -36,9 +36,11 @@ const ConteudoCadstro = () => {
     const inputRef = useRef(null);
 
     useEffect(() => {
-        inputRef.current.focus(); // coloca o cursor no input
+        setTimeout(() => {
+            inputRef.current?.focus();
+        }, 0);
     }, []);
-    
+
 
     const isClaro = tema === 'Claro';
 
@@ -126,7 +128,7 @@ const ConteudoCadstro = () => {
             if (!response.ok) {
                 const erro = await response.json();
 
-                
+
 
                 setPopup({
                     tipo: 'erro',
@@ -182,7 +184,7 @@ const ConteudoCadstro = () => {
                         className={style.inputClasse}
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
-                        autoComplete = 'name'
+                        autoComplete='name'
                     />
 
                     <CampoTexto
@@ -192,7 +194,7 @@ const ConteudoCadstro = () => {
                         className={style.inputClasse}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        autoComplete = 'email'
+                        autoComplete='email'
                     />
 
                     <div className={style.senhaWrapper}>

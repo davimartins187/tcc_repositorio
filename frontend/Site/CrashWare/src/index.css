@@ -96,5 +96,19 @@
 
   --gradiente2-conquistas: #1593D2;
   --gradiente1-conquistas: #FFFFFF;
-}
 
+
+  /* Atualização verificar código */
+  --vermelho-forte-msm-sair: rgb(255, 0, 0);
+
+  /* Grandiente Background */
+  --gradiente1: #15172E;
+  --gradiente2: #23264D;
+  --gradiente3: #15172E;
+
+  --cor-contraste-bg: #23264D;
+}
+/* 
+body{
+  background: linear-gradient(to right, var(--gradiente1), var(--gradiente2), var(--gradiente3));
+} */

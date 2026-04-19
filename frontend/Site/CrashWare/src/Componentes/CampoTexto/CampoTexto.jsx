@@ -1,12 +1,14 @@
+import {  forwardRef } from 'react';
 import style from './CampoTexto.module.css';
 
-const CampoTexto = (props) =>
+const CampoTexto = forwardRef((props, ref) =>
 {
     return (
         <div className={style.CampoTexto}>
-            <input {...props}/>
+            <input {...props}
+            ref={ref}/>
         </div>
     );
-};
+});
 
 export { CampoTexto };
