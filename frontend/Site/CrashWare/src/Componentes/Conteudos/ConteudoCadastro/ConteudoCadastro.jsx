@@ -128,6 +128,8 @@ const ConteudoCadstro = () => {
 
             const dados = await response.json();
 
+            alert(dados.mensagem)
+
             Navegacao("/verificacao-email", {
                 state: {
                     mensagem: dados.mensagem,

@@ -113,7 +113,7 @@ async def cadastro(dados : UsuarioSchema,session = Depends(pegar_sessao)):
 
             #Resposta da API
             return{
-                "mensagem" : "Usuário cadastrado com sucesso!"
+                "mensagem" : "Cadastro realizado com sucesso\nEstamos te redirecionando para a verificação de e-mail"
             }
         except Exception as exception:
             session.rollback()
