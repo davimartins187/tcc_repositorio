@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useBlocker, useLocation, useNavigate } from "react-router-dom";
 import { CampoTexto } from "../../CampoTexto";
 import { BotoesForm } from "../../Botoes";
@@ -23,6 +23,15 @@ const CVerificacaoEmail = () => {
     const mensagem = location.state?.mensagem;
     const email = location.state?.email;
     const nome = location.state?.nome;
+
+    //Ponteiro Piscando
+    // const inputRef = useRef(null);
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         inputRef.current?.focus();
+    //     }, 0);
+    // }, []);   ME IRRITEI NAO TA FUNCIONANDP
 
     //Nome maiusculo
     const nomeM = nome?.toUpperCase() || "";
@@ -154,19 +163,21 @@ const CVerificacaoEmail = () => {
             {mostrarModal && (
                 <div className={style.modalOverlay}>
                     <div className={style.modal}>
-                        <p>Tem certeza que deseja sair? O código será perdido.</p>
+                        <h4>Tem certeza que deseja sair? O código será perdido e poderá surgir erros no cadastro.</h4>
                         <BotoesForm onClick={() => {
                             setMostrarModal(false);
                             setPodeNavegar(true);
-                            blocker.proceed();
+                            // blocker.proceed();
                         }}
-                            Sair
+                            className={style.btnSair}
+                            texto="Sair"
                         />
                         <BotoesForm onClick={() => {
                             setMostrarModal(false);
-                            blocker.reset();
+                            // blocker.reset(); 
                         }}
-                            Ficar
+                            className={style.btnFicar}
+                            texto="Ficar"
                         />
                     </div>
                 </div>
@@ -179,6 +190,7 @@ const CVerificacaoEmail = () => {
 
                     <CampoTexto type="text" placeholder="Código"
                         className={style.inputClasse}
+                        // ref={inputRef}   
                         value={codigo}
                         maxLength={6}
                         onChange={(e) => {

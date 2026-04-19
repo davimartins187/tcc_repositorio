@@ -104,7 +104,7 @@ button:hover{
 }
 
 .modalOverlay {
-    position: fixed; /* aqui pode usar fixed pois é CSS real, não widget */
+    position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
@@ -114,11 +114,46 @@ button:hover{
 }
 
 .modal {
-    background: white;
+    background: var(--bg-secundario);
+    color: var(--texto-principal);
     padding: 2rem;
     border-radius: 12px;
     text-align: center;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 40%;
+    align-items: center;
+}
+
+.modal h4{
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 15px;
+    font-size: 30px;
+}
+
+.btnSair{
+    background-color: var(--vermelho-forte-msm-sair);
+    color: var(--texto-principal);
+    width: 50%;
+    padding: 10px;
+    font-size: 19px;
+}
+
+.btnSair:hover{
+    background-color: var(--vermelho-forte-msm-sair);
+    color: var(--texto-principal);
+}
+
+.btnFicar{
+    background-color: var(--cor-primaria);
+    color: var(--texto-principal);
+    padding: 10px;
+    width: 50%;
+    font-size: 19px;
+}
+
+.btnFicar:hover{
+    background-color: var(--cor-primaria-hover);
+    color: var(--texto-principal);
 }

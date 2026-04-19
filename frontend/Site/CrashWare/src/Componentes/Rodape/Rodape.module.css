@@ -12,8 +12,7 @@
 
     background-color: var(--bg-principal);
     color: var(--texto-secundario);
-    background-color: var(--Azul-Escuro);
-    color: var(--Branco);
+    /* background-color: var(--Azul-Escuro); */
 
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -52,6 +51,7 @@
 {
     margin:0;
     padding: 3px;
+    /* color: var(--texto-secundario); */
 }
 
 .Marca
@@ -81,6 +81,7 @@
 .Colunas h5 {
     margin-bottom: 10px;
     font-size: 20px;
+    color: var(--texto-principal);
 }
 
 .Colunas p{

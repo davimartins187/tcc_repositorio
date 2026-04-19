@@ -7,14 +7,12 @@
 .corpo{
     width: 100%;
     height: 90.7vh; 
-    background-color: var(--bg-principal);
+    /* background-color: var(--bg-principal); */
     display: flex;
     flex-direction: column; 
     justify-content: center;
     align-items: center; 
     overflow-x: hidden;
-
-
 }
 
 .container{
@@ -40,24 +38,25 @@
 
 
 .inputClasse{
-    justify-items: flex-start;
     width: 65%;
-    background-color: var(--input-bg);
-    border: 1px solid var(--borda);
     height: 50px;
+    background: var(--input-bg);
+    border: 1px solid var(--borda);
     border-radius: 6px;
     margin-top: 20px;
-    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.685);
-    color: var(--Branco);
+    /* box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.685); */
+    color: var(--texto-secundario);
     opacity: 0.9;
     padding: 20px;
     padding-left: 10px;
-    font-size: 1vw;
+    font-size: 16px;
     text-indent: 20px;
 }
 
 .inputClasse:focus{
     outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 
 .TermosUso{
@@ -86,7 +85,7 @@ p span{
 
 
     /* texto do botão */
-    color: var(--texto-secundario);
+    color: var(--Branco);
     font-size: 18px;
     font-weight: bolder;
 }
@@ -94,7 +93,7 @@ p span{
 .btnCriarConta:hover {
     transition: 0.3s;
     background-color: var(--cor-primaria-hover);
-    color: var(--texto-secundario);
+    color: var(--Branco);
     transform: scale(1.05);
 }
 
@@ -103,12 +102,12 @@ button
     cursor: pointer;
 }
 
-.btncadastro
+/* .btncadastro
 {
     position: absolute;
     right: 3%;
     top: 13%;
-    /* transform: translate(-50%,-50%); */
+    transform: translate(-50%,-50%);
     height: 10vh;
     background-color: var(--cor-primaria);
     border: 1px solid var(--borda);
@@ -116,10 +115,10 @@ button
     height: 60px;
     border-radius: 6px;
     box-shadow:  2px 2px 1px rgba(0, 0, 0, 0.555);
-    /* font-size: 25px;   */
+    font-size: 25px;  
     font-weight: bolder;
     color: var(--texto-principal);
-}
+} */
 
 
 .btnCriarConta:disabled
