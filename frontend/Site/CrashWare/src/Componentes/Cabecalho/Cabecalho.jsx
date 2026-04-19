@@ -1,24 +1,30 @@
 import { useState } from 'react';
-import Logo from '../../Logo/logo_sem_fundo.png';
-import { Tema } from '../Tema';
 import { Link } from 'react-router-dom';
-
+import Logo from '../../Logo/logo_sem_fundo.png';
+import { Sidebar } from '../Cabecalho/barraLateral/sideBar';
 import Style from './Cabecalho.module.css';
 
-const Cabecalho = ({children}) => {
-  const [scrolled, setScrolled] = useState(false)
+const Cabecalho = ({ children }) => {
+  const [aberto, setAberto] = useState(false);
 
   return (
     <>
-      <div className={`${Style.Cabecalho} ${scrolled ? Style.Scrolled : ''}`}>
+      <header className={Style.Cabecalho}>
         <Link to="/">
           <div className={Style.infoCabecalho}>
             <img className={Style.logo_legal} src={Logo} alt="" />
             <h5>CRASHWARE</h5>
           </div>
         </Link>
+
         {children}
-      </div>
+
+        <button className={Style.hamburger} onClick={() => setAberto(true)}>
+          ☰
+        </button>
+      </header>
+
+      <Sidebar aberto={aberto} onFechar={() => setAberto(false)} />
     </>
   );
 };

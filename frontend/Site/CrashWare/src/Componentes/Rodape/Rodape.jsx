@@ -21,28 +21,41 @@ const Rodape = () => {
                     </div>
 
                     <div className={Style.Colunas}>
-                        <div>
-                            <h5>Informações
 
-                            </h5>
-                            <Link to='sobre-nos'>
-                                <p>Sobre Nós</p>
-                            </Link>
+                                                        <h5>Informações</h5>
+                                                        
+                        <div className={Style.informacoes}>
 
-                            <Link to="*">
-                                <p>Politica de Privacidade</p>
-                            </Link>
-                        </div>
+                            {/* <table>
+                                <th>
+                                    <tr>                         
+                                        <Link to='sobre-nos'>
+                                            <p>Sobre Nós</p>
+                                        </Link>
+                                    </tr>
+                                    <tr>
+                                        <Link to="*">
+                                            <p>Politica de Privacidade</p>
+                                        </Link>
+                                    </tr>
+                                </th>
+                                
+                                <th>
+                                    <tr>
+                                        <Link to="*">
+                                            <p>Compromisso com a IntegSridade</p>
+                                        </Link>
+                                    </tr>
 
-                        <div>
-                            <h5>Informações</h5>
-                            <Link to="*">
-                                <p>Compromisso com a IntegSridade</p>
-                            </Link>
+                                    <tr>
+                                        <Link to="*">
+                                            <p>Termos de Uso</p>
+                                        </Link>
+                                    </tr>
+                                </th>
+                            </table> */}
 
-                            <Link to="*">
-                                <p>Termos de Uso</p>
-                            </Link>
+                            
                         </div>
                     </div>
 

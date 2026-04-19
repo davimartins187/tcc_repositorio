@@ -1,0 +1,64 @@
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 150;
+}
+.overlayOpen {
+  display: block;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 100%;
+  background-color: var(--bg-principal);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 200;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar:hover{
+  background-color: none;
+}
+
+.sidebarOpen {
+  transform: translateX(0);
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--texto-secundario);
+  font-size: 20px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 16px;
+}
+
+.link {
+  display: block;
+  padding: 10px 12px;
+  color: var(--texto-secundario);
+  text-decoration: none;
+  border-radius: 6px;
+  font-family: "Exo 2", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+}
+.link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.05);
+}
+
+.active {
+  color: var(--cor-primaria);
+}

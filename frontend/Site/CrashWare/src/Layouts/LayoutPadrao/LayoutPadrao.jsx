@@ -7,10 +7,10 @@ const LayoutPadrao = () => {
         <>
             <Cabecalho>
                 <div className={style.Direita}>
-                    <LinksCabecalho textolink="Sobre o TCC" link="/sobre-nos" />
-                    <LinksCabecalho textolink="Termos de Serviço" link="*" />
+                    {/* <LinksCabecalho textolink="Sobre o TCC" link="/sobre-nos" />
+                    <LinksCabecalho textolink="Termos de Serviço" link="*" /> */}
                     <div className={style.trocarTema}>
-                        <Tema />
+                        {/* <Tema /> */}
                     </div>
                 </div>
             </Cabecalho>
