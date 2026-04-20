@@ -25,6 +25,7 @@ const ConteudoCadstro = () => {
     //Levará para a verificacao de email
     const Navegacao = useNavigate();
 
+    //Troca de tema
     useEffect(() => {
         const checarTema = (e) => setTema(e.detail);
         window.addEventListener('temaAtualizado', checarTema);
@@ -39,7 +40,7 @@ const ConteudoCadstro = () => {
         }, 0);
     }, []);
 
-    //Mudar tema
+    //Mudar tema do olho
     const isClaro = tema === 'Claro';
 
     const iconeSenha = mostrar
