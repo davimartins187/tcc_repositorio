@@ -16,6 +16,9 @@ const CVerificacaoEmail = () => {
     const [podeNavegar, setPodeNavegar] = useState(false);
     const [mostrarModal, setMostrarModal] = useState(false);
 
+    //Variavel da popup
+    const [popup, setPopup] = useState(null);
+
     //Navegação e recebimento de dados
     const location = useLocation();
     const Navegacao = useNavigate();
@@ -112,6 +115,7 @@ const CVerificacaoEmail = () => {
             if (!response.ok) {
                 const erro = await response.json();
                 
+                //  exibi um popup de erro
                 setPopup({
                     tipo: 'erro',
                     titulo: 'Email não encontrado',
@@ -119,6 +123,12 @@ const CVerificacaoEmail = () => {
                 });
             } else {
                 setTimer(60);
+                //Exibi um popup de sucesso
+                 setPopup({
+                    tipo: 'sucesso',
+                    titulo: 'Código reenviado',
+                    mensagem: 'Enviamos para seu email um código novo..'
+                });
 
             }
 
