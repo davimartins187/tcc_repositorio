@@ -40,7 +40,7 @@ const ConteudoVerificarEmail = () => {
     };
 
     //Enviar para verificação de Email
-    const EnviarVerific = async => {
+    const EnviarVerific = async () => {
 
         const erro = validarCampos()
 
