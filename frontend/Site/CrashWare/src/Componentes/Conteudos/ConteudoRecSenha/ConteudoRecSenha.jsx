@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BotoesForm } from "../../Botoes";
 import { CampoTexto } from "../../CampoTexto"
+import { PopUp } from "../../pop-up";
+
 import style from './ConteudoRecSenha.module.css'
 const ConteudoRecSenha = () => {
 
@@ -12,8 +14,11 @@ const ConteudoRecSenha = () => {
     const location = useLocation();
     const Navegacao = useNavigate();
 
-    //Validador De Destinos
-    const rec_senha = localStorage.getItemItem("rec_senha")
+    //Controle de Navegação
+    const rec_senha = localStorage.getItem("rec_senha")
+
+    //Popup
+    const [popup, setPopup] = useState(null);
 
 
     //Proteção de URL
@@ -103,10 +108,22 @@ const ConteudoRecSenha = () => {
                 console.log(error);
                 return;
             }
-    }//Função
+        }
+}//Função
 
-}
+
     return (
+        <>
+            {popup && (
+                <PopUp
+                    tipo={popup.tipo}
+                    titulo={popup.titulo}
+                    mensagem={popup.mensagem}
+                    onFechar={() => setPopup(null)}
+                />
+            )}
+
+
         <div className={style.corpo}>
             <div className={style.container}>
                 <h1>Esqueci Minha Senha</h1>
@@ -121,6 +138,7 @@ const ConteudoRecSenha = () => {
                 />
             </div>
         </div>
+        </>
     )
 }
 
