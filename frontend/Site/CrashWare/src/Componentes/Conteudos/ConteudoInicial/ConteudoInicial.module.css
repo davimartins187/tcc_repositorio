@@ -9,7 +9,7 @@ body{
 }
 
 main {
-    max-width: 1200px;
+    max-width: 1000px;
     width: 100%;
     margin: auto;
     display: flex;
@@ -55,7 +55,7 @@ main {
 }
 
 .Apresentacao_texto h3 {
-    font-size: clamp(24px, 3.5vw, 46px);
+    font-size: clamp(24px, 3.5vw, 36px);
     font-weight: 700;
     line-height: 1.25;
     color: var(--texto-secundario);
@@ -137,8 +137,8 @@ main {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 60px;
-    margin-top: 20px;
+    justify-items: center;
+    padding: 30px;
 }
 
 .Materiais > h2 {
@@ -150,6 +150,7 @@ main {
 
     text-align: center;
     margin: 10px 0px;
+    margin-bottom: 30px;
 }
 
 /* ===== HARDWARE ===== */
@@ -159,19 +160,25 @@ main {
     align-items: center;
     gap: 48px;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 50px;
 }
 
 .ConteudoHardware_img {
-    flex: 0 0 280px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 0;
+    padding: 0;
 }
 
 .ConteudoHardware_img div {
     width: 280px;
     height: 200px;
     border-radius: 16px;
-    border: 2px dashed var(--verde_text);
+    border: 2px dashed var(--cor-primarias);
     background: rgba(0, 255, 136, 0.05);
     display: flex;
     align-items: center;
@@ -230,16 +237,19 @@ main {
 }
 
 .ConteudoSoftware_img {
-    flex: 0 0 280px;
-    display: flex;
-    justify-content: center;
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 0;
+    padding: 0;
 }
 
 .ConteudoSoftware_img div {
     width: 280px;
     height: 200px;
     border-radius: 16px;
-    border: 2px dashed var(--azul_text);
+    border: 2px dashed var(--cor-secundaria);
     background: rgba(0, 200, 255, 0.05);
     display: flex;
     align-items: center;
@@ -326,8 +336,13 @@ main {
     margin-bottom: 32px;
 }
 
+.aplicativo img{
+    margin-top: 30px;
+    width: 180px;
+}
+
 /* ===== RESPONSIVIDADE ===== */
-@media (max-width: 500px) {
+@media (max-width: 700px) {
     .Apresentacao {
         flex-direction: column;
         text-align: center;
@@ -363,6 +378,7 @@ main {
     .aplicativo .textos {
         width: 100%;
     }
+
 }
 
 @media (max-width: 480px) {

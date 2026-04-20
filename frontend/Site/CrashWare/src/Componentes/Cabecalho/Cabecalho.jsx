@@ -17,8 +17,6 @@ const Cabecalho = ({ children }) => {
           </div>
         </Link>
 
-        {children}
-
         <button className={Style.hamburger} onClick={() => setAberto(true)}>
           ☰
         </button>

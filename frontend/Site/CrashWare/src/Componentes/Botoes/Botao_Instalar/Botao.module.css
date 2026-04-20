@@ -51,6 +51,7 @@
 
     .Botao{
         margin-right: 100px;
+        margin-left: 20px;
         width: 25%;
         gap: 30px;
     }

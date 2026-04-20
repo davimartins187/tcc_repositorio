@@ -7,6 +7,7 @@
     width: 100%;
     box-sizing: border-box;
     align-items: flex-start;
+
     gap: 15px;
     padding: 20px;
 
@@ -27,6 +28,7 @@
 
 .Container {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
@@ -59,8 +61,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     /* gap: 10px; */
     /* max-width: 250px; */
+    margin-right: 20px;
 }
 
 .Marca p{
@@ -142,8 +146,43 @@ h5 {
     font-size: 13px;
 }
 
+.informacoes{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align:end ;
+    margin-bottom: 10px;
+}
+
+.informacoes h5{
+    color: var(--texto-secundario);
+    text-align: start;
+}
+
 @media (max-width: 500px){
     .Container{
         flex-direction: column;
+        margin-left: 0px;
     }
+
+    .Marca{
+        margin: auto;
+    }
+
+    .Marca p{
+        display: none;
+    }
+
+    .informacoes{
+        align-content: flex-start;
+    }
+
+    .informacoes h5{
+        text-align: start;
+    }
+
+    .informacoes p{
+        text-align: start;
+    }
+    
 }

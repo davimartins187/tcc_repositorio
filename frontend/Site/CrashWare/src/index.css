@@ -1,7 +1,7 @@
 /* TEMA CLARO */
 .Claro {
   --bg-principal: #f0f4f8;
-  --bg-secundario: #e8f5f0;
+  --bg-secundario: #ccffeb98;
 
   --texto-principal: #111827;
   --texto-secundario: #4B5563;
@@ -32,6 +32,8 @@
   --popup-aviso-icone-cor: #ffffff;
 
   /*POPUP SUCESSO (VAI FAZER O TCC QUE DIA DAVISON?)*/
+
+  /* perdão mano */
   --popup-aviso-bg: #eae9e2;
   --popup-aviso-borda: #0d4c00;
   --popup-aviso-titulo: #4e9c39;

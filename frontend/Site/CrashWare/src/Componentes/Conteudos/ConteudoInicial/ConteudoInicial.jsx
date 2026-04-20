@@ -6,6 +6,7 @@ import FMenina from '../../../fotos/claro/menina_estudando.png';
 import { BotoesApp, BotoesForm } from '../../Botoes';
 import { Cards } from '../../Cards';
 import { Link } from "react-router-dom";
+import qrcode from '../../../fotos/qrcode.jpeg';
 
 import Style from './ConteudoInicial.module.css';
 
@@ -65,10 +66,6 @@ const ConteudoInicial = () => {
                     {/* Hardware */}
                     <section className={Style.ConteudoHardware}>
 
-                        <div className={Style.ConteudoHardware_img}>
-                            <div>img</div>
-                        </div>
-
                         <div className={Style.ConteudoHardware_texto}>
                             <h2>⚙️ Hardware</h2><hr />
                                 
@@ -85,6 +82,10 @@ const ConteudoInicial = () => {
                                 <hr />
                         </div>
 
+                        <div className={Style.ConteudoHardware_img}>
+                            <div>img</div>
+                        </div>
+                        
                     </section>
 
                     {/* Software */}
@@ -120,7 +121,8 @@ const ConteudoInicial = () => {
                         <span className={Style.software}>Software</span> onde estiver, {' '}
                          Aprenda pelo celular, continue no computador e acompanhe seu progresso em tempo real.
                     </p>
-                    <BotoesApp  />
+                    {/* <BotoesApp  /> */}
+                    <img src={qrcode} alt="" />
                 </div>
 
             </main>

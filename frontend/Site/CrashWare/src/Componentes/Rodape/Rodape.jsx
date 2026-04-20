@@ -1,5 +1,4 @@
 import Logo from '../../Logo/logo_sem_fundo.png';
-import qrcode from '../../fotos/qrcode.jpeg';
 import { Link } from 'react-router-dom';
 
 import Style from './Rodape.module.css';
@@ -21,48 +20,31 @@ const Rodape = () => {
                     </div>
 
                     <div className={Style.Colunas}>
-
-                                                        <h5>Informações</h5>
-                                                        
+                                  
                         <div className={Style.informacoes}>
+        
+                        <h5>Informações</h5>
+                            <Link to='sobre-nos'>
+                                <p>Sobre Nós</p>
+                            </Link>
 
-                            {/* <table>
-                                <th>
-                                    <tr>                         
-                                        <Link to='sobre-nos'>
-                                            <p>Sobre Nós</p>
-                                        </Link>
-                                    </tr>
-                                    <tr>
-                                        <Link to="*">
-                                            <p>Politica de Privacidade</p>
-                                        </Link>
-                                    </tr>
-                                </th>
-                                
-                                <th>
-                                    <tr>
-                                        <Link to="*">
-                                            <p>Compromisso com a IntegSridade</p>
-                                        </Link>
-                                    </tr>
+                            <Link to="*">
+                                <p>Politica de Privacidade</p>
+                            </Link>
 
-                                    <tr>
-                                        <Link to="*">
-                                            <p>Termos de Uso</p>
-                                        </Link>
-                                    </tr>
-                                </th>
-                            </table> */}
+                    
 
+                            <Link to="*">
+                                <p>Compromisso com a IntegSridade</p>
+                            </Link>
+
+                            <Link to="*">
+                                <p>Termos de Uso</p>
+                            </Link>
                             
                         </div>
                     </div>
 
-                    <div className={Style.QR}>
-                        <h5>BAIXE O APP</h5>
-                        <img src={qrcode} alt="" />
-                    </div>
                 </div>
 
                 <div className={Style.Copy}>

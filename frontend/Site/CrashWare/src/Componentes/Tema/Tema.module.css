@@ -1,0 +1,33 @@
+.tema{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%; /* corrigido (faltava unidade) */
+  padding: 10px 12px;
+
+  color: var(--texto-secundario);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+
+  font-family: "Exo 2", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+
+  cursor: pointer;
+  text-align: left;
+
+  transition: all 0.2s ease;
+}
+
+.tema:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.05);
+  color: var(--texto-secundario);
+}
+
+
+.tema img{  
+    width: 24px;
+}
