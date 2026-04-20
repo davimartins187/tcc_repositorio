@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { BotoesForm } from "../../Botoes";
 import { CampoTexto } from "../../CampoTexto"
 import style from './ConteudoRecSenha.module.css'
-const ConteudoVerificarEmail = () => {
+const ConteudoRecSenha = () => {
 
     //Variavel do email
     const [email, setEmail] = useState("");
