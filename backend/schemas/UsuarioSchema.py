@@ -20,7 +20,7 @@ class VerificarEmailSchema(BaseModel):
         from_attributes = True
 
 #SCHEMA Reenviar Email
-class ReenviarEmailSchema (BaseModel):
+class EmailSchema (BaseModel):
     email: str
 
     class Config:
@@ -33,3 +33,5 @@ class UsuarioLoginSchema (BaseModel):
 
     class Config:
         from_attributes = True
+
+

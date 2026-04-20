@@ -32,6 +32,9 @@ const CVerificacaoEmail = () => {
     
     //Nome maiusculo
     const nomeM = nome?.toUpperCase() || "";
+
+    ////Controle de navegação
+    const rec_senha = localStorage.getItemItem("rec_senha")
     
     //Block de navegação
     useEffect(() => {
@@ -154,7 +157,7 @@ const CVerificacaoEmail = () => {
     const handleVericarEmail = async () => {
         try {
             const response = await fetch(
-                "https://api-crashware.onrender.com/auth/verificar_email",
+                "https://api-crashware.onrender.com/auth/verificar_codigo",
                 {
                     method: "POST",
                     headers: {
@@ -177,10 +180,17 @@ const CVerificacaoEmail = () => {
                 });
 
             } else {
-                setErro("");
-                setPodeNavegar(true)
-                Navegacao("/login")
-                // , { replace: true }
+
+                if(rec_senha == false){
+                    setPodeNavegar(true)
+                    Navegacao("/login")
+                    // , { replace: true }
+                }else
+                {
+                    //Leva para a pag de rec_senha
+
+                }
+
             }
 
         } catch (error) {

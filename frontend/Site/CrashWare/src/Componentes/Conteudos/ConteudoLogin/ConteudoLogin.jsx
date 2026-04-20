@@ -56,7 +56,7 @@ const ConteudoLogin = () => {
         }
 
         if (senha.length < 8) {
-            return "Senha muito curta";
+            return "Senha deve conter pelo menos 8 caracteres";
         }
 
         return null;
@@ -103,7 +103,7 @@ const ConteudoLogin = () => {
                 const erro = await response.json()
                 const nome = erro.detail.nome
 
-                //Envio novamente o codigo para o email , reutulizando outra requisição:
+                //Envio novamente o codigo para o email , reutilizando  requisição:
                 try {
                     const response = await fetch(
                         "https://api-crashware.onrender.com/auth/reenviar_codigo",

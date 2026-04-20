@@ -1,3 +1,5 @@
+from os.path import defpath
+
 from fastapi import APIRouter, Depends,HTTPException
 
 #Importando tabelas:
@@ -16,7 +18,7 @@ from dependences import pegar_sessao
 from security import criptografia
 
 #Importando SHCEMAS:
-from schemas.UsuarioSchema import UsuarioSchema, VerificarEmailSchema , ReenviarEmailSchema , UsuarioLoginSchema
+from schemas.UsuarioSchema import UsuarioSchema, VerificarEmailSchema , EmailSchema , UsuarioLoginSchema
 
 
 
@@ -97,7 +99,7 @@ def gerar_token(id_usuario, validade = timedelta(minutes = 30)):
 async def cadastro(dados : UsuarioSchema,session = Depends(pegar_sessao)):
     email_usuario = session.query(Usuarios).filter(Usuarios.email == dados.email).first()
     if email_usuario is not None:
-        raise HTTPException(status_code=400,detail="Esse email já foi cadastrado")
+        raise HTTPException(status_code=400,detail="Esse email já foi autenticado")
     else:
         codigo , expira = gerar_codigo()
         try:
@@ -113,7 +115,7 @@ async def cadastro(dados : UsuarioSchema,session = Depends(pegar_sessao)):
 
             #Resposta da API
             return{
-                "mensagem" : "Cadastro realizado com sucesso\nEstamos te redirecionando para a verificação de e-mail"
+                "mensagem" : "Cadastro realizado com sucesso!"
             }
         except Exception as exception:
             session.rollback()
@@ -121,11 +123,11 @@ async def cadastro(dados : UsuarioSchema,session = Depends(pegar_sessao)):
 
 #############
 
-@auth.post("/verificar_email")
-async def verificar_email(dados : VerificarEmailSchema , session = Depends(pegar_sessao)):
+@auth.post("/verificar_codigo")
+async def verificar_codigo(dados : VerificarEmailSchema , session = Depends(pegar_sessao)):
     usuario = session.query(Usuarios).filter(Usuarios.email == dados.email).first()
     if usuario is  None:
-        raise HTTPException(status_code=404,detail="Email não encontrado!! Faça o cadastro antes!")
+        raise HTTPException(status_code=404,detail="Email não autenticado")
     if usuario.codigo != dados.codigo:
         raise HTTPException(status_code=400, detail="Código invalido!")
     if usuario.codigo_expirado_em < datetime.now(timezone.utc):
@@ -133,15 +135,15 @@ async def verificar_email(dados : VerificarEmailSchema , session = Depends(pegar
 
     usuario.email_verificado = True
     session.commit()
-    return {"mensagem": "Email verificado com sucesso!"}
+    return {"mensagem": "Código verificado com sucesso!"}
 
 ####################
 
 @auth.post("/reenviar_codigo")
-async def reenviar_codigo( dados : ReenviarEmailSchema, session = Depends(pegar_sessao)):
+async def reenviar_codigo( dados : EmailSchema, session = Depends(pegar_sessao)):
     usuario = session.query(Usuarios).filter(Usuarios.email == dados.email).first()
     if usuario is None:
-        raise HTTPException(status_code=404,detail="Email não encontrado!! Faça o cadastro antes!")
+        raise HTTPException(status_code=404,detail="Email não autenticado")
     #Gero novo código
     codigo , expira = gerar_codigo()
 
@@ -161,7 +163,7 @@ async def reenviar_codigo( dados : ReenviarEmailSchema, session = Depends(pegar_
 async def login(dados : UsuarioLoginSchema , session = Depends(pegar_sessao)):
     usuario = session.query(Usuarios).filter(Usuarios.email == dados.email).first()
     if usuario is None:
-        raise HTTPException(status_code=404,detail="Email não cadastrado")
+        raise HTTPException(status_code=404,detail="Email não autenticado")
     elif criptografia.verify(dados.senha , usuario.senha_hash) == False:
         raise HTTPException(status_code=401,detail="Senha incorreta")
     else:
@@ -178,6 +180,26 @@ async def login(dados : UsuarioLoginSchema , session = Depends(pegar_sessao)):
                 "refresh_token" : refresh_token,
                 "token_type": "bearer"
             }
+
+
+@auth.post("/verificar_email")
+async def verificar_email(dados: EmailSchema , session = Depends(pegar_sessao)):
+    usuario = session.query(Usuarios).filter(Usuarios.email == dados.email).first()
+    if usuario is None:
+        raise  HTTPException(status_code=404,detail="Email não autenticado")
+    else:
+        return {"mensagem": "Email verificado com sucesso!"}
+
+@auth.post("/alterar_senha")
+async def alterar_senha(dados: UsuarioLoginSchema, session = Depends(pegar_sessao)):
+    usuario = session.filter(Usuarios).filter(Usuarios.email == dados.email).first()
+    if usuario is None:
+        raise HTTPException(status_code=404, detail="Email não autenticado")
+    else:
+        usuario.senha_hash = dados.senha
+        session.commit()
+        return {"mensagem": "Senha alterada com sucesso!"}
+
 
 ##################
 
