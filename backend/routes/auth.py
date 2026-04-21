@@ -192,7 +192,7 @@ async def verificar_email(dados: EmailSchema , session = Depends(pegar_sessao)):
 
 @auth.post("/alterar_senha")
 async def alterar_senha(dados: UsuarioLoginSchema, session = Depends(pegar_sessao)):
-    usuario = session.filter(Usuarios).filter(Usuarios.email == dados.email).first()
+    usuario = session.query(Usuarios).filter(Usuarios.email == dados.email).first()
     if usuario is None:
         raise HTTPException(status_code=404, detail="Email não autenticado")
     else:
