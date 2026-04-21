@@ -100,7 +100,7 @@ const ConteudoAlterarSenha = () => {
 
             if (!response.ok)
             {
-                const erro = await response.body()
+                const erro = await response.json()
 
                 setPopup({
                     tipo: 'erro',
