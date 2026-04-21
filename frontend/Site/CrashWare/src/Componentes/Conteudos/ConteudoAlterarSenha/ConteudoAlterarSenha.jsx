@@ -2,6 +2,7 @@ import { CampoTexto } from '../../CampoTexto'
 import { BotoesForm } from '../../Botoes/'
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
+import { PopUp } from '../../pop-up';
 
 import esconderSenha_claro from '../../../fotos/claro/nao_pode_ver_senha.svg';
 import verSenha_claro from '../../../fotos/claro/pode_ver_senha.svg';
@@ -11,12 +12,17 @@ import verSenha_escuro from '../../../fotos/escuro/pode_ver_senha_claro.svg';
 
 import style from './ConteudoAlterarSenha.module.css'
 
+
+
 const ConteudoAlterarSenha = () => {
     const [senha, setSenha] = useState();
     const [confirmaSenha, setConfirmaSenha] = useState();
     const [tema, setTema] = useState(localStorage.getItem('TemaSelecionado') || 'Claro');
     const [mostrar, setMostrar] = useState(false);
     const [mostrarConfimar, setMostrarConfimar] = useState(false);
+
+    //Variavel da popup
+    const [popup, setPopup] = useState(null);
 
     //Navegação
     const Navegacao = useNavigate();
@@ -136,6 +142,17 @@ const ConteudoAlterarSenha = () => {
     }
 
     return (
+        <>
+            {popup && (
+                <PopUp
+                    tipo={popup.tipo}
+                    titulo={popup.titulo}
+                    mensagem={popup.mensagem}
+                    onFechar={() => setPopup(null)}
+                />
+            )}
+
+
         <div className={`${style.corpo} ${tema}`}>
             <div className={style.container}>
                 <h1>Digite sua nova senha</h1>
@@ -183,6 +200,7 @@ const ConteudoAlterarSenha = () => {
                 />
             </div>
         </div>
+        </>
     )
 }
 
