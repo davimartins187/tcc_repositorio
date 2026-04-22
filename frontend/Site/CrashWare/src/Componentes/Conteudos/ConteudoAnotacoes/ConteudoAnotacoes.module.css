@@ -1,0 +1,50 @@
+.corpo {
+    background-color: brown;
+    width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.Direita {
+    justify-self: end;
+    background-color: aqua;
+}
+
+.Esquerda {
+    background-color: blueviolet;
+    width: 25%;
+    margin-top: 5px;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    border: solid var(--Branco);
+    /* border-radius: 5%; */
+    height: 100%;
+}
+
+.BlocoCima {
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+    background-color: red;
+}
+
+
+.BarraLateral {
+    /* justify-content: start; */
+    color: var(--Branco);
+    background-color: green;
+    width: 100%;
+    /* align-items: center; */
+    text-align: center;
+    border-top-right-radius: 20% ;
+}
+
+.HeaderLateral{
+    border: solid var(--Branco);
+    /* border-top: 0px; */
+    border-left: 0px;
+    border-right: 0px;
+    border-top-right-radius: 20% ;
+}
