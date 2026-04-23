@@ -4,20 +4,140 @@
     box-sizing: border-box;
 }
 
-.main{
-    background-color: var(--bg-principal);
-    width: 22vw;
-    height: 84vh;
+.body{
+    background-color: var(--bg-secundario);
+    width: 100vw;
+    height: 74vh;
     border-radius: 12px;
 
     display: flex;
-    flex-direction: row;
+}
+
+
+.main{
+    background-color: var(--bg-secundario);
+    max-width: 14vw;
+
+    display: flex;
+    flex-direction: column;
     margin: 10px;
-    margin-top: 36px;
+
+}
+
+.sairConfiguracoes{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+}
+
+.sairConfiguracoes P{
+    margin-left: 10px;
+    margin-right: auto;
+    color: var(--texto-principal);
+    font-size: 0.85vw;
+}
+
+.sairConfiguracoes img{
+    margin-left: 10px;
+    margin-right: auto;
 }
 
 .barraLateral{
     display: flex;
     flex-direction: column;
+    align-self: start;
+    width: 11vw;
+    height: 50vh;
+    border-radius: 12px;
 
+    margin-top: 15px;
+    margin-left: 15px;
+    background-color: var(--bg-principal);
+    padding: 25px;
+    box-shadow: 2px 2px 10px black;
+}
+
+/* Itens */
+
+.itemBarraLateral{
+    margin: 30px 25px;
+    padding: 14px;
+    width: 100%;
+    justify-self: center;
+    border-radius: 12px;
+    background-color: var(--bg-secundario);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.336);
+}
+
+.itemBarraLateral:hover{
+    background-color: var(--bg-secundario);
+    transform: scale(1.04);
+    transform: translateY(-2px);
+}
+
+.itemBarraLateral span{
+    margin-left: 20px;
+    text-align: center;
+    color: var(--texto-principal);
+    font-size: 0.8vw;
+}
+
+.telaPrincipal{
+    width: 80vw;
+    height: 80vh;
+    background-color: var(--bg-principal);
+}
+
+.nada{
+    display: inline-block;
+    margin: auto;
+    width: 80vw;
+    height: 70vh;
+    background-color: var(--bg-principal);
+
+    margin-top: 28px;
+    border-radius: 12px;
+}
+
+.ConteudoCOnfiguracoes{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+@media (max-width: 1200px){
+
+    .main{
+        flex-direction: row;
+        max-width: 100vw;
+        height: 100vh;
+    }
+
+    .barraLateral{
+        flex-direction: row;
+    }
+
+    .sairConfiguracoes{
+        
+    }
+
+    .itensBarraLateral{
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    .itemBarraLateral span{
+        display: none;
+    }
+
+    .itemBarraLateral img{
+        width: 4vw;
+        align-content: space-around;
+        padding: 0px;
+        margin: 0px;
+    }
 }
