@@ -26,7 +26,7 @@
 
 .container h1{
     color: var(--texto-principal);
-    font-size: 3rem;
+    font-size: 4vw;
     font-family: "Montserrat", sans-serif;
     margin-bottom: 15px;
     /* text-shadow:  2px 2px 1px rgba(0, 0, 0, 0.842); */
@@ -34,7 +34,9 @@
 
 .container h2{
     color: var(--texto-secundario);
-    font-size: 2rem;
+    font-size: 2.2vw;
+    width: 450px;
+    margin: auto;
     font-family: "Montserrat", sans-serif;
     margin-bottom: 15px;
 }

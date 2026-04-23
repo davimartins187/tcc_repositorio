@@ -159,7 +159,7 @@ h5 {
     text-align: start;
 }
 
-@media (max-width: 500px){
+@media (max-width: 800px){
     .Container{
         flex-direction: column;
         margin-left: 0px;

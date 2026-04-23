@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import Style from './Sidebar.module.css';
 import { Tema } from '../../Tema';
+import { sobreNos } from '../../Conteudos/'
 
 const Sidebar = ({ aberto, onFechar }) => {
   const location = useLocation();
