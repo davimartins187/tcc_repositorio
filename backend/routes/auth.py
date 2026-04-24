@@ -191,7 +191,7 @@ async def alterar_senha(dados: UsuarioLoginSchema, session = Depends(pegar_sessa
 
     if usuario is None:
         raise HTTPException(status_code=404, detail="Email não autenticado")
-    if criptografia.verify(dados.senha, usuario.senha_hash  == True):
+    if criptografia.verify(dados.senha, usuario.senha_hash) == True:
         raise HTTPException(status_code=400,detail="Você não pode usar a mesma senha")
     else:
         senha_criptografada = criptografia.hash(dados.senha)
