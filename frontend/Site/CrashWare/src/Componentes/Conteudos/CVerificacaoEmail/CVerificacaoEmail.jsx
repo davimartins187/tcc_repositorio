@@ -8,7 +8,7 @@ import { PopUp } from '../../pop-up';
 const CVerificacaoEmail = () => {
 
     //useState/variaveis
-    const [timer, setTimer] = useState(60);
+    const [timer, setTimer] = useState(0);
     const [loading, setLoading] = useState(false);
     const [verificando, setVerificando] = useState(false);
     const [codigo, setCodigo] = useState("");
@@ -259,14 +259,14 @@ const CVerificacaoEmail = () => {
 
 
                     {/* <Link  to=""> */}
-                    <BotoesForm texto="Verificar" className={style.btnEnviar}
+                    {/* <BotoesForm texto="Verificar" className={style.btnEnviar}
                         onClick={handleVericarEmail}
                     //disabled={!PodeMostarBotao}
-                    />
+                    /> */}
                     {/* </Link> */}
 
                     <BotoesForm
-                        texto={loading ? "Espere..." : timer > 0 ? `Reenviar em ${timer}s` : "Reenviar Código"} className={style.btnEnviar}
+                        texto={loading ? "Espere..." : timer > 0 ? `Reenviar em ${timer}s` : "Enviar Código"} className={style.btnEnviar}
                         onClick={ReenviarCodigo}
                         disabled={timer > 0 || loading}
                     />
