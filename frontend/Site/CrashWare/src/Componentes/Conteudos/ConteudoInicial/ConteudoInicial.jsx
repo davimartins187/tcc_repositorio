@@ -74,7 +74,7 @@ const ConteudoInicial = () => {
 
                 alert("porque nao funciona???")
             }
-            }
+        }
         
         VerificarToken()
 
