@@ -13,6 +13,9 @@ import verSenha_escuro from '../../../fotos/escuro/pode_ver_senha_claro.svg';
 import style from './ConteudoAlterarSenha.module.css'
 
 
+//Importando sleep
+import { sleep } from "../../../../funcoes/functions"
+
 
 const ConteudoAlterarSenha = () => {
     const [senha, setSenha] = useState();
@@ -91,7 +94,8 @@ const ConteudoAlterarSenha = () => {
 
         setPopup({
                 tipo: 'sucesso',
-                titulo: 'Atualizando Senha...'
+                titulo: 'Senha',
+                mensagem: 'Verificando senhas....'
         });
 
         try 
@@ -113,8 +117,9 @@ const ConteudoAlterarSenha = () => {
                 const erro = await response.json()
 
                 setPopup({
-                    tipo: 'erro',
-                    titulo: 'Email não autenticado',
+                    tipo: 'aviso',
+                    titulo: 'Senha',
+                    mensagem: erro.detail
                 });
 
             }else
@@ -122,7 +127,10 @@ const ConteudoAlterarSenha = () => {
                 setPopup({
                     tipo: 'sucesso',
                     titulo: 'Senha atualizada com sucesso',
+                    mensagem: 'Estamos te redirecionando...'
                 });
+
+                await sleep(3000) /* Faz com que espere 3 segundos*/
 
                 Navegacao("/login");
 
@@ -132,7 +140,8 @@ const ConteudoAlterarSenha = () => {
         {   //Erro na requisição
             setPopup({
                 tipo: 'erro',
-                titulo: error
+                titulo: 'erro',
+                mensagem: 'Não foi possível conectar ao servidor.'
             });
 
             console.log(error)

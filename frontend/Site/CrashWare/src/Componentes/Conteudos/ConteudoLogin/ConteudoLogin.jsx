@@ -10,6 +10,7 @@ import esconderSenha_escuro from '../../../fotos/escuro/nao_pode_ver_senha_claro
 import verSenha_escuro from '../../../fotos/escuro/pode_ver_senha_claro.svg';
 
 import style from './ConteudoLogin.module.css';
+import { sleep } from "../../../../funcoes/functions";
 
 const ConteudoLogin = () => {
     const [email, setEmail] = useState("");
@@ -75,12 +76,15 @@ const ConteudoLogin = () => {
             return;
         }
 
-
         setPopup({
             tipo: 'sucesso',
             titulo: 'Verificação',
             mensagem: 'Verificando dados...'
         });
+
+        await sleep(2000) /*-> Faz que espere 2 segundos*/
+
+
         //Envio os dados para a API(na rota de login)
         try {
             const response = await fetch("https://api-crashware.onrender.com/auth/login", {
@@ -104,10 +108,13 @@ const ConteudoLogin = () => {
                 const nome = erro.detail.nome
 
                 setPopup({
-                    tipo: 'erro',
-                    titulo: 'Erro no Login',
+                    tipo: 'aviso',
+                    titulo: 'Erro de autenticação',
                     mensagem: erro.detail.erro
                 });
+
+
+                await sleep(2000) /*Faz com que espere 2 segundos*/
 
                 //Envio o usuario na pagina de verificar EMAIL
                 Navegacao("/verificacao-email", {
@@ -127,8 +134,8 @@ const ConteudoLogin = () => {
                 //Retorna erro
                 const erro = await response.json()
                 setPopup({
-                    tipo: 'erro',
-                    titulo: 'Erro no Login',
+                    tipo: 'aviso',
+                    titulo: 'Erro de Autenticação',
                     mensagem: erro.detail
                 });
 
@@ -156,8 +163,7 @@ const ConteudoLogin = () => {
 
         } catch (error) {
             console.log("Erro:", error);
-            alert(error)
-
+            
             setPopup({
                 tipo: 'erro',
                 titulo: 'Sem conexão',

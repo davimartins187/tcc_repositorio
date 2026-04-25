@@ -11,6 +11,9 @@ import verSenha_escuro from '../../../fotos/escuro/pode_ver_senha_claro.svg';
 
 import style from './ConteudoCadastro.module.css';
 
+//Importando sleep
+import { sleep } from "../../../../funcoes/functions"
+
 const ConteudoCadstro = () => {
 
     const [nome, setNome] = useState("");
@@ -111,6 +114,8 @@ const ConteudoCadstro = () => {
         });
 
 
+        await sleep(2000) /*-> Faz que espere 2 segundos*/
+
         try {
             const response = await fetch("https://api-crashware.onrender.com/auth/cadastro", {
                 method: "POST",
@@ -125,12 +130,10 @@ const ConteudoCadstro = () => {
             if (!response.ok) {
                 const erro = await response.json();
 
-
-
                 setPopup({
-                    tipo: 'erro',
-                    titulo: 'Erro no cadastro',
-                    mensagem: erro.detail
+                    tipo: 'aviso',
+                    titulo: 'Email',
+                    mensagem: erro.detail 
                 });
 
                 return;

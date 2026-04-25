@@ -132,8 +132,8 @@ const CVerificacaoEmail = () => {
                 
                 //  exibi um popup de erro
                 setPopup({
-                    tipo: 'erro',
-                    titulo: 'Email não encontrado',
+                    tipo: 'aviso',
+                    titulo: '404',
                     mensagem: erro.detail
                 });
             } else {
@@ -142,14 +142,19 @@ const CVerificacaoEmail = () => {
                  setPopup({
                     tipo: 'sucesso',
                     titulo: 'Código Enviado',
-                    mensagem: 'Enviamos para seu email um código novo..'
+                    mensagem: 'Enviamos para seu email um código novo...'
                 });
 
             }
 
         } catch (error) {
-            console.log(error);
-            alert("Erro ao reenviar código");
+            console.log(error)
+            setPopup({
+                tipo: 'erro',
+                titulo: 'Sem conexão',
+                mensagem: 'Não foi possível conectar ao servidor.'
+            });
+            
         } finally {
             setLoading(false);
         }
@@ -158,6 +163,17 @@ const CVerificacaoEmail = () => {
     }
 
     const handleVericarEmail = async () => {
+
+        //  exibi um popup de aviso
+                setPopup({
+                    tipo: 'aviso',
+                    titulo: 'Verificação de código',
+                    mensagem: 'Estamos verificando o código...'
+        });
+
+        await sleep(3000)  /*-> Faz com que espere 3 segundos*/
+
+
         try {
             const response = await fetch(
                 "https://api-crashware.onrender.com/auth/verificar_codigo",
@@ -177,8 +193,8 @@ const CVerificacaoEmail = () => {
 
                 const erroCodigo = await response.json()
                 setPopup({
-                    tipo: 'erro',
-                    titulo: 'ERRO',
+                    tipo: 'aviso',
+                    titulo: '⚠️',
                     mensagem: erroCodigo.detail
                 });
 
@@ -186,7 +202,7 @@ const CVerificacaoEmail = () => {
 
                 setPopup({
                     tipo: 'sucesso',
-                    titulo: 'Emal Verificado',
+                    titulo: 'Emal Verificado!',
                     mensagem: 'Estamos te redirecionando...'
                 });
 
@@ -212,6 +228,12 @@ const CVerificacaoEmail = () => {
 
         } catch (error) {
             console.log("Erro de conexão:", error);
+
+            setPopup({
+                tipo: 'erro',
+                titulo: 'Sem conexão',
+                mensagem: 'Não foi possível conectar ao servidor.'
+            });
         }
     };
 
