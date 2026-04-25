@@ -190,7 +190,7 @@ const CVerificacaoEmail = () => {
                     mensagem: 'Estamos te redirecionando...'
                 });
 
-                 await sleep(3000)  /*-> Faz que espere 3 segundos*/
+                await sleep(3000)  /*-> Faz que espere 3 segundos*/
 
                 if(rec_senha == "false"){
                     setPodeNavegar(true)
