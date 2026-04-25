@@ -8,7 +8,7 @@ import pessoasModoEscuro from "../../../../../fotos/img_configuracoes/modoEscuro
 import privacidadeModoClaro from "../../../../../fotos/img_configuracoes/modoClaro/privacidade_icon.svg";
 import privacidadeModoEscuro from "../../../../../fotos/img_configuracoes/modoEscuro/privacidade_icon.svg";
 import ajudaModoClaro from "../../../../../fotos/img_configuracoes/modoClaro/ajuda_icon.svg";
-import ajudaModoEscuro from "../../../../../fotos/img_configuracoes/modoEscuro/ajuda_icon.svg";
+import ajudaModoEscuro from "../../../../../fotos/img_configuracoes/modoEscuro/Ajuda_icon.svg";
 
 // Imports das telas
 // import { TelaInformacoes } from './Telas/TelaInformacoes';
