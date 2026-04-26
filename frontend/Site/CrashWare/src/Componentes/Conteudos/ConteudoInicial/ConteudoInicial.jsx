@@ -14,6 +14,9 @@ import Style from './ConteudoInicial.module.css';
 //Pego o token:
 const token = localStorage.getItem("token")
 
+//Pego o refresh_token
+const refresh_token = localStorage.getItem("refresh_token")
+
 
 
 
@@ -26,7 +29,7 @@ const ConteudoInicial = () => {
 
 
     useEffect(() => {
-        //Quando a pag for acessada:
+        //Quando a pag for carregada:
 
         //Tema claro e escuro (não faço ideia oq faz pq ninguem comenta)
         const checarTema = (e) => setTema(e.detail);
@@ -36,13 +39,12 @@ const ConteudoInicial = () => {
         //Verifico se o usuario tem token
         const VerificarToken = async () =>
         {
-            if (token == null)
+            if (token == null && refresh_token == null )
             {   
                 //Ignora
             }else
             {
                 //Validação de token
-                
                 try
                 {
                     const response = await fetch("https://api-crashware.onrender.com/auth/verificar_token",
@@ -60,6 +62,45 @@ const ConteudoInicial = () => {
                         //console.log(erro.detail)
 
                         //Ignora , Token se expirou!
+
+                        //Valida o refresh_token:
+                        try
+                        {
+                            const response_refresh = await fetch("https://api-crashware.onrender.com/auth/verificar_token",
+                            {
+                                method: "POST",
+                                headers: 
+                                {
+                                    "Authorization": `Bearer ${refresh_token}` 
+                                }
+                            })//
+                        
+
+                            if(!response.ok)
+                            {
+                                //Ignora , refresh_token se expirou!
+                            }  
+                            else
+                            {
+                                const dados = await response.json();
+
+                                const id = dados.id
+
+                                //Guardo o ID do user
+                                localStorage.setItem("id",id)
+
+                                //Valido o token
+                                localStorage.setItem("token_boolean","true")
+
+                                //Leva para a tela HOME automaticamente
+                                Navegacao("/perfil");
+                            } 
+
+                        }//
+                        catch (error)
+                        {
+                            console.log(error)
+                        }
                     }
                     else
                     {
