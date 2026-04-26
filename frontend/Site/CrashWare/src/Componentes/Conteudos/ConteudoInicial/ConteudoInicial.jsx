@@ -64,10 +64,15 @@ const ConteudoInicial = () => {
                     else
                     {
                         
-                        const id = await response.json();
+                        const dados = await response.json();
+
+                        const id = dados.id
 
                         //Guardo o ID do user
                         localStorage.setItem("id",id)
+
+                        //Valido o token
+                        localStorage.setItem("token_boolean","true")
 
                         //Leva para a tela HOME automaticamente
                         Navegacao("/perfil");

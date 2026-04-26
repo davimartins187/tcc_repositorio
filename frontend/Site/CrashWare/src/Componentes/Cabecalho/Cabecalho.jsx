@@ -1,18 +1,30 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../Logo/logo_sem_fundo.png';
 import { Sidebar } from '../Cabecalho/barraLateral/sideBar';
 import Style from './Cabecalho.module.css';
 
+//Functions
+import { handleRedirect } from '../../../funcoes/functions';
+
+
+
+
 const Cabecalho = ({ children }) => {
   const [aberto, setAberto] = useState(false);
+
+  //Permite eu navegar entre paginas
+  const Navegacao = useNavigate();
 
   return (
     <>
       <header className={Style.Cabecalho}>
-        <Link to="/">
+        <Link to="#" onClick={(e) => {
+          e.preventDefault()
+          handleRedirect(Navegacao)
+        }}>
           <div className={Style.infoCabecalho}>
-            <img className={Style.logo_legal} src={Logo} alt="" />
+            <img className={Style.logo_legal} src={Logo} alt="Logo do CrashWare" />
             <h5>CRASHWARE</h5>
           </div>
         </Link>
