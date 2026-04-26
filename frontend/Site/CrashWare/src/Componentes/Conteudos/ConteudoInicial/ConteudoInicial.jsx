@@ -56,7 +56,7 @@ const ConteudoInicial = () => {
 
                     if(!response.ok)
                     {
-                        const erro = await erro.json();
+                        const erro = await response.json();
                         console.log(erro.detail)
 
                         //Ignora , Token se expirou!

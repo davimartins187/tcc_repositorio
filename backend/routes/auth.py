@@ -209,12 +209,7 @@ async def verificar_token (token = Depends(pegar_token), session = Depends(pegar
         print(ERRO)
         raise HTTPException(status_code=401, detail="Acesso Negado!")
     ####
-    usuario = session.query(Usuarios).filter(Usuarios.id == id_usuario).first()
-    if validade < datetime.now(timezone.utc):
-        raise HTTPException(status_code=401, detail="Token expirado")
-    elif not usuario:
-        raise HTTPException(status_code=401, detail="Acesso inválido")
-    return usuario
+    
 
 
 ##################
