@@ -5,11 +5,15 @@ import iconRanking from '../../../fotos/ranking.svg'
 import iconOfensiva from '../../../fotos/ofensiva.svg'
 import iconXp from '../../../fotos/xp.svg'
 import style from './ConteudoPerfil.module.css'
+import { Link , useNavigate } from "react-router-dom";
 
 
 
 
 const ConteudoPerfil = () => {
+
+    //Navegação --> Permite eu levar o usuario para outras telas
+    const Navegacao = useNavigate();
 
     // muda a foto
     const [foto, setFoto] = useState(FotoPadrao);
@@ -27,6 +31,13 @@ const ConteudoPerfil = () => {
     //     setFoto(fotoSalva)
     // }
     // }, [])
+
+
+    const SairDaConta = () =>
+    {
+        localStorage.setItem("token", null)
+        Navegacao("/")
+    }
 
     return (
         <div className={style.corpo}>
@@ -99,7 +110,17 @@ const ConteudoPerfil = () => {
                         </div>
 
                     </div> {/* XP */}
-                </div> {/*Blocos*/}
+
+
+                    {/* Sair da conta , depois vc troca isso gabriel ou davison */}
+                    <button
+                        type="button"
+                        onClick={SairDaConta}
+                    >
+                        Sair da conta 🚪
+                    </button>
+
+                </div>
 
                 {/* Atividades */}
                 <div className={style.Atividades}>

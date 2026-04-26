@@ -207,12 +207,10 @@ async def verificar_token (token = Depends(pegar_token), session = Depends(pegar
         validade = datetime.fromtimestamp(info["exp"], tz=timezone.utc)
     except JWTError as ERRO:
         print(ERRO)
-        raise HTTPException(status_code=401, detail="Acesso Negado!")
+        raise HTTPException(status_code=401, detail="Acesso Negado, Token expirado!")
     ####
     usuario = session.query(Usuarios).filter(Usuarios.id_usuario == id_usuario).first()
-    if validade < datetime.now(timezone.utc):
-        raise HTTPException(status_code=401, detail="Token expirado")
-    elif not usuario:
+    if not usuario:
         raise HTTPException(status_code=401, detail="Acesso inválido")
     return usuario
 
