@@ -31,16 +31,19 @@
 
 .perfil{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 30px;
     padding-left: 10px;
     align-items: center;
     margin-bottom: 20px;
+
+    text-align: center;
 }
 
 .imgPerfil{
     width: 60px;
     display: inline;
+    margin-bottom: 20px;
 }
 
 .perfil p{
