@@ -10,6 +10,8 @@ import { Link , useNavigate } from "react-router-dom";
 //Funcão de Sair da Conta
 import { SairDaConta } from '../../../../funcoes/functions'
 
+import { BotoesForm } from '../../Botoes/BotaoForm/BotaoForm'
+
 
 
 
@@ -112,12 +114,10 @@ const ConteudoPerfil = () => {
 
 
                     {/* Sair da conta , depois vc troca isso gabriel ou davison */}
-                    <button
-                        type="button"
+                    <BotoesForm
                         onClick={() => SairDaConta(Navegacao)}
-                    >
-                        Sair da conta 🚪
-                    </button>
+                        texto="Sair da conta"
+                    />
 
                 </div>
 

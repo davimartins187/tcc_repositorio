@@ -1,62 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
 .corpo {
     width: 100%;
     position: relative;
     height: 91.5vh;
     display: flex;
+    font-family: "Montserrat", sans-serif;
 }
 
 .Direita {
     /* justify-self: end; */
-    background-color: black;
     width: 75%;
-    height: 50vh;
+    /* height: 50vh; */
 }
 
 .Esquerda {
-    background-color: blueviolet;
     width: 25%;
     margin-top: 5px;
     border: solid var(--Branco);
     /* border-radius: 5%; */
     height: 100%;
     border-top-right-radius:10%;
+    background-color: var(--gradiente1-atividades);
+
 }
 
 .BlocoCima {
     width: 90%;
     margin: 20px auto;
     justify-items: center;   
-    background-color: red;
     border: solid var(--Branco);
     top: 20px;
     border-radius: 15px;
     padding: 15px;
     position: relative;
     text-align: center; 
+    background-color: var(--gradiente1-atividades);
+    font-family: "Montserrat", sans-serif;
 }
 
 .BlocoCima h1{
     top: 20px;
     color: var(--texto-principal);
     text-decoration: underline;
+    font: bold;
 }
 
 .BotaoEditar{
     padding-bottom: 6px;
     padding-top: 6px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     display: block;
     margin-left: auto;
     margin-right: 15px;
     margin-top: 2px;
+    border-radius: 12%;
 
     position: absolute;  
     right: 1px;         
     top: 5px;  
 
-    background-color: var(--cor-primaria);
+    background-color: var(--botao-editar);
     color: var(--texto-principal);  
+}
+
+.BotaoEditar:hover{
+    background-color: var(--botao-editar);
+    color: var(--texto-principal);
 }
 
 .BlocoInfos {
@@ -71,13 +82,12 @@
     display: flex;
     justify-content: center; /* horizontal */
     /* align-items: center;     vertical (se quiser) */
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .BarraLateral {
     /* justify-content: start; */
     color: var(--Branco);
-    /* background-color: green; */
     width: 100%;
     /* align-items: center; */
     text-align: center;
@@ -106,5 +116,35 @@
     padding-bottom: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: var(--cor-primaria);
+    background-color: var(--botao-editar);
+    color: var(--texto-principal);
+}
+
+.BotaoNovaNota:hover{
+    color: var(--texto-principal);
+    background-color: var(--botao-editar);
+}
+
+.textArea {
+    width: 90%;
+    height: 50vh;
+    min-height: 400px;
+    resize: none; /* remove aquele canto arrastável */
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-radius: 2.90%;
+    background-color: var(--gradiente1-atividades);
+    color: var(--texto-principal);
+    text-indent: 20px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.Pesquisa{
+    width: 13vw;
+    text-align: center;
+    height: 4vh;
+    border-radius: 10%;
+    border: solid var(--Branco);
 }

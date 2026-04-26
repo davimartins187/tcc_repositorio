@@ -14,15 +14,15 @@ const ConteudoAnotacao = () => {
                             className={style.BotaoNovaNota}
                         />
                         {/* Campo de Pesquisa */}
-                        <CampoTexto placeholder="Pesquisar" />
+                            <CampoTexto placeholder="Pesquisar" className={style.Pesquisa}   />
                     </div> {/*Header*/}
                     <div className={style.ItensAnotacoes}>
-                        <p>Item 1</p>
-                        <p>Item 2</p>
+                        <p>Anotação 1</p>
+                        {/* <p>Item 2</p>
                         <p>Item 3</p>
                         <p>Item 4</p>
                         <p>Item 5</p>
-                        <p>Item 6</p>
+                        <p>Item 6</p> */}
                     </div> {/*Anotaçoes/botoes*/}
                     {/* Anotações Salvas do Usuario acho q vou ter q fazer outro componente uma lista*/}
                 </div>
@@ -42,8 +42,9 @@ const ConteudoAnotacao = () => {
                 </div>
 
                 <div className={style.BlocodeNotas}> {/*Campo de escrrever*/}
-                    <CampoTexto
-
+                    <textarea
+                        className={style.textArea}
+                        placeholder="Digite suas anotações..."
                     />
                 </div>
             </div>
