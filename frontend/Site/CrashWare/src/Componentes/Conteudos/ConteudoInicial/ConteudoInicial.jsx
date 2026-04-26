@@ -31,7 +31,7 @@ const ConteudoInicial = () => {
         //Tema claro e escuro (não faço ideia oq faz pq ninguem comenta)
         const checarTema = (e) => setTema(e.detail);
         window.addEventListener('temaAtualizado', checarTema);
-        return () => window.removeEventListener('temaAtualizado', checarTema);
+        
 
         //Verifico se o usuario tem token
         const VerificarToken = async () =>
@@ -72,12 +72,13 @@ const ConteudoInicial = () => {
                     console.log(error)
                 }
 
-                alert("porque nao funciona???")
+                
             }
         }
         
         VerificarToken()
 
+        return () => window.removeEventListener('temaAtualizado', checarTema);
     }, []);
 
 
