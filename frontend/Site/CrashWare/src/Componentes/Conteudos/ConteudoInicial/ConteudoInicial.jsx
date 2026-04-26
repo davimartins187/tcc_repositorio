@@ -36,7 +36,7 @@ const ConteudoInicial = () => {
         //Verifico se o usuario tem token
         const VerificarToken = async () =>
         {
-            if (token == "null")
+            if (token == null)
             {   
                 //Ignora
             }else

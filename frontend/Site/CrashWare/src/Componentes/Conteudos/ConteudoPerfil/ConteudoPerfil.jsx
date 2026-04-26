@@ -35,7 +35,8 @@ const ConteudoPerfil = () => {
 
     const SairDaConta = () =>
     {
-        localStorage.setItem("token", "null")
+        //Deleto o token do LocalStorage
+        localStorage.removeItem("token");
         Navegacao("/")
     }
 
