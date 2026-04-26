@@ -45,7 +45,7 @@ const ConteudoInicial = () => {
                 
                 try
                 {
-                    const response = await fetch("https://api-crashware.onrender.com/auth/validar_token",
+                    const response = await fetch("https://api-crashware.onrender.com/auth/verificar_token",
                         {
                             method: "POST",
                             headers: 
