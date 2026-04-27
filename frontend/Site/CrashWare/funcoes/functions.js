@@ -55,7 +55,7 @@ export class Api
         this.navegacao = navegacao;
     }
 
-    async cadastro(nome,email,senha,navegacao,popup)
+    async cadastro(nome,email,senha,confirmarSenha,navegacao,popup)
     {
         const validarCampos = () => 
         {
