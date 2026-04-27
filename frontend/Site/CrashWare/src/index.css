@@ -112,4 +112,11 @@
   --cor-contraste-bg: #23264D;
 
   --botao-editar: #18B54C;
+
+  --Rodape: #020c20;
+  --Cabecalho: #00001B;
+}
+
+Body{
+  background: linear-gradient(to right, var(--gradiente1), var(--gradiente2), var(--gradiente3));
 }

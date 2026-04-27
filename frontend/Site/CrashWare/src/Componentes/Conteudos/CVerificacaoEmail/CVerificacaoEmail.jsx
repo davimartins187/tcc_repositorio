@@ -68,27 +68,27 @@ const CVerificacaoEmail = () => {
     
     
     //Proteção da URL Reenviar para cadastro
-    useEffect(() => {
+    // useEffect(() => {
         //Origens
-        const origemCadastro = origem == "/cadastro";
-        const origemRecSenha = origem == "/recuperar-senha"
+    //     const origemCadastro = origem == "/cadastro";
+    //     const origemRecSenha = origem == "/recuperar-senha"
 
-        if (origemCadastro) {
-            if(!email && !mensagem){
-                Navegacao('/cadastro');
-            }
-        }
-        else if (origemRecSenha){
-            if(!email){
-                Navegacao("/login");
-            }
-        }
-        //else{
-            //Navegacao("/login")
-        //}
+    //     if (origemCadastro) {
+    //         if(!email && !mensagem){
+    //             Navegacao('/cadastro');
+    //         }
+    //     }
+    //     else if (origemRecSenha){
+    //         if(!email){
+    //             Navegacao("/login");
+    //         }
+    //     }
+    //     else{
+    //         Navegacao("/login")
+    //     }
 
 
-    }, [origem, email, Navegacao]);
+    // }, [origem, email, Navegacao]);
 
     //Automação
     useEffect(() => {
