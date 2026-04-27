@@ -62,7 +62,7 @@ const ConteudoCadstro = () => {
     const handleCadastro = async () => 
     {
         const cadastro = new Api(nome,email,senha,popup,Navegacao);
-        cadastro.cadastro()
+        cadastro.cadastro(nome,email,senha,popup,Navegacao);
     }
    
 
