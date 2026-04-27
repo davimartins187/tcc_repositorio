@@ -4,21 +4,22 @@
     box-sizing: border-box;
 }
 
-body{
-    background-color: var(--bg-secundario);
-}
 
-main {
-    max-width: 1000px;
+.MainEstilo {
+    /* max-width: 1000px; */
     width: 100%;
-    margin: auto;
+    /* margin: auto; */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-self: center;
     /* padding: 0 20px 60px; */
     background-color: var(--bg-secundario);
     font-family: "Montserrat", sans-serif;
     /* box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.596); */
+    background: linear-gradient(to right, var(--gradiente1), var(--gradiente2), var(--gradiente3));
+    box-shadow: 0 100px 20px -5px rgba(0, 0, 0, 0.596);  
+
 }
 
 /* ===== CORES DE DESTAQUE ===== */
@@ -39,12 +40,10 @@ main {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    width: 100%;
+    width: 80%;
     padding: 60px 0 40px;
-    margin-top: 130px;
-    /* background: linear-gradient(to right, var(--gradiente1), var(--gradiente2), var(--gradiente3));
-    box-shadow: 0px 20px 100px -10px rgba(0, 0, 0, 0.596); */
-
+    /* margin-top: 130px; */
+    box-shadow: 0 100px 10px -5px rgba(0, 0, 0, 0.596);  
 }
 
 .Apresentacao_texto {
@@ -122,8 +121,9 @@ main {
 .Diferenciais {
     width: 100%;
     margin-bottom: 20px;
-    /* background-color: var(--cor-contraste-bg); */
+    background-color: var(--cor-contraste-bg);
 }
+
 
 .Diferenciais h2 {
     background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
@@ -144,9 +144,18 @@ main {
     flex-direction: column;
     justify-items: center;
     padding: 30px;
+    box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.596);  
+    justify-self: center;
 }
 
-.Materiais > h2 {
+/* .CaixaMateriais{
+    width: 80%;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+} */
+
+.Materiais h2 {
     background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -307,7 +316,12 @@ main {
     text-align: center;
     padding: 40px 20px;
     width: 100%;
-    /* background-color: var(--cor-contraste-bg); */
+    background-color: var(--cor-contraste-bg);
+}
+
+.Caixa{
+    width: 80%;
+    justify-self: center;
 }
 
 .aplicativo h2 {

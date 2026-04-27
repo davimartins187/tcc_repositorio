@@ -13,6 +13,7 @@ const Router = () =>
                 <Route path="*" element={<PgErro />} />
                 <Route path="perfil" element={<PgPerfil/>} />
                 <Route path="configuracoes" element={<PgConfiguracoes/>} />
+                <Route path="anotacoes" element={<PgAnotacoes />} />
             </Route>
 
             <Route path="/" element={<LayoutCadLogin />}>
@@ -21,7 +22,6 @@ const Router = () =>
                 <Route path="recuperar-senha" element={<PgRecuperarSenha />} />
                 <Route path="verificacao-email" element={<PgVerificacaoEmail />} />
                 <Route path="alterar-senha" element={<PgAlterarSenha/>} />
-                <Route path="anotacoes" element={<PgAnotacoes />} />
             </Route>
         </Routes>
     )
