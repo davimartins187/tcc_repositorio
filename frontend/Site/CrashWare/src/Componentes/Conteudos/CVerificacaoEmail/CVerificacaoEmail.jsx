@@ -108,56 +108,13 @@ const CVerificacaoEmail = () => {
     }, [timer]);
 
     //Função de reenviar o código
-    const ReenviarCodigo = async () => {
-        if (loading || timer > 0) return;
-        setLoading(true);
+    const ReenviarCodigo = async () => 
+    {
+        //Instâncio o objeto 
+        const usuario = new Api();
 
-        try {
-            const response = await fetch(
-                "https://api-crashware.onrender.com/auth/reenviar_codigo",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        email: email
-                    })
-                }
-            );
-
-            if (!response.ok) {
-                const erro = await response.json();
-                
-                //  exibi um popup de erro
-                setPopup({
-                    tipo: 'aviso',
-                    titulo: '404',
-                    mensagem: erro.detail
-                });
-            } else {
-                setTimer(60);
-                //Exibi um popup de sucesso
-                 setPopup({
-                    tipo: 'sucesso',
-                    titulo: 'Código Enviado',
-                    mensagem: 'Enviamos para seu email um código novo...'
-                });
-
-            }
-
-        } catch (error) {
-            console.log(error)
-            setPopup({
-                tipo: 'erro',
-                titulo: 'Sem conexão',
-                mensagem: 'Não foi possível conectar ao servidor.'
-            });
-            
-        } finally {
-            setLoading(false);
-        }
-
+        //Chamo o método
+        usuario.Enviar_Codigo(email,setPopup,loading,timer,setLoading,setTimer);
 
     }
 
