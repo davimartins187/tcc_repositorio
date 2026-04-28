@@ -19,22 +19,19 @@ const Cabecalho = ({ children }) => {
   return (
     <>
       <header className={Style.Cabecalho}>
-        <Link to="#" onClick={(e) => {
-          e.preventDefault()
-          handleRedirect(Navegacao)
-        }}>
+   
           <div className={Style.infoCabecalho}>
             <img className={Style.logo_legal} src={Logo} alt="Logo do CrashWare" />
             <h5>CRASHWARE</h5>
           </div>
-        </Link>
+       
 
-        <button className={Style.hamburger} onClick={() => setAberto(!aberto)}>
+        {/* <button className={Style.hamburger} onClick={() => setAberto(!aberto)}>
           {aberto ? <p>✕</p> : <p>☰</p>}
-        </button>
+        </button> */}
       </header>
 
-      <Sidebar aberto={aberto} onFechar={() => setAberto(false)} />
+      {/* <Sidebar aberto={aberto} onFechar={() => setAberto(false)} /> */}
     </>
   );
 };
