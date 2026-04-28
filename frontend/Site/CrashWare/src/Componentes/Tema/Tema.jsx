@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import FTema_claro from '../../fotos/claro/lua_icon_claro.svg';
-import FTema_escuro from '../../fotos/escuro/lua_icon.svg';
+import FTema_escuro from '../../fotos/sol.svg';
 import Style from "./Tema.module.css";
 
 const Tema = () =>
@@ -24,7 +24,7 @@ const Tema = () =>
 
     return (
         <button onClick={TrocarTema} className={Style.tema}>
-            <p>Trocar de tema</p>
+            
             <img src={icone} alt="Trocar tema" />
         </button>
     );

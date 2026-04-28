@@ -6,10 +6,10 @@
 
 .overlay {
   display: none;
-  position: fixed;
+  position: fixed; 
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
-  z-index: 150;
+  z-index: 0;
 }
 
 .overlayOpen {
@@ -17,8 +17,8 @@
 }
 
 .sidebar {
-  position: fixed; /* ← FALTAVA ISSO */
-  top: 90px;
+  position: sticky; 
+  top: 20px;
   left: 0;
   right: 0;
   width: 100vw;
@@ -26,7 +26,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transform: translateY(-120%);
   transition: transform 0.3s ease;
-  z-index: 200;
+  z-index: 1;
   padding: 12px 16px;
   display: flex;
   justify-content: center;
@@ -42,7 +42,7 @@
 }
 
 .sidebarOpen {
-  transform: translateY(0);
+  transform: translateY(120px);
 }
 
 .closeBtn {

@@ -7,7 +7,7 @@
 
 .MainEstilo {
     /* max-width: 1000px; */
-    width: 100%;
+    width: 50%;
     /* margin: auto; */
     display: flex;
     flex-direction: column;
@@ -16,9 +16,7 @@
     /* padding: 0 20px 60px; */
     background-color: var(--bg-secundario);
     font-family: "Montserrat", sans-serif;
-    /* box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.596); */
-    background: linear-gradient(to right, var(--gradiente1), var(--gradiente2), var(--gradiente3));
-    box-shadow: 0 100px 20px -5px rgba(0, 0, 0, 0.596);  
+
 
 }
 
@@ -121,7 +119,7 @@
 .Diferenciais {
     width: 100%;
     margin-bottom: 20px;
-    background-color: var(--cor-contraste-bg);
+    background-color: var(--bg-secundario);
 }
 
 
@@ -316,7 +314,7 @@
     text-align: center;
     padding: 40px 20px;
     width: 100%;
-    background-color: var(--cor-contraste-bg);
+    background-color: var(--bg-secundario);
 }
 
 .Caixa{

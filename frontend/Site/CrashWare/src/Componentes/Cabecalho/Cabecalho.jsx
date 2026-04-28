@@ -6,6 +6,7 @@ import Style from './Cabecalho.module.css';
 
 //Functions
 import { handleRedirect } from '../../../funcoes/functions';
+import { Tema } from '../Tema';
 
 
 
@@ -19,19 +20,24 @@ const Cabecalho = ({ children }) => {
   return (
     <>
       <header className={Style.Cabecalho}>
-   
-          <div className={Style.infoCabecalho}>
+
+        <div className={Style.infoCabecalho}>
+          <Link to="#" onClick={(e) => {
+            e.preventDefault()
+            handleRedirect(Navegacao)
+          }}>
             <img className={Style.logo_legal} src={Logo} alt="Logo do CrashWare" />
             <h5>CRASHWARE</h5>
-          </div>
-       
+          </Link>
+        </div>
 
-        {/* <button className={Style.hamburger} onClick={() => setAberto(!aberto)}>
+        {/* <Tema /> */}
+        <button className={Style.hamburger} onClick={() => setAberto(!aberto)}>
           {aberto ? <p>✕</p> : <p>☰</p>}
-        </button> */}
+        </button>
       </header>
 
-      {/* <Sidebar aberto={aberto} onFechar={() => setAberto(false)} /> */}
+      <Sidebar aberto={aberto} onFechar={() => setAberto(false)} />
     </>
   );
 };
