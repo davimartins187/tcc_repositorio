@@ -375,137 +375,139 @@ export class Api
             setLoading(false);
         }
     }
+
+    async Logar(email,senha,setPopup,Navegacao)
+    {
+        const validarCampos = () => {
+
+            if (!email.trim()) {
+                return "Preencha o e-mail";
+            }
+
+            if (!email.includes("@") || !email.includes(".")) {
+                return "E-mail inválido";
+            }
+
+            if (!senha) {
+                return "Preencha a senha";
+            }
+
+            if (senha.length < 8) {
+                return "Senha deve conter pelo menos 8 caracteres";
+            }
+
+            return null;
+        };
+
+        const erro = validarCampos();
+
+        if (erro) {
+            setPopup({
+                tipo: 'aviso',
+                titulo: 'Erro no login',
+                mensagem: erro
+            });
+            return;
+        }
+
+        setPopup({
+            tipo: 'sucesso',
+            titulo: 'Verificação',
+            mensagem: 'Verificando dados...'
+        });
+
+        await sleep(2000) /*-> Faz que espere 2 segundos*/
+
+
+        //Envio os dados para a API(na rota de login)
+        try {
+            const response = await fetch("https://api-crashware.onrender.com/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email.replace(/\s/g, "").toLowerCase(),
+                    senha: senha
+                })
+            });//Parâmetros
+
+            // Erro causado por ação do usuário (dados inválidos, não autorizado, etc)
+
+            if (response.status === 403) {
+                //Caso o usuario não tenha verificado o email:
+
+                //Pego o nome
+                const erro = await response.json()
+                const nome = erro.detail.nome
+
+                setPopup({
+                    tipo: 'aviso',
+                    titulo: 'Erro de autenticação',
+                    mensagem: erro.detail.erro
+                });
+
+
+                await sleep(2000) /*Faz com que espere 2 segundos*/
+
+                //Envio o usuario na pagina de verificar EMAIL
+                Navegacao("/verificacao-email", {
+                    state: {
+                        email: email.toLowerCase(),
+                        nome: nome.toUpperCase(),
+                        origem: "/login"
+
+                    }
+                });
+
+
+
+            } else if (!response.ok) {
+                //Caso o usuario erre a senha, ou email não autenticado:
+
+                //Retorna erro
+                const erro = await response.json()
+                setPopup({
+                    tipo: 'aviso',
+                    titulo: 'Erro de Autenticação',
+                    mensagem: erro.detail
+                });
+
+                return;
+
+            }
+
+            else {
+                // Usuario logou:
+
+                //Pego o token gerado pela API
+                const dados = await response.json()
+                const token = dados.token
+                const refresh_token = dados.refresh_token
+
+                //Guardo no localStorage
+                localStorage.setItem("token", token)
+                localStorage.setItem("refresh_token", refresh_token)
+
+                //Caso eu queira pegar o token
+                //const token = localStorage.getItem("token")
+                //const refresh_token = localStorage.getItem("refresh_token")
+
+                //Aqui envia para a tela de HOME:
+                Navegacao("/perfil");
+            }
+
+        } catch (error) {
+            console.log("Erro:", error);
+            
+            setPopup({
+                tipo: 'erro',
+                titulo: 'Sem conexão',
+                mensagem: 'Não foi possível conectar ao servidor.'
+            });
+        }
+    }//Método login
 }//classe
-// //Login(email,senha,popup,navegacao,state(react))
-
-// const validarCampos = () => {
-
-//     if (!email.trim()) {
-//         return "Preencha o e-mail";
-//     }
-
-//     if (!email.includes("@") || !email.includes(".")) {
-//         return "E-mail inválido";
-//     }
-
-//     if (!senha) {
-//         return "Preencha a senha";
-//     }
-
-//     if (senha.length < 8) {
-//         return "Senha deve conter pelo menos 8 caracteres";
-//     }
-
-//     return null;
-// };
-
-// const erro = validarCampos();
-
-// if (erro) {
-//     setPopup({
-//         tipo: 'aviso',
-//         titulo: 'Erro no login',
-//         mensagem: erro
-//     });
-//     return;
-// }
-
-// setPopup({
-//     tipo: 'sucesso',
-//     titulo: 'Verificação',
-//     mensagem: 'Verificando dados...'
-// });
-
-// await sleep(2000) /*-> Faz que espere 2 segundos*/
-
-
-// //Envio os dados para a API(na rota de login)
-// try {
-//     const response = await fetch("https://api-crashware.onrender.com/auth/login", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({
-//             email: email.replace(/\s/g, "").toLowerCase(),
-//             senha: senha
-//         })
-//     });//Parâmetros
-
-//     // Erro causado por ação do usuário (dados inválidos, não autorizado, etc)
-
-//     if (response.status === 403) {
-//         //Caso o usuario não tenha verificado o email:
-
-//         //Pego o nome
-//         const erro = await response.json()
-//         const nome = erro.detail.nome
-
-//         setPopup({
-//             tipo: 'aviso',
-//             titulo: 'Erro de autenticação',
-//             mensagem: erro.detail.erro
-//         });
-
-
-//         await sleep(2000) /*Faz com que espere 2 segundos*/
-
-//         //Envio o usuario na pagina de verificar EMAIL
-//         Navegacao("/verificacao-email", {
-//             state: {
-//                 email: email.toLowerCase(),
-//                 nome: nome.toUpperCase(),
-//                 origem: "/login"
-
-//             }
-//         });
-
-
-
-//     } else if (!response.ok) {
-//         //Caso o usuario erre a senha, ou email não autenticado:
-
-//         //Retorna erro
-//         const erro = await response.json()
-//         setPopup({
-//             tipo: 'aviso',
-//             titulo: 'Erro de Autenticação',
-//             mensagem: erro.detail
-//         });
-
-//         return;
-
-//     }
-
-//     else {
-//         // Usuario logou:
-
-//         //Pego o token gerado pela API
-//         const dados = await response.json()
-//         const token = dados.token
-//         const refresh_token = dados.refresh_token
-
-//         //Guardo no localStorage
-//         localStorage.setItem("token", token)
-//         localStorage.setItem("refresh_token", refresh_token)
-
-//         //Caso eu queira pegar o token
-//         //const token = localStorage.getItem("token")
-//         //const refresh_token = localStorage.getItem("refresh_token")
-
-//         //Aqui envia para a tela de HOME:
-//         Navegacao("/perfil");
-//     }
-
-// } catch (error) {
-//     console.log("Erro:", error);
-    
-//     setPopup({
-//         tipo: 'erro',
-//         titulo: 'Sem conexão',
-//         mensagem: 'Não foi possível conectar ao servidor.'
-//     });
-// }
 
 
 // //Alterar senha(navegacao,email,senha,popup,navegacao):
