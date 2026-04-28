@@ -12,7 +12,7 @@ import esconderSenha_escuro from '../../../fotos/escuro/nao_pode_ver_senha_claro
 import verSenha_escuro from '../../../fotos/escuro/pode_ver_senha_claro.svg';
 
 import style from './ConteudoLogin.module.css';
-import { sleep } from "../../../../funcoes/functions";
+import { Api, sleep } from "../../../../funcoes/functions";
 
 const ConteudoLogin = () => {
     const [email, setEmail] = useState("");
@@ -47,7 +47,7 @@ const ConteudoLogin = () => {
     const handleLogin = async () => 
     {
         //Instâncio o objeto 
-        const usuario = new Api()
+        const usuario = new Api();
 
         //Chamo o método
         usuario.Logar(email,senha,setPopup,Navegacao);
