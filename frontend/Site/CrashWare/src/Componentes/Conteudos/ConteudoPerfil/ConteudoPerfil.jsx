@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import FotoPadrao from '../../../fotos/FotoPerfilPadrao.jpeg'
 import BackFundo from "../../../fotos/Banner.jpeg"
 import iconRanking from '../../../fotos/ranking.svg'
@@ -8,7 +8,7 @@ import style from './ConteudoPerfil.module.css'
 import { Link , useNavigate } from "react-router-dom";
 
 //Funcão de Sair da Conta
-import { SairDaConta } from '../../../../funcoes/functions'
+import { Api, SairDaConta } from '../../../../funcoes/functions'
 
 import { BotoesForm } from '../../Botoes/BotaoForm/BotaoForm'
 
@@ -28,6 +28,33 @@ const ConteudoPerfil = () => {
 
     const [ofensiva, setOfensiva] = useState(0);
     const [xp, setXp] = useState(0);
+
+
+    
+    useEffect(() => {
+        //Quando a pag for carregada:
+        //Verifico se o usuario tem token
+            const VerificarToken = async () => 
+            {
+                //Pego os tokens dentro do escopo privado.
+                const token = localStorage.getItem("token")
+                const refresh_token = localStorage.getItem("refresh_tokem")
+    
+    
+                //Vaerifico o token
+                const usuario = new Api();
+                const token_vencido = usuario.Verificar_Token(token)
+    
+    
+                //Verifico o Refresh Token
+                if (token_vencido == true)
+                {
+                    usuario.Verificar_Token(refresh_token)
+                }
+            }
+            VerificarToken()
+          
+    })
 
     //Carrega a foto salva q pus
     // useEffect(() => {

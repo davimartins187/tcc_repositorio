@@ -14,7 +14,7 @@ import style from './ConteudoAlterarSenha.module.css'
 
 
 //Importando sleep
-import { sleep } from "../../../../funcoes/functions"
+import { Api, sleep } from "../../../../funcoes/functions"
 
 
 const ConteudoAlterarSenha = () => {
@@ -61,94 +61,14 @@ const ConteudoAlterarSenha = () => {
 
 
 
-    const validarCampos = () => 
-        {
-            if (senha.length < 8) {
-                return "Senha deve ter pelo menos 8 caracteres";
-            }
+    const MudarSenha = async () =>
+    {
+        //Instâncio o objeto 
+        const usuario = new Api();
 
-            if (senha.includes(" ")) {
-                return "Senha não pode conter espaços";
-            }
+        //Chamo o método
+        usuario.Alterar_Senha(email,senha,confirmaSenha,setPopup,Navegacao);
 
-            if (senha !== confirmaSenha) {
-                return "As senhas não coincidem";
-            }
-
-            return null;
-        }
-
-    const MudarSenha = async () =>{
-
-        const erro = validarCampos();
-
-
-        if (erro) {
-                setPopup({
-                    tipo: 'aviso',
-                    titulo: 'Erro no formulário',
-                    mensagem: erro
-                });
-                return;
-            }
-
-        setPopup({
-                tipo: 'sucesso',
-                titulo: 'Senha',
-                mensagem: 'Verificando senhas....'
-        });
-
-
-        await sleep(2000)/*Faz com que espere 2 segundos*/
-
-        try 
-        {
-            const response = await fetch("https://api-crashware.onrender.com/auth/alterar_senha",
-            {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        senha: senha
-                    })
-            })//Parâmetros
-
-            if (!response.ok)
-            {
-                const erro = await response.json()
-
-                setPopup({
-                    tipo: 'aviso',
-                    titulo: 'Senha',
-                    mensagem: erro.detail
-                });
-
-            }else
-            {
-                setPopup({
-                    tipo: 'sucesso',
-                    titulo: 'Senha atualizada com sucesso',
-                    mensagem: 'Estamos te redirecionando...'
-                });
-
-                await sleep(3000) /* Faz com que espere 3 segundos*/
-
-                Navegacao("/login");
-
-            }
-
-        }catch (error) 
-        {   //Erro na requisição
-            setPopup({
-                tipo: 'erro',
-                titulo: 'erro',
-                mensagem: 'Não foi possível conectar ao servidor.'
-            });
-
-            console.log(error)
-        }
 
         
     }

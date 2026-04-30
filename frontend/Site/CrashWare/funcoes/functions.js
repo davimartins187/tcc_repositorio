@@ -1,11 +1,3 @@
-//Pego o Variáveis do localStorage:
-//Tokens
-const token = localStorage.getItem("token")
-const token_boolean = localStorage.getItem("token_boolean")
-
-//Controle de navegação
-const rec_senha = localStorage.getItem("rec_senha")
-
 /*Sleep*/
 export function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -24,8 +16,6 @@ export function SairDaConta(Navegacao){
     //Deleto o ID do LocalStorage
     localStorage.removeItem("id");
 
-    //Removo a validação do token
-    localStorage.removeItem("token_boolean","false");
 
     //Levo para a tela inicial
     Navegacao("/")
@@ -37,7 +27,10 @@ export function SairDaConta(Navegacao){
 //Verifico qual tela a pessoa vai ir, ao clicar no "CRASHWARE" do HEADER
 export function handleRedirect(Navegacao)
 {
-    if(!token || token_boolean == "false")
+    //Pego os tokens dentro do escopo privado.
+    const id = localStorage.getItem("id")
+
+    if(!id)
     {
         Navegacao("/")
     }else
@@ -226,7 +219,8 @@ export class Api
                 }
                 else{
                     // Sobrescreve valor no localStorage para controle de navegação
-                    localStorage.setItem("rec_senha", true)
+
+                    localStorage.setItem("rec_senha", "true")
 
                     //Levo para a tela de verificar codigo
                     Navegacao("/verificacao-email", {
@@ -284,6 +278,9 @@ export class Api
                     });
 
                 } else {
+
+                    //Controle de navegação
+                    const rec_senha = localStorage.getItem("rec_senha")
 
                     setPopup({
                         tipo: 'sucesso',
@@ -437,6 +434,9 @@ export class Api
             if (response.status === 403) {
                 //Caso o usuario não tenha verificado o email:
 
+                //Controle de Navegação
+                localStorage.setItem("rec_senha", "false")
+
                 //Pego o nome
                 const erro = await response.json()
                 const nome = erro.detail.nome
@@ -507,98 +507,145 @@ export class Api
             });
         }
     }//Método login
+
+
+
+    async Alterar_Senha(email,senha,confirmaSenha,setPopup,Navegacao)
+    {
+
+        const validarCampos = () => 
+            {
+                if (senha.length < 8) {
+                    return "Senha deve ter pelo menos 8 caracteres";
+                }
+
+                if (senha.includes(" ")) {
+                    return "Senha não pode conter espaços";
+                }
+
+                if (senha !== confirmaSenha) {
+                    return "As senhas não coincidem";
+                }
+
+                return null;
+            }
+        //
+        const erro = validarCampos();
+
+
+        if (erro) {
+                setPopup({
+                    tipo: 'aviso',
+                    titulo: 'Erro no formulário',
+                    mensagem: erro
+                });
+                return;
+            }
+
+        setPopup({
+                tipo: 'sucesso',
+                titulo: 'Senha',
+                mensagem: 'Verificando senhas....'
+        });
+
+
+        await sleep(2000)/*Faz com que espere 2 segundos*/
+
+        try 
+        {
+            const response = await fetch("https://api-crashware.onrender.com/auth/alterar_senha",
+            {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        senha: senha
+                    })
+            })//Parâmetros
+
+            if (!response.ok)
+            {
+                const erro = await response.json()
+
+                setPopup({
+                    tipo: 'aviso',
+                    titulo: 'Senha',
+                    mensagem: erro.detail
+                });
+
+            }else
+            {
+                setPopup({
+                    tipo: 'sucesso',
+                    titulo: 'Senha atualizada com sucesso',
+                    mensagem: 'Estamos te redirecionando...'
+                });
+
+                await sleep(3000) /* Faz com que espere 3 segundos*/
+
+                Navegacao("/login");
+
+            }
+
+        }catch (error) 
+        {   //Erro na requisição
+            setPopup({
+                tipo: 'erro',
+                titulo: 'erro',
+                mensagem: 'Não foi possível conectar ao servidor.'
+            });
+
+            console.log(error)
+        }
+    }//Alterar_Senha
+
+    async Verificar_Token(token)
+    {
+
+        if (!token) 
+            {
+                //Ignora
+            } else 
+            {
+                //Validação de token
+                try {
+                    const response = await fetch("https://api-crashware.onrender.com/auth/verificar_token",
+                        {
+                            method: "POST",
+                            headers:
+                            {
+                                "Authorization": `Bearer ${token}`
+                            }
+                        })//
+
+                    if (!response.ok) {
+                        //const erro = await response.json();
+                        //console.log(erro.detail)
+
+                        //Token se expirou!
+                        return true
+                    }
+                    else {
+
+                        const dados = await response.json();
+
+                        const id = dados.id
+
+                        //Guardo o ID do user
+                        localStorage.setItem("id", id)
+
+                        //Leva para a tela HOME automaticamente
+                        Navegacao("/perfil");
+                    }
+
+                } catch (error) {
+                    console.log(error)
+                }
+
+
+            }
+    }//Verifica Token
+
 }//classe
-
-
-// //Alterar senha(navegacao,email,senha,popup,navegacao):
-// const validarCampos = () => 
-//     {
-//         if (senha.length < 8) {
-//             return "Senha deve ter pelo menos 8 caracteres";
-//         }
-
-//         if (senha.includes(" ")) {
-//             return "Senha não pode conter espaços";
-//         }
-
-//         if (senha !== confirmaSenha) {
-//             return "As senhas não coincidem";
-//         }
-
-//         return null;
-//     }
-// //
-// const erro = validarCampos();
-
-
-// if (erro) {
-//         setPopup({
-//             tipo: 'aviso',
-//             titulo: 'Erro no formulário',
-//             mensagem: erro
-//         });
-//         return;
-//     }
-
-// setPopup({
-//         tipo: 'sucesso',
-//         titulo: 'Senha',
-//         mensagem: 'Verificando senhas....'
-// });
-
-
-// await sleep(2000)/*Faz com que espere 2 segundos*/
-
-// try 
-// {
-//     const response = await fetch("https://api-crashware.onrender.com/auth/alterar_senha",
-//     {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({
-//                 email: email,
-//                 senha: senha
-//             })
-//     })//Parâmetros
-
-//     if (!response.ok)
-//     {
-//         const erro = await response.json()
-
-//         setPopup({
-//             tipo: 'aviso',
-//             titulo: 'Senha',
-//             mensagem: erro.detail
-//         });
-
-//     }else
-//     {
-//         setPopup({
-//             tipo: 'sucesso',
-//             titulo: 'Senha atualizada com sucesso',
-//             mensagem: 'Estamos te redirecionando...'
-//         });
-
-//         await sleep(3000) /* Faz com que espere 3 segundos*/
-
-//         Navegacao("/login");
-
-//     }
-
-// }catch (error) 
-// {   //Erro na requisição
-//     setPopup({
-//         tipo: 'erro',
-//         titulo: 'erro',
-//         mensagem: 'Não foi possível conectar ao servidor.'
-//     });
-
-//     console.log(error)
-// }
-
-
-
-
-

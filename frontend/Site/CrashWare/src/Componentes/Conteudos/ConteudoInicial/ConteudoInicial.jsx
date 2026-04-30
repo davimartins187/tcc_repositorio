@@ -1,21 +1,17 @@
 import { useState, useEffect } from 'react';
-import FMenina_claro from '../../../fotos/claro/menina_estudando.png';
-import FMenina_escuro from '../../../fotos/escuro/menina_estudando.png';
+import FMenina_claro from '../../../fotos/claro/NovaMenina.svg';
+import FMenina_escuro from '../../../fotos/escuro/NovaMenina.svg';
 // importando componentes para ser ultilizados no ConteudoInicial.jsx
-import FMenina from '../../../fotos/claro/menina_estudando.png';
+import FMenina from '../../../fotos/claro/NovaMenina.svg';
 import { BotoesApp, BotoesForm } from '../../Botoes';
 import { Cards } from '../../Cards';
 import { Link, useNavigate } from "react-router-dom";
 import qrcode from '../../../fotos/qrcode.jpeg';
 
 import Style from './ConteudoInicial.module.css';
+import { Api } from '../../../../funcoes/functions';
 
 
-//Pego o token:
-const token = localStorage.getItem("token")
-
-//Pego o refresh_token
-const refresh_token = localStorage.getItem("refresh_token")
 
 
 const ConteudoInicial = () => {
@@ -37,85 +33,24 @@ const ConteudoInicial = () => {
 
 
         //Verifico se o usuario tem token
-        const VerificarToken = async () => {
-            if (token == null && refresh_token == null) {
-                //Ignora
-            } else {
-                //Validação de token
-                try {
-                    const response = await fetch("https://api-crashware.onrender.com/auth/verificar_token",
-                        {
-                            method: "POST",
-                            headers:
-                            {
-                                "Authorization": `Bearer ${token}`
-                            }
-                        })//
-
-                    if (!response.ok) {
-                        //const erro = await response.json();
-                        //console.log(erro.detail)
-
-                        //Ignora , Token se expirou!
-
-                        //Valida o refresh_token:
-                        try {
-                            const response_refresh = await fetch("https://api-crashware.onrender.com/auth/verificar_token",
-                                {
-                                    method: "POST",
-                                    headers:
-                                    {
-                                        "Authorization": `Bearer ${refresh_token}`
-                                    }
-                                })//
-
-                            if (!response.ok) {
-                                //Ignora , refresh_token se expirou!
-                            }
-                            else {
-                                const dados = await response_refresh.json();
-
-                                const id = dados.id
-
-                                //Guardo o ID do user
-                                localStorage.setItem("id", id)
-
-                                //Valido o token
-                                localStorage.setItem("token_boolean", "true")
-
-                                //Leva para a tela HOME automaticamente
-                                Navegacao("/perfil");
-                            }
-
-                        }//
-                        catch (error) {
-                            console.log(error)
-                        }
-                    }
-                    else {
-
-                        const dados = await response.json();
-
-                        const id = dados.id
-
-                        //Guardo o ID do user
-                        localStorage.setItem("id", id)
-
-                        //Valido o token
-                        localStorage.setItem("token_boolean", "true")
-
-                        //Leva para a tela HOME automaticamente
-                        Navegacao("/perfil");
-                    }
-
-                } catch (error) {
-                    console.log(error)
-                }
+        const VerificarToken = async () => 
+        {
+            //Pego os tokens dentro do escopo privado.
+            const token = localStorage.getItem("token")
+            const refresh_token = localStorage.getItem("refresh_tokem")
 
 
+            //Vaerifico o token
+            const usuario = new Api();
+            const token_vencido = usuario.Verificar_Token(token)
+
+
+            //Verifico o Refresh Token
+            if (token_vencido == true)
+            {
+                usuario.Verificar_Token(refresh_token)
             }
         }
-
         VerificarToken()
 
         //
