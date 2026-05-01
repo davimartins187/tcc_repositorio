@@ -57,17 +57,16 @@ const ConteudoCadstro = () => {
         ? (isClaro ? verSenha_claro : verSenha_escuro)
         : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
 
-    
 
-    const handleCadastro = async () => 
-    {
+
+    const handleCadastro = async () => {
         //Instâncio o objeto 
-        const usuario = new Api(nome,email,senha,setPopup,Navegacao);
+        const usuario = new Api(nome, email, senha, setPopup, Navegacao);
 
         //Chamo o método
-        usuario.cadastrar(nome,email,senha,confirmarSenha,setPopup,Navegacao);
+        usuario.cadastrar(nome, email, senha, confirmarSenha, setPopup, Navegacao);
     }
-   
+
 
     return (
         <>
@@ -85,6 +84,7 @@ const ConteudoCadstro = () => {
 
                     <h1>Cadastre-se</h1>
 
+                    <p>Nome</p>
                     <CampoTexto
                         type="text"
                         maxLength={100}
@@ -96,6 +96,7 @@ const ConteudoCadstro = () => {
                         autoComplete='name'
                     />
 
+                    <p>Email</p>
                     <CampoTexto
                         type="email"
                         maxLength={200}
@@ -106,6 +107,7 @@ const ConteudoCadstro = () => {
                         autoComplete='email'
                     />
 
+                    <p>Senha</p>
                     <div className={style.senhaWrapper}>
                         <CampoTexto
                             type={mostrar ? "text" : "password"}
@@ -123,6 +125,7 @@ const ConteudoCadstro = () => {
                         />
                     </div>
 
+                    <p>Confirme a Senha</p>
                     <div className={style.senhaWrapper}>
                         <CampoTexto
                             type={mostrarConfirmar ? "text" : "password"}
@@ -140,32 +143,16 @@ const ConteudoCadstro = () => {
                         />
                     </div>
 
-                    <p className={style.TermosUso}>
-                        Ao entrar no <span>CrashWare</span>, você concorda com os termos e políticas.
-                    </p>
-
                     <BotoesForm
                         texto="Cadastrar"
                         tipo={TIPO_BOTAO.CADASTRO}
                         className={style.btnCriarConta}
                         onClick={handleCadastro}
                     />
-
-                    <div className={style.ou}>
-                        <hr />
-                        <p>OU</p>
-                        <hr />
-                    </div>
-
-                    <Link to='/login'>
-                        <BotoesForm
-                            texto="Entrar"
-                            tipo={TIPO_BOTAO.CADASTRO}
-                            className={style.btnCriarConta}
-                        />
-                    </Link>
-
                 </div>
+                <p className={style.Logar}>
+                    Já tem uma conta? <Link to="/login">Entre</Link>
+                </p>
             </div>
         </>
     );

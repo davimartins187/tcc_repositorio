@@ -15,6 +15,7 @@ const CVerificacaoEmail = () => {
     const [loading, setLoading] = useState(false);
     const [verificando, setVerificando] = useState(false);
     const [codigo, setCodigo] = useState("");
+    const [enviarcodigo, setEnviarCodigo] = useState(false);
     const [erro, setErro] = useState("");
     const [podeNavegar, setPodeNavegar] = useState(false);
     const [mostrarModal, setMostrarModal] = useState(false);
@@ -66,9 +67,9 @@ const CVerificacaoEmail = () => {
     }, [podeNavegar]);
     
     
-    //Proteção da URL Reenviar para cadastro
+    // Proteção da URL Reenviar para cadastro
     // useEffect(() => {
-        //Origens
+    //     Origens
     //     const origemCadastro = origem == "/cadastro";
     //     const origemRecSenha = origem == "/recuperar-senha"
 
@@ -90,11 +91,11 @@ const CVerificacaoEmail = () => {
     // }, [origem, email, Navegacao]);
 
     //Automação
-    useEffect(() => {
-        if (codigo.length === 6 && !verificando) {
-            handleVericarEmail()
-        }
-    }, [codigo]);
+    // useEffect(() => {
+    //     if (codigo.length === 6 && !verificando) {
+    //         handleVericarEmail()
+    //     }
+    // }, [codigo]);
 
     //Temporizador
     useEffect(() => {
@@ -114,7 +115,7 @@ const CVerificacaoEmail = () => {
         const usuario = new Api();
 
         //Chamo o método
-        usuario.Enviar_Codigo(email,setPopup,loading,timer,setLoading,setTimer);
+        usuario.Enviar_Codigo(email,setPopup,loading,timer,setLoading,setTimer,setEnviarCodigo);
 
     }
 
@@ -190,6 +191,13 @@ const CVerificacaoEmail = () => {
                         texto={loading ? "Espere..." : timer > 0 ? `Reenviar em ${timer}s` : "Enviar Código"} className={style.btnEnviar}
                         onClick={ReenviarCodigo}
                         disabled={timer > 0 || loading}
+                    />
+
+                    <BotoesForm
+                        texto="Verficicar"
+                        className={style.btnEnviar}
+                        onClick={handleVericarEmail}
+                        disabled={!enviarcodigo || loading}
                     />
                 </div>
             </div>

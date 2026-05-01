@@ -329,11 +329,11 @@ export class Api
 
 
 
-    async Enviar_Codigo(email,setPopup,loading,timer,setLoading,setTimer)
+    async Enviar_Codigo(email,setPopup,loading,timer,setLoading,setTimer,setEnviarCodigo)
     {
         if (loading || timer > 0) return;
         setLoading(true);
-
+        setEnviarCodigo(true);
         try {
             const response = await fetch(
                 "https://api-crashware.onrender.com/auth/reenviar_codigo",

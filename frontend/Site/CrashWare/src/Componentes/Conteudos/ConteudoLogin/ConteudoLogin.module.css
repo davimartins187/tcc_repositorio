@@ -18,11 +18,11 @@
   padding: 20px;
   font-family: "Montserrat", sans-serif;
   flex-direction: column;
-  background-image: url('/src/fotos/fundo_site.svg') !important;
+  /* background-image: url('/src/fotos/fundo_site.svg') !important;
   background-color: var(--bg-principal);
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 }
 
 .container {
@@ -53,7 +53,7 @@
 .container h1 {
   color: var(--bg-secundario);
   font-size: clamp(2rem, 5vw, 3rem);
-
+  font-family: "Montserrat", sans-serif;
   margin-bottom: 20px;
   /* text-shadow: 1px 1px 20px var(--cor-primaria-hover); */
 }
@@ -75,11 +75,13 @@
   color: var(--texto-secundario);
 
   transition: 0.2s;
+
+  box-shadow: 0px 5px 6px -2px rgba(0, 0, 0, 0.5);
 }
 
 .inputClasse:focus {
   outline: none;
-  border-color: var(--Botao-gradiente1);
+  border-color: var(--Borda-gradiente1);
   box-shadow: 0 0 0 2px var(--Botao-gradiente3);
 }
 
@@ -112,7 +114,7 @@
 
 /* ===== TEXTO ===== */
 
-.TermosUso {
+.Cadastrar {
   color: var(--bg-secundario);
   font-family: "Montserrat", sans-serif !important;
   font: bold;
@@ -121,11 +123,9 @@
   justify-self: center;
 }
 
-.TermosUso a{
+.Cadastrar a{
   color: white;
 }
-
-
 
 /* ===== BOTÃO ===== */
 

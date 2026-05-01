@@ -8,32 +8,46 @@
 
 .corpo{
     margin: auto;
-    width: 80%;
+    /* width: 80%; */
     min-height: 88.9vh; 
-    /* background-color: var(--bg-principal); */
+  /* background: 
+    url('/public/fundo_site.jpeg') no-repeat center/cover,
+    var(--bg-principal) !important; */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center; 
     padding: 20px;
+      font-family: "Montserrat", sans-serif;
 }
 
 .container{
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  height: 80%;
+  max-width: 520px;
+  text-align: center;
+  border: solid 4px;
+  border-width: 4px;
+  border-style: solid;
+  border-image: linear-gradient(45deg, var(--Borda-gradiente1), var(--Borda-gradiente2), var(--Borda-gradiente3)) 1;
+    background-color: var(--bg-terceiro);
+  padding-right: 30px;
+  padding-left: 30px;
+  border-radius: 30px;
 }
 
-/* .Cabecalho{
-    top: 0;
-    position: absolute;
-} */
-
 .container h1 {
-  color: var(--cor-primaria);
+  color: var(--bg-secundario);
   font-size: clamp(2rem, 5vw, 3rem);
-  font-family: "Montserrat", sans-serif;
   margin-bottom: 20px;
-  text-shadow: 1px 1px 20px var(--cor-primaria-hover);
+}
+
+.container p{
+  color: var(--bg-secundario);
+  text-align: start !important;
+  left: 0;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 
@@ -52,36 +66,42 @@
   color: var(--texto-secundario);
 
   transition: 0.2s;
+  box-shadow: 0px 5px 6px -2px rgba(0, 0, 0, 0.5);
+
 }
 
 .inputClasse:focus {
   outline: none;
-  border-color: var(--cor-primaria);
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  border-color: var(--Borda-gradiente1);
+  box-shadow: 0 0 0 2px var(--Botao-gradiente3);
 }
 
-.TermosUso {
-  color: var(--texto-secundario);
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.85rem;
+.Logar {
+  color: var(--bg-secundario);
+  font-family: "Montserrat", sans-serif !important;
+  font: bold;
+  font-size: 20px;
   margin: 20px 0;
+  justify-self: center;
 }
 
-.TermosUso span {
-  color: var(--cor-primaria);
+.Logar a{
+  color: white;
 }
 
 .btnCriarConta {
   width: 100%;
-  height: 55px;
+  height: 10vh;
 
-  background: var(--cor-primaria);
+  background: linear-gradient(to right, var(--Botao-gradiente1), var(--Botao-gradiente2), var(--Botao-gradiente3)) !important;
   border: none;
   border-radius: 6px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 
   font-size: 20px;
   font-weight: bold;
-  color: var(--Branco);
+  color: var(--texto-principal);
 
   transition: 0.3s;
 }
@@ -90,7 +110,7 @@
     transition: 0.3s;
     background-color: var(--cor-primaria-hover);
     color: var(--texto-principal);
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .btnCriarConta:disabled {
@@ -134,25 +154,6 @@ button
   opacity: 1;
 }
 
-.ou {
-  display: flex;
-  align-items: center;
-  margin: 20px 0;
-}
-
-.ou hr {
-  flex: 1;
-  border: none;
-  height: 1px;
-  background: var(--borda);
-}
-
-.ou p {
-  margin: 0 10px;
-  color: var(--texto-secundario);
-  font-weight: bold;
-  font-family: "Montserrat", sans-serif;
-}
 
 @media (max-width: 480px) {
 

@@ -10,7 +10,7 @@
   --Cabecalho:rgba(255, 255, 255, 0.788);
   --input-bg:#F8FAFC; 
 
-  --texto-principal: #111827;
+  --texto-principal: #FFFFFF;
   --texto-secundario: #4b5563;
 
   --cor-primaria: #22c55e;
@@ -138,6 +138,8 @@
   background: linear-gradient(to right, var(--gradiente1), var(--gradiente2), var(--gradiente3));
 } */
 
-/* body{
-  background-color: var(--bg-secundario);
-} */
+body{
+    background: 
+    url('/fundo_site.jpeg') no-repeat center/cover,
+    red !important;
+}
