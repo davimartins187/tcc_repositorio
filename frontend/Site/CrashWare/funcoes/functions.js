@@ -4,7 +4,7 @@ export function sleep(ms) {
 }
 
 //Sair da conta
-export async function SairDaConta(Navegacao,setId,setToken,setRefresh){
+export async function SairDaConta(setId,setToken,setRefresh){
 
      //Deleto o token do LocalStorage
     await localStorage.removeItem("token");
@@ -609,7 +609,7 @@ export class Api
         }
     }//Alterar_Senha
 
-    async Verificar_Token(token,Navegacao,setId = null,home = null)
+    async Verificar_Token(token,Navegacao,setId = null,home = null,refresh = null,set = null)
     {
 
         if (!token) 
@@ -642,7 +642,27 @@ export class Api
                         //console.log(erro.detail)
 
                         //Token se expirou!
-                        return true
+
+                        if(refresh != null)
+                        {
+                           
+                            //Coleto as variáveis do useState
+                            const setId = set[0];
+                            const setToken = set[1];
+                            const setRefresh = set[2];
+
+                            //Retiro o token do usuario
+                            await SairDaConta(setId,setToken,setRefresh);
+
+
+                        }else
+                        {
+                            //Verifico o refresh_token
+                            return true
+                        }
+
+                        
+                        
                     }
                     else {
 
@@ -651,7 +671,7 @@ export class Api
                         const id = dados.id
 
                         //Guardo o ID do user
-                        await localStorage.setItem("id", id)
+                         localStorage.setItem("id", id)
 
                         // setId(id); // atualiza React na hora
 

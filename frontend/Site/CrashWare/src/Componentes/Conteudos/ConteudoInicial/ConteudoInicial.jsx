@@ -22,7 +22,10 @@ const ConteudoInicial = () => {
     //Uso useState para o react renderizar as informações
     const [id_state, setId] = useState(() => localStorage.getItem("id"));
     const [token_state, setToken] = useState(() => localStorage.getItem("token"));
-    const [refresh_tokem_state, setRefresh] = useState(() => localStorage.getItem("refresh_tokem"));
+    const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
+
+     //Lista que contém todos os usestate
+    const set = [setId,setToken,setRefresh];
 
 
     useEffect(() => {
@@ -40,18 +43,18 @@ const ConteudoInicial = () => {
         {
             //Pego os tokens dentro do escopo privado.
             const token = localStorage.getItem("token")
-            const refresh_token = localStorage.getItem("refresh_tokem")
+            const refresh_token = localStorage.getItem("refresh_token")
 
 
             //Vaerifico o token
             const usuario = new Api();
-            const token_vencido = usuario.Verificar_Token(token,Navegacao)
+            const token_vencido = await usuario.Verificar_Token(token,Navegacao)
 
 
             //Verifico o Refresh Token
             if (token_vencido == true)
             {
-                usuario.Verificar_Token(refresh_token,Navegacao)
+                usuario.Verificar_Token(refresh_token,Navegacao,refresh=true,set)
             }
         }
         VerificarToken()
