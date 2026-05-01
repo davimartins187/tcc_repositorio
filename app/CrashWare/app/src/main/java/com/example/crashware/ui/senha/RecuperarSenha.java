@@ -54,7 +54,7 @@ public class RecuperarSenha extends AppCompatActivity {
             {
                 if (estado)
                 {
-                    txtEmailRec.setHint("Digite Email para recuperação");
+                    txtEmailRec.setHint("seu@email.com");
                     txtEmailRec.setText("");
                 }
             }
@@ -66,7 +66,7 @@ public class RecuperarSenha extends AppCompatActivity {
             {
              if (estado)
              {
-                 txtEmailRec.setHint("Digite Telefone para recuperação");
+                 txtEmailRec.setHint("(DDD) 9XXXX-XXXX");
                  txtEmailRec.setText("");
              }
 

@@ -11,7 +11,10 @@
 
         <item name="colorSurface">@color/branco</item>
         <item name="colorOnSurface">@color/texto_modoclaro</item>
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimarySurface">#20FFFFFF</item>
+        <item name="colorOnPrimarySurface">#500F172A</item>
+
         <item name="colorSecondaryContainer">#303F4552</item>
     </style>
 
@@ -29,5 +32,7 @@
     <style name="Banner" parent="">
         <item name="cornerFamily">rounded</item>
     </style>
+
+    <color name="bg_vidro_transparente">#FFFFFF</color>
 
 </resources>

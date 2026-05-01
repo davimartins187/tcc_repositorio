@@ -36,11 +36,11 @@ import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
-    Button btnEntrar, btnCadLogin;
+    Button btnEntrar;
     ImageView imgOlho;
 
     EditText txtEmailLogin, txtSenhaLogin;
-    TextView txtEsqueceu;
+    TextView txtEsqueceu, txtCadastre;
 
     // Dados que vai para a API:
     class LoginRequest {
@@ -103,12 +103,12 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
 
         //  Iniciando layout
-        btnEntrar     = (Button)    findViewById(R.id.btnEntrarCad );
-        btnCadLogin   = (Button)    findViewById(R.id.btnCadLogin  );
-        imgOlho       = (ImageView) findViewById(R.id.imgOlho      );
-        txtEsqueceu   = (TextView)  findViewById(R.id.txtEsqueceu  );
-        txtEmailLogin = (EditText)  findViewById(R.id.txtEmailLogin);
-        txtSenhaLogin = (EditText)  findViewById(R.id.txtSenhaLogin);
+        btnEntrar     = (Button)    findViewById(R.id.btnEntrarCad      );
+        txtCadastre   = (TextView)  findViewById(R.id.txtCadastreLogin  );
+        imgOlho       = (ImageView) findViewById(R.id.imgOlho           );
+        txtEsqueceu   = (TextView)  findViewById(R.id.txtEsqueceu       );
+        txtEmailLogin = (EditText)  findViewById(R.id.txtEmailLogin     );
+        txtSenhaLogin = (EditText)  findViewById(R.id.txtSenhaLogin     );
 
 
         //  Botão entrar
@@ -122,12 +122,13 @@ public class Login extends AppCompatActivity {
 
 
         //  Ir para cadastro
-        btnCadLogin.setOnClickListener(v ->
+        txtCadastre.setOnClickListener(v ->
         {
-            Intent cadastro =
-                    new Intent(Login.this, Cadastro.class);
+            Intent cadastro
+                    = new Intent(Login.this, Cadastro.class);
             startActivity(cadastro);
         });// interação com o botão de cadastro na tela de login, direcionando para cadastrar usuário
+
 
         //  Esqueceu senha
         txtEsqueceu.setOnClickListener(v ->

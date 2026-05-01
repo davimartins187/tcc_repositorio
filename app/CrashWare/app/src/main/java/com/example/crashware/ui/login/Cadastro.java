@@ -164,7 +164,7 @@ public class Cadastro extends AppCompatActivity {
 
 
         // Ajuste de layout (EdgeToEdge)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main2), (v, insets) ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_cadastro), (v, insets) ->
         {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
