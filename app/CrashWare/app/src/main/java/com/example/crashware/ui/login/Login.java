@@ -1,0 +1,367 @@
+package com.example.crashware.ui.login;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+
+// Funções que permitem requisições para a API (retrofit)
+import com.example.crashware.ui.navegacao.Home;
+import com.example.crashware.R;
+import com.example.crashware.ui.senha.RecuperarSenha;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+
+//Permite eu pegar o valor do erro
+import org.json.JSONObject;
+
+public class Login extends AppCompatActivity {
+
+    Button btnEntrar, btnCadLogin;
+    ImageView imgOlho;
+
+    EditText txtEmailLogin, txtSenhaLogin;
+    TextView txtEsqueceu;
+
+    // Dados que vai para a API:
+    class LoginRequest {
+        String email;
+        String senha;
+
+        public LoginRequest(String email, String senha) {
+            this.email = email;
+            this.senha = senha;
+        }
+    }
+
+    //Request Reenviar  Codigo
+    class Reenviar_CodigoRequest {
+        String email;
+        public  Reenviar_CodigoRequest(String email) {
+
+            this.email = email;
+        }
+    }
+
+    // Armazena a resposta da API:
+    class LoginResponse {
+        String token;
+        String refresh_token;
+
+        String token_type;
+
+        public String getToken() {
+            return token;
+        }
+
+        public String getRefresh_token() {
+            return refresh_token;
+        }
+
+    }
+
+    //Response Reenviar Email
+    class Reenviar_CodigoResponse {
+        String mensagem;
+    }
+
+    // INTERFACE da API:
+    interface login {
+        @POST("/auth/login")
+        Call<LoginResponse> logar(@Body LoginRequest Loginrequest);
+    }
+
+    //Interface Reenviar codigo
+    interface reenviar_codigo{
+        @POST("/auth/reenviar_codigo")
+        Call<Reenviar_CodigoResponse> reenviar(@Body Reenviar_CodigoRequest request);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.login);
+
+        //  Iniciando layout
+        btnEntrar     = (Button)    findViewById(R.id.btnEntrarCad );
+        btnCadLogin   = (Button)    findViewById(R.id.btnCadLogin  );
+        imgOlho       = (ImageView) findViewById(R.id.imgOlho      );
+        txtEsqueceu   = (TextView)  findViewById(R.id.txtEsqueceu  );
+        txtEmailLogin = (EditText)  findViewById(R.id.txtEmailLogin);
+        txtSenhaLogin = (EditText)  findViewById(R.id.txtSenhaLogin);
+
+
+        //  Botão entrar
+        btnEntrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Logar();
+            }
+        });//interação com o botão de entrar, efetuando função que confere os dados e se estiverem corretos leva ao Home
+
+
+        //  Ir para cadastro
+        btnCadLogin.setOnClickListener(v ->
+        {
+            Intent cadastro =
+                    new Intent(Login.this, Cadastro.class);
+            startActivity(cadastro);
+        });// interação com o botão de cadastro na tela de login, direcionando para cadastrar usuário
+
+        //  Esqueceu senha
+        txtEsqueceu.setOnClickListener(v ->
+        {
+            Intent RecSenha =
+                    new Intent(Login.this, RecuperarSenha.class);
+            startActivity(RecSenha);
+        });// interação com o texto de "esqueceu a senha" para levar a tela de recuperação
+
+        // INSETS (EVITA CORTAR TELA) NÃO SE ATREVA A MEXER, SUJEITO A PAULADA
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });//
+
+        imgOlho.setOnClickListener(new View.OnClickListener() {
+            boolean senhaVisivel = false;
+
+            @Override
+            public void onClick(View view) {
+
+                if (senhaVisivel) {
+                    // esconder senha
+                    txtSenhaLogin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    imgOlho.setImageResource(R.drawable.olho_icon);
+                    senhaVisivel = false;
+                } else {
+                    // mostrar senha
+                    txtSenhaLogin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    imgOlho.setImageResource(R.drawable.olhofechado_icon);
+                    senhaVisivel = true;
+                }
+
+                txtSenhaLogin.setSelection(txtSenhaLogin.getText().length());
+            }
+        });//click na imagem de mostrar/esconder senha,
+        //seta a imagem para tal, e muda para que esconda ou mostre a senha na area do login
+
+
+    }//
+
+    private void Logar()
+    {
+
+        //String nome = txtNomeCad.getText().toString().trim();
+        String email = txtEmailLogin.getText().toString().trim();
+        String senha = txtSenhaLogin.getText().toString();
+
+
+
+        if (email.isEmpty() || senha.isEmpty())
+        {
+            Toast.makeText(this, "Preencha os campos", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        //Email não pode ter espaço EX: "jo ao@gmail.com"
+        if (email.contains(" ") || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "Email inválido", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Senha não pode conter espaços
+        if (senha.contains(" ")) {
+            Toast.makeText(this, "Senha não pode conter espaços", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        // senha tbm n pode ter espaço.
+
+
+        //Mensagem caso passa da validaçao:
+        Toast.makeText(this, "Verificando dados...", Toast.LENGTH_LONG).show();
+
+
+        // Objeto que vou enviar para a API:
+        //Objeto de reenviar codigo
+        Reenviar_CodigoRequest dados_codigo = new Reenviar_CodigoRequest(email);
+
+        // Objeto que vou enviar para a API:
+        //Objeto do login
+        LoginRequest dados = new Login.LoginRequest(email, senha);
+
+
+        // Criando a API
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api-crashware.onrender.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        // Fazendo que a interface da API seja utilizavel:
+
+        //login
+        login api = retrofit.create(login.class);
+
+        //Reenviar codigo
+        reenviar_codigo api_codigo = retrofit.create(reenviar_codigo.class);
+
+        // Monto a chamada da API:
+
+        //login
+        Call<LoginResponse> requisicao = api.logar(dados);
+
+        //Reenviar Codigo:
+        Call<Reenviar_CodigoResponse> requisicao_codigo = api_codigo.reenviar(dados_codigo);
+
+        // executo a requisicao:
+        requisicao.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(
+                    Call<LoginResponse> requisicao,
+                    retrofit2.Response<LoginResponse> resposta
+            ) {
+                // Caso a API RETORNOU A MENSAGEM
+
+
+                // Se o email não tiver verificado
+
+                if (resposta.code() == 403) {
+
+                    //Mostra esse erro:
+                    Toast.makeText(Login.this, "EMAIL NAO VERIFICADO", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+                    //Envia o codigo para o email:
+//                    requisicao_codigo.enqueue(new Callback<Reenviar_CodigoResponse>() {
+//                        @Override
+//                        public void onResponse(
+//                                Call<Reenviar_CodigoResponse> requisicao_codigo,
+//                                retrofit2.Response<Reenviar_CodigoResponse> resposta_codigo
+//                        )
+//                        {
+//                            // Caso a API RETORNOU STATUS_CODE : 200
+//                            if (resposta_codigo.isSuccessful()) {
+//
+//                                //Exibi isso:
+//                                Toast.makeText(Login.this, "Código Reenviado!", Toast.LENGTH_LONG).show();
+//
+//                            } else {
+//                                // erro da API (400, 422, 500...)
+//
+//                                //Caso der erro na hora de reenviar.
+//                                String erro = "Erro no cadastro";
+//
+//                                try {
+//                                    String detail = resposta_codigo.errorBody().string();
+//                                    JSONObject json = new JSONObject(detail);
+//
+//                                    if (detail != null) {
+//                                        erro = json.getString("detail");
+//
+//                                    }
+//                                } catch (Exception e) {
+//                                    // ignora, mantém mensagem padrão
+//                                }
+//
+//                                Toast.makeText(Login.this, erro, Toast.LENGTH_LONG).show();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<Reenviar_CodigoResponse> requisicao_codigo, Throwable t) {
+//                            // Caso deu erro na requisição
+//                            // erro de conexão (internet, URL, servidor fora)
+//                            Toast.makeText(Login.this,
+//                                    "Erro de conexão: " + t.getMessage(),
+//                                    Toast.LENGTH_LONG
+//                            ).show();
+//                        }
+//                    });
+
+
+                    // Envia para a tela de VERIFICAR EMAIL:
+                    Intent i = new Intent(Login.this, ConfirmarIdentidade.class);
+                    i.putExtra("email_usuario", email);
+                    startActivity(i);
+                    finish();
+
+                } else if (!resposta.isSuccessful())
+                {
+                    //Retorna erro caso o login estiver errado
+
+                    String erro = "Erro no cadastro";
+
+                    try {
+                        String detail = resposta.errorBody().string();
+
+                        JSONObject json = new JSONObject(detail);
+
+
+                        if (detail != null) {
+                            erro = json.getString("detail");
+
+                        }
+                    } catch (Exception e) {
+                        // ignora, mantém mensagem padrão
+                    }
+
+
+                    //Aqui retorna o ERRO
+                    Toast.makeText(Login.this, erro, Toast.LENGTH_LONG).show();
+
+                }else{
+                    //Pego o token da API
+                    Login.LoginResponse dados = resposta.body();
+                    String token = dados.getToken();
+                    String refresh_token = dados.getRefresh_token();
+
+
+                    //Vai para a HOME:
+                    Intent i = new Intent(Login.this, Home.class);
+                    startActivity(i);
+                    finish();
+
+
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginResponse> requisicao, Throwable t) {
+                // Caso deu erro na requisição
+                // erro de conexão (internet, URL, servidor fora)
+                Toast.makeText(
+                        Login.this,
+                        "Erro de conexão: " + t.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+        });
+    }
+}

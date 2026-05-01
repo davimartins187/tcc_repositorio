@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/fundo_claro">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@color/branco"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Logo -->
+            <ImageView
+                android:id="@+id/imgLayoutLogo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="logo"
+                android:src="@drawable/logo_sem_fundo"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toTopOf="@id/header"/>
+
+            <!-- Nome do App -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/righteous"
+                android:text="CRASHWARE"
+                android:textColor="@color/azul"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/imgLayoutLogo"
+                app:layout_constraintTop_toTopOf="@id/imgLayoutLogo"/>
+
+            <!-- Sininho -->
+            <ImageView
+                android:id="@+id/layoutSino"
+                android:layout_width="30dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:contentDescription="logo"
+                android:src="@drawable/sino_icon"
+                app:layout_constraintEnd_toEndOf="@id/header"
+                app:layout_constraintTop_toTopOf="@id/header"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Titulo Software -->
+        <LinearLayout
+            android:id="@+id/NomeAnotacoes"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:outlineProvider="background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header">
+
+            <!-- Imagem Software -->
+            <ImageView
+                android:id="@+id/imgAnotacoes"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/marcacao_livro_icon"
+                app:tint="@color/azul" />
+
+            <!-- Escrito Software -->
+            <TextView
+                android:id="@+id/txtAnotacoes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Anotações"
+                android:textAlignment="center"
+                android:textColor="@color/azul"
+                android:textSize="40dp" />
+        </LinearLayout>
+
+        <!-- Barra de Pesquisa -->
+        <EditText
+            android:id="@+id/txtBarraPesquisa"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_carddias"
+            android:textColor="@color/preto"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:drawableEnd="@drawable/lupa_icon"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="18sp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:hint="Pesquise"
+            android:textColorHint="@color/azul"
+            app:layout_constraintTop_toBottomOf="@id/NomeAnotacoes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardAnotacao1"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:background="@drawable/bg_cardanotacao"
+            app:layout_constraintTop_toBottomOf="@id/txtBarraPesquisa"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Titulo da Anotacao -->
+            <TextView
+                android:id="@+id/txtTituloAnotacao1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:fontFamily="@font/righteous"
+                android:text="ESTRUTURA CONDICIONAL"
+                android:textColor="@color/azul"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/cardAnotacao1"
+                app:layout_constraintTop_toTopOf="@id/cardAnotacao1" />
+
+            <!-- Data da Anotacao -->
+            <TextView
+                android:id="@+id/dataAnotacao1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:fontFamily="@font/righteous"
+                android:text="16/04/2026"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/cardAnotacao1"
+                app:layout_constraintTop_toTopOf="@id/cardAnotacao1" />
+
+            <!-- Barra -->
+            <View
+                android:id="@+id/barraAnotacao1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/azul"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAnotacao1"
+                app:layout_constraintStart_toStartOf="@id/cardAnotacao1"
+                app:layout_constraintEnd_toEndOf="@id/cardAnotacao1" />
+
+            <!-- Texto da Anotacao -->
+            <TextView
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/righteous"
+                android:text="Estrutura condicional permite que o programa tome decisões. Se a condição for verdadeira, um código é executado; caso contrário, outro código pode ser executado usando else. É usada para controlar o fluxo do programa conforme determinadas condições..."
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardAnotacao1"
+                app:layout_constraintStart_toStartOf="@id/cardAnotacao1"
+                app:layout_constraintTop_toBottomOf="@id/barraAnotacao1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardAnotacao2"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:background="@drawable/bg_cardanotacao"
+            app:layout_constraintTop_toBottomOf="@id/cardAnotacao1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Titulo da Anotacao -->
+            <TextView
+                android:id="@+id/txtTituloAnotacao2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:fontFamily="@font/righteous"
+                android:text="ESTRUTURA CONDICIONAL"
+                android:textColor="@color/azul"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/cardAnotacao2"
+                app:layout_constraintTop_toTopOf="@id/cardAnotacao2" />
+
+            <!-- Data da Anotacao -->
+            <TextView
+                android:id="@+id/dataAnotacao2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:fontFamily="@font/righteous"
+                android:text="16/04/2026"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/cardAnotacao2"
+                app:layout_constraintTop_toTopOf="@id/cardAnotacao2" />
+
+            <!-- Barra -->
+            <View
+                android:id="@+id/barraAnotacao2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/azul"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAnotacao2"
+                app:layout_constraintStart_toStartOf="@id/cardAnotacao2"
+                app:layout_constraintEnd_toEndOf="@id/cardAnotacao2" />
+
+            <!-- Texto da Anotacao -->
+            <TextView
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/righteous"
+                android:text="Estrutura condicional permite que o programa tome decisões. Se a condição for verdadeira, um código é executado; caso contrário, outro código pode ser executado usando else. É usada para controlar o fluxo do programa conforme determinadas condições..."
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardAnotacao2"
+                app:layout_constraintStart_toStartOf="@id/cardAnotacao2"
+                app:layout_constraintTop_toBottomOf="@id/barraAnotacao2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardAnotacao3"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:background="@drawable/bg_cardanotacao"
+            app:layout_constraintTop_toBottomOf="@id/cardAnotacao2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Titulo da Anotacao -->
+            <TextView
+                android:id="@+id/txtTituloAnotacao3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:fontFamily="@font/righteous"
+                android:text="ESTRUTURA CONDICIONAL"
+                android:textColor="@color/azul"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/cardAnotacao3"
+                app:layout_constraintTop_toTopOf="@id/cardAnotacao3" />
+
+            <!-- Data da Anotacao -->
+            <TextView
+                android:id="@+id/dataAnotacao3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:fontFamily="@font/righteous"
+                android:text="16/04/2026"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/cardAnotacao3"
+                app:layout_constraintTop_toTopOf="@id/cardAnotacao3" />
+
+            <!-- Barra -->
+            <View
+                android:id="@+id/barraAnotacao3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/azul"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAnotacao3"
+                app:layout_constraintStart_toStartOf="@id/cardAnotacao3"
+                app:layout_constraintEnd_toEndOf="@id/cardAnotacao3" />
+
+            <!-- Texto da Anotacao -->
+            <TextView
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/righteous"
+                android:text="Estrutura condicional permite que o programa tome decisões. Se a condição for verdadeira, um código é executado; caso contrário, outro código pode ser executado usando else. É usada para controlar o fluxo do programa conforme determinadas condições..."
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardAnotacao3"
+                app:layout_constraintStart_toStartOf="@id/cardAnotacao3"
+                app:layout_constraintTop_toBottomOf="@id/barraAnotacao3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/addAnotacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_botaoaddanotacao"
+            app:layout_constraintTop_toBottomOf="@id/cardAnotacao3"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Adicionar Anotacao -->
+            <ImageView
+                android:id="@+id/imgAddAnotacoes"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/add_icon"
+                app:layout_constraintStart_toStartOf="@id/addAnotacao"
+                app:layout_constraintTop_toTopOf="@id/addAnotacao"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/espaco_nav_bar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintTop_toBottomOf="@id/addAnotacao" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

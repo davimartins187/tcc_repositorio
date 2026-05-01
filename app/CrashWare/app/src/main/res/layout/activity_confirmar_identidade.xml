@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="?attr/android:windowBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header -->
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="61dp"
+                android:contentDescription="logo"
+                android:src="@drawable/logo_sem_fundo"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/righteous"
+                android:text="CRASHWARE"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="125dp"
+            android:fontFamily="@font/righteous"
+            android:text="VERIFICAÇÃO DO E-MAIL"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+
+        <!-- Mensagem de Envio -->
+        <TextView
+            android:id="@+id/txtEnvioCodigo"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/righteous"
+            android:text="Enviamos um código de verificação para o seu e-mail:"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+        <!-- Email do Usuário -->
+        <TextView
+            android:id="@+id/txtNomeEmail"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/battambang_black"
+            android:text="Davidson@gmail.com"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/verde"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtEnvioCodigo" />
+
+        <!-- Campo Codigo de Verificação -->
+        <EditText
+            android:id="@+id/txtCodigoVerificacao"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_edittext_borda"
+            android:fontFamily="@font/pt_sans_caption_bold"
+            android:hint="Insira o código de verificação"
+            android:paddingHorizontal="16dp"
+            android:textColor="#000000"
+            android:textColorHint="@color/hint_modoclaro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtNomeEmail" />
+
+        <!-- Botão Verificar -->
+        <Button
+            android:id="@+id/btnVerificar"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_botaosborda"
+            android:fontFamily="@font/righteous"
+            android:text="Verificar"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:backgroundTintMode="add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCodigoVerificacao" />
+
+        <!-- Botão Reenviar -->
+        <Button
+            android:id="@+id/btnEnviar"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_botaoreenviar"
+            android:fontFamily="@font/righteous"
+            android:text="Enviar Código"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:backgroundTintMode="add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnVerificar" />
+
+        <!-- Tempo para Reenviar -->
+        <TextView
+            android:id="@+id/txtTempoEnviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/righteous"
+            android:text="Desbloqueia em 29 segundos"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnEnviar" />
+
+        <View
+            android:id="@+id/espaco_nav_bar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintTop_toBottomOf="@id/txtTempoEnviar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
