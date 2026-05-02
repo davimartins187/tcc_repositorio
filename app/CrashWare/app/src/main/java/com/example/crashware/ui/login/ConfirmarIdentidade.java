@@ -62,7 +62,7 @@ public class ConfirmarIdentidade extends AppCompatActivity {
         }
     }
 
-    //Request Reenviar Email
+    //Request Enviar Email
     class Reenviar_EmailRequest {
         String email;
         public  Reenviar_EmailRequest(String email) {
@@ -121,6 +121,7 @@ public class ConfirmarIdentidade extends AppCompatActivity {
         txtTempoEnviar       = findViewById(R.id.txtTempoEnviar      );
         txtCodigoVerificacao = findViewById(R.id.txtCodigoVerificacao);
 
+        //Pego o email da outra tela
         emailUsuario = getIntent().getStringExtra("email_usuario");
         txtNomeEmail.setText(emailUsuario);
 
@@ -202,7 +203,6 @@ public class ConfirmarIdentidade extends AppCompatActivity {
         // Objeto que vou enviar para a API:
         Verificar_EmailRequest dados = new Verificar_EmailRequest(email , codigo);
         // Preciso do Email do cadastro.
-
 
 
         // Criando a API
@@ -302,8 +302,8 @@ public class ConfirmarIdentidade extends AppCompatActivity {
             @Override
             public void onResponse
                     (
-                    Call<Reenviar_EmailResponse> requisicao,
-                    retrofit2.Response<Reenviar_EmailResponse> resposta
+                            Call<Reenviar_EmailResponse> requisicao,
+                            retrofit2.Response<Reenviar_EmailResponse> resposta
                     )
             {
                 // Caso a API RETORNOU STATUS_CODE : 200
@@ -319,7 +319,7 @@ public class ConfirmarIdentidade extends AppCompatActivity {
                     // erro da API (400, 422, 500...)
 
                     //Caso der erro na hora de reenviar.
-                    String erro = "Erro no cadastro";
+                    String erro = "Não conseguimos enviar o código";
 
                     try
                     {

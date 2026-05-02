@@ -22,6 +22,7 @@ import com.example.crashware.R;
 
 
 import com.example.crashware.R;
+import com.example.crashware.ui.login.ConfirmarIdentidade;
 import com.example.crashware.ui.login.Login;
 
 import retrofit2.Call;
@@ -112,6 +113,8 @@ public class EnvioCodigo_Senha extends AppCompatActivity {
         btnEnviarCod    = findViewById(R.id.btnEnviar           );
         btnVerificarCod = findViewById(R.id.btnVerificar        );
 
+
+        //Pega o email da outra tela
         emailUsuario = getIntent().getStringExtra("email_usuario");
 
         if (emailUsuario != null)
@@ -226,14 +229,16 @@ public class EnvioCodigo_Senha extends AppCompatActivity {
 
                     Toast.makeText(EnvioCodigo_Senha.this, "Código Verificado", Toast.LENGTH_LONG).show();
 
-                    Intent i = new Intent(EnvioCodigo_Senha.this, Login.class);
+                    //Vai para a tela de Redefinir Senha
+                    Intent i = new Intent(EnvioCodigo_Senha.this, RedefinirSenha.class);
+                    i.putExtra("email_usuario", email);
                     startActivity(i);
                     finish();
                 }//
 
                 else
                 {
-                    String erro = "Erro no cadastro";
+                    String erro = "Email Inválido";
 
                     try {
                         if (resposta.errorBody() != null) {
@@ -294,12 +299,40 @@ public class EnvioCodigo_Senha extends AppCompatActivity {
             @Override
             public void onResponse
                     (
-                    Call<EnvioCodigo_Senha.Reenviar_EmailResponse> requisicao,
-                    retrofit2.Response<EnvioCodigo_Senha.Reenviar_EmailResponse> resposta
+                            Call<EnvioCodigo_Senha.Reenviar_EmailResponse> requisicao,
+                            retrofit2.Response<EnvioCodigo_Senha.Reenviar_EmailResponse> resposta
                     )
             {
+                // Caso a API RETORNOU STATUS_CODE : 200
+                if (resposta.isSuccessful())
+                {
+
+                    //Exibi isso:
+                    Toast.makeText(EnvioCodigo_Senha.this,"Código Enviado!", Toast.LENGTH_LONG).show();
+
+                }
+                else
+                {
+                    // erro da API (400, 422, 500...)
+                    String erro = "Código não enviado";
+
+                    try {
+                        String detail = resposta.errorBody().string();
+                        JSONObject json = new JSONObject(detail);
+
+                        if (detail != null) {
+                            erro = json.getString("detail");
+
+                        }
+                    } catch (Exception e) {
+                        // ignora, mantém mensagem padrão
+                    }
+
+                    Toast.makeText(EnvioCodigo_Senha.this, erro, Toast.LENGTH_LONG).show();
+                }
 
             }// fim do OnResponse
+
 
             @Override
             public void onFailure(Call<EnvioCodigo_Senha.Reenviar_EmailResponse> requisicao, Throwable t)
