@@ -608,16 +608,16 @@ export class Api
         }
     }//Alterar_Senha
 
-    async Verificar_Token(token,Navegacao,setId = null,home = null,refresh = null,set = null)
+    async Verificar_Token(token,Navegacao,privado = null,refresh = null,set = null)
     {
 
         if (!token) 
         {
             //Verifica em qual tela esta
-            if (home != null)
+            if (privado != null)
             {
                 Navegacao('/');
-                home = null
+                privado = null
             }else
             {
                 //Ignora
@@ -658,36 +658,77 @@ export class Api
                         {
                             //Verifico o refresh_token
                             return true
-                        }
-
-                        
-                        
+                        }  
                     }
                     else {
-
-                        const dados = await response.json();
-
-                        const id = dados.id
-
-                        //Guardo o ID do user
-                         localStorage.setItem("id", id)
-
-                        // setId(id); // atualiza React na hora
-
-
-                        if (home == null)
+                        if(refresh == null)
                         {
-                            //Leva para a tela HOME automaticamente
-                            Navegacao('/perfil');
+                            const dados = await response.json();
+
+                            const id = dados.id
+
+                            //Guardo o ID do user
+                            localStorage.setItem("id", id)
+
+                            // setId(id); // atualiza React na hora
+
+                            //Fica automaticamente logado
+
+                            if (privado == null)
+                            {
+                                //Leva para a tela HOME automaticamente
+                                Navegacao('/perfil');
+                            }
+
+                        }else
+                        {
+                            //Verifico o refresh_token
+
+                            //Pego o id
+                            const id = localStorage.getItem("id");
+
+                            //Gero um novo token
+                            try
+                            {
+                                const response_refresh = await fetch("https://api-crashware.onrender.com/auth/refresh_token",
+                                {
+                                    method: "POST",
+                                    headers:{
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify({
+                                        id : id
+                                    })
+                                })//
+
+                                if (!response_refresh.ok)
+                                {
+                                    const erro = await response_refresh.json();
+
+                                    console.log(erro.detail)
+                                }else
+                                {
+                                    const dados = await response_refresh.json();
+
+                                    const token = dados.token;
+
+                                    localStorage.setItem("token",token)
+
+                                    const setToken = set[1];
+
+                                    setToken(token)
+                                    
+                                }
+
+                            }catch (error) {
+                                console.log(error)
+                            }        
                         }
-                     
-                    }
+                }
 
                 } catch (error) {
                     console.log(error)
                 }
-
-
             }
     }//Verifica Token
 

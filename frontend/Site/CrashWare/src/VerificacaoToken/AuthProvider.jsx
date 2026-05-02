@@ -34,11 +34,6 @@ const AuthProvider = ({ children }) => {
         const token_vencido = await usuario.Verificar_Token(token,Navegacao)
 
 
-        //Verifico o Refresh Token
-        if (token_vencido == true)
-        {
-            usuario.Verificar_Token(refresh_token,Navegacao,refresh=true,set)
-        }
     }
 
     //Sempre que a rota for chamada, eu verifico o token

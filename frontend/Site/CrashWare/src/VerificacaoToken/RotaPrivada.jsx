@@ -28,13 +28,13 @@ const RotaPrivada = ({ children }) => {
 
         //Vaerifico o token
         const usuario = new Api();
-        const token_vencido = await usuario.Verificar_Token(token,Navegacao,null,setToken,setRefresh,true)
+        const token_vencido = await usuario.Verificar_Token(token,Navegacao,true)
 
 
         //Verifico o Refresh Token
         if (token_vencido == true)
         {
-            usuario.Verificar_Token(refresh_token,Navegacao,null,setRefresh,true,refresh=true,set)
+            usuario.Verificar_Token(refresh_token,Navegacao,true,refresh=true,set)
         }
     }
     
