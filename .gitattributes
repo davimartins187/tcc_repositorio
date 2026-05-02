@@ -1,16 +1,17 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
-#Contando verão mais recente do APP
-app/CrashWare7/** linguist-detectable=false
-app/CrashWare8/** linguist-detectable=false
-app/CrashWareV6/** linguist-detectable=false
-app/TCC3/** linguist-detectable=false
-app/TCC4/** linguist-detectable=false
-app/TCC4ponto5/** linguist-detectable=false
-app/TCC5/** linguist-detectable=false
-app/TCCv2/** linguist-detectable=false
-app/CrashWare10/** linguist-detectable=false
-app//CrashWare11/** linguist-detectable=false
-app/CrashWare16/** linguist-detectable=false
-app/CrashWare17/** linguist-detectable=false
+#Contando versão mais recente do APP
+CrashWare10/** linguist-detectable=false
+CrashWare11/** linguist-detectable=false
+CrashWare16/** linguist-detectable=false
+CrashWare17/** linguist-detectable=false
+CrashWare7/** linguist-detectable=false
+CrashWare8/** linguist-detectable=false
+CrashWareV6/** linguist-detectable=false
+
+TCC3/** linguist-detectable=false
+TCC4/** linguist-detectable=false
+TCC4ponto5/** linguist-detectable=false
+TCC5/** linguist-detectable=false
+TCCv2/** linguist-detectable=false
