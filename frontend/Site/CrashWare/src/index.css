@@ -155,6 +155,8 @@
 } */
 
 body{
-    background: url(/FundoOriginal.svg),
-    var(--bg-principal)
+    background-image: url('/FundoOriginal.svg');
+    background-color: var(--bg-principal);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
