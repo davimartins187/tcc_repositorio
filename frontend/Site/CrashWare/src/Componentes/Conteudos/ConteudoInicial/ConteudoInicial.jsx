@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react';
 import FMenina_claro from '../../../fotos/claro/NovaMenina.svg';
 import FMenina_escuro from '../../../fotos/escuro/NovaMenina.svg';
+import apleModoClaro from '../../../fotos/claro/apple-logo-svgrepo-com.svg';
+import apleModoEscuro from '../../../fotos/escuro/apple_icon.svg';
+import googlePlayModoClaro from '../../../fotos/claro/play.svg';
+import googlePlayModoEscuro from '../../../fotos/escuro/play.svg';
+
+
 // importando componentes para ser ultilizados no ConteudoInicial.jsx
 import FMenina from '../../../fotos/claro/NovaMenina.svg';
 import { BotoesApp, BotoesForm } from '../../Botoes';
 import { Cards } from '../../Cards';
 import { Link, useNavigate } from "react-router-dom";
-import qrcode from '../../../fotos/qrcode.jpeg';
+import { BotaoInstalar } from '../../Botoes/Botao_Instalar';
 
 import Style from './ConteudoInicial.module.css';
 import { Carrossel } from './Carrossel/Carrossel';
-
-
 
 
 const ConteudoInicial = () => {
@@ -34,6 +38,10 @@ const ConteudoInicial = () => {
 
     const FMenina = tema === 'Claro' ? FMenina_claro : FMenina_escuro;
 
+    const ApleIcon = tema === 'Claro'? apleModoClaro : apleModoEscuro;
+
+    const googleIcon = tema === 'Claro'? googlePlayModoClaro : googlePlayModoEscuro
+
     return (
         <>
             <main className={Style.MainEstilo}>
@@ -42,10 +50,6 @@ const ConteudoInicial = () => {
                 <section className={Style.Apresentacao}>
 
                     <div className={Style.Apresentacao_texto}>
-                        {/* <h3>
-                            Aprenda <span className={Style.hardware}>Hardware</span> e{' '}
-                            <span className={Style.software}>Software</span> de forma prática e envolvente
-                        </h3> */}
 
                         <Carrossel/> 
 
@@ -71,20 +75,10 @@ const ConteudoInicial = () => {
 
                         <h3>A tecnologia não é mágica, é lógica</h3>
 
-                        <div>
-                            {/* divisoria */}
-                        </div>
+                        <hr />
 
                         <h5>Nosso guia introdutório desmistifica o que acontece por trás da tela, ensinando você a enxergar hardware e software como ferramentas de criação, não apenas consumo.</h5>
 
-                </section>
-
-                {/* ===== DIFERENCIAIS ===== */}
-                <section className={Style.Diferenciais}>
-                    <div className={Style.Caixa}>
-                        <h2>Nossos Diferenciais</h2>
-                        {/* <Cards /> */}
-                    </div>
                 </section>
 
                 {/* ===== MATERIAIS ===== */}
@@ -97,7 +91,7 @@ const ConteudoInicial = () => {
                         <section className={Style.ConteudoHardware}>
 
                             <div className={Style.ConteudoHardware_texto}>
-                                <h2>⚙️ Hardware</h2><hr />
+                                <h2>⚙️ Hardware</h2>
 
                                 <h4>Componentes do Computador</h4>
                                 <p>Entenda como funcionam CPU, RAM, SSD, placa-mãe e placa de vídeo e como cada peça influencia no desempenho.</p>
@@ -109,7 +103,7 @@ const ConteudoInicial = () => {
 
                                 <h4>Manutenção e Diagnóstico</h4>
                                 <p>Identifique problemas, faça limpeza correta e resolva falhas comuns de hardware.</p>
-                                <hr />
+                            
                             </div>
 
                             <div className={Style.ConteudoHardware_img}>
@@ -122,7 +116,7 @@ const ConteudoInicial = () => {
                         <section className={Style.ConteudoSoftware}>
 
                             <div className={Style.ConteudoSoftware_texto}>
-                                <h2>&lt;/&gt; Software</h2><hr />
+                                <h2>&lt;/&gt; Software</h2>
 
                                 <h4>Sistemas Operacionais</h4>
                                 <p>Aprenda a instalar, configurar e otimizar sistemas como Windows e Linux.</p>
@@ -132,7 +126,7 @@ const ConteudoInicial = () => {
                                 <hr />
                                 <h4>Lógica de Programação</h4>
                                 <p>Entenda como os programas funcionam e dê os primeiros passos na criação de software.</p>
-                                <hr />
+                                
                             </div>
 
                             <div className={Style.ConteudoSoftware_img}>
@@ -146,14 +140,19 @@ const ConteudoInicial = () => {
                 {/* ===== TEXTO FINAL ===== */}
                 <div className={Style.aplicativo}>
                     <div className={Style.Caixa}>
-                        <h2>Leve o aprendizado com você</h2>
-                        <p className={Style.textos}>
-                            Estude <span className={Style.hardware}>Hardware</span> e{' '}
-                            <span className={Style.software}>Software</span> onde estiver, {' '}
-                            Aprenda pelo celular, continue no computador e acompanhe seu progresso em tempo real.
-                        </p>
+                        <h2>Baixe o APP</h2>
+
                         {/* <BotoesApp  /> */}
-                        <img src={qrcode} alt="" />
+                        <div className={Style.botoesInstalar}>
+                            <BotaoInstalar
+                                titulo="Google Play"
+                                icon={ApleIcon}
+                            />
+                            <BotaoInstalar
+                                titulo="Aple Store"
+                                icon={googleIcon}
+                            />
+                        </div>
                     </div>
                 </div>
 

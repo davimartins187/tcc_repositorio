@@ -4,34 +4,26 @@
     box-sizing: border-box;
 }
 
-
+/* ===== CONTAINER PRINCIPAL ===== */
 .MainEstilo {
-    /* max-width: 1000px; */
     width: 100%;
-    /* margin: auto; */
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-self: center;
-    /* padding: 0 20px 60px; */
-    padding-top: 100px;
+    padding-top: 80px;
     background-color: var(--bg-principal);
     font-family: "Montserrat", sans-serif;
-
-    /* background: linear-gradient(360deg, rgba(98, 189, 243, 0.5) 0%, rgba(102, 102, 102, 0) 100%), #3B77BE;
-box-shadow: 0px 15px 0px #62BDF3; */
-/* gostei disso, vai ficar pra analise */
 }
 
 /* ===== CORES DE DESTAQUE ===== */
 .hardware {
     color: var(--cor-primaria);
-    /* text-shadow: 0 0 10px var(--cor-primaria-hover); */
 }
 
 .software {
     color: var(--cor-secundaria);
-    /* text-shadow: 0 0 10px var(--cor-secundaria-hover); */
 }
 
 /* ===== HERO ===== */
@@ -40,11 +32,9 @@ box-shadow: 0px 15px 0px #62BDF3; */
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 32px;
     width: 100%;
-    padding: 60px 0 40px;
-    /* margin-top: 130px; */
-    box-shadow: 0 100px 10px -5px rgba(0, 0, 0, 0.596);  
+    padding: 48px 40px 40px;
 }
 
 .Apresentacao_texto {
@@ -56,7 +46,7 @@ box-shadow: 0px 15px 0px #62BDF3; */
 }
 
 .Apresentacao_texto h3 {
-    font-size: clamp(24px, 3.5vw, 36px);
+    font-size: clamp(20px, 3vw, 36px);
     font-weight: 700;
     line-height: 1.25;
     color: var(--texto-secundario);
@@ -65,17 +55,17 @@ box-shadow: 0px 15px 0px #62BDF3; */
 
 .Apresentacao_btns {
     display: flex;
+    flex-direction: column;
     gap: 16px;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
 .Apresentacao_btns button {
-    background: var(--cor-primaria);
+    background: linear-gradient(90deg, #241952, #5039B8);
     border: none;
-    width: 160px;
+    width: 260px;
     height: 52px;
-    border-radius: 12px;
-    /* box-shadow: 0px 4px 14px var(--cor-primaria); */
+    border-radius: 40px;
     color: var(--texto-principal);
     font-size: 16px;
     font-weight: 700;
@@ -85,19 +75,19 @@ box-shadow: 0px 15px 0px #62BDF3; */
 }
 
 .Apresentacao_btns button:hover {
-    transform: scale(1.04);
     transform: translateY(-2px);
-    background: var(--cor-primaria-hover);
+    background: var(--bg-secundario);
     color: var(--texto-principal);
+    border: 1.5px solid var(--borda);
 }
 
 .btnSecundario {
-    background-color: var(--Carrossel) !important;
+    background: var(--bg-secundario) !important;
     border: 1.5px solid var(--borda) !important;
-    color: var(--texto-secundario) !important;
+    color: var(--texto-principal) !important;
 }
 
-.btnSecundario:hover{
+.btnSecundario:hover {
     color: var(--texto-principal) !important;
 }
 
@@ -109,28 +99,49 @@ box-shadow: 0px 15px 0px #62BDF3; */
 
 .Apresentacao_img img {
     width: 100%;
-    max-width: 520px;
+    max-width: 460px;
     filter: drop-shadow(0 6px 20px var(--cor-primaria));
 }
 
-/* ===== DIFERENCIAIS ===== */
-.Diferenciais {
+/* ===== CHAMADA ===== */
+.Chamada {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
     width: 100%;
-    margin-bottom: 20px;
-    background-color: var(--bg-secundario);
+    padding: 28px 40px;
+    box-shadow: none;
 }
 
+.Chamada h3 {
+    font-size: clamp(20px, 2.5vw, 36px);
+    font-weight: 800;
+    color: var(--texto-principal);
+    flex: 1;
+    margin: 0;
+}
 
-.Diferenciais h2 {
-    background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-size: clamp(32px, 5vw, 50px);
+.Chamada hr {
+    width: 2px;
+    height: 70px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
 
-    text-align: center;
-    margin: 10px 0px;
-    animation: typing 4s steps(20) infinite;
+.Chamada h5 {
+    flex: 1.2;
+    font-size: clamp(11px, 1.2vw, 13px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--texto-principal);
+    opacity: 0.75;
+    width: auto;
+    margin: 0;
+    box-shadow: none;
+    text-align: left;
 }
 
 /* ===== MATERIAIS ===== */
@@ -138,29 +149,17 @@ box-shadow: 0px 15px 0px #62BDF3; */
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-items: center;
-    padding: 30px;
-    box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.596);  
-    justify-self: center;
+    padding: 30px 40px;
 }
-
-/* .CaixaMateriais{
-    width: 80%;
-    justify-content: center;
-    justify-items: center;
-    justify-self: center;
-} */
 
 .Materiais h2 {
     background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-size: clamp(32px, 5vw, 50px);
-
+    font-size: clamp(28px, 4vw, 50px);
     text-align: center;
-    margin: 10px 0px;
-    margin-bottom: 30px;
+    margin: 10px 0 30px;
 }
 
 /* ===== HARDWARE ===== */
@@ -168,25 +167,24 @@ box-shadow: 0px 15px 0px #62BDF3; */
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-self: center;
+
     gap: 48px;
     width: 100%;
-    margin: 0;
-    padding: 0;
     margin-bottom: 50px;
+    width: 800px;
 }
 
 .ConteudoHardware_img {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    margin: 0;
-    padding: 0;
+    flex-shrink: 0;
 }
 
 .ConteudoHardware_img div {
-    width: 280px;
-    height: 200px;
+    width: 260px;
+    height: 180px;
     border-radius: 16px;
     border: 2px dashed var(--cor-primaria);
     background: rgba(0, 255, 136, 0.05);
@@ -194,39 +192,46 @@ box-shadow: 0px 15px 0px #62BDF3; */
     align-items: center;
     justify-content: center;
     color: var(--cor-primaria);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     box-shadow: 0 0 20px rgba(0, 255, 136, 0.08);
 }
 
 .ConteudoHardware_texto {
     flex: 1;
+    border: 2px solid var(--cor-primaria);
+    padding: 20px;
+    border-radius: 12px;
 }
 
 .ConteudoHardware_texto h2 {
-    font-size: clamp(22px, 3vw, 38px);
+    font-size: clamp(20px, 2.5vw, 38px);
     font-weight: 800;
     color: var(--cor-primaria);
     margin-bottom: 8px;
     text-align: center;
+    background: none;
+    -webkit-text-fill-color: var(--cor-primaria);
 }
 
 .ConteudoHardware_texto h4 {
-    font-size: clamp(16px, 2.2vw, 24px);
+    font-size: clamp(14px, 2vw, 22px);
     font-weight: 700;
     padding: 12px 0 4px;
     background: linear-gradient(90deg, var(--cor-primaria), var(--cor-primaria-hover));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-align: center;
 }
 
 .ConteudoHardware_texto p {
-    font-size: clamp(13px, 1.6vw, 17px);
+    font-size: clamp(12px, 1.4vw, 16px);
     color: var(--texto-principal);
     line-height: 1.6;
     padding: 6px 0 10px;
     opacity: 0.85;
+    text-align: center;
 }
 
 .ConteudoHardware_texto hr {
@@ -234,6 +239,9 @@ box-shadow: 0px 15px 0px #62BDF3; */
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--cor-primaria-hover), transparent);
     margin: 8px 0;
+    width: 70%;
+    text-align: center;
+    margin: auto;
 }
 
 /* ===== SOFTWARE ===== */
@@ -241,22 +249,23 @@ box-shadow: 0px 15px 0px #62BDF3; */
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+    justify-self: center;
+
     gap: 48px;
-    width: 100%;
+    width: 800px;
+    margin-bottom: 30px;
 }
 
 .ConteudoSoftware_img {
-   display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
-
-    margin: 0;
-    padding: 0;
+    flex-shrink: 0;
 }
 
 .ConteudoSoftware_img div {
-    width: 280px;
-    height: 200px;
+    width: 260px;
+    height: 180px;
     border-radius: 16px;
     border: 2px dashed var(--cor-secundaria);
     background: rgba(0, 200, 255, 0.05);
@@ -264,39 +273,47 @@ box-shadow: 0px 15px 0px #62BDF3; */
     align-items: center;
     justify-content: center;
     color: var(--cor-secundaria);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     box-shadow: 0 0 20px rgba(0, 200, 255, 0.08);
 }
 
 .ConteudoSoftware_texto {
     flex: 1;
+    border: 2px solid var(--cor-secundaria);
+    padding: 20px;
+    border-radius: 12px;
 }
 
 .ConteudoSoftware_texto h2 {
-    font-size: clamp(22px, 3vw, 38px);
+    font-size: clamp(20px, 2.5vw, 38px);
     font-weight: 800;
     color: var(--cor-secundaria);
     margin-bottom: 8px;
     text-align: center;
+    background: none;
+    -webkit-text-fill-color: var(--cor-secundaria);
+    text-align: center;
 }
 
 .ConteudoSoftware_texto h4 {
-    font-size: clamp(16px, 2.2vw, 24px);
+    font-size: clamp(14px, 2vw, 22px);
     font-weight: 700;
     padding: 12px 0 4px;
     background: linear-gradient(90deg, var(--cor-secundaria-hover), var(--cor-secundaria));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-align: center;
 }
 
 .ConteudoSoftware_texto p {
-    font-size: clamp(13px, 1.6vw, 17px);
+    font-size: clamp(12px, 1.4vw, 16px);
     color: var(--texto-principal);
     line-height: 1.6;
     padding: 6px 0 10px;
     opacity: 0.85;
+    text-align: center;
 }
 
 .ConteudoSoftware_texto hr {
@@ -304,6 +321,8 @@ box-shadow: 0px 15px 0px #62BDF3; */
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--cor-secundaria-hover), transparent);
     margin: 8px 0;
+    width: 70%;
+    margin: auto;
 }
 
 /* ===== TEXTO FINAL ===== */
@@ -312,12 +331,13 @@ box-shadow: 0px 15px 0px #62BDF3; */
     text-align: center;
     padding: 40px 20px;
     width: 100%;
-    background-color: var(--bg-secundario);
+    background-color: var(--bg-principal);
 }
 
-.Caixa{
+.Caixa {
     width: 80%;
-    justify-self: center;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .aplicativo h2 {
@@ -325,84 +345,208 @@ box-shadow: 0px 15px 0px #62BDF3; */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-size: clamp(32px, 5vw, 60px);
-
+    font-size: clamp(28px, 4vw, 60px);
     text-align: center;
-    margin: 10px 0px;
+    margin: 10px 0;
 }
 
 .aplicativo .textos {
-    font-size: clamp(20px, 1.5vw, 18px);
+    font-size: clamp(14px, 1.5vw, 18px);
+    color: var(--texto-principal);
+    opacity: 0.85;
+    line-height: 1.7;
+    margin: 16px auto 32px;
+    width: 100%;
+}
+
+.aplicativo p {
+    font-size: clamp(14px, 1.5vw, 18px);
     color: var(--texto-principal);
     opacity: 0.85;
     line-height: 1.7;
     margin-bottom: 32px;
-    width: 60%;
-    margin: auto;
 }
 
-.aplicativo p{
-    font-size: clamp(20px, 1.5vw, 18px);
-    color: var(--texto-principal);
-    opacity: 0.85;
-    line-height: 1.7;
-    margin-bottom: 32px;
-}
-
-.aplicativo img{
+.aplicativo img {
     margin-top: 30px;
-    width: 180px;
+    width: clamp(120px, 20vw, 180px);
 }
 
-/* ===== RESPONSIVIDADE ===== */
-@media (max-width: 700px) {
+.botoesInstalar{
+    display: flex;
+    width: 100%;
+
+    justify-content: center;
+    gap: 60px;
+}
+
+.botoesInstalar p{
+    font-size: 12px;
+}
+
+/* ===== RESPONSIVIDADE (max 900px) ===== */
+@media (max-width: 900px) {
+    .MainEstilo {
+        padding-top: 60px;
+    }
+
     .Apresentacao {
-        flex-direction: column;
-        text-align: center;
+        padding: 36px 24px 32px;
+        gap: 24px;
+    }
+
+    .Materiais {
+        padding: 24px 24px;
     }
 
     .ConteudoHardware,
     .ConteudoSoftware {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .ConteudoHardware_img,
-    .ConteudoSoftware_img {
-        flex: none;
-        width: 100%;
-        justify-content: center;
+        gap: 28px;
+        width: 80vw;
     }
 
     .ConteudoHardware_img div,
     .ConteudoSoftware_img div {
+        width: 200px;
+        height: 150px;
+    }
+
+    .Caixa {
+        width: 90%;
+    }
+}
+
+/* ===== RESPONSIVIDADE (max 700px) ===== */
+@media (max-width: 700px) {
+    .MainEstilo {
+        padding-top: 40px;
+    }
+
+    /* Hero */
+    .Apresentacao {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 24px 16px;
+        gap: 20px;
+    }
+
+    .Apresentacao_img img {
+        max-width: 280px;
+        margin-bottom: 40px;
+    }
+
+    .Apresentacao_texto {
+        gap: 20px;
+    }
+
+    /* Chamada */
+    .Chamada {
+        flex-direction: column;
+        gap: 12px;
+        padding: 24px 16px;
+        text-align: center;
+    }
+
+    .Chamada h3 {
+        text-align: center;
+        flex: none;
+    }
+
+    .Chamada hr {
+        width: 50%;
+        height: 1px;
+    }
+
+    .Chamada h5 {
+        text-align: center;
+        flex: none;
         width: 100%;
-        max-width: 400px;
+        font-size: 13px;
     }
 
-    .Diferenciais h2{
-        font-size: 5.5vw;
+    /* Diferenciais */
+    .Diferenciais {
+        padding: 16px;
     }
 
-    .Materiais h2{
-        font-size: 5.5vw;
+    /* Materiais */
+    .Materiais {
+        padding: 20px 16px;
+    }
+
+    /* Hardware */
+    .ConteudoHardware {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .ConteudoHardware_img {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .ConteudoHardware_img div {
+        width: 100%;
+        max-width: 360px;
+        height: 140px;
+    }
+
+    /* Software */
+    .ConteudoSoftware {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .ConteudoSoftware_img {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .ConteudoSoftware_img div {
+        width: 100%;
+        max-width: 360px;
+        height: 140px;
+    }
+
+    /* Aplicativo */
+    .aplicativo {
+        padding: 32px 16px;
+        margin-top: 32px;
+    }
+
+    .Caixa {
+        width: 100%;
     }
 
     .aplicativo .textos {
         width: 100%;
     }
-
 }
 
-@media (max-width: 480px) {
+/* ===== RESPONSIVIDADE (max 480px) ===== */
+@media (max-width: 600px) {
     .Apresentacao_btns {
+        flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
     }
 
     .Apresentacao_btns button {
-        width: 140px;
+        width: 145px;
         height: 46px;
         font-size: 14px;
+    }
+
+    .Diferenciais h2 {
+        font-size: 5.5vw;
+    }
+
+    .Materiais h2 {
+        font-size: 5.5vw;
     }
 
 }

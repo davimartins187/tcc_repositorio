@@ -150,13 +150,9 @@
   --Rodape: #020c20;
 }
 
-/* Body{
-  background: linear-gradient(to right, var(--gradiente1), var(--gradiente2), var(--gradiente3));
-} */
-
 body{
-    background-image: url('/FundoOriginal.svg');
+    /* background-image: url('/FundoOriginal.svg'); */
     background-color: var(--bg-principal);
-    background-size: cover;
-    background-repeat: no-repeat;
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
 }

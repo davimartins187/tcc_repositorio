@@ -11,7 +11,7 @@ const Sidebar = ({ aberto, onFechar }) => {
     { label: 'Contato', to: '/contato' },
     { label: 'Sobre o TCC', to: '/tcc' },
     { label: 'Termos de serviço', to: '/termos' },
-    { label: 'Configurações', to: '/configuracoes'},
+    { label: 'Configurações', to: '/configuracoes' },
   ];
 
   return (

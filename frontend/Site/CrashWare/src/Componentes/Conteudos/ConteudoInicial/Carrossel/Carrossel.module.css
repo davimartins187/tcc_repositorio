@@ -1,27 +1,26 @@
 .container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    gap: 16px;
 }
 
 .viewport {
-    width: 21vw; /* largura visível */
+    width: 260px;
     overflow: hidden;
+    border-radius: 18px;
 }
 
 .lista {
     display: flex;
-    transition: transform 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card {
-    min-width: 265px;
-    height: 40vh;
-    margin: 10px;
-
-    background: #6b6b6b; /* cinza */
-    border-radius: 20px;
+    min-width: 260px;
+    background: var(--bg-secundario);
+    border-radius: 18px;
+    border: 1px solid var(--bg-secundario);
 
     display: flex;
     flex-direction: column;
@@ -29,22 +28,72 @@
     align-items: center;
     text-align: center;
 
-    padding: 20px;
+    padding: 32px 24px 28px;
+    color: var(--texto-principal);
+    gap: 10px;
+}
 
-    color: white;
-
-    /* sombra suave */
-    /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); */
-
+.icone {
+    font-size: 28px;
+    opacity: 0.85;
 }
 
 .card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--texto-principal);
+    font-family: Georgia, serif;
+    margin: 0;
 }
 
 .card p {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 0;
+}
+
+.rodape {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn {
+    background: none;
+    border: none;
+    color: var(--texto-secundario);
     font-size: 13px;
-    opacity: 0.9;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s;
+}
+
+.btn:hover {
+    color: var(--texto-principal);
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.dot {
+    width: 28px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--texto-secundario);
+    cursor: pointer;
+    transition: background 0.3s, width 0.3s;
+    display: block;
+}
+
+.dotAtivo {
+    background: var(--texto-principal);
+    width: 36px;
 }

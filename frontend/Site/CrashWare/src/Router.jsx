@@ -9,7 +9,7 @@ import { AuthProvider, RotaPrivada } from "./VerificacaoToken"
 const Router = () => {
     return (
     <Routes>
-        <Route path="/" element={<LayoutPadrao />}>
+        <Route path="/auth" element={<LayoutPadrao />}>
             <Route index element={
                 <AuthProvider>
                     <PgInicial />
