@@ -14,12 +14,12 @@ const AuthProvider = ({ children }) => {
     const Navegacao = useNavigate();
 
     //Uso useState para o react renderizar as informações
-    const [id_state, setId] = useState(() => localStorage.getItem("id"));
+    //const [id_state, setId] = useState(() => localStorage.getItem("id"));
     const [token_state, setToken] = useState(() => localStorage.getItem("token"));
     const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
 
     //Lista que contém todos os usestate
-    const set = [setId,setToken,setRefresh];
+    const set = [setToken,setRefresh];
 
     //Verifico se o usuario tem token
     const VerificarToken = async () => 

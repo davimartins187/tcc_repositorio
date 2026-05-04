@@ -31,7 +31,7 @@ const ConteudoPerfil = () => {
     const [xp, setXp] = useState(0);
 
     //Uso useState para o react renderizar as informações
-    const [id, setId] = useState(() => localStorage.getItem("id"));
+    //const [id, setId] = useState(() => localStorage.getItem("id"));
     const [token_state, setToken] = useState(() => localStorage.getItem("token"));
     const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
 
@@ -134,7 +134,7 @@ const ConteudoPerfil = () => {
 
                             {/* Sair da conta , depois vc troca isso gabriel ou davison */}
                             <BotoesForm
-                                onClick={() => SairDaConta(setId, setToken, setRefresh)}
+                                onClick={() => SairDaConta(setToken, setRefresh)}
                                 texto="Sair da conta"
                             />
 

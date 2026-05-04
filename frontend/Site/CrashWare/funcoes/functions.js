@@ -4,7 +4,7 @@ export function sleep(ms) {
 }
 
 //Sair da conta
-export async function SairDaConta(setId,setToken,setRefresh){
+export async function SairDaConta(setToken,setRefresh){
 
      //Deleto o token do LocalStorage
     await localStorage.removeItem("token");
@@ -14,12 +14,12 @@ export async function SairDaConta(setId,setToken,setRefresh){
 
 
     //Deleto o ID do LocalStorage
-    await localStorage.removeItem("id");
+    // await localStorage.removeItem("id");
 
     //Faço com que o react renderize as informações
     setToken(null);
     setRefresh(null);
-    setId(null);
+    // setId(null);
 
 
 
@@ -34,10 +34,10 @@ export async function SairDaConta(setId,setToken,setRefresh){
 //Verifico qual tela a pessoa vai ir, ao clicar no "CRASHWARE" do HEADER
 export function handleRedirect(Navegacao)
 {
-    //Pego os tokens dentro do escopo privado.
-    const id = localStorage.getItem("id")
+    //Pego os token dentro do escopo privado.
+    const token = localStorage.getItem("token")
 
-    if(!id)
+    if(!token)
     {
         Navegacao("/")
     }else
@@ -646,9 +646,9 @@ export class Api
                         {
                            
                             //Coleto as variáveis do useState
-                            const setId = set[0];
-                            const setToken = set[1];
-                            const setRefresh = set[2];
+                            // const setId = set[0];
+                            const setToken = set[0];
+                            const setRefresh = set[1];
 
                             //Retiro o token do usuario
                             await SairDaConta(setId,setToken,setRefresh);
@@ -663,12 +663,12 @@ export class Api
                     else {
                         if(refresh == null)
                         {
-                            const dados = await response.json();
+                            // const dados = await response.json();
 
-                            const id = dados.id
+                            // const id = dados.id
 
-                            //Guardo o ID do user
-                            localStorage.setItem("id", id)
+                            // //Guardo o ID do user
+                            // localStorage.setItem("id", id)
 
                             // setId(id); // atualiza React na hora
 
@@ -685,7 +685,7 @@ export class Api
                             //Verifico o refresh_token
 
                             //Pego o id
-                            const id = localStorage.getItem("id");
+                            // const id = localStorage.getItem("id");
 
                             //Gero um novo token
                             try
@@ -694,11 +694,8 @@ export class Api
                                 {
                                     method: "POST",
                                     headers:{
-                                        "Content-Type": "application/json"
-                                    },
-                                    body: JSON.stringify({
-                                        id : id
-                                    })
+                                        "Authorization": `Bearer ${token}`
+                                    }
                                 })//
 
                                 if (!response_refresh.ok)

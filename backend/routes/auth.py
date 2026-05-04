@@ -211,7 +211,7 @@ async def verificar_token (usuario = Depends(validar_token)):
 
 ##Rota do Refresh_Token
 @auth.post("refresh_token")
-async def refresh_token(id : int,session = Depends(pegar_sessao)):
+async def refresh_token(id = ,session = Depends(pegar_sessao)):
     usuario = session.query(Usuarios).filter(Usuarios.id_usuario == id)
     if usuario is None:
         raise HTTPException(status_code=404,detail="Id não encontrado")
