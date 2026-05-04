@@ -4,7 +4,7 @@ import BackFundo from "../../../fotos/Banner.jpeg"
 import iconConquistas from '../../../fotos/Conquistas.svg'
 import iconBolsa from '../../../fotos/Compras.svg'
 import iconGema from '../../../fotos/Gemas.svg'
-import iconTema from '../../../fotos/item_tema.svg'
+//import iconTema from '../../../fotos/Item_tema.svg'
 import style from './ConteudoPerfil.module.css'
 import { Link, useNavigate } from "react-router-dom";
 
