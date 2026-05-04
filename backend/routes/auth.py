@@ -11,7 +11,7 @@ from models.patentes import Patente
 auth = APIRouter(prefix="/auth",tags=["autenticação"])
 
 #Importando dependencias
-from dependences import pegar_sessao , validar_token
+from dependences import pegar_sessao,  pegar_token
 
 #Importando a CRIPTOGRAFIA
 from security import criptografia
@@ -203,8 +203,23 @@ async def alterar_senha(dados: UsuarioLoginSchema, session = Depends(pegar_sessa
 
 ##Rota de verificação de token
 @auth.post("/verificar_token")
-async def verificar_token (usuario = Depends(validar_token)):
-    return usuario
+async def verificar_token (token = Depends(pegar_token), session = Depends(pegar_sessao)):
+    try:
+        info = jwt.decode(token , SECRET_KEY,algorithms = ALGORITIMO)
+        id_usuario = int(info["sub"])
+    except JWTError as ERRO:
+        print(ERRO)
+        raise HTTPException(status_code=401, detail="Acesso Negado, Token expirado!")
+    ####
+    usuario = session.query(Usuarios).filter(Usuarios.id_usuario == id_usuario).first()
+    if not usuario:
+        raise HTTPException(status_code=401, detail="Acesso inválido")
+    id_user = int(usuario.id_usuario)
+    return {
+            "id": id_user,
+            "usuario" : usuario
+    }
+
 
 
 ############################

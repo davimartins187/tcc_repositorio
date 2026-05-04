@@ -33,26 +33,26 @@ def pegar_sessao():
 #Função que pega o token do header
 async def pegar_token(authorization: str = Header(None)):
     if authorization is None:
-        return HTTPException(status_code=401 , detail="Token não enviado")
+        raise HTTPException(status_code=401 , detail="Token não enviado")
     else:
         token =  authorization.replace("Bearer ", "")
         return token
 
 ##Função que Verifica o Token
-async def validar_token (token = Depends(pegar_token), session = Depends(pegar_sessao)):
-    try:
-        info = jwt.decode(token , SECRET_KEY,algorithms = ALGORITIMO)
-        id_usuario = int(info["sub"])
-    except JWTError as ERRO:
-        print(ERRO)
-        raise HTTPException(status_code=401, detail="Acesso Negado, Token expirado!")
-    ####
-    usuario = session.query(Usuarios).filter(Usuarios.id_usuario == id_usuario).first()
-    if not usuario:
-        raise HTTPException(status_code=401, detail="Acesso inválido")
-    id_user = int(usuario.id_usuario)
-    return {
-            "id": id_user,
-            "usuario" : usuario
-    }
+# async def validar_token (token = Depends(pegar_token), session = Depends(pegar_sessao)):
+#     try:
+#         info = jwt.decode(token , SECRET_KEY,algorithms = ALGORITIMO)
+#         id_usuario = int(info["sub"])
+#     except JWTError as ERRO:
+#         print(ERRO)
+#         raise HTTPException(status_code=401, detail="Acesso Negado, Token expirado!")
+#     ####
+#     usuario = session.query(Usuarios).filter(Usuarios.id_usuario == id_usuario).first()
+#     if not usuario:
+#         raise HTTPException(status_code=401, detail="Acesso inválido")
+#     id_user = int(usuario.id_usuario)
+#     return {
+#             "id": id_user,
+#             "usuario" : usuario
+#     }
 
