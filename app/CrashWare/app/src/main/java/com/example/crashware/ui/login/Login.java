@@ -53,15 +53,6 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    //Request Reenviar  Codigo
-    class Reenviar_CodigoRequest {
-        String email;
-        public  Reenviar_CodigoRequest(String email) {
-
-            this.email = email;
-        }
-    }
-
     // Armazena a resposta da API:
     class LoginResponse {
         String token;
@@ -79,10 +70,6 @@ public class Login extends AppCompatActivity {
 
     }
 
-    //Response Reenviar Email
-    class Reenviar_CodigoResponse {
-        String mensagem;
-    }
 
     // INTERFACE da API:
     interface login {
@@ -90,11 +77,7 @@ public class Login extends AppCompatActivity {
         Call<LoginResponse> logar(@Body LoginRequest Loginrequest);
     }
 
-    //Interface Reenviar codigo
-    interface reenviar_codigo{
-        @POST("/auth/reenviar_codigo")
-        Call<Reenviar_CodigoResponse> reenviar(@Body Reenviar_CodigoRequest request);
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,9 +190,6 @@ public class Login extends AppCompatActivity {
         Toast.makeText(this, "Verificando dados...", Toast.LENGTH_LONG).show();
 
 
-        // Objeto que vou enviar para a API:
-        //Objeto de reenviar codigo
-        Reenviar_CodigoRequest dados_codigo = new Reenviar_CodigoRequest(email);
 
         // Objeto que vou enviar para a API:
         //Objeto do login
@@ -227,16 +207,12 @@ public class Login extends AppCompatActivity {
         //login
         login api = retrofit.create(login.class);
 
-        //Reenviar codigo
-        reenviar_codigo api_codigo = retrofit.create(reenviar_codigo.class);
 
         // Monto a chamada da API:
 
         //login
         Call<LoginResponse> requisicao = api.logar(dados);
 
-        //Reenviar Codigo:
-        Call<Reenviar_CodigoResponse> requisicao_codigo = api_codigo.reenviar(dados_codigo);
 
         // executo a requisicao:
         requisicao.enqueue(new Callback<LoginResponse>() {
@@ -254,59 +230,6 @@ public class Login extends AppCompatActivity {
 
                     //Mostra esse erro:
                     Toast.makeText(Login.this, "EMAIL NAO VERIFICADO", Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-                    //Envia o codigo para o email:
-//                    requisicao_codigo.enqueue(new Callback<Reenviar_CodigoResponse>() {
-//                        @Override
-//                        public void onResponse(
-//                                Call<Reenviar_CodigoResponse> requisicao_codigo,
-//                                retrofit2.Response<Reenviar_CodigoResponse> resposta_codigo
-//                        )
-//                        {
-//                            // Caso a API RETORNOU STATUS_CODE : 200
-//                            if (resposta_codigo.isSuccessful()) {
-//
-//                                //Exibi isso:
-//                                Toast.makeText(Login.this, "Código Reenviado!", Toast.LENGTH_LONG).show();
-//
-//                            } else {
-//                                // erro da API (400, 422, 500...)
-//
-//                                //Caso der erro na hora de reenviar.
-//                                String erro = "Erro no cadastro";
-//
-//                                try {
-//                                    String detail = resposta_codigo.errorBody().string();
-//                                    JSONObject json = new JSONObject(detail);
-//
-//                                    if (detail != null) {
-//                                        erro = json.getString("detail");
-//
-//                                    }
-//                                } catch (Exception e) {
-//                                    // ignora, mantém mensagem padrão
-//                                }
-//
-//                                Toast.makeText(Login.this, erro, Toast.LENGTH_LONG).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<Reenviar_CodigoResponse> requisicao_codigo, Throwable t) {
-//                            // Caso deu erro na requisição
-//                            // erro de conexão (internet, URL, servidor fora)
-//                            Toast.makeText(Login.this,
-//                                    "Erro de conexão: " + t.getMessage(),
-//                                    Toast.LENGTH_LONG
-//                            ).show();
-//                        }
-//                    });
-
 
                     // Envia para a tela de VERIFICAR EMAIL:
                     Intent i = new Intent(Login.this, ConfirmarIdentidade.class);
@@ -343,6 +266,7 @@ public class Login extends AppCompatActivity {
                     Login.LoginResponse dados = resposta.body();
                     String token = dados.getToken();
                     String refresh_token = dados.getRefresh_token();
+
 
 
                     //Vai para a HOME:

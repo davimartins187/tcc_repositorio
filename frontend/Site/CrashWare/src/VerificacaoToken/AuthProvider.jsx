@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
         const refresh_token = localStorage.getItem("refresh_token")
 
 
-        //Vaerifico o token
+        //Verifico o token
         const usuario = new Api();
         const token_vencido = await usuario.Verificar_Token(token,Navegacao)
 

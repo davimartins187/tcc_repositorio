@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from routes.auth import auth
+from routes.user import user
 import os #Acessa outros arquivos
 from dotenv import load_dotenv # Le import arquivo .env
 #CORS:
 from fastapi.middleware.cors import CORSMiddleware
-
 
 
 
@@ -39,6 +39,8 @@ crashware.add_middleware(
 
 #Colocando as rotas dentro da API:
 crashware.include_router(auth)
+
+crashware.include_router(user)
 
 
 

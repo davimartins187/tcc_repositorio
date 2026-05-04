@@ -1,6 +1,5 @@
-
 from fastapi import APIRouter, Depends,HTTPException
-from pygments.lexer import default
+
 
 #Importando tabelas:
 from models.usuarios import Usuarios
@@ -216,7 +215,10 @@ async def verificar_token (token = Depends(pegar_token), session = Depends(pegar
     if not usuario:
         raise HTTPException(status_code=401, detail="Acesso inválido")
     id_user = int(usuario.id_usuario)
-    return {"id": id_user}
+    return {
+            "id": id_user,
+            "usuario" : usuario
+    }
 
 ############################
 
@@ -233,6 +235,27 @@ async def refresh_token(id : int,session = Depends(pegar_sessao)):
     }
 
 ##################
+
+##Rota de Adicionar Telefone
+
+
+############################
+
+##Rota De alterar Telefone
+
+############################
+
+
+##Rota de alterar Nome
+
+
+############################
+
+
+##Rota de alterar e-mail
+
+############################
+
 
 
 
