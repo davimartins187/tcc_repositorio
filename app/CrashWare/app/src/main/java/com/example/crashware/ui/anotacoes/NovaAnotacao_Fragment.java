@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.crashware.R;
 
@@ -17,8 +20,14 @@ import com.example.crashware.R;
  */
 public class NovaAnotacao_Fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    ImageView imgVoltarNovaAnotacao;
+
+    EditText txtNovaAnotacao, txtTituloNovaAnotacao;
+
+    Button btnSalvarNovaAnotacao;
+
+    String txtNovaAnotacaoSalva, txtTituloNovaAnotacaoSalvo;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -61,6 +70,63 @@ public class NovaAnotacao_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nova_anotacao, container, false);
+        View view = inflater.inflate(R.layout.fragment_nova_anotacao, container, false);
+
+        imgVoltarNovaAnotacao = view.findViewById(R.id.imgVoltarNovaAnotacao);
+        btnSalvarNovaAnotacao = view.findViewById(R.id.btnSalvarNovaAnotacao);
+        txtNovaAnotacao       = view.findViewById(R.id.txtNovaAnotacao      );
+        txtTituloNovaAnotacao = view.findViewById(R.id.txtTituloNovaAnotacao);
+
+
+
+
+
+
+        btnSalvarNovaAnotacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                txtNovaAnotacaoSalva = txtNovaAnotacao.getText().toString();
+                txtTituloNovaAnotacaoSalvo = txtTituloNovaAnotacao.getText().toString();
+
+
+                Fragment novoFragmento = new Anotacoes_fragment();
+
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, novoFragmento)
+                        .addToBackStack(null)
+                        .commit();
+
+
+
+
+            }
+        });//Interação com botão de salvar nova anotação, levando para a tela geral de anotações e transcrevendo os textos dos EditText para strings a serem salvas no banco
+
+        imgVoltarNovaAnotacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                requireActivity()//puxa o fragemnt atual
+                        .getSupportFragmentManager()//acessa o gerenciador das fragments
+                        .popBackStack();//simula o botão "voltar" do celular
+
+            }
+        });//interação de click com a imagem de voltar retornando para a tela de anotações
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return view;
     }
 }

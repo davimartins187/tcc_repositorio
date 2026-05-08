@@ -34,7 +34,7 @@ const RotaPrivada = ({ children }) => {
         //Verifico o Refresh Token
         if (token_vencido == true)
         {
-            usuario.Verificar_Token(refresh_token,Navegacao,true,refresh=true,set)
+            usuario.Verificar_Token(refresh_token,Navegacao,true,true,set)
         }
     }
     

@@ -199,7 +199,7 @@
 
             <!-- Ícone de mostrar senha -->
             <ImageView
-                android:id="@+id/imgOlho"
+                android:id="@+id/imgOlhoSenha"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="12dp"
@@ -257,7 +257,7 @@
 
             <!-- Ícone de mostrar senha -->
             <ImageView
-                android:id="@+id/imgOlho2"
+                android:id="@+id/imgOlhoSenhaConfirmar"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="12dp"

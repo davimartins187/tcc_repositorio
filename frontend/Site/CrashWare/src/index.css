@@ -66,13 +66,12 @@
   --Borda-gradiente3:#EFEFEF;
 }
 
-
 /* TEMA ESCURO */
 .Escuro {
-  --bg-principal: #040110;
-  --bg-secundario: #1a1a1a;
-  --bg-terceiro: #FFFFFF80;
-  --texto-quarto: ##787A81CC;
+  --bg-principal: #010002;
+  --bg-secundario: #1a1a1a5f;
+  --bg-terceiro: #6C6A6A30;
+  --texto-quarto: ##;
   
   --borda: #d1d5db;
 
@@ -158,6 +157,9 @@
   --Botao-gradiente1:#7A5AD8;
   --Botao-gradiente2:#47138B;
   --Botao-gradiente3:#7A5AD8;
+
+  --BotaoADD-gradiente1:#101017CC;
+  --BotaoADD-gradiente2:#06060A;
 
 }
 

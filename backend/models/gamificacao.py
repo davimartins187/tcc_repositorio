@@ -1,7 +1,7 @@
 #Importando comandos do sql para o código.
 from encodings.punycode import selective_find
 
-from sqlalchemy import Column, Integer, Float, String, Text, ForeignKey, UniqueConstraint,DateTime
+from sqlalchemy import Column, Integer, Float, String, Text, ForeignKey, UniqueConstraint,DateTime, text
 from sqlalchemy.sql import func
 
 #Importando a Base declarativa
@@ -23,13 +23,13 @@ class Patente(Base):
     # Campos da tabela
     id_patente = Column(Integer,primary_key=True,autoincrement=True)
     nome_patente = Column(String(30), nullable=False)
-    xp_minimo = Column(Float,nullable=False)
+    nivel_minimo = Column(Integer,nullable=False,default=1,server_default=text("1"))
 
 
     # Criando atributos PARA O PYTHON (Naõ altera nada no banco de dados)
-    def __init__(self,nome_patente,xp_minimo):
+    def __init__(self,nome_patente,nivel_minimo=1):
         self.nome_patente = nome_patente
-        self.xp_minimo = xp_minimo
+        self.nivel_minimo = nivel_minimo
 
 #Tabela Conquista
 class Conquista(Base):
@@ -77,6 +77,18 @@ class Usuario_Conquista(Base):
         self.usuario_id = usuario_id
 
 
+#Tabela Nível
+class Nivel(Base):
+    # Nome da tabela
+    __tablename__ = "nivel"
+
+    # Campos da tabela
+    id_nivel = Column(Integer,primary_key=True,autoincrement=True)
+    xp_minimo = Column(Float,nullable=False)
+
+    # Criando atributos PARA O PYTHON (Não altera nada no banco de dados)
+    def __init__(self, xp_minimo):
+        self.xp_minimo = xp_minimo
 
 
 session.close()

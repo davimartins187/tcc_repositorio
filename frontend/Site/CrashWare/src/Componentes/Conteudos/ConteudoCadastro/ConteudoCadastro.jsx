@@ -4,12 +4,10 @@ import { BotoesForm, TIPO_BOTAO } from '../../Botoes';
 import { CampoTexto } from '../../CampoTexto';
 import { PopUp } from '../../pop-up';
 
-import esconderSenha_claro from '../../../fotos/claro/nao_pode_ver_senha.svg';
 import verSenha_claro from '../../../fotos/claro/pode_ver_senha.svg';
-import esconderSenha_escuro from '../../../fotos/escuro/nao_pode_ver_senha_claro.svg';
-import verSenha_escuro from '../../../fotos/escuro/pode_ver_senha_claro.svg';
 
-import gitIcon from "../../../fotos/GitHub.svg";
+import gitIconModoEscuro from "../../../fotos/GitHub.svg";
+import gitIconModoClaro from "../../../fotos/GitHub copy.svg";
 
 import googloIcon from "../../../fotos/google.png";
 
@@ -35,10 +33,16 @@ const ConteudoCadstro = () => {
     //Levará para a verificacao de email
     const Navegacao = useNavigate();
 
-    //Troca de tema
+
     useEffect(() => {
+
+
+        //Tema claro e escuro (não faço ideia oq faz pq ninguem comenta) isso muda o tema, ué
         const checarTema = (e) => setTema(e.detail);
         window.addEventListener('temaAtualizado', checarTema);
+
+
+        //
         return () => window.removeEventListener('temaAtualizado', checarTema);
     }, []);
 
@@ -49,19 +53,6 @@ const ConteudoCadstro = () => {
             inputRef.current?.focus();
         }, 0);
     }, []);
-
-    //Mudar tema do olho
-    const isClaro = tema === 'Claro';
-
-    const iconeSenha = mostrar
-        ? (isClaro ? verSenha_claro : verSenha_escuro)
-        : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
-
-    const iconeConfirmarSenha = mostrarConfirmar
-        ? (isClaro ? verSenha_claro : verSenha_escuro)
-        : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
-
-
 
     const handleCadastro = async () => {
         //Instâncio o objeto 
@@ -122,10 +113,9 @@ const ConteudoCadstro = () => {
                             maxLength={30}
                         />
                         <img
-                            src={iconeSenha}
+                            src={verSenha_claro}
                             alt="ver senha"
                             className={style.imgSenha}
-                            onClick={() => setMostrar(!mostrar)}
                         />
                     </div>
 
@@ -140,10 +130,9 @@ const ConteudoCadstro = () => {
                             maxLength={30}
                         />
                         <img
-                            src={iconeConfirmarSenha}
+                            src={verSenha_claro}
                             alt="ver senha"
                             className={style.imgSenha}
-                            onClick={() => setMostrarConfirmar(!mostrarConfirmar)}
                         />
                     </div>
 
@@ -153,6 +142,16 @@ const ConteudoCadstro = () => {
                         className={style.btnCriarConta}
                         onClick={handleCadastro}
                     />
+
+                    <div className={style.termos}>
+                        <p>Ao criar uma conta, você concorda com nossos</p>
+                        <Link to="/termos">
+                            <span>
+                                Termos de Uso
+                            </span>
+                        </Link>
+                    </div>
+
                 </div>
 
                 <p className={style.Logar}>
@@ -160,7 +159,7 @@ const ConteudoCadstro = () => {
                 </p>
 
                 <div className={style.outrasFormasCadastro}>
-                    <img src={gitIcon} alt="Icone Github" />
+                    <img src={tema === "Claro"? gitIconModoClaro : gitIconModoEscuro} alt="Icone Github" />
                     <img src={googloIcon} alt="Icone google" />
                 </div>
             </div>

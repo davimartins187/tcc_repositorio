@@ -1,5 +1,5 @@
-    import { useState, useEffect } from 'react';
-    import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import Style from "./ConteudoConfiguracoes.module.css";
 
@@ -20,6 +20,8 @@ import termosModoEscuro from "../../../fotos/escuro/termos.svg";
 
 import googleIcon from "../../../fotos/google.png";
 import githubIcon from "../../../fotos/github.png";
+import { SairDaConta } from '../../../../funcoes/functions';
+import { Usuario } from '../../../../funcoes/user';
 
 const ItemBarraLateral = ({ descricao, img, onClick }) => {
     return (
@@ -42,34 +44,61 @@ const ConteudoConfiguracoes = () => {
 
     const isClaro = tema === 'Claro';
 
+    const [token_state, setToken] = useState(() => localStorage.getItem("token"));
+    const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
+    const [dados, setDados] = useState(() =>
+        JSON.parse(localStorage.getItem("dados")) || null
+    );
+
+    //Pego as informações do usuario
+    const usuario = JSON.parse(localStorage.getItem("dados"));
+
     // Configurações de cada popup
     const configsPopup = {
         sair: {
             paragrafo: "Deseja sair da conta?",
             primeiroBotao: "Sair",
             segundoBotao: "Cancelar",
-            primeiroClick: () => {setPopupAtivo(null); },
+            primeiroClick: async () => {
+
+                //Saio da Conta
+                await SairDaConta(setToken, setRefresh, setDados)
+
+
+
+                setPopupAtivo(null);
+
+
+
+            },
             segundoClick: () => setPopupAtivo(null),
         },
         desativar: {
             paragrafo: "Deseja desativar sua conta?",
             primeiroBotao: "Desativar",
             segundoBotao: "Cancelar",
-            primeiroClick: () => {setPopupAtivo(null); },
+            primeiroClick: () => { setPopupAtivo(null); },
             segundoClick: () => setPopupAtivo(null),
         },
         excluir: {
             paragrafo: "Deseja excluir sua conta? Essa ação é irreversível.",
             primeiroBotao: "Excluir",
             segundoBotao: "Cancelar",
-            primeiroClick: () => {setPopupAtivo(null); },
+            primeiroClick: async () => {
+
+                //Deleto a conta
+                const usuario = new Usuario
+                await usuario.deletar_conta(setToken, setRefresh, setDados)
+
+                setPopupAtivo(null);
+            },
             segundoClick: () => setPopupAtivo(null),
         },
     };
 
     const conteudosBarraLateral = [
-        { id: 1, descricao: "Alterar dados do perfil", img: perfilModoClaro , acao: null },
-        { id: 2, descricao: "Sair da Conta",           img: sairContaModoClaro , acao: 'sair' },
+        { id: 1, descricao: "Alterar dados do perfil", img: perfilModoClaro, acao: null },
+        { id: 2, descricao: "Sair da Conta", img: sairContaModoClaro, acao: 'sair' },
     ];
 
     const PopUp = ({ paragrafo, primeiroBotao, segundoBotao, primeiroClick, segundoClick }) => {
@@ -89,6 +118,16 @@ const ConteudoConfiguracoes = () => {
     };
 
     const configAtual = popupAtivo ? configsPopup[popupAtivo] : null;
+
+    if (!usuario) {
+        return (
+            <div className={style.corpo} style={{ justifyContent: 'center' }}>
+                <span style={{ color: '#8b90a0', letterSpacing: '0.1em', fontSize: '13px' }}>
+                    CARREGANDO...
+                </span>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -149,7 +188,7 @@ const ConteudoConfiguracoes = () => {
                     <div className={Style.parteEmail}>
                         <div className={Style.campoForm}>
                             <label htmlFor="idEmailVinculado">E-mail vinculado</label>
-                            <input type="text" placeholder='seugmail@gmail.com' id='idEmailVinculado' />
+                            <p>{usuario.email}</p>
                         </div>
                         <div className={Style.campoForm}>
                             <label htmlFor="idNovoEmail">Novo e-mail</label>

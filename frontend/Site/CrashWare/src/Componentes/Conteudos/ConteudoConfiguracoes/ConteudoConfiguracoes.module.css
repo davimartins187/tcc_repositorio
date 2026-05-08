@@ -10,6 +10,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    padding-top: 160px;
 }
 
 .barraLateral {
@@ -100,6 +101,7 @@
 
     width: 60vw;
     height: auto;
+    border: 1px solid var(--texto-principal);
 }
 
 .Conteudos h1{
@@ -108,7 +110,7 @@
     text-align: center;
     font-size: clamp(18px, 3.2vw, 36px);
 
-    margin: 20px 0px;
+    margin: 30px 0px;
 }
 
 .parteEmail, .parteTelefone{
@@ -183,6 +185,13 @@
     flex: 1 1 80px;
     gap: 4px;
     width: 50%;
+}
+
+.campoForm p{
+    color: var(--texto-principal);
+    font-family: "Montserrat";
+    font-weight: 500;
+    margin-right: 50px;
 }
 
 .alterarSenha{

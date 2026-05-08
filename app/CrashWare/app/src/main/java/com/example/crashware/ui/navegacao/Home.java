@@ -9,7 +9,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.crashware.ui.anotacoes.Anotacoes_fragment;
-import com.example.crashware.ui.aulas.Aulas_fragment;
+import com.example.crashware.ui.aulas.EscolhaTrilha_fragment;
 import com.example.crashware.ui.perfil.Perfil_Fragment;
 import com.example.crashware.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,7 +20,7 @@ public class Home extends AppCompatActivity {
     private Fragment inicio    = new Inicio_fragment();
     private Fragment loja      = new Loja_fragment();
     private Fragment anotacoes = new Anotacoes_fragment();
-    private Fragment aulas     = new Aulas_fragment();
+    private Fragment aulas     = new EscolhaTrilha_fragment();
     private Fragment perfil    = new Perfil_Fragment();
 
     private Fragment active = inicio;

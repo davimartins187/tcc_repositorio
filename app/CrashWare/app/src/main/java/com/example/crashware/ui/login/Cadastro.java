@@ -76,14 +76,14 @@ public class Cadastro extends AppCompatActivity {
         setContentView(R.layout.cadastro);
 
         // Iniciando o Layout
-        btnCadastro      = findViewById(R.id.btnCriarConta       );
-        txtEmailCad      = findViewById(R.id.txtEmailCad         );
-        txtSenhaCad      = findViewById(R.id.txtSenhaCad         );
-        txtConfirmarCad  = findViewById(R.id.txtConfirmarSenhaCad);
-        txtNomeCad       = findViewById(R.id.txtNomeCad          );
-        txtEntrarCad     = findViewById(R.id.txtEntrarCad        );
-        imgOlhoSenha     = findViewById(R.id.imgOlho             );
-        imgOlhoConfirmar = findViewById(R.id.imgOlho2            );
+        btnCadastro      = findViewById(R.id.btnCriarConta        );
+        txtEmailCad      = findViewById(R.id.txtEmailCad          );
+        txtSenhaCad      = findViewById(R.id.txtSenhaCad          );
+        txtConfirmarCad  = findViewById(R.id.txtConfirmarSenhaCad );
+        txtNomeCad       = findViewById(R.id.txtNomeCad           );
+        txtEntrarCad     = findViewById(R.id.txtEntrarCad         );
+        imgOlhoSenha     = findViewById(R.id.imgOlhoSenha         );
+        imgOlhoConfirmar = findViewById(R.id.imgOlhoSenhaConfirmar);
 
 
 

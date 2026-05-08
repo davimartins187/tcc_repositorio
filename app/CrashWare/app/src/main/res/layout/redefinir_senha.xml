@@ -141,9 +141,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtNovaSenha" />
 
+            <!-- Titulo MinSenha -->
+            <TextView
+                android:id="@+id/txtMinSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Mínimo de 8 caracteres"
+                android:textColor="?attr/colorOnPrimarySurface"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/txtCampoNovaSenha"
+                app:layout_constraintTop_toBottomOf="@+id/txtCampoNovaSenha"/>
+
             <!-- Ícone de mostrar senha -->
             <ImageView
-                android:id="@+id/imgOlho"
+                android:id="@+id/imgOlhoNovaSenha"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="12dp"
@@ -168,9 +181,8 @@
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/txtCampoConfirmarNovaSenha"
-                app:layout_constraintBottom_toTopOf="@id/txtCampoConfirmarNovaSenha"
-                app:layout_constraintTop_toBottomOf="@+id/txtCampoNovaSenha" />
+                app:layout_constraintStart_toStartOf="@id/txtCampoNovaSenha"
+                app:layout_constraintTop_toBottomOf="@+id/txtMinSenha" />
 
             <!-- Campo confirmar nova senha -->
             <EditText
@@ -187,6 +199,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtConfirmarNovaSenha" />
+
+            <!-- Ícone de mostrar senha -->
+            <ImageView
+                android:id="@+id/imgOlhoConfirmarNovaSenha"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="12dp"
+                android:elevation="2dp"
+                android:src="@drawable/olho_icon"
+                android:translationX="-4dp"
+                app:tint="#500F172A"
+                app:layout_constraintBottom_toBottomOf="@id/txtCampoConfirmarNovaSenha"
+                app:layout_constraintEnd_toEndOf="@id/txtCampoConfirmarNovaSenha"
+                app:layout_constraintTop_toTopOf="@id/txtCampoConfirmarNovaSenha" />
 
             <!-- Botão Verificar -->
             <Button

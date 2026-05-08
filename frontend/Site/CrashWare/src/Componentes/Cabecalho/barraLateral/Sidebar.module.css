@@ -18,17 +18,16 @@
   left: 50%;
   transform: translateX(-50%);
   width: 95%;
-  height: 0;
+  height: 0vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
   transition: height 0.3s ease;
   z-index: 998; 
-  margin-top: 40px;
 }
 
 .sidebarOpen {
-  height: 80px;
+  height: 10vh;
 }
 
 .sidebar nav {
@@ -71,6 +70,7 @@
 @media (max-width: 1200px) {
   .sidebar nav {
     width: 90%;
+    padding: 20;
   }
 
   .link {
@@ -85,7 +85,7 @@
   }
 
   .sidebar{
-    margin-top: 60px;
+    margin-top: 40px;
   }
 
   .sidebar nav {

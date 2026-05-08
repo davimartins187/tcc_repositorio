@@ -98,7 +98,6 @@ const ConteudoAdm = () => {
 
 
     //MEXE AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII PRA BAIXO
-
     
     //Variaveis
     const [nomeConquista, setNomeConquista] = useState("");
@@ -137,7 +136,9 @@ const ConteudoAdm = () => {
             )}
 
             <div className={Style.separarConteudos}>
-                <div className={Style.barraLateral}>
+
+
+                {/* <div className={Style.barraLateral}>
                     <h1>Gerenciamento</h1>
                     <hr />
 
@@ -149,7 +150,7 @@ const ConteudoAdm = () => {
                                 img={item.img}
                                 onClick={item.acao ? () => setPopupAtivo(item.acao) : undefined}
                             />
-                        ))}
+                        ))} */}
 
                         {/* <div className={Style.destaque}>
                             <ItemBarraLateral
@@ -163,31 +164,33 @@ const ConteudoAdm = () => {
                                 onClick={() => setPopupAtivo('excluir')}
                             />
                         </div> */}
-                    </div>
+                    {/* </div>
 
                     <h1>Privacidade e Segurança</h1>
-                    <hr />
+                    <hr /> */}
 
                     {/* <ItemBarraLateral
                         descricao={"Sobre"}
                         img={sobreModoClaro}
                     /> */}
-                    <Link to="/termos">
+                    {/* <Link to="/termos">
                         <ItemBarraLateral
                             descricao={"Termos de Serviço"}
                             img={termosModoClaro}
                         />
-                    </Link>
+                    </Link> */}
                 </div>
 
                 <div className={Style.Conteudos}>
-                    <div className={Style.parteEmail}>
+                    <p>RELATORIOOOOOOOOOOSSSSSSSS</p>
+                    
+                    {/* <div className={Style.parteEmail}>
                         <div className={Style.campoForm}>
 
                             <label htmlFor="NomeConsquista">Nome da Conquista</label>
                             <CampoTexto
                                 placeholder="Nome da Conquista"
-                                maxlength={100}
+                                maxlenght={100}
                                 onChange={(e) => setNomeConquista(e.target.value)}
                             />
                         </div>
@@ -231,7 +234,7 @@ const ConteudoAdm = () => {
                         <label htmlFor="XP">vale quanto de XP</label>
                         <CampoTexto placeholder="00"
                             type="number"
-                            maxlength={100}
+                            maxlenght={100}
                             onChange={(e) => setXP(e.target.value)}
                         />
                     </div>
@@ -239,10 +242,10 @@ const ConteudoAdm = () => {
                         <label htmlFor="Condicao">Condição da Conquista</label>
                         <CampoTexto placeholder="Condição"
                             type="text"
-                            maxlength={100}
+                            maxlenght={100}
                             onChange={(e) => setCondicao(e.target.value)}
                         />
-                    </div>
+                    </div> */}
 
                     <BotoesForm
                         texto="Adicionar"
@@ -260,7 +263,6 @@ const ConteudoAdm = () => {
                         segundoClick={configAtual.segundoClick}
                     />
                 )}
-            </div>
         </>
     )
 }

@@ -130,7 +130,7 @@ public class Anotacoes_fragment extends Fragment {
             }
         });//Interação com a imagem, levando a tela de editar anotação
 
-        imgLayoutLogo.setOnClickListener(new View.OnClickListener() {
+        /*imgLayoutLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -142,7 +142,7 @@ public class Anotacoes_fragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-        });//
+        });// */
 
 
         return view;

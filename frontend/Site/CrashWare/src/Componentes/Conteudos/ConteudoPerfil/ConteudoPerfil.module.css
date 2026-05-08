@@ -10,8 +10,9 @@
 
 .banner {
     width: 100%;
-    height: 190px;
-    position: relative;
+    height: 30vh;
+    top: 0;
+    position: absolute;
     overflow: hidden;
     background: linear-gradient(135deg, var(--gradiente1), var(--gradiente2), var(--gradiente3));
 }
@@ -34,11 +35,13 @@
     max-width: 1020px;
     padding: 0 20px;
     margin-top: -70px;
-    position: relative;
     z-index: 2;
     display: grid;
     grid-template-columns: 1fr 300px;
     gap: 14px;
+
+    position: absolute;
+    top: 30vh;
 }
 
 .apresentacao,
@@ -206,19 +209,19 @@
     grid-column: 1;
     padding: 18px 22px;
     color: var(--texto-principal);
-    animation: up 0.4s 0.14s cubic-bezier(0.22,1,0.36,1) both;
 }
 
 .Historico_Compras h1 {
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 11px;
+    font-weight: 900;
+    text-indent: 20px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--texto-secundario);
+    color: var(--texto-principal);
     opacity: 0.55;
     margin-bottom: 12px;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1.5px solid var(--borda);
 }
 
 .CompraRecente {
@@ -228,12 +231,8 @@
     padding: 11px 13px;
     background: rgba(255,255,255,0.04);
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid var(--borda);
     transition: border-color 0.2s;
-}
-
-.CompraRecente:hover { 
-    border-color: rgba(119,114,214,0.3); 
 }
 
 .CompraRecente img { 
@@ -251,7 +250,7 @@
 
 .DescricaoCompra p  { 
     font-size: 11px; 
-    color: var(--texto-secundario); 
+    color: var(--texto-principal); 
     opacity: 0.55; 
     margin-top: 2px; 
 }
@@ -295,41 +294,34 @@
     flex-direction: column;
     gap: 7px;
     flex: 1;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,0.08) transparent;
+    overflow-y: auto; 
 }
 
 .ItemConquista {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 16px;
     padding: 9px 11px;
-    background: rgba(255,255,255,0.03);
+    background: var(--bg-principal);
     border-radius: 9px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid var(--borda);
     position: relative; overflow: hidden;
     transition: transform 0.2s, border-color 0.2s;
     cursor: default;
 }
 .ItemConquista:hover { 
-    /* transform: translateX(3px);  */
-    border-color: rgba(255,255,255,0.12); 
-}
-
-.ItemConquista.software::before { 
-    background: linear-gradient(180deg, var(--gradiente2-conquistas), #7b6bfa); 
-}
-
-.ItemConquista.hardware::before { 
-    background: linear-gradient(180deg, var(--gradiente1-conquistas), var(--cor-primaria)); 
+    border-color: var(--borda);
+    background-color: var(--bg-terciario);
+    transition: 0.2s;
 }
 
 .ItemConquista img {
-    width: 32px; height: 32px; 
-    border-radius: 7px; 
+    width: 32px; 
+    height: 32px; 
+    border-radius: 20px; 
     object-fit: cover;
-    flex-shrink: 0; 
+    flex-shrink: 0;
+    border: 1px solid var(--borda); 
 }
 
 .ItemConquista > div {
@@ -338,8 +330,10 @@
 }
 
 .ItemConquista h6 {
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em; 
+    text-transform: uppercase;
     color: var(--texto-principal);
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     margin-bottom: 2px;
@@ -347,7 +341,7 @@
 
 .ItemConquista p {
     font-size: 10px;
-    color: var(--texto-secundario);
+    color: var(--texto-principal);
     opacity: 0.55;
     line-height: 1.3;
     overflow: hidden;
@@ -357,9 +351,9 @@
     margin-top: 10px;
     width: 100%; padding: 8px;
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.09);
+    border: 1px solid var(--borda);
     border-radius: 8px;
-    color: var(--texto-secundario);
+    color: var(--texto-principal);
     font-family: 'Montserrat', sans-serif;
     font-size: 10px; font-weight: 700;
     letter-spacing: 0.15em; text-transform: uppercase;
@@ -370,7 +364,7 @@
 .verTodas:hover { 
     opacity: 1; 
     border-color: var(--cor-primaria); 
-    color: var(--cor-primaria); 
+    color: var(--cor-primaria) !important; 
 }
 
 /* RESPONSIVO */
@@ -395,7 +389,7 @@
     }
 
     .banner { 
-        height: 150px; 
+        height: 36vh !important; 
     }
 
 }
@@ -403,12 +397,18 @@
 @media (max-width: 560px) {
     .container { 
         padding: 0 12px; 
-        gap: 10px; 
+        gap: 20px; 
         margin-top: -45px; 
+        top: 20vh;
     }
 
     .banner { 
-        height: 110px; 
+        width: 100%;
+        height: 20vh !important;
+        top: 0;
+        position: absolute;
+        overflow: hidden;
+        background: linear-gradient(135deg, var(--gradiente1), var(--gradiente2), var(--gradiente3));
     }
 
     .apresentacao { 

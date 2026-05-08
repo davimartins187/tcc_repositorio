@@ -12,70 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Header -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@color/branco"
-            android:elevation="10dp"
-            app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <!-- Logo -->
-            <ImageView
-                android:id="@+id/imgLayoutLogo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:contentDescription="logo"
-                android:src="@drawable/logo_sem_fundo"
-                app:layout_constraintStart_toStartOf="@id/header"
-                app:layout_constraintTop_toTopOf="@id/header"/>
-
-            <!-- Nome do App -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/righteous"
-                android:text="CRASHWARE"
-                android:textColor="@color/azul"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/imgLayoutLogo"
-                app:layout_constraintTop_toTopOf="@id/imgLayoutLogo"/>
-
-            <!-- Sininho -->
-            <ImageView
-                android:id="@+id/layoutSino"
-                android:layout_width="30dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
-                android:contentDescription="logo"
-                android:src="@drawable/sino_icon"
-                app:layout_constraintEnd_toEndOf="@id/header"
-                app:layout_constraintTop_toTopOf="@id/header"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <!-- Escolha do percurso -->
         <TextView
             android:id="@+id/txtEscolhaAprendizagem"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/righteous"
+            android:fontFamily="@font/battambang_bold"
+            android:lineSpacingExtra="-15sp"
             android:text="Escolha um percurso de aprendizagem:"
             android:textAlignment="center"
             android:textColor="#0F172A"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Card Software -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,48 +34,49 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:padding="12dp"
+            android:paddingBottom="12dp"
             android:background="@drawable/bg_card"
             app:layout_constraintTop_toBottomOf="@id/txtEscolhaAprendizagem"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- Imagem Software -->
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="65dp"
-                android:src="@drawable/codigo_icon"
-                app:tint="@color/verde"
-                app:layout_constraintStart_toStartOf="@id/card"
-                app:layout_constraintTop_toTopOf="@id/card" />
+            <!-- Gradiente -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/gradientSoftware"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:background="@drawable/bg_gradientesoftware"
+                android:elevation="10dp"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Escrito Software -->
-            <TextView
-                android:id="@+id/txtSoftware"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="60dp"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/inter_extrabold"
-                android:text="Software"
-                android:textAlignment="center"
-                android:textColor="@color/verde"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="@id/card"
-                app:layout_constraintTop_toTopOf="@id/card" />
+                <!-- Imagem Software -->
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="65dp"
+                    android:src="@drawable/codigo_icon"
+                    app:tint="@color/branco"
+                    app:layout_constraintStart_toStartOf="@id/gradientSoftware"
+                    app:layout_constraintTop_toTopOf="@id/gradientSoftware" />
 
-            <!-- Barra -->
-            <View
-                android:id="@+id/barraS"
-                android:layout_width="280dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="#0F172A"
-                app:layout_constraintTop_toBottomOf="@id/txtSoftware"
-                app:layout_constraintStart_toStartOf="@id/card"
-                app:layout_constraintEnd_toEndOf="@id/card"/>
+                <!-- Escrito Software -->
+                <TextView
+                    android:id="@+id/txtSoftware"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="60dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/inter_extrabold"
+                    android:text="Software"
+                    android:textAlignment="center"
+                    android:textColor="@color/branco"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="@id/gradientSoftware"
+                    app:layout_constraintTop_toTopOf="@id/gradientSoftware" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Texto Explicativo -->
             <TextView
@@ -138,16 +90,16 @@
                 android:textAlignment="center"
                 android:textColor="@color/azul"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/btnExplorarS"
                 app:layout_constraintEnd_toEndOf="@id/card"
                 app:layout_constraintStart_toStartOf="@id/card"
-                app:layout_constraintTop_toBottomOf="@id/barraS"
-                app:layout_constraintBottom_toTopOf="@id/btnExplorarS"/>
+                app:layout_constraintTop_toBottomOf="@id/gradientSoftware" />
 
             <Button
                 android:id="@+id/btnExplorarS"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:background="@drawable/bg_botaosborda"
+                android:background="@drawable/bg_gradientesoftware"
                 app:backgroundTint="@null"
                 app:backgroundTintMode="add"
                 android:layout_marginBottom="10dp"
@@ -169,48 +121,48 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:padding="12dp"
+            android:paddingBottom="12dp"
             android:background="@drawable/bg_card"
             app:layout_constraintTop_toBottomOf="@id/card"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- Imagem Software -->
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="60dp"
-                android:src="@drawable/hardware_icon"
-                app:tint="@color/verde"
-                app:layout_constraintStart_toStartOf="@id/card1"
-                app:layout_constraintTop_toTopOf="@id/card1" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/gradientHardware"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:elevation="10dp"
+                android:background="@drawable/bg_gradientehardware"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Escrito Software -->
-            <TextView
-                android:id="@+id/txtHardware"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="60dp"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/inter_extrabold"
-                android:text="Hardware"
-                android:textAlignment="center"
-                android:textColor="@color/verde"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="@id/card1"
-                app:layout_constraintTop_toTopOf="@id/card1" />
+                <!-- Imagem Software -->
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="60dp"
+                    android:src="@drawable/hardware_icon"
+                    app:tint="@color/branco"
+                    app:layout_constraintStart_toStartOf="@id/gradientHardware"
+                    app:layout_constraintTop_toTopOf="@id/gradientHardware" />
 
-            <!-- Barra -->
-            <View
-                android:id="@+id/barraH"
-                android:layout_width="280dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="#0F172A"
-                app:layout_constraintTop_toBottomOf="@id/txtHardware"
-                app:layout_constraintStart_toStartOf="@id/card1"
-                app:layout_constraintEnd_toEndOf="@id/card1"/>
+                <!-- Escrito Software -->
+                <TextView
+                    android:id="@+id/txtHardware"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="60dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/inter_extrabold"
+                    android:text="Hardware"
+                    android:textAlignment="center"
+                    android:textColor="@color/branco"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="@id/gradientHardware"
+                    app:layout_constraintTop_toTopOf="@id/gradientHardware" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Texto Explicativo -->
             <TextView
@@ -225,13 +177,13 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@id/card1"
                 app:layout_constraintStart_toStartOf="@id/card1"
-                app:layout_constraintTop_toBottomOf="@id/barraH" />
+                app:layout_constraintTop_toBottomOf="@id/gradientHardware" />
 
             <Button
                 android:id="@+id/btnExplorarH"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:background="@drawable/bg_botaosborda"
+                android:background="@drawable/bg_gradientehardware"
                 app:backgroundTint="@null"
                 app:backgroundTintMode="add"
                 android:layout_marginTop="10dp"

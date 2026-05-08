@@ -4,7 +4,7 @@ export function sleep(ms) {
 }
 
 //Sair da conta
-export async function SairDaConta(setToken,setRefresh){
+export async function SairDaConta(setToken,setRefresh,setDados){
 
      //Deleto o token do LocalStorage
     await localStorage.removeItem("token");
@@ -12,7 +12,11 @@ export async function SairDaConta(setToken,setRefresh){
     //Deleto o refresh_token do LocalStorage
     await localStorage.removeItem("refresh_token");
 
+    //Deleto as informações do usuario do localStorage
+    await localStorage.removeItem("dados");
 
+    //Faço com que o site entenda que precisara buscar as informações denovo
+    localStorage.setItem("info",false)
 
     //Deleto o ID do LocalStorage
     // await localStorage.removeItem("id");
@@ -20,9 +24,8 @@ export async function SairDaConta(setToken,setRefresh){
     //Faço com que o react renderize as informações
     setToken(null);
     setRefresh(null);
+    setDados(null);
     // setId(null);
-
-
 
     //Levo para a tela inicial
     window.location.href = '/'
@@ -706,7 +709,7 @@ export class Api
                                 {
                                     const erro = await response_refresh.json();
 
-                                    console.log(erro.detail)
+                                    console.log("Erro da API", erro.detail)
                                 }else
                                 {
                                     const dados = await response_refresh.json();
@@ -722,7 +725,7 @@ export class Api
                                 }
 
                             }catch (error) {
-                                console.log(error)
+                                console.log("Erro da requisição ",error)
                             }        
                         }
                 }

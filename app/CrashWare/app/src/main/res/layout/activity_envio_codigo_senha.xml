@@ -203,8 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/righteous"
-                android:text="Reenvio em
-                29 segundos"
+                android:text=""
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="?attr/colorOnSurface"

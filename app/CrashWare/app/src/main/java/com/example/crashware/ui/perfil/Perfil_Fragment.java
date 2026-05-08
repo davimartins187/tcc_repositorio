@@ -23,9 +23,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 
 public class Perfil_Fragment extends Fragment {
 
-    TextView txtQuantDiasSeguidos,txtNomePerfil, txtQuantXP,txtPatente,txtQuantGemas, txtVerTodasConquistas;
+    TextView txtNomePerfil, txtQuantXP,txtPatente,txtQuantGemas, txtVerTodasConquistas;
 
-    ImageView imgConfigPerfil, imgLayoutLogo, imgMudarFotoBanner,imgMudarFotoPerfil;
+    ImageView imgConfigPerfil;
 
     ShapeableImageView imgFotoPerfil, imgBanner;
 
@@ -93,13 +93,11 @@ public class Perfil_Fragment extends Fragment {
         txtPatente            = view.findViewById(R.id.txtPatente           );
         txtQuantGemas         = view.findViewById(R.id.txtQuantGemas        );
         txtQuantXP            = view.findViewById(R.id.txtQuantXP           );
-        txtQuantDiasSeguidos  = view.findViewById(R.id.txtQuantDiasSeguidos );
         txtVerTodasConquistas = view.findViewById(R.id.txtVerTodasConquistas);
         imgFotoPerfil         = view.findViewById(R.id.imgFotoPerfil        );
         imgConfigPerfil       = view.findViewById(R.id.imgConfigPerfil      );
-        imgLayoutLogo         = view.findViewById(R.id.imgLayoutLogo        );
-        imgMudarFotoBanner    = view.findViewById(R.id.imgMudarFotoBanner   );
-        imgMudarFotoPerfil    = view.findViewById(R.id.imgMudarFotoPerfil   );
+        imgBanner             = view.findViewById(R.id.imgBanner            );
+        imgFotoPerfil         = view.findViewById(R.id.imgFotoPerfil        );
         imgBanner             = view.findViewById(R.id.imgBanner            );
 
 
@@ -139,7 +137,7 @@ public class Perfil_Fragment extends Fragment {
             }
         });// interação com a imagem que leva para a tela de configurações
 
-        imgLayoutLogo.setOnClickListener(new View.OnClickListener() {
+        /*imgLayoutLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -151,11 +149,10 @@ public class Perfil_Fragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-        });// interação com a imagem que leva de volta para a home/tela de inicio
+        });// interação com a imagem que leva de volta para a home/tela de inicio*/
 
 
-
-        imgMudarFotoPerfil.setOnClickListener(new View.OnClickListener() {
+        imgFotoPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -165,7 +162,7 @@ public class Perfil_Fragment extends Fragment {
             }
         });//
 
-        imgMudarFotoBanner.setOnClickListener(new View.OnClickListener() {
+        imgBanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {

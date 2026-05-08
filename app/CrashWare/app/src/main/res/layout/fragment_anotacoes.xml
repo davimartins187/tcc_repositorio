@@ -16,92 +16,57 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@color/branco"
+            android:layout_marginTop="5dp"
+            android:layout_height="90dp"
+            android:background="@drawable/bg_gradienteanotacoes"
             android:elevation="10dp"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Logo -->
-            <ImageView
-                android:id="@+id/imgLayoutLogo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:contentDescription="logo"
-                android:src="@drawable/logo_sem_fundo"
-                app:layout_constraintStart_toStartOf="@id/header"
-                app:layout_constraintTop_toTopOf="@id/header"/>
-
-            <!-- Nome do App -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginStart="10dp"
+            <!-- Titulo Software -->
+            <LinearLayout
+                android:id="@+id/NomeAnotacoes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/righteous"
-                android:text="CRASHWARE"
-                android:textColor="@color/azul"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/imgLayoutLogo"
-                app:layout_constraintTop_toTopOf="@id/imgLayoutLogo"/>
+                android:elevation="10dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/header">
 
-            <!-- Sininho -->
-            <ImageView
-                android:id="@+id/layoutSino"
-                android:layout_width="30dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
-                android:contentDescription="logo"
-                android:src="@drawable/sino_icon"
-                app:layout_constraintEnd_toEndOf="@id/header"
-                app:layout_constraintTop_toTopOf="@id/header"/>
+                <!-- Imagem Software -->
+                <ImageView
+                    android:id="@+id/imgAnotacoes"
+                    android:layout_marginEnd="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/marcacao_livro_icon"
+                    app:tint="@color/branco" />
+
+                <!-- Escrito Software -->
+                <TextView
+                    android:id="@+id/txtAnotacoes"
+                    android:layout_marginStart="-5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_extrabold"
+                    android:text="Anotações"
+                    android:textAlignment="center"
+                    android:textColor="@color/branco"
+                    android:textSize="40dp" />
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- Titulo Software -->
-        <LinearLayout
-            android:id="@+id/NomeAnotacoes"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:outlineProvider="background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header">
-
-            <!-- Imagem Software -->
-            <ImageView
-                android:id="@+id/imgAnotacoes"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/marcacao_livro_icon"
-                app:tint="@color/azul" />
-
-            <!-- Escrito Software -->
-            <TextView
-                android:id="@+id/txtAnotacoes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-5dp"
-                android:fontFamily="@font/inter_extrabold"
-                android:text="Anotações"
-                android:textAlignment="center"
-                android:textColor="@color/azul"
-                android:textSize="40dp" />
-        </LinearLayout>
 
         <!-- Barra de Pesquisa -->
         <EditText
             android:id="@+id/txtBarraPesquisa"
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
             android:layout_height="40dp"
-            android:background="@drawable/bg_carddias"
+            android:background="@drawable/bg_cards"
             android:textColor="@color/preto"
             android:layout_marginTop="20dp"
             android:layout_marginStart="55dp"
@@ -113,7 +78,7 @@
             android:paddingEnd="20dp"
             android:hint="Pesquise"
             android:textColorHint="@color/azul"
-            app:layout_constraintTop_toBottomOf="@id/NomeAnotacoes"
+            app:layout_constraintTop_toBottomOf="@id/header"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -317,11 +282,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-20dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="-20dp"
             android:padding="10dp"
             android:background="@drawable/bg_botaoaddanotacao"
             app:layout_constraintTop_toBottomOf="@id/cardAnotacao3"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="@id/cardAnotacao3">
 
             <!-- Adicionar Anotacao -->
             <ImageView

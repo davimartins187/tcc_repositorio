@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
 
         //Verifico o token
         const usuario = new Api();
-        const token_vencido = await usuario.Verificar_Token(token,Navegacao)
+        await usuario.Verificar_Token(token,Navegacao)
 
 
     }

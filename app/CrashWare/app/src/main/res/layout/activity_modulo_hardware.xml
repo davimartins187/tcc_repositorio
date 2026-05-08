@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ModuloHardware"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -16,96 +17,106 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@color/branco"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gradientehardwareaula"
             android:elevation="10dp"
+            android:paddingBottom="25dp"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Logo -->
-            <ImageView
-                android:id="@+id/imgLayoutLogo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/volarEscolhaMateria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:contentDescription="logo"
-                android:src="@drawable/logo_sem_fundo"
-                app:layout_constraintStart_toStartOf="@id/header"
-                app:layout_constraintTop_toTopOf="@id/header"/>
+                android:layout_marginStart="20dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_voltarbranco"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-            <!-- Nome do App -->
+                <!-- Voltar Anotacao -->
+                <ImageView
+                    android:id="@+id/imgVoltarH"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:tint="#86CE01"
+                    android:src="@drawable/seta_icon"
+                    app:layout_constraintStart_toStartOf="@id/volarEscolhaMateria"
+                    app:layout_constraintEnd_toEndOf="@id/volarEscolhaMateria"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Voltar -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/righteous"
-                android:text="CRASHWARE"
-                android:textColor="@color/azul"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/imgLayoutLogo"
-                app:layout_constraintTop_toTopOf="@id/imgLayoutLogo"/>
+                android:text="Voltar"
+                android:textColor="@color/branco"
+                android:textSize="22sp"
+                app:layout_constraintStart_toEndOf="@id/volarEscolhaMateria"
+                app:layout_constraintTop_toTopOf="@id/volarEscolhaMateria"/>
 
-            <!-- Sininho -->
-            <ImageView
-                android:id="@+id/layoutSino"
-                android:layout_width="30dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
-                android:contentDescription="logo"
-                android:src="@drawable/sino_icon"
-                app:layout_constraintEnd_toEndOf="@id/header"
-                app:layout_constraintTop_toTopOf="@id/header"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- Titulo Software -->
-        <LinearLayout
-            android:id="@+id/NomeModuloH"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:outlineProvider="background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header">
-
-            <!-- Imagem Hardware -->
-            <ImageView
-                android:id="@+id/imgHardwareAula"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/hardware_icon"
-                app:tint="@color/verde" />
-
-            <!-- Escrito Hardware -->
-            <TextView
-                android:id="@+id/txtHardware"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/txtInfoHardware"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="-5dp"
-                android:fontFamily="@font/inter_extrabold"
-                android:text="Hardware"
-                android:textAlignment="center"
-                android:textColor="@color/verde"
-                android:textSize="50dp" />
-        </LinearLayout>
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/volarEscolhaMateria">
+
+                <!-- Logo -->
+                <ImageView
+                    android:id="@+id/imgLayoutLogo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="logo"
+                    android:src="@drawable/logohardware_icon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:orientation="vertical">
+
+                    <!-- Título Hardware -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/righteous"
+                        android:text="Hardware"
+                        android:textColor="@color/branco"
+                        android:textSize="48sp" />
+
+                    <!-- Descritivo -->
+                    <TextView
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Desvende a arquitetura das máquinas de forma acessível."
+                        android:textColor="@color/branco"
+                        android:textSize="15sp"
+                        android:lineSpacingExtra="2dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Card Introdução -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cardIntroducaoH"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:padding="20dp"
-            android:background="@drawable/bg_card"
-            app:layout_constraintTop_toBottomOf="@id/NomeModuloH"
+            android:background="@drawable/bg_cards"
+            app:layout_constraintTop_toBottomOf="@id/header"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -117,6 +128,7 @@
                 android:layout_marginTop="-5dp"
                 android:fontFamily="@font/inter_extrabold"
                 android:text="Introdução"
+                android:textAllCaps="true"
                 android:textAlignment="center"
                 android:textColor="@color/azul"
                 android:textSize="20sp"
@@ -131,7 +143,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
-                android:background="#0F172A"
+                android:background="#9FA7BB"
                 app:layout_constraintTop_toBottomOf="@id/txtTituloModulo1H"
                 app:layout_constraintStart_toStartOf="@id/cardIntroducaoH"
                 app:layout_constraintEnd_toEndOf="@id/cardIntroducaoH"/>
@@ -143,7 +155,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaconcluida_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula1M1H"
                 app:layout_constraintStart_toStartOf="@id/cardIntroducaoH"
                 app:layout_constraintTop_toBottomOf="@id/barraM1H" />
@@ -171,7 +183,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaconcluida_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula2M1H"
                 app:layout_constraintStart_toStartOf="@id/cardIntroducaoH"
                 app:layout_constraintTop_toBottomOf="@id/imgLivro1M1H" />
@@ -201,7 +213,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:padding="20dp"
-            android:background="@drawable/bg_card"
+            android:background="@drawable/bg_cards"
             app:layout_constraintTop_toBottomOf="@id/cardIntroducaoH"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -213,8 +225,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-5dp"
                 android:fontFamily="@font/inter_extrabold"
-                android:text="Fundamentos de Hardware"
+                android:text="Fundamentos"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/azul"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@id/cardFundamentosHardware"
@@ -228,7 +241,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
-                android:background="#0F172A"
+                android:background="#9FA7BB"
                 app:layout_constraintTop_toBottomOf="@id/txtTituloModulo2H"
                 app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
                 app:layout_constraintEnd_toEndOf="@id/cardFundamentosHardware"/>
@@ -240,7 +253,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaassistir_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula1M2H"
                 app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
                 app:layout_constraintTop_toBottomOf="@id/barraM2H" />
@@ -268,7 +281,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaassistir_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula2M2H"
                 app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
                 app:layout_constraintTop_toBottomOf="@id/imgLivro1M2H" />
@@ -296,7 +309,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaassistir_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula3M2H"
                 app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
                 app:layout_constraintTop_toBottomOf="@id/imgLivro2M2H" />
@@ -324,7 +337,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaassistir_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula4M2H"
                 app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
                 app:layout_constraintTop_toBottomOf="@id/imgLivro3M2H" />
@@ -356,7 +369,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:padding="20dp"
-            android:background="@drawable/bg_card"
+            android:background="@drawable/bg_cards"
             app:layout_constraintTop_toBottomOf="@id/cardFundamentosHardware"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -368,10 +381,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-5dp"
                 android:fontFamily="@font/inter_extrabold"
-                android:text="Componentes Internos"
+                android:text="Componentes"
                 android:textAlignment="center"
                 android:textColor="@color/azul"
                 android:textSize="20sp"
+                android:textAllCaps="true"
                 app:layout_constraintEnd_toEndOf="@id/cardComponentesInternos"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/cardComponentesInternos" />
@@ -383,7 +397,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
-                android:background="#0F172A"
+                android:background="#9FA7BB"
                 app:layout_constraintTop_toBottomOf="@id/txtTituloModulo3H"
                 app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
                 app:layout_constraintEnd_toEndOf="@id/cardComponentesInternos"/>
@@ -395,7 +409,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaassistir_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula1M3H"
                 app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
                 app:layout_constraintTop_toBottomOf="@id/barraM3H" />
@@ -423,7 +437,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaassistir_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula2M3H"
                 app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
                 app:layout_constraintTop_toBottomOf="@id/imgLivro1M3H" />
@@ -451,7 +465,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaassistir_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula3M3H"
                 app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
                 app:layout_constraintTop_toBottomOf="@id/imgLivro2M3H" />
@@ -479,7 +493,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaassistir_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula4M3H"
                 app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
                 app:layout_constraintTop_toBottomOf="@id/imgLivro3M3H" />
@@ -507,7 +521,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaassistir_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula5M3H"
                 app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
                 app:layout_constraintTop_toBottomOf="@id/imgLivro4M3H" />
@@ -535,7 +549,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/livro2_icon"
+                android:src="@drawable/aulaassistir_icon"
                 app:layout_constraintEnd_toStartOf="@+id/txtTituloAula6M3H"
                 app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
                 app:layout_constraintTop_toBottomOf="@id/imgLivro5M3H" />

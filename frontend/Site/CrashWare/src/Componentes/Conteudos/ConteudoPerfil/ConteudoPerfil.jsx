@@ -22,12 +22,11 @@ const CONQUISTAS_MOCK = [
     { id: 6, titulo: 'Conquista de Hardware', descricao: 'Descrição super divertida sobre a aula concluída para adquirir a conquista.', tipo: 'hardware' },
 ]
 
-const ConteudoPerfil = () => {
+const ConteudoPerfil =  () => {
 
     const [dados, setDados] = useState(() =>
         JSON.parse(localStorage.getItem("dados")) || null
     );
-
 
 
     const informacoes = localStorage.getItem("info")
@@ -35,18 +34,16 @@ const ConteudoPerfil = () => {
     if(informacoes == "false")
     {
         //Faço a requisição no banco
-        const dados = new Usuario();
-        dados.perfil(setDados);
-        
+        const cliente = new Usuario();
+        cliente.perfil(setDados);
         
     }
     //Pego as informações do usuario
-    const usuario = JSON.parse(localStorage.getItem("dados"));
+    const usuario =  JSON.parse(localStorage.getItem("dados"));
 
-    
 
-    //Precisa tratar a data GABRIEL
-    const DataCadastro = usuario.criado_em;
+    //Trata a data do mês
+    const DataCadastro = usuario?.criado_em;
 
     const formatarData = (DataCadastro) => {
     const [dia, mes, ano] = DataCadastro.split('/');
@@ -71,26 +68,25 @@ const ConteudoPerfil = () => {
     const Navegacao = useNavigate();
 
     // muda a foto
-    const [foto, setFoto] = useState(FotoPadrao);
+    const [foto, setFoto] = useState(usuario?.foto);
+
     const inputRef = useRef();
 
     const [ofensiva, setOfensiva] = useState(0);
-    const [xp, setXp] = useState(0);
+    const [xp, setXp] = useState(usuario?.xp || 0);
     const [conquistas, setConquistas] = useState(CONQUISTAS_MOCK);
     const [totalCompras, setTotalCompras] = useState(0);
     const [totalGemas, setTotalGemas] = useState(0);
 
     const XpMax = 500;
-
-    const Nivel = dados?.patente || 0;
-    const nome  = dados?.nome    || "Usuário";
+    const Nivel = usuario?.nivel || 0;
+    const nome  = usuario?.nome  || "Usuário";
 
     const xpAtual    = xp % XpMax;
-    const porcentagem = (220 / XpMax) * 100;
+    const porcentagem = (xp / XpMax) * 100;
 
-    const [token_state,         setToken]   = useState(() => localStorage.getItem("token"));
-    const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
-
+    
+    //  QUERO SABER QUEM FOI
     useEffect(() => {
         const informacoes = localStorage.getItem("info");
         if (informacoes === "false") {
@@ -99,7 +95,7 @@ const ConteudoPerfil = () => {
         }
     }, []);
 
-    if (!dados) {
+    if (!usuario) {
         return (
             <div className={style.corpo} style={{ justifyContent: 'center' }}>
                 <span style={{ color: '#8b90a0', letterSpacing: '0.1em', fontSize: '13px' }}>
@@ -108,6 +104,12 @@ const ConteudoPerfil = () => {
             </div>
         );
     }
+
+    if(foto === null)
+    {
+        foto = "default.png"
+    }
+
 
     return (
         <div className={style.corpo}>
@@ -122,7 +124,7 @@ const ConteudoPerfil = () => {
                 <div className={style.apresentacao}>
                     <img
                         className={style.foto}
-                        src={foto}
+                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${usuario?.foto}`}
                         alt="Foto de perfil"
                         onClick={() => inputRef.current.click()}
                     />
@@ -135,8 +137,28 @@ const ConteudoPerfil = () => {
                         onChange={(e) => {
                             const arquivo = e.target.files[0];
                             if (arquivo) {
-                                const url = URL.createObjectURL(arquivo);
-                                setFoto(url);
+                                //Salva por enqaunto a imagem no navegador
+                                const novaFoto = URL.createObjectURL(arquivo);
+                                setFoto(novaFoto);
+
+
+                                //Salvo como arquivo
+                                const conteudo = new FormData();
+                                conteudo.append("foto", arquivo);
+
+                                if(foto == 'default.png')
+                                {
+                                    //Adiciono a foto
+                                    //Precisa mandar como parâmetro o setFoto(GABRIEL)
+                                    const foto_usuario = new Usuario();
+                                    foto_usuario.adicionar_foto(conteudo);
+                                    
+                                }else
+                                {
+                                    //Ignora por enquanto
+
+                                    //Rota de alterar foto
+                                }
                             }
                         }}
                     />
@@ -206,13 +228,6 @@ const ConteudoPerfil = () => {
                             <p>Para quando o modo escuro não for suficiente</p>
                         </div>
                     </div>
-
-                    {/* <div>
-                        <BotoesForm
-                            onClick={() => SairDaConta(setToken, setRefresh)}
-                            texto="Sair da conta"
-                        />
-                    </div> */}
                 </div>
 
                 {/* ── Painel Direito: Conquistas ─────────────── */}
@@ -237,7 +252,7 @@ const ConteudoPerfil = () => {
                         </div>
 
                         <button className={style.verTodas}>
-                            Ver todas as conquistas
+                            <p>Ver todas as conquistas</p>
                         </button>
                     </div>
                 </div>

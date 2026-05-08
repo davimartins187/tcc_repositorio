@@ -1,6 +1,7 @@
 package com.example.crashware.ui.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -29,12 +30,18 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 //Permite eu pegar o valor do erro
 import org.json.JSONObject;
 
+
+
 public class Login extends AppCompatActivity {
+
+    //Memória do app
+    SharedPreferences prefs;
 
     Button btnEntrar;
     ImageView imgOlho;
@@ -43,6 +50,9 @@ public class Login extends AppCompatActivity {
     TextView txtEsqueceu, txtCadastre;
 
     // Dados que vai para a API:
+
+
+    //Login
     class LoginRequest {
         String email;
         String senha;
@@ -53,7 +63,10 @@ public class Login extends AppCompatActivity {
         }
     }
 
+
+
     // Armazena a resposta da API:
+    //Login
     class LoginResponse {
         String token;
         String refresh_token;
@@ -71,24 +84,53 @@ public class Login extends AppCompatActivity {
     }
 
 
+    //Token
+    class TokenResponse{
+        Integer id;
+
+        public Integer getId() {
+            return id;
+        }
+
+    }
+
+
     // INTERFACE da API:
+    //Login
     interface login {
         @POST("/auth/login")
         Call<LoginResponse> logar(@Body LoginRequest Loginrequest);
+    }
+
+    //Token
+    interface token {
+        @POST("/auth/verificar_token")
+        Call<TokenResponse> verificar(
+                @Header("Authorization") String token
+        );
     }
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Criando arquivo na memoria do app "CrashWare"
+        prefs = getSharedPreferences("CrashWare", MODE_PRIVATE);
+
+        //Verificando Token
+        Verificar_Token();
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.login);
 
+
+
         //  Iniciando layout
         btnEntrar     = (Button)    findViewById(R.id.btnEntrarCad      );
         txtCadastre   = (TextView)  findViewById(R.id.txtCadastreLogin  );
-        imgOlho       = (ImageView) findViewById(R.id.imgOlho           );
+        imgOlho       = (ImageView) findViewById(R.id.imgOlhoNovaSenha);
         txtEsqueceu   = (TextView)  findViewById(R.id.txtEsqueceu       );
         txtEmailLogin = (EditText)  findViewById(R.id.txtEmailLogin     );
         txtSenhaLogin = (EditText)  findViewById(R.id.txtSenhaLogin     );
@@ -154,6 +196,74 @@ public class Login extends AppCompatActivity {
 
     }//
 
+
+    //Verifico o token
+    private void Verificar_Token(){
+        //Pego o valor do token
+        String token = prefs.getString("token",null);
+
+        //Preparo ele para enviar para o header da requisição
+        token = "Bearer " + token;
+
+        // Criando a API
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api-crashware.onrender.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        //
+
+        // Fazendo que a interface da API seja utilizavel:
+        token api = retrofit.create(token.class);
+
+        // Monto a chamada da API:
+        Call<TokenResponse> requisicao = api.verificar(token);
+
+        requisicao.enqueue(new Callback<TokenResponse>() {
+            @Override
+            public void onResponse(
+                    Call<TokenResponse> requisicao,
+                    retrofit2.Response<TokenResponse> resposta
+            ) {//Se o token for valido
+                if (resposta.isSuccessful()) {
+                    //Pego o ID
+                    TokenResponse dados = resposta.body();
+                    if (dados != null && dados.getId() != null) {
+                        Integer id = dados.getId();
+
+                        //Salvo no SharedPreferences
+                        prefs.edit()
+                                .putInt("id", id)
+                                .apply();
+
+
+                        // Envia para a tela de HOME:
+                        Intent i = new Intent(Login.this, Home.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        //Ignora
+                        Toast.makeText(Login.this, "ID do usuário não encontrado", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TokenResponse> call, Throwable t) {
+                // Caso deu erro na requisição
+                // erro de conexão (internet, URL, servidor fora)
+                Toast.makeText(
+                        Login.this,
+                        "Erro de conexão: " + t.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+        });
+
+
+
+    }
+
     private void Logar()
     {
 
@@ -208,10 +318,13 @@ public class Login extends AppCompatActivity {
         login api = retrofit.create(login.class);
 
 
+
         // Monto a chamada da API:
 
         //login
         Call<LoginResponse> requisicao = api.logar(dados);
+
+
 
 
         // executo a requisicao:
@@ -230,6 +343,7 @@ public class Login extends AppCompatActivity {
 
                     //Mostra esse erro:
                     Toast.makeText(Login.this, "EMAIL NAO VERIFICADO", Toast.LENGTH_SHORT).show();
+
 
                     // Envia para a tela de VERIFICAR EMAIL:
                     Intent i = new Intent(Login.this, ConfirmarIdentidade.class);
@@ -263,10 +377,15 @@ public class Login extends AppCompatActivity {
 
                 }else{
                     //Pego o token da API
-                    Login.LoginResponse dados = resposta.body();
+                    LoginResponse dados = resposta.body();
                     String token = dados.getToken();
                     String refresh_token = dados.getRefresh_token();
 
+                    //Salvo o valor no SharedPreferences
+                    prefs.edit()
+                            .putString("token",token)
+                            .putString("refresh_token",refresh_token)
+                            .apply();
 
 
                     //Vai para a HOME:

@@ -4,9 +4,12 @@ import static android.widget.Toast.LENGTH_LONG;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +41,7 @@ public class RedefinirSenha extends AppCompatActivity {
 
     EditText txtCampoNovaSenha, txtCampoConfirmarNovaSenha;
 
+    ImageView imgOlhoNovaSenha,imgConfirmarOlhoNovaSenha;
     String emailUsuario;
 
 
@@ -81,9 +85,66 @@ public class RedefinirSenha extends AppCompatActivity {
         btnConfirmarNovaSenha      = findViewById(R.id.btnConfirmarNovaSenha     );
         txtCampoNovaSenha          = findViewById(R.id.txtCampoNovaSenha         );
         txtCampoConfirmarNovaSenha = findViewById(R.id.txtCampoConfirmarNovaSenha);
+        imgOlhoNovaSenha           = findViewById(R.id.imgOlhoNovaSenha          );
+        imgConfirmarOlhoNovaSenha  = findViewById(R.id.imgOlhoConfirmarNovaSenha );
 
         //Pega o email da outra tela
         emailUsuario = getIntent().getStringExtra("email_usuario");
+
+        imgOlhoNovaSenha.setOnClickListener(new View.OnClickListener()
+        {
+            boolean visivel = false;
+
+            @Override
+            public void onClick(View v) {
+
+                if (visivel)
+                {
+                    txtCampoNovaSenha.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    imgOlhoNovaSenha.setImageResource(R.drawable.olho_icon);
+                    visivel = false;
+                }
+
+                else
+                {
+                    txtCampoNovaSenha.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    imgOlhoNovaSenha.setImageResource(R.drawable.olhofechado_icon);
+                    visivel = true;
+                }
+
+                txtCampoNovaSenha.setSelection(txtCampoNovaSenha.getText().length());
+            }
+        });//click na imagem de mostrar/esconder senha,
+        //seta a imagem para tal, e muda para que esconda ou mostre a senha
+
+        imgConfirmarOlhoNovaSenha.setOnClickListener(new View.OnClickListener()
+        {
+            boolean visivel = false;
+
+            @Override
+            public void onClick(View v)
+            {
+
+                if (visivel)
+                {
+                    txtCampoConfirmarNovaSenha.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    imgConfirmarOlhoNovaSenha.setImageResource(R.drawable.olho_icon);
+                    visivel = false;
+                }
+
+                else
+                {
+                    txtCampoConfirmarNovaSenha.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    imgConfirmarOlhoNovaSenha.setImageResource(R.drawable.olhofechado_icon);
+                    visivel = true;
+                }
+
+                txtCampoConfirmarNovaSenha.setSelection(txtCampoConfirmarNovaSenha.getText().length());
+            }
+        });//click na imagem de mostrar/esconder senha,
+        //seta a imagem para tal, e muda para que esconda ou mostre a senha, so que na confirmação
+
+
 
 
         btnConfirmarNovaSenha.setOnClickListener(new View.OnClickListener() {

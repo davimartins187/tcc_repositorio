@@ -35,6 +35,10 @@ const ConteudoHome = () => {
                             ></div>
                         </div>
                     </div>
+                    
+                    <div className={style.trilhas}>
+
+                    </div>
                 </div>
             </div>
         </div>

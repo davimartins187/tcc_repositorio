@@ -38,11 +38,6 @@ const Cabecalho = ({ children }) => {
         </header>
 
         <Sidebar aberto={aberto} onFechar={() => setAberto(false)} />
-
-        <div style={{
-          height: aberto ? '160px' : '90px',
-          transition: 'height 0.3s ease'
-        }} />
     </>
   );
 };

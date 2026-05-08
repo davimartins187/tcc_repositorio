@@ -3,7 +3,7 @@ import { ConteudoAlterarSenha } from "../../Componentes/Conteudos/ConteudoAltera
 const PgAlterarSenha = () =>{
     return(
         <ConteudoAlterarSenha />
-    )
-}
+    );
+};
 
 export { PgAlterarSenha }

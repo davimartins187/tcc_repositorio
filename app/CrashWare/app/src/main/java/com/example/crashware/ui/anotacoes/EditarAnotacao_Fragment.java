@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.crashware.R;
@@ -22,9 +23,11 @@ public class EditarAnotacao_Fragment extends Fragment {
 
     Button btnEditarAnotacao;
 
-    EditText txtAnotacao;
+    EditText txtAnotacao, txtTituloAnotacao;
 
     Boolean EstadoAnotacao;
+
+    ImageView imgVoltarAnotacoes;
 
 
 
@@ -32,7 +35,6 @@ public class EditarAnotacao_Fragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -73,13 +75,32 @@ public class EditarAnotacao_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_editar_anotacao, container, false);
 
-        txtAnotacao = view.findViewById(R.id.txtAnotacao);
-        btnEditarAnotacao = view.findViewById(R.id.btnEditarAnotacao);
+        txtAnotacao        = view.findViewById(R.id.txtAnotacao          );
+        txtTituloAnotacao = view.findViewById(R.id.txtTituloAnotacao     );
+        btnEditarAnotacao  = view.findViewById(R.id.btnEditarAnotacao    );
+        imgVoltarAnotacoes = view.findViewById(R.id.imgVoltarNovaAnotacao);
+
 
         EstadoAnotacao = (false);
         txtAnotacao.setEnabled(false);
+        txtTituloAnotacao.setEnabled(false);
 
-        btnEditarAnotacao.setOnClickListener(new View.OnClickListener() {
+        imgVoltarAnotacoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                requireActivity()//puxa o fragment atual
+                        .getSupportFragmentManager()//acessa o gerenciador das fragments
+                        .popBackStack();//simula o botão "voltar" do celular
+
+            }
+        });// interação de click com a imagem de voltar retornando para a tela de anotações
+
+
+
+
+        btnEditarAnotacao.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
@@ -88,6 +109,7 @@ public class EditarAnotacao_Fragment extends Fragment {
                 if (!EstadoAnotacao)
                 {
                     txtAnotacao.setEnabled(true);
+                    txtTituloAnotacao.setEnabled(true);
                     txtAnotacao.requestFocus();
 
 
@@ -102,6 +124,7 @@ public class EditarAnotacao_Fragment extends Fragment {
                 {
                     txtAnotacao.clearFocus();
                     txtAnotacao.setEnabled(false);
+                    txtTituloAnotacao.setEnabled(false);
                     btnEditarAnotacao.setText("Editar");
                     EstadoAnotacao = (false);
 
