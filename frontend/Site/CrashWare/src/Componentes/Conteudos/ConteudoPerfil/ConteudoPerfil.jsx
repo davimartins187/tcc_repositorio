@@ -124,7 +124,7 @@ const ConteudoPerfil =  () => {
                 <div className={style.apresentacao}>
                     <img
                         className={style.foto}
-                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${foto}`}
+                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${usuario?.foto}`}
                         alt="Foto de perfil"
                         onClick={() => inputRef.current.click()}
                     />
@@ -138,8 +138,8 @@ const ConteudoPerfil =  () => {
                             const arquivo = e.target.files[0];
                             if (arquivo) {
                                 //Salva por enqaunto a imagem no navegador
-                                const novaFoto = URL.createObjectURL(arquivo);
-                                setFoto(novaFoto);
+                                // const novaFoto = URL.createObjectURL(arquivo);
+                                // setFoto(novaFoto);
 
 
                                 //Salvo como arquivo
