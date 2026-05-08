@@ -199,10 +199,10 @@ button
   text-decoration: underline;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 
   .container{
-      width: 90%;
+      width: 100%;
   }
 
   .inputClasse {
@@ -217,5 +217,13 @@ button
 
   .imgSenha {
       width: 18px;
+      margin-bottom: 20px;
+  }
+
+  .corpo{
+    padding-top: 300px;
+  }
+  .logar{
+    font-size: 13px !important;
   }
 }

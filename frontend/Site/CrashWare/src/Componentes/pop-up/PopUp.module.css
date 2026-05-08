@@ -21,7 +21,7 @@
   padding: 14px 16px;
   border-radius: 10px;
   border-left: 3px solid;
-  min-width: 300px;
+  min-width: 200px;
   max-width: 420px;
   animation: popupEntrar 0.22s ease;
 }

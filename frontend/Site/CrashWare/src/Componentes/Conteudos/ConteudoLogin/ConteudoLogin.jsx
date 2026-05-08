@@ -48,8 +48,8 @@ const ConteudoLogin = () => {
     const isClaro = tema === 'Claro';
 
     const iconeSenha = mostrar
-        ? (isClaro ? verSenha_claro : verSenha_escuro)
-        : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
+        ? (verSenha_claro)
+        : (esconderSenha_claro );
 
 
     const handleLogin = async () => {

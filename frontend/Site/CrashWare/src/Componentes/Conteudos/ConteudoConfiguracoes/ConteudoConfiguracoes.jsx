@@ -121,7 +121,7 @@ const ConteudoConfiguracoes = () => {
 
     if (!usuario) {
         return (
-            <div className={style.corpo} style={{ justifyContent: 'center' }}>
+            <div className={Style.corpo} style={{ justifyContent: 'center' }}>
                 <span style={{ color: '#8b90a0', letterSpacing: '0.1em', fontSize: '13px' }}>
                     CARREGANDO...
                 </span>
