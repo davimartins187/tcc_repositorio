@@ -21,6 +21,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 
 // Funções que permitem requisições para a API (retrofit)
+import com.example.crashware.ui.api.Auth;
 import com.example.crashware.ui.navegacao.Home;
 import com.example.crashware.R;
 import com.example.crashware.ui.senha.RecuperarSenha;
@@ -35,6 +36,10 @@ import retrofit2.http.POST;
 
 //Permite eu pegar o valor do erro
 import org.json.JSONObject;
+
+//Importo a função de verificar token
+
+
 
 
 
@@ -62,9 +67,6 @@ public class Login extends AppCompatActivity {
             this.senha = senha;
         }
     }
-
-
-
     // Armazena a resposta da API:
     //Login
     class LoginResponse {
@@ -84,15 +86,6 @@ public class Login extends AppCompatActivity {
     }
 
 
-    //Token
-    class TokenResponse{
-        Integer id;
-
-        public Integer getId() {
-            return id;
-        }
-
-    }
 
 
     // INTERFACE da API:
@@ -102,13 +95,7 @@ public class Login extends AppCompatActivity {
         Call<LoginResponse> logar(@Body LoginRequest Loginrequest);
     }
 
-    //Token
-    interface token {
-        @POST("/auth/verificar_token")
-        Call<TokenResponse> verificar(
-                @Header("Authorization") String token
-        );
-    }
+
 
 
 
@@ -199,70 +186,13 @@ public class Login extends AppCompatActivity {
 
     //Verifico o token
     private void Verificar_Token(){
-        //Pego o valor do token
-        String token = prefs.getString("token",null);
-
-        //Preparo ele para enviar para o header da requisição
-        token = "Bearer " + token;
-
-        // Criando a API
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api-crashware.onrender.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        //
-
-        // Fazendo que a interface da API seja utilizavel:
-        token api = retrofit.create(token.class);
-
-        // Monto a chamada da API:
-        Call<TokenResponse> requisicao = api.verificar(token);
-
-        requisicao.enqueue(new Callback<TokenResponse>() {
-            @Override
-            public void onResponse(
-                    Call<TokenResponse> requisicao,
-                    retrofit2.Response<TokenResponse> resposta
-            ) {//Se o token for valido
-                if (resposta.isSuccessful()) {
-                    //Pego o ID
-                    TokenResponse dados = resposta.body();
-                    if (dados != null && dados.getId() != null) {
-                        Integer id = dados.getId();
-
-                        //Salvo no SharedPreferences
-                        prefs.edit()
-                                .putInt("id", id)
-                                .apply();
 
 
-                        // Envia para a tela de HOME:
-                        Intent i = new Intent(Login.this, Home.class);
-                        startActivity(i);
-                        finish();
-                    } else {
-                        //Ignora
-                        Toast.makeText(Login.this, "ID do usuário não encontrado", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<TokenResponse> call, Throwable t) {
-                // Caso deu erro na requisição
-                // erro de conexão (internet, URL, servidor fora)
-                Toast.makeText(
-                        Login.this,
-                        "Erro de conexão: " + t.getMessage(),
-                        Toast.LENGTH_LONG
-                ).show();
-            }
-        });
+        Auth.verificarToken(this,prefs,false);
 
 
 
-    }
+    }//verificar token
 
     private void Logar()
     {
@@ -325,8 +255,6 @@ public class Login extends AppCompatActivity {
         Call<LoginResponse> requisicao = api.logar(dados);
 
 
-
-
         // executo a requisicao:
         requisicao.enqueue(new Callback<LoginResponse>() {
             @Override
@@ -343,7 +271,6 @@ public class Login extends AppCompatActivity {
 
                     //Mostra esse erro:
                     Toast.makeText(Login.this, "EMAIL NAO VERIFICADO", Toast.LENGTH_SHORT).show();
-
 
                     // Envia para a tela de VERIFICAR EMAIL:
                     Intent i = new Intent(Login.this, ConfirmarIdentidade.class);
@@ -386,6 +313,7 @@ public class Login extends AppCompatActivity {
                             .putString("token",token)
                             .putString("refresh_token",refresh_token)
                             .apply();
+
 
 
                     //Vai para a HOME:

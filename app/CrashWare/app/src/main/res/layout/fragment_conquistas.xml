@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Header -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
@@ -23,32 +22,41 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Logo -->
-            <ImageView
-                android:id="@+id/imgLayoutLogo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addAnotacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:contentDescription="logo"
-                android:src="@drawable/logo_sem_fundo"
-                app:layout_constraintStart_toStartOf="@id/header"
-                app:layout_constraintTop_toTopOf="@id/header"/>
+                android:layout_marginStart="20dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_voltar"
+                app:layout_constraintTop_toTopOf="@id/header"
+                app:layout_constraintStart_toStartOf="parent">
 
-            <!-- Nome do App -->
+                <!-- Adicionar Anotacao -->
+                <ImageView
+                    android:id="@+id/imgVoltarConfig"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/seta_icon"
+                    app:layout_constraintStart_toStartOf="@id/addAnotacao"
+                    app:layout_constraintTop_toTopOf="@id/addAnotacao"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TextView
+                android:id="@+id/txtVoltar"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/righteous"
-                android:text="CRASHWARE"
+                android:text="Voltar"
                 android:textColor="@color/azul"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/imgLayoutLogo"
-                app:layout_constraintTop_toTopOf="@id/imgLayoutLogo"/>
-
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@id/addAnotacao"
+                app:layout_constraintTop_toTopOf="@id/addAnotacao" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

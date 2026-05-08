@@ -134,6 +134,7 @@
 
             <!-- Texto da Anotacao -->
             <TextView
+                android:id="@+id/txtConteudo1"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -199,6 +200,7 @@
 
             <!-- Texto da Anotacao -->
             <TextView
+                android:id="@+id/txtConteudo2"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

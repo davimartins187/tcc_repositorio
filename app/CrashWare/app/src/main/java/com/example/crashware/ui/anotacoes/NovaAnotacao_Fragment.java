@@ -1,5 +1,8 @@
 package com.example.crashware.ui.anotacoes;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +22,8 @@ import com.example.crashware.R;
  * create an instance of this fragment.
  */
 public class NovaAnotacao_Fragment extends Fragment {
+
+    SharedPreferences prefs;
 
     ImageView imgVoltarNovaAnotacao;
 
@@ -72,11 +77,12 @@ public class NovaAnotacao_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_nova_anotacao, container, false);
 
-        imgVoltarNovaAnotacao = view.findViewById(R.id.imgVoltarNovaAnotacao);
+        imgVoltarNovaAnotacao = view.findViewById(R.id.imgVoltarConfig);
         btnSalvarNovaAnotacao = view.findViewById(R.id.btnSalvarNovaAnotacao);
         txtNovaAnotacao       = view.findViewById(R.id.txtNovaAnotacao      );
         txtTituloNovaAnotacao = view.findViewById(R.id.txtTituloNovaAnotacao);
 
+        prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
 
 
 
@@ -86,8 +92,16 @@ public class NovaAnotacao_Fragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                txtNovaAnotacaoSalva = txtNovaAnotacao.getText().toString();
-                txtTituloNovaAnotacaoSalvo = txtTituloNovaAnotacao.getText().toString();
+
+
+                String NovaAnotacao2 = txtNovaAnotacao.getText().toString();
+                String TituloNovaAnotacao2 = txtTituloNovaAnotacao.getText().toString();
+
+
+                prefs.edit()
+                        .putString("Titulo", TituloNovaAnotacao2)
+                        .putString("Anotacao", NovaAnotacao2)
+                        .apply();
 
 
                 Fragment novoFragmento = new Anotacoes_fragment();

@@ -1,5 +1,7 @@
 package com.example.crashware.ui.navegacao;
 
+import static android.app.ProgressDialog.show;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,18 +9,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.crashware.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Loja_fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Loja_fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    TextView txtComprarTemaMeiaNoite, txtComprarGelo, txtComprarBooster,
+            txtComprarOfensiva, txtComprarLeitura;
+
+    int gemas;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -61,6 +65,123 @@ public class Loja_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_loja, container, false);
+        View view = inflater.inflate(R.layout.fragment_loja, container, false);
+
+        txtComprarLeitura       = view.findViewById(R.id.txtComprarLeitura  );
+        txtComprarBooster       = view.findViewById(R.id.txtComprarBooster  );
+        txtComprarOfensiva      = view.findViewById(R.id.txtComprarOfensiva );
+        txtComprarGelo          = view.findViewById(R.id.txtComprarGelo     );
+        txtComprarTemaMeiaNoite = view.findViewById(R.id.txtComprarMeiaNoite);
+
+        Toast temaAdquirido     = Toast.makeText(getContext(), "Tema Adquirido    ", Toast.LENGTH_LONG);
+        Toast SaldoInsuficiente = Toast.makeText(getContext(), "Saldo Insuficiente", Toast.LENGTH_LONG);
+        Toast PowerUpAdquirido = Toast.makeText(getContext(), "PowerUp Adquirido  ", Toast.LENGTH_LONG);
+
+        gemas = 5500;
+
+
+        txtComprarTemaMeiaNoite.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if (gemas>=1500)
+                {
+                    gemas= gemas - 1500;
+                    temaAdquirido.show();
+                    txtComprarTemaMeiaNoite.setText("Adquirido");
+                    txtComprarGelo.setEnabled(false);
+                }//Se o usuário possuir 1500 ou mais gemas, prossegue com a compra
+
+                else
+                {
+                    SaldoInsuficiente.show();
+                }//Senão retorna saldo insuficiente
+
+            }
+        });//
+
+        txtComprarGelo.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if (gemas>=1500)
+                {
+                    gemas= gemas - 1500;
+                    temaAdquirido.show();
+                    txtComprarGelo.setText("Adquirido");
+                    txtComprarGelo.setEnabled(false);
+                }//Se o usuário possuir 1500 ou mais gemas, prossegue com a compra
+
+                else
+                {
+                    SaldoInsuficiente.show();
+                }//Senão retorna saldo insuficiente
+
+            }
+        });//
+
+        txtComprarLeitura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                if (gemas>=1500)
+                {
+                    gemas= gemas - 1500;
+                    temaAdquirido.show();
+                    txtComprarLeitura.setText("Adquirido");
+                    txtComprarLeitura.setEnabled(false);
+                }//Se o usuário possuir 1500 ou mais gemas, prossegue com a compra
+
+                else
+                {
+                    SaldoInsuficiente.show();
+                }//Senão retorna saldo insuficiente
+
+            }
+        });//
+
+        txtComprarBooster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                if (gemas>=600)
+                {
+                    gemas= gemas - 600;
+                    PowerUpAdquirido.show();
+                    //txtComprarBooster.setText("Adquirido");
+                }//Se o usuário possuir 400 ou mais gemas, prossegue com a compra
+
+                else
+                {
+                    SaldoInsuficiente.show();
+                }//Senão retorna saldo insuficiente
+
+            }
+        });//
+
+        txtComprarOfensiva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                if (gemas>=600)
+                {
+                    gemas= gemas - 600;
+                    PowerUpAdquirido.show();
+                    //txtComprarBooster.setText("Adquirido");
+                }//Se o usuário possuir 600 ou mais gemas, prossegue com a compra
+
+                else
+                {
+                    SaldoInsuficiente.show();
+                }//Senão retorna saldo insuficiente
+
+
+            }
+        });//
+
+
+        return view;
     }
 }

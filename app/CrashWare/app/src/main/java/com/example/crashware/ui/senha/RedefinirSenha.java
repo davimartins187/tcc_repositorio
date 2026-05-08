@@ -42,6 +42,7 @@ public class RedefinirSenha extends AppCompatActivity {
     EditText txtCampoNovaSenha, txtCampoConfirmarNovaSenha;
 
     ImageView imgOlhoNovaSenha,imgConfirmarOlhoNovaSenha;
+
     String emailUsuario;
 
 
@@ -145,6 +146,9 @@ public class RedefinirSenha extends AppCompatActivity {
         //seta a imagem para tal, e muda para que esconda ou mostre a senha, so que na confirmação
 
 
+
+        //Pega o email da outra tela
+        emailUsuario = getIntent().getStringExtra("email_usuario");
 
 
         btnConfirmarNovaSenha.setOnClickListener(new View.OnClickListener() {

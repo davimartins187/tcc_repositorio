@@ -23,7 +23,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 
 public class Perfil_Fragment extends Fragment {
 
-    TextView txtNomePerfil, txtQuantXP,txtPatente,txtQuantGemas, txtVerTodasConquistas;
+    TextView txtNomePerfil, txtQuantXP, txtPatente, txtVerTodasConquistas;
 
     ImageView imgConfigPerfil;
 
@@ -91,7 +91,6 @@ public class Perfil_Fragment extends Fragment {
 
         txtNomePerfil         = view.findViewById(R.id.txtNomePerfil        );
         txtPatente            = view.findViewById(R.id.txtPatente           );
-        txtQuantGemas         = view.findViewById(R.id.txtQuantGemas        );
         txtQuantXP            = view.findViewById(R.id.txtQuantXP           );
         txtVerTodasConquistas = view.findViewById(R.id.txtVerTodasConquistas);
         imgFotoPerfil         = view.findViewById(R.id.imgFotoPerfil        );

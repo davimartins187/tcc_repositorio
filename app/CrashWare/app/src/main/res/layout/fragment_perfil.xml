@@ -97,31 +97,45 @@
             app:strokeColor="#111827"
             app:strokeWidth="2dp" />
 
-        <LinearLayout
-            android:id="@+id/statusPerfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:elevation="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imgFotoPerfil"/>
-
+        <!-- Nível do Usuário -->
         <TextView
-            android:id="@+id/txtEstatisticas"
-            android:layout_width="wrap_content"
+            android:id="@+id/txtNivelPerfil"
+            android:layout_width="0dp"
+            android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
             android:fontFamily="@font/righteous"
-            android:text="Estatísticas"
+            android:text="NÍVEL 8"
+            android:textColor="#0F172A"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/barraProgressoPerfil"
+            app:layout_constraintTop_toBottomOf="@id/imgFotoPerfil" />
+
+        <!-- Barra de Progresso -->
+        <ProgressBar
+            android:id="@+id/barraProgressoPerfil"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:max="500"
+            android:progress="350"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/bg_barraprogresso"
+            app:layout_constraintEnd_toEndOf="@id/cardPatentePerfil"
+            app:layout_constraintStart_toStartOf="@id/cardPatentePerfil"
+            app:layout_constraintTop_toBottomOf="@id/txtNivelPerfil" />
+
+        <!--XP do usuário -->
+        <TextView
+            android:id="@+id/txtXPPerfil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/righteous"
+            android:text="400/500 xp"
             android:textAllCaps="true"
             android:textColor="#0F172A"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/statusPerfil"/>
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/barraProgressoPerfil"
+            app:layout_constraintTop_toTopOf="@id/txtNivelPerfil" />
 
         <!-- Card XP -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -130,8 +144,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:padding="10dp"
-            android:background="@drawable/bg_cardestatisticas"
-            app:layout_constraintTop_toBottomOf="@id/txtEstatisticas"
+            android:background="@drawable/bg_cardefeitovidroconquistas"
+            app:layout_constraintTop_toBottomOf="@id/barraProgressoPerfil"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -186,7 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:padding="10dp"
-            android:background="@drawable/bg_cardpatente_perfil"
+            android:background="@drawable/bg_cardefeitovidroconquistas"
             app:layout_constraintTop_toBottomOf="@id/cardXP"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -197,7 +211,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/patente_icon"
-                app:tint="@color/branco"
+                app:tint="#D57611"
                 app:layout_constraintStart_toStartOf="@id/cardPatentePerfil"
                 app:layout_constraintTop_toTopOf="@id/cardPatentePerfil"
                 app:layout_constraintBottom_toBottomOf="@id/cardPatentePerfil" />
@@ -213,7 +227,7 @@
                 android:text="Divisão"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                android:textColor="@color/branco"
+                android:textColor="#D57611"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/imgPatente"
                 app:layout_constraintTop_toTopOf="@id/cardPatentePerfil" />
@@ -229,66 +243,11 @@
                 android:text="Alpha"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                android:textColor="@color/branco"
+                android:textColor="#D57611"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/cardPatentePerfil"
                 app:layout_constraintTop_toTopOf="@id/cardPatentePerfil" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- Card Gemas -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardGemas"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:background="@drawable/bg_cardestatisticas"
-            app:layout_constraintTop_toBottomOf="@id/cardPatentePerfil"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <!-- Imagem Gemas -->
-            <ImageView
-                android:id="@+id/imgGemas"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/gema_icon"
-                app:layout_constraintStart_toStartOf="@id/cardGemas"
-                app:layout_constraintTop_toTopOf="@id/cardGemas"
-                app:layout_constraintBottom_toBottomOf="@id/cardGemas" />
-
-            <!-- Quantidade de Gemas -->
-            <TextView
-                android:id="@+id/txtTotalGemas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/righteous"
-                android:text="Total de Gemas"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:textColor="@color/azul"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/imgGemas"
-                app:layout_constraintTop_toTopOf="@id/cardGemas" />
-
-            <!-- Total de Gemas -->
-            <TextView
-                android:id="@+id/txtQuantGemas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/righteous"
-                android:text="128"
-                android:textAllCaps="true"
-                android:textColor="@color/azul"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/cardGemas"
-                app:layout_constraintTop_toTopOf="@id/cardGemas" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -301,7 +260,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="15dp"
             android:background="@drawable/bg_cardefeitovidroconquistas"
-            app:layout_constraintTop_toBottomOf="@id/cardGemas"
+            app:layout_constraintTop_toBottomOf="@id/cardPatentePerfil"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
