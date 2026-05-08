@@ -85,7 +85,7 @@ const LalyoutADM = () => {
                                         Criar Conquista
                                     </Link>
 
-                                    <Link to="asdasdadada">
+                                    <Link to="/listar-conquistas">
                                         Lista de Conquistas
                                     </Link>
                                 </div>
