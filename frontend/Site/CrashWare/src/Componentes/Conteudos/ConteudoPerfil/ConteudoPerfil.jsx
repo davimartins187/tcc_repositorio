@@ -146,7 +146,7 @@ const ConteudoPerfil = () => {
 
                         <p className={style.status}>
                             <span className={style.bolinha}></span>
-                            Membro desde maio de 2026
+                            <p>{DataCadastro}</p>
                         </p>
 
                         <div className={style.Nivel}>
