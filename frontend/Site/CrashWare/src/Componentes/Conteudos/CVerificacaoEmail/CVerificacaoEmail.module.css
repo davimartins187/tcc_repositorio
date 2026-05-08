@@ -55,16 +55,17 @@
 }
 
 .container span {
-    color: var(--Botao-gradiente2);
+    color: var(--Botao-gradiente1);
     font-weight: 700;
+    font-size: 20px;
 }
 
 /* ===== INPUT ===== */
 
 .inputClasse {
-    width: 8=70%;
+    width: 80%;
     height: 50px;
-    margin: 2px 0px 20px 0px;
+    margin: 20px 0px 20px 0px;
     padding: 0 20px;
 
     background: var(--input-bg);
@@ -160,7 +161,7 @@
     font-size: clamp(1rem, 3vw, 1.3rem);
     font-weight: 700;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 8px white;
+    text-shadow: 2px 2px 8px white
 }
 
 /* ===== BOTÕES DO MODAL ===== */
@@ -226,5 +227,9 @@
     .btnSair,
     .btnFicar {
         width: 80%;
+    }
+
+    container span{
+        font-size: 16px;
     }
 }
