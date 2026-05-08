@@ -124,7 +124,7 @@ const ConteudoPerfil =  () => {
                 <div className={style.apresentacao}>
                     <img
                         className={style.foto}
-                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${usuario?.foto}`}
+                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${foto}`}
                         alt="Foto de perfil"
                         onClick={() => inputRef.current.click()}
                     />
