@@ -168,7 +168,7 @@ const ConteudoPerfil =  () => {
 
                         <p className={style.status}>
                             <span className={style.bolinha}></span>
-                            <p>{DataCadastro}</p>
+                            <p>{formatarData(DataCadastro)}</p>
                         </p>
 
                         <div className={style.Nivel}>

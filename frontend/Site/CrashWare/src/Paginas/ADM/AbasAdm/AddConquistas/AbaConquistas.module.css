@@ -384,7 +384,12 @@
 }
 
 .botaoAdicionar{
-    padding: 10px;
+    /* padding: 10px; */
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 8px;
+    padding-top: 9px;
+    padding-bottom: 9px;
     color: var(--texto-principal);
     cursor: pointer;
     background: linear-gradient(90deg, var(--BotaoADD-gradiente1), var(--BotaoADD-gradiente2));
@@ -414,8 +419,8 @@
     }
 
     .Conteudos {
-        min-width: 80vw;
-        flex-direction: column;
+        min-width: 50%;
+        flex-direction: wrap;
         margin-bottom: 30px;
     }
 
@@ -429,15 +434,19 @@
         margin: 0px auto 12px auto;
     }
 
-    .parteEmail, .parteTelefone{
+    .ConquistaInputs, .parteTelefone{
         width: 100%;
         flex-direction: column;
         padding: 0px;
         margin-bottom: 10px;
     }
 
-    .parteTelefone input, .parteEmail input{
-        width: 100%;
+    .Descricao{
+        width: 80%;
+    }
+
+    .parteTelefone input, .ConquistaInputs input{
+        width: 80%;
     }
 
     .alterarSenha{
