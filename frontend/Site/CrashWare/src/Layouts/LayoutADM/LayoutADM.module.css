@@ -34,12 +34,6 @@
     margin-bottom: 10px;
 }
 
-.barraLateral hr{
-    width: 90%;
-    margin: auto;
-    margin-bottom: 20px;
-}
-
 .itensBarraLateral {
     display: flex;
     flex-direction: column;
@@ -171,18 +165,18 @@
     }
 }
 
-@media (max-width: 500px){
+@media (max-width: 700px){
     /* .separarConteudos {
         flex-direction: wrap;
         align-items: center;
     } */
 
     .barraLateral {
-        width: 40vw;
+        width: 100vw;
         min-width: unset;
         margin: 15px;
         flex-direction: column;
-        margin-top: 50px !important;
+        margin-top: 190px !important;
     }
 
     .itemBarraLateral {
