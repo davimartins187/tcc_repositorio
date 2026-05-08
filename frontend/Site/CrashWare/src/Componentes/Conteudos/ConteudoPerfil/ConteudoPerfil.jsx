@@ -151,7 +151,7 @@ const ConteudoPerfil =  () => {
                                     //Adiciono a foto
                                     //Precisa mandar como parâmetro o setFoto(GABRIEL)
                                     const foto_usuario = new Usuario();
-                                    foto_usuario.adicionar_foto(conteudo,setFoto);
+                                    foto_usuario.adicionar_foto(conteudo,setFoto,setDados);
                                     
                                 }else
                                 {
