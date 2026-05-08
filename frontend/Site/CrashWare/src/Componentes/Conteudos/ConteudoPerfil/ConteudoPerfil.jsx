@@ -138,8 +138,8 @@ const ConteudoPerfil =  () => {
                             const arquivo = e.target.files[0];
                             if (arquivo) {
                                 //Salva por enqaunto a imagem no navegador
-                                const novaFoto = URL.createObjectURL(arquivo);
-                                setFoto(novaFoto);
+                                // const novaFoto = URL.createObjectURL(arquivo);
+                                // setFoto(novaFoto);
 
 
                                 //Salvo como arquivo
@@ -151,7 +151,7 @@ const ConteudoPerfil =  () => {
                                     //Adiciono a foto
                                     //Precisa mandar como parâmetro o setFoto(GABRIEL)
                                     const foto_usuario = new Usuario();
-                                    foto_usuario.adicionar_foto(conteudo);
+                                    foto_usuario.adicionar_foto(conteudo,setFoto,setDados);
                                     
                                 }else
                                 {
@@ -168,7 +168,7 @@ const ConteudoPerfil =  () => {
 
                         <p className={style.status}>
                             <span className={style.bolinha}></span>
-                            <p>{DataCadastro}</p>
+                            <p>{formatarData(DataCadastro)}</p>
                         </p>
 
                         <div className={style.Nivel}>

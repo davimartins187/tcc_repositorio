@@ -3,6 +3,7 @@ import { PgInicial, PgCadastro, SobreNos, PgLogin, PgErro, PgRecuperarSenha, PgV
 import { LayoutPadrao, LayoutCadLogin, LayoutLogado, LalyoutADM } from "./Layouts"
 import { PgAlterarSenha } from "./Paginas/AlterarSenha"
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken"
+import { AbaListarConquistas } from "./Paginas/ADM/AbasAdm/AbaListarConquistas"
 
 
 
@@ -89,6 +90,12 @@ const Router = () => {
                 <Route path="criar-conquista" element={
                     <RotaPrivada>
                         <AbaConquistas />
+                    </RotaPrivada>
+                } />
+
+                <Route path="listar-conquistas" element={
+                    <RotaPrivada>
+                        <AbaListarConquistas />
                     </RotaPrivada>
                 } />
             </Route>

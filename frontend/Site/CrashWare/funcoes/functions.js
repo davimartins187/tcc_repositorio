@@ -649,6 +649,8 @@ export class Api
 
                         //Token se expirou!
 
+
+
                         if(refresh != null)
                         {
                            
@@ -663,7 +665,14 @@ export class Api
 
                         }else
                         {
-                            //Verifico o refresh_token
+                            //Coleto as variáveis do useState
+                            // const setId = set[0];
+                            const setToken = set[0];
+                            const setRefresh = set[1];
+
+                            //Retiro o token do usuario
+                            await SairDaConta(setToken,setRefresh);
+                            
                             return true
                         }  
                     }

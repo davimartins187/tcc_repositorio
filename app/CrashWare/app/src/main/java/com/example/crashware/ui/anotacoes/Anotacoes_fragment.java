@@ -1,5 +1,10 @@
 package com.example.crashware.ui.anotacoes;
 
+import static android.content.Context.MODE_PRIVATE;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -11,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 
 import com.example.crashware.ui.navegacao.Inicio_fragment;
 import com.example.crashware.R;
@@ -18,11 +25,15 @@ import com.example.crashware.R;
 
 public class Anotacoes_fragment extends Fragment {
 
+    SharedPreferences prefs;
+
     EditText txtbarraPesquisa;
 
     ConstraintLayout cardAnotacao1,cardAnotacao2,cardAnotacao3;
 
     ImageView imgAddAnotacoes, imgLayoutLogo;
+
+    TextView txtTitulo1, txtConteudo1, txtTitulo2, txtConteudo2;
 
 
 
@@ -67,12 +78,47 @@ public class Anotacoes_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_anotacoes, container, false);
 
-        imgAddAnotacoes  = view.findViewById(R.id.imgAddAnotacoes );
-        txtbarraPesquisa = view.findViewById(R.id.txtBarraPesquisa);
-        cardAnotacao1    = view.findViewById(R.id.cardAnotacao1   );
-        cardAnotacao2    = view.findViewById(R.id.cardAnotacao2   );
-        cardAnotacao3    = view.findViewById(R.id.cardAnotacao3   );
-        imgLayoutLogo    = view.findViewById(R.id.imgLayoutLogo   );
+        imgAddAnotacoes  = view.findViewById(R.id.imgAddAnotacoes   );
+        txtbarraPesquisa = view.findViewById(R.id.txtBarraPesquisa  );
+        cardAnotacao1    = view.findViewById(R.id.cardAnotacao1     );
+        cardAnotacao2    = view.findViewById(R.id.cardAnotacao2     );
+        cardAnotacao3    = view.findViewById(R.id.cardAnotacao3     );
+        txtTitulo1       = view.findViewById(R.id.txtTituloAnotacao1);
+        txtConteudo1     = view.findViewById(R.id.txtConteudo1      );
+        txtTitulo2 = view.findViewById(R.id.txtTituloAnotacao2      );
+        txtConteudo2 = view.findViewById(R.id.txtConteudo2          );
+
+
+        prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
+
+// Recupera os dados salvos
+        String tituloSalvo = prefs.getString("Titulo", "");
+        String anotacaoSalva = prefs.getString("Anotacao", "");
+        String NovaAnotacaoSalva2 = prefs.getString("NovaAnotacao2","");
+        String NovoTituloAnotacaoSalvo2 = prefs.getString("TituloNovaAnotacao2","");
+
+// Coloca nos EditText
+        txtTitulo1.setText(tituloSalvo);
+        txtConteudo1.setText(anotacaoSalva);
+
+//        txtTitulo2.setText(NovoTituloAnotacaoSalvo2);
+//        txtConteudo2.setText(NovaAnotacaoSalva2);
+//
+//
+//        if (NovaAnotacaoSalva2 != null || NovoTituloAnotacaoSalvo2 != null)
+//        {
+//            cardAnotacao2.setVisibility(VISIBLE);
+//        }
+//        else
+//        {
+//            //
+//            cardAnotacao2.setVisibility(INVISIBLE);
+//            //card 2 invisivel pra mexer dps
+//        }
+
+
+
+
 
         imgAddAnotacoes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +147,7 @@ public class Anotacoes_fragment extends Fragment {
                         .commit();
             }
         });//Interação com a imagem, levando a tela de editar anotação
+
 
         cardAnotacao2.setOnClickListener(new View.OnClickListener() {
             @Override

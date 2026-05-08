@@ -121,7 +121,7 @@ export class Usuario
 
 
 
-    async adicionar_foto(conteudo)
+    async adicionar_foto(conteudo,setFoto,setDados)
     {
         //Pego o token
         const token = localStorage.getItem("token")
@@ -142,6 +142,21 @@ export class Usuario
                 const resposta = await response.json();
 
                 alert(resposta.mensagem)
+
+                setFoto(resposta.foto)
+
+                //Atualizo no LocalStorage
+                //Pega os dados atuais
+                const dados = JSON.parse(localStorage.getItem("dados"));
+
+                //Atualiza apenas a foto
+                dados.foto = resposta.foto;
+
+                //Salva novamente
+                localStorage.setItem("dados", JSON.stringify(dados));
+
+                //Atualiza a tela
+                setDados(dados)
 
                 
 

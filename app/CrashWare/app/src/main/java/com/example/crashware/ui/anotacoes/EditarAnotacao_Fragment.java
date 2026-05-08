@@ -1,5 +1,8 @@
 package com.example.crashware.ui.anotacoes;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +23,8 @@ import com.example.crashware.R;
  * create an instance of this fragment.
  */
 public class EditarAnotacao_Fragment extends Fragment {
+
+    SharedPreferences prefs;
 
     Button btnEditarAnotacao;
 
@@ -78,12 +83,22 @@ public class EditarAnotacao_Fragment extends Fragment {
         txtAnotacao        = view.findViewById(R.id.txtAnotacao          );
         txtTituloAnotacao = view.findViewById(R.id.txtTituloAnotacao     );
         btnEditarAnotacao  = view.findViewById(R.id.btnEditarAnotacao    );
-        imgVoltarAnotacoes = view.findViewById(R.id.imgVoltarNovaAnotacao);
-
+        imgVoltarAnotacoes = view.findViewById(R.id.imgVoltarConfig      );
 
         EstadoAnotacao = (false);
         txtAnotacao.setEnabled(false);
         txtTituloAnotacao.setEnabled(false);
+
+        prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
+
+// Recupera os dados salvos
+        String tituloSalvo = prefs.getString("Titulo", "");
+        String anotacaoSalva = prefs.getString("Anotacao", "");
+
+// Coloca nos EditText
+        txtTituloAnotacao.setText(tituloSalvo);
+        txtAnotacao.setText(anotacaoSalva);
+
 
         imgVoltarAnotacoes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,11 +137,30 @@ public class EditarAnotacao_Fragment extends Fragment {
 
                 else
                 {
+                    //Váriaveis Salvas localmente
+
+                    String Titulo = txtTituloAnotacao.getText().toString();
+                    String Anotacao = txtAnotacao.getText().toString();
+
                     txtAnotacao.clearFocus();
                     txtAnotacao.setEnabled(false);
                     txtTituloAnotacao.setEnabled(false);
                     btnEditarAnotacao.setText("Editar");
+
+                    prefs.edit()
+                            .putString("Titulo", Titulo)
+                            .putString("Anotacao", Anotacao)
+                            .apply();
+
+                    txtAnotacao.setText(Anotacao);
+                    txtTituloAnotacao.setText(Titulo);
                     EstadoAnotacao = (false);
+
+
+
+
+
+
 
                     Toast.makeText(getContext(), "Edição Salva! ", Toast.LENGTH_LONG).show();
                 }//Senão ou se estiver editavel e clicar torna o texto trancado novamente(Emoji de TOP)

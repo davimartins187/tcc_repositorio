@@ -1,6 +1,8 @@
 package com.example.crashware.ui.navegacao;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.crashware.R;
+import com.example.crashware.ui.api.Auth;
+import com.example.crashware.ui.api.User;
+
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,11 +40,22 @@ public class Inicio_fragment extends Fragment {
 
     private ValueEventListener nomeListener;
 
+    //Memória do app
+    SharedPreferences prefs;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
+
+        //Verificando Token
+        Verificar_Token();
+
+        //Coleto as informações do usuário
+        Perfil();
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance().getReference("usuarios");
@@ -65,6 +81,8 @@ public class Inicio_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
+
+
 
         //variável que torna possivel utilizar elementos do design no código
         View view = inflater.inflate(R.layout.fragment_inicio, container, false);
@@ -94,6 +112,27 @@ public class Inicio_fragment extends Fragment {
 
     }
 
+    //Função de verificar token
+    private void Verificar_Token(){
+
+        Auth.verificarToken(requireContext(),prefs,true);
+
+    }//verificar token
+
+    private void Perfil(){
+        //Coleto os dados no banco de dados do usuario
+        User.Perfil(requireContext(), prefs, new User.PerfilCallback() {
+            @Override
+            public void sucesso(User.PerfilResponse usuario) {
+
+                String nome = usuario.nome;
+
+                //Atualiza o Nome
+                txtNomeInicio.setText(nome);
+
+            }
+        });
+    }
 
 
     //função que
@@ -146,8 +185,9 @@ public class Inicio_fragment extends Fragment {
                 if (!isAdded()) return;
 
                 if (snapshot.exists()) {
-                    String nome = snapshot.child("nome").getValue(String.class);
-                    txtNomeInicio.setText(nome != null ? nome : "Sem nome");
+//                    String nome_firebase = snapshot.child("nome").getValue(String.class);
+//                    txtNomeInicio.setText(nome_firebase != null ? nome_firebase : "Sem nome");
+
                 }
             }
 
