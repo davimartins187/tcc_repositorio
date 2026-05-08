@@ -7,23 +7,23 @@
 }
 
 .corpo{
-    width: 100vw;
-    min-height: 100vh; 
-    background-color: var(--bg-quarto);
+  width: 90vw;
+  min-height: 125vh; 
+  background-color: var(--bg-quarto);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
-    padding: 20px;
-    font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 .container{
   width: 70%;
-  height: 80%;
+  height: 100%;
   max-width: 520px;
   text-align: center;
+  align-self: center;
 
   border: 1px solid var(--texto-principal);
 
@@ -78,13 +78,14 @@
   font-family: "Montserrat", sans-serif !important;
   font: bold;
   font-size: 20px;
-  margin: 20px 0;
-  justify-self: center;
+  margin: 20px 0px;
+  text-align: center;
 }
 
 .Logar a{
   color: var(--texto-principal);
   font-weight: 700;
+
 }
 
 .btnCriarConta {
@@ -106,9 +107,8 @@
 
 .btnCriarConta:hover {
     transition: 0.3s;
-    background-color: var(--bg-terceiro);
     color: var(--texto-principal);
-    transform: scale(1.03);
+    transform: scale(1.06);
 }
 
 .btnCriarConta:disabled {
@@ -153,16 +153,27 @@ button
 }
 
 .outrasFormasCadastro{
-  width: 20%;
+  width: 100%;
   display: flex;
   flex-direction: row;
 
   justify-content: center;
+  text-align: center;
   gap: 20px;
+}
+
+.outrasFormasCadastro p{
+  text-align: center;
 }
 
 .outrasFormasCadastro img{
   width: 45px;
+  height: 45px;
+}
+
+.outrasFormasCadastro img:hover{
+  transform: scale(1.1);
+  transition: 0.3s;
 }
 
 .termos{
@@ -188,23 +199,23 @@ button
   text-decoration: underline;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
 
-    .container{
-        width: 100%;
-    }
+  .container{
+      width: 90%;
+  }
 
-    .inputClasse {
-        height: 45px;
-        font-size: 14px;
-    }
+  .inputClasse {
+      height: 45px;
+      font-size: 14px;
+  }
 
-    .btnCriarConta{
-        height: 50px;
-        font-size: 18px;
-    }
+  .btnCriarConta{
+      height: 50px;
+      font-size: 18px;
+  }
 
-    .imgSenha {
-        width: 18px;
-    }
+  .imgSenha {
+      width: 18px;
+  }
 }

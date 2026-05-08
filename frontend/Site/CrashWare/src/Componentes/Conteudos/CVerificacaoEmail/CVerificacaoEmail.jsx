@@ -136,7 +136,7 @@ const CVerificacaoEmail = () => {
                     mensagem={popup.mensagem}
                     onFechar={() => setPopup(null)}
                 />
-            )};
+            )}
 
             {mostrarModal && (
                 <div className={style.modalOverlay}>

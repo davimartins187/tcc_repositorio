@@ -432,7 +432,7 @@
     .Apresentacao {
         flex-direction: column-reverse;
         text-align: center;
-        padding: 24px 16px;
+        padding: 0px 0px;
         gap: 20px;
     }
 

@@ -54,7 +54,7 @@
     height: 50px;
     width: 90%;
 
-    background-color: var(--texto-principal); 
+    background-color: var(--bg-secundario); 
     border: 1px solid black;
     border-radius: 12px;
     margin: 0px 20px 20px 20px;
@@ -73,7 +73,7 @@
 }
 
 .itemBarraLateral span {
-    color: black;
+    color: var(--texto-principal);
     font-size: 14px;
     font-family: "Montserrat" !important;
     font-weight: 800;
