@@ -121,7 +121,7 @@ export class Usuario
 
 
 
-    async adicionar_foto(conteudo)
+    async adicionar_foto(conteudo,setFoto)
     {
         //Pego o token
         const token = localStorage.getItem("token")
@@ -142,6 +142,8 @@ export class Usuario
                 const resposta = await response.json();
 
                 alert(resposta.mensagem)
+
+                setFoto(resposta.foto)
 
                 
 

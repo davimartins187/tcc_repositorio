@@ -99,8 +99,6 @@ async def deletar_conta(usuario = Depends(validar_token),session = Depends(pegar
         session.rollback()
         raise HTTPException(status_code=400, detail=str(exception))
 
-
-
 ##############
 #Rota de adicionar foto
 @user.post('/adicionar_foto')
@@ -141,7 +139,8 @@ async def adicionar_foto(foto : UploadFile = File(...),usuario = Depends(validar
             ##Retorno mensagem de sucesso
             usuario.foto = nome_arquivo
             session.commit()
-            return {"mensagem": "Foto adicionada com sucesso!"}
+            return {"mensagem": "Foto adicionada com sucesso!",
+                    "foto": usuario.foto}
         else:
             ##Retorno o erro
             raise HTTPException(status_code=400,detail=resposta.text)
