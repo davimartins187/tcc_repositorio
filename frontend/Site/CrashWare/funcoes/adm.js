@@ -16,7 +16,8 @@ export class Adm
                     mensagem: 'Enviando Informações...'
                 });
 
-        await sleep(1)
+        await sleep(2000);
+
         try
         {
             const response = await fetch("https://api-crashware.onrender.com/adm/adicionar_conquista",

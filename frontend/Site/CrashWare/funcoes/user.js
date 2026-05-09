@@ -1,3 +1,5 @@
+import { sleep } from "./functions";
+
 export class Usuario
 {
 
@@ -61,8 +63,17 @@ export class Usuario
     }//Perfil
 
 
-    async deletar_conta(setToken,setRefresh,setDados)
+    async deletar_conta(setToken,setRefresh,setDados,setPopup)
     {
+
+        setPopup({
+                tipo: 'aviso',
+                titulo: 'Conta',
+                mensagem: 'Deletando conta...'
+            });
+
+        await sleep(2000)
+
         //Pego o token
         const token = localStorage.getItem("token")
         try
@@ -78,10 +89,6 @@ export class Usuario
 
             if(response.ok)
             {
-
-                //Chamo um poput de sucesso
-
-
 
                 //Deleto o token do LocalStorage
                 await localStorage.removeItem("token");
@@ -108,13 +115,21 @@ export class Usuario
             {
                 const erro = await response.json();
                 
+                setPopup({
+                tipo: 'erro',
+                titulo: 'Erro em deletar',
+                mensagem: erro.detail
+            });
 
-                console.log(erro.detail)
             }
        
         }catch (error) 
         {
-            console.log("Erro na requisição:", error);
+            setPopup({
+                tipo: 'erro',
+                titulo: 'Sem conexão',
+                mensagem: error
+            });
         }
 
     }//deletar_conta

@@ -78,7 +78,7 @@ const ConteudoAdm = () => {
         // { id: 7, descricao: "Sair", mg: sairContaModoClaro, acao: 'sair' }
     ];
 
-    const PopUp = ({ paragrafo, primeiroBotao, segundoBotao, primeiroClick, segundoClick }) => {
+    const PopUpConfirmacao = ({ paragrafo, primeiroBotao, segundoBotao, primeiroClick, segundoClick }) => {
         return (
             <div className={`${Style.popUp} ${popupAtivo ? Style.popUpVisivel : ''}`}>
                 <p>{paragrafo}</p>
@@ -121,13 +121,24 @@ const ConteudoAdm = () => {
         const conquista = new Adm;
 
         //Chamo o método
-        conquista.adicionar_conquista(nomeConquista,opcao,descricaoConquista,moedas,xp,condicao);
+        conquista.adicionar_conquista(nomeConquista,opcao,descricaoConquista,moedas,xp,condicao,setPopup);
 
     }
 
 
     return (
         <>
+            {/*Popup Padrão]*/}
+            {popup && (
+                <PopUp
+                    tipo={popup.tipo}
+                    titulo={popup.titulo}
+                    mensagem={popup.mensagem}
+                    onFechar={() => setPopup(null)}
+                />
+            )}
+
+
             {popupAtivo && (
                 <div
                     className={Style.fundoEscurecido}
@@ -255,7 +266,7 @@ const ConteudoAdm = () => {
 
                 </div>
                 {configAtual && (
-                    <PopUp
+                    <PopUpConfirmacao
                         paragrafo={configAtual.paragrafo}
                         primeiroBotao={configAtual.primeiroBotao}
                         segundoBotao={configAtual.segundoBotao}

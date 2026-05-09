@@ -68,7 +68,7 @@ const ConteudoPerfil =  () => {
     const Navegacao = useNavigate();
 
     // muda a foto
-    const [foto, setFoto] = useState(usuario?.foto);
+    let [foto, setFoto] = useState(usuario?.foto);
 
     const inputRef = useRef();
 
@@ -105,10 +105,10 @@ const ConteudoPerfil =  () => {
         );
     }
 
-    if(foto === null)
-    {
-        foto = "default.png"
-    }
+    // if(foto === null)
+    // {
+    //     foto = "default.png"
+    // }
 
 
     return (
@@ -149,7 +149,6 @@ const ConteudoPerfil =  () => {
                                 if(foto == 'default.png')
                                 {
                                     //Adiciono a foto
-                                    //Precisa mandar como parâmetro o setFoto(GABRIEL)
                                     const foto_usuario = new Usuario();
                                     foto_usuario.adicionar_foto(conteudo,setFoto,setDados);
                                     
@@ -166,10 +165,10 @@ const ConteudoPerfil =  () => {
                     <div className={style.texto}>
                         <h3>{nome}</h3>
 
-                        <p className={style.status}>
+                        <div className={style.status}>
                             <span className={style.bolinha}></span>
                             <p>{formatarData(DataCadastro)}</p>
-                        </p>
+                        </div>
 
                         <div className={style.Nivel}>
                             <div className={style.NivelTopo}>

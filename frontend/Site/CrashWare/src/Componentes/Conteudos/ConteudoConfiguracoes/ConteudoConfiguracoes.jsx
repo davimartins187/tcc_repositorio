@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 
 import Style from "./ConteudoConfiguracoes.module.css";
 
+//Importo o Popup
+import { PopUp } from "../../pop-up";
+
 import perfilModoClaro from "../../../fotos/claro/login_icon_claro.svg";
 import perfilModoEscuro from "../../../fotos/escuro/login_icon.svg";
 
@@ -35,6 +38,7 @@ const ItemBarraLateral = ({ descricao, img, onClick }) => {
 const ConteudoConfiguracoes = () => {
     const [tema, setTema] = useState(localStorage.getItem('TemaSelecionado') || 'Claro');
     const [popupAtivo, setPopupAtivo] = useState(null); // null | 'sair' | 'desativar' | 'excluir'
+    const [popup, setPopup] = useState(null);
 
     useEffect(() => {
         const checarTema = (e) => setTema(e.detail);
@@ -62,7 +66,7 @@ const ConteudoConfiguracoes = () => {
             primeiroClick: async () => {
 
                 //Saio da Conta
-                await SairDaConta(setToken, setRefresh, setDados)
+                await SairDaConta(setToken, setRefresh, setDados,setPopup)
 
 
 
@@ -86,11 +90,11 @@ const ConteudoConfiguracoes = () => {
             segundoBotao: "Cancelar",
             primeiroClick: async () => {
 
-                //Deleto a conta
-                const usuario = new Usuario
-                await usuario.deletar_conta(setToken, setRefresh, setDados)
-
                 setPopupAtivo(null);
+
+                //Deleto a conta
+                const usuario = new Usuario;
+                await usuario.deletar_conta(setToken, setRefresh, setDados,setPopup)
             },
             segundoClick: () => setPopupAtivo(null),
         },
@@ -101,7 +105,7 @@ const ConteudoConfiguracoes = () => {
         { id: 2, descricao: "Sair da Conta", img: sairContaModoClaro, acao: 'sair' },
     ];
 
-    const PopUp = ({ paragrafo, primeiroBotao, segundoBotao, primeiroClick, segundoClick }) => {
+    const PopUpConfirmacao = ({ paragrafo, primeiroBotao, segundoBotao, primeiroClick, segundoClick }) => {
         return (
             <div className={`${Style.popUp} ${popupAtivo ? Style.popUpVisivel : ''}`}>
                 <p>{paragrafo}</p>
@@ -131,6 +135,18 @@ const ConteudoConfiguracoes = () => {
 
     return (
         <>
+
+            {/*Popup Padrão]*/}
+            {popup && (
+                <PopUp
+                    tipo={popup.tipo}
+                    titulo={popup.titulo}
+                    mensagem={popup.mensagem}
+                    onFechar={() => setPopup(null)}
+                />
+            )}
+
+
             {popupAtivo && (
                 <div
                     className={Style.fundoEscurecido}
@@ -227,7 +243,7 @@ const ConteudoConfiguracoes = () => {
             </div>
 
             {configAtual && (
-                <PopUp
+                <PopUpConfirmacao
                     paragrafo={configAtual.paragrafo}
                     primeiroBotao={configAtual.primeiroBotao}
                     segundoBotao={configAtual.segundoBotao}
