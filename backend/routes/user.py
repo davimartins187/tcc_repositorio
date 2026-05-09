@@ -180,6 +180,8 @@ async def alterar_foto(foto : UploadFile = File(...),usuario = Depends(validar_t
             )
 
             if resposta.status_code > 199 and resposta.status_code < 300:
+                usuario.foto = usuario.foto
+                session.commit()
                 return {
                         "mensagem" : 'Foto alterada com sucesso',
                         "foto" : usuario.foto
