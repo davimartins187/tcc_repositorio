@@ -12,6 +12,8 @@ import { SairDaConta } from '../../../../funcoes/functions'
 import { BotoesForm } from '../../Botoes/BotaoForm/BotaoForm'
 import { Usuario } from '../../../../funcoes/user'
 
+import { PopUp } from '../../pop-up'
+
 // Dados de exemplo para as conquistas — substitua pelos dados reais da API
 const CONQUISTAS_MOCK = [
     { id: 1, titulo: 'Conquista de Software', descricao: 'Descrição super divertida sobre a aula concluída para adquirir a conquista.', tipo: 'software' },
@@ -68,7 +70,10 @@ const ConteudoPerfil =  () => {
     const Navegacao = useNavigate();
 
     // muda a foto
-    let [foto, setFoto] = useState(usuario?.foto);
+    const [foto, setFoto] = useState(usuario?.foto);
+
+    //Cache da foto
+    const [versaoFoto, setVersaoFoto] = useState(Date.now());
 
     const inputRef = useRef();
 
@@ -77,6 +82,7 @@ const ConteudoPerfil =  () => {
     const [conquistas, setConquistas] = useState(CONQUISTAS_MOCK);
     const [totalCompras, setTotalCompras] = useState(0);
     const [totalGemas, setTotalGemas] = useState(0);
+    const [popup, setPopup] = useState(null);
 
     const XpMax = 500;
     const Nivel = usuario?.nivel || 0;
@@ -105,159 +111,171 @@ const ConteudoPerfil =  () => {
         );
     }
 
-    // if(foto === null)
-    // {
-    //     foto = "default.png"
-    // }
+
 
 
     return (
-        <div className={style.corpo}>
-
-            {/* ── Banner ─────────────────────────────────────── */}
-            <div className={style.banner}>
-            </div>
-
-            <div className={style.container}>
-
-
-                <div className={style.apresentacao}>
-                    <img
-                        className={style.foto}
-                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${usuario?.foto}`}
-                        alt="Foto de perfil"
-                        onClick={() => inputRef.current.click()}
+        <>
+            {/*Popup Padrão]*/}
+                {popup && (
+                    <PopUp
+                        tipo={popup.tipo}
+                        titulo={popup.titulo}
+                        mensagem={popup.mensagem}
+                        onFechar={() => setPopup(null)}
                     />
-
-                    <input
-                        type="file"
-                        className={style.escondido}
-                        ref={inputRef}
-                        accept='image/*'
-                        onChange={(e) => {
-                            const arquivo = e.target.files[0];
-                            if (arquivo) {
-                                //Salva por enqaunto a imagem no navegador
-                                // const novaFoto = URL.createObjectURL(arquivo);
-                                // setFoto(novaFoto);
+                )}
 
 
-                                //Salvo como arquivo
-                                const conteudo = new FormData();
-                                conteudo.append("foto", arquivo);
+            <div className={style.corpo}>
 
-                                if(foto == 'default.png')
-                                {
-                                    //Adiciono a foto
-                                    const foto_usuario = new Usuario();
-                                    foto_usuario.adicionar_foto(conteudo,setFoto,setDados);
-                                    
-                                }else
-                                {
-                                    //Ignora por enquanto
+                {/* ── Banner ─────────────────────────────────────── */}
+                <div className={style.banner}>
+                </div>
 
-                                    //Rota de alterar foto
+                <div className={style.container}>
+
+
+                    <div className={style.apresentacao}>
+                        <img
+                            className={style.foto}
+                            src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${usuario?.foto}?v=${versaoFoto}`}
+                            alt="Foto de perfil"
+                            onClick={() => inputRef.current.click()}
+                        />
+
+                        <input
+                            type="file"
+                            className={style.escondido}
+                            ref={inputRef}
+                            accept='image/*'
+                            onChange={(e) => {
+                                const arquivo = e.target.files[0];
+                                if (arquivo) {
+                                    //Salva por enqaunto a imagem no navegador
+                                    // const novaFoto = URL.createObjectURL(arquivo);
+                                    // setFoto(novaFoto);
+
+
+                                    //Salvo como arquivo
+                                    const conteudo = new FormData();
+                                    conteudo.append("foto", arquivo);
+
+                                    if(foto == 'default.png')
+                                    {
+                                        //Adiciono a foto
+                                        const foto_usuario = new Usuario();
+                                        foto_usuario.adicionar_foto(conteudo,setFoto,setDados,setPopup);
+                                        
+                                    }else
+                                    {
+                                        //Altero a foto
+                                        const foto_usuario = new Usuario();
+                                        foto_usuario.alterar_foto(conteudo,setFoto,setDados,setPopup,setVersaoFoto);
+
+                                    }
                                 }
-                            }
-                        }}
-                    />
+                            }}
+                        />
 
-                    <div className={style.texto}>
-                        <h3>{nome}</h3>
+                        <div className={style.texto}>
+                            <h3>{nome}</h3>
 
-                        <div className={style.status}>
-                            <span className={style.bolinha}></span>
-                            <p>{formatarData(DataCadastro)}</p>
-                        </div>
-
-                        <div className={style.Nivel}>
-                            <div className={style.NivelTopo}>
-                                <p>Nível {Nivel}</p>
-                                <span>{xpAtual}/{XpMax} XP</span>
+                            <div className={style.status}>
+                                <span className={style.bolinha}></span>
+                                <p>{formatarData(DataCadastro)}</p>
                             </div>
 
-                            <div className={style.Barra}>
-                                <div
-                                    className={style.Progresso}
-                                    style={{ width: `${porcentagem}%` }}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* ── Cards de Stats ─────────────────────────── */}
-                <div className={style.blocos}>
-
-                    <div className={style.Conquistas}>
-                        <img src={iconConquistas} alt="Conquistas" />
-                        <div>
-                            {conquistas.length}
-                            <p>Conquistas</p>
-                        </div>
-                    </div>
-
-                    <div className={style.Compras}>
-                        <img src={iconBolsa} alt="Compras" />
-                        <div>
-                            {totalCompras}
-                            <p>Compras</p>
-                        </div>
-                    </div>
-
-                    <div className={style.Gemas}>
-                        <img src={iconGema} alt="Gemas" />
-                        <div>
-                            {totalGemas}
-                            <p>Gemas</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                {/* ── Última Compra ──────────────────────────── */}
-                <div className={style.Historico_Compras}>
-                    <h1>Última Compra</h1>
-
-                    <div className={style.CompraRecente}>
-                        <img src={iconTema} alt="Item" />
-
-                        <div className={style.DescricaoCompra}>
-                            <h5>Meia-Noite</h5>
-                            <p>Para quando o modo escuro não for suficiente</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* ── Painel Direito: Conquistas ─────────────── */}
-                <div className={style.Direita}>
-                    <div className={style.ConquistasBloco}>
-                        <h4>Conquistas</h4>
-
-                        <div className={style.listaConquistas}>
-                            {conquistas.map((c) => (
-                                <div
-                                    key={c.id}
-                                    className={`${style.ItemConquista} ${style[c.tipo]}`}
-                                >
-                                    <img src={FotoPadrao} alt={c.titulo} />
-
-                                    <div>
-                                        <h6>{c.titulo}</h6>
-                                        <p>{c.descricao}</p>
-                                    </div>
+                            <div className={style.Nivel}>
+                                <div className={style.NivelTopo}>
+                                    <p>Nível {Nivel}</p>
+                                    <span>{xpAtual}/{XpMax} XP</span>
                                 </div>
-                            ))}
+
+                                <div className={style.Barra}>
+                                    <div
+                                        className={style.Progresso}
+                                        style={{ width: `${porcentagem}%` }}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* ── Cards de Stats ─────────────────────────── */}
+                    <div className={style.blocos}>
+
+                        <div className={style.Conquistas}>
+                            <img src={iconConquistas} alt="Conquistas" />
+                            <div>
+                                {conquistas.length}
+                                <p>Conquistas</p>
+                            </div>
                         </div>
 
-                        <button className={style.verTodas}>
-                            <p>Ver todas as conquistas</p>
-                        </button>
-                    </div>
-                </div>
+                        <div className={style.Compras}>
+                            <img src={iconBolsa} alt="Compras" />
+                            <div>
+                                {totalCompras}
+                                <p>Compras</p>
+                            </div>
+                        </div>
 
+                        <div className={style.Gemas}>
+                            <img src={iconGema} alt="Gemas" />
+                            <div>
+                                {totalGemas}
+                                <p>Gemas</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {/* ── Última Compra ──────────────────────────── */}
+                    <div className={style.Historico_Compras}>
+                        <h1>Última Compra</h1>
+
+                        <div className={style.CompraRecente}>
+                            <img src={iconTema} alt="Item" />
+
+                            <div className={style.DescricaoCompra}>
+                                <h5>Meia-Noite</h5>
+                                <p>Para quando o modo escuro não for suficiente</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* ── Painel Direito: Conquistas ─────────────── */}
+                    <div className={style.Direita}>
+                        <div className={style.ConquistasBloco}>
+                            <h4>Conquistas</h4>
+
+                            <div className={style.listaConquistas}>
+                                {conquistas.map((c) => (
+                                    <div
+                                        key={c.id}
+                                        className={`${style.ItemConquista} ${style[c.tipo]}`}
+                                    >
+                                        <img src={FotoPadrao} alt={c.titulo} />
+
+                                        <div>
+                                            <h6>{c.titulo}</h6>
+                                            <p>{c.descricao}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <button className={style.verTodas}>
+                                <p>Ver todas as conquistas</p>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+        
             </div>
-        </div>
+        </>
     );
 };
 
