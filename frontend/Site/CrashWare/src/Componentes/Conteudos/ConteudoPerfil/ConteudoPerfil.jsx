@@ -112,7 +112,6 @@ const ConteudoPerfil = () => {
         );
     }
 
-
     return (
         <>
             {/*Popup Padrão]*/}
