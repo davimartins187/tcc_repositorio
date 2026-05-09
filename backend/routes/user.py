@@ -107,7 +107,7 @@ async def adicionar_foto(foto : UploadFile = File(...),usuario = Depends(validar
 
         ##altero a foto no banco de dados:
         id = str(usuario.id_usuario) + '/'
-        nome_arquivo = id + foto.filename
+        nome_arquivo = id + "foto"
 
         ##Gero uma nova imagem no bucket
 
@@ -156,16 +156,16 @@ async def alterar_foto(foto : UploadFile = File(...),usuario = Depends(validar_t
     try:
         if usuario.foto !="default.png":
 
-            #Trato o nome do arquivo
-            id = str(usuario.id_usuario) + '/'
-            nome_arquivo = id + foto.filename
+            # #Trato o nome do arquivo
+            # id = str(usuario.id_usuario) + '/'
+            # nome_arquivo = id + foto.filename
 
             ##Gero uma requisição no bucket
             ##Pego a foto
             conteudo = await foto.read()
 
             ##URL Que vou mudar a foto
-            url = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}/{nome_arquivo}"
+            url = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}/{usuario.foto}"
 
 
             resposta = requests.put(
@@ -180,9 +180,6 @@ async def alterar_foto(foto : UploadFile = File(...),usuario = Depends(validar_t
             )
 
             if resposta.status_code > 199 and resposta.status_code < 300:
-                ##Mudo a foto no banco
-                usuario.foto =  nome_arquivo
-                session.commit()
                 return {
                         "mensagem" : 'Foto alterada com sucesso',
                         "foto" : usuario.foto
