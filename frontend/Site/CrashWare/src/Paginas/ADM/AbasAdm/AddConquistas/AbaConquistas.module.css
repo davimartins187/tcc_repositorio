@@ -169,7 +169,17 @@
     flex-direction: column;
     gap: 4px;
     width: 100%;
+    height: 20vh;
+    margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.campoFormDescricao{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 30vh;
+    width: 100%;
 }
 
 .campoFormAtribustos{
@@ -225,61 +235,6 @@
     width: 20vw;
     appearance: none;
     -webkit-appearance: none;
-}
-
-.alterarSenha{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.alterarSenha p{
-    font-family: "Montserrat";
-    color: var(--texto-principal);
-    font-weight: 700;
-    font-size: 18px;
-}
-
-.alterarSenha button{
-    background: linear-gradient(90deg, #101017, #06060A);
-    border: none;
-    color: white;
-    width: 100%;
-    height: 40px;
-    border-radius: 12px;
-    padding: 10px;
-
-    font-family: "Montserrat";
-    font-weight: 700;
-    margin-top: 26px;
-}
-
-.alterarSenha button{
-    transform: scale(1.03) translateY(-4px);
-    transition: 0.4s;
-}
-
-.conectarContas{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.conectarContas h2{
-    font-family: "Montserrat";
-    color: var(--texto-principal);
-    font-weight: 700;
-}
-
-.conectarContas img{
-    width: 40px;
-    margin: 30px 10px;
-}
-
-.conectarContas img:hover{
-    transform: scale(1.20);
-    transition: 0.2s ease;
 }
 
 .fundoEscurecido {
@@ -454,7 +409,8 @@
 
 .campoForm{
     display: flex;
-    margin-bottom: 60px;
+    height: 40vh;
+    margin-bottom: 10px;
 }
 
     .ConquistaInputs{
@@ -463,9 +419,24 @@
         padding: 0px;
     }
 
+.ConquistaInputs p{
+    font-family: "Montserrat";
+    color: var(--texto-principal);
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 2px;
+    text-align: end;
+    width: 34vw;
+}
+
+.campoFormDescricao{
+    margin-top: 10px;
+}
+
     .Descricao{
-        width: 100%;
-        margin-top: 0px;
+        width: 80%;
+        height: 15vh;
+        margin-top: 15px;
     }
 
     .parteTelefone input, .ConquistaInputs input{

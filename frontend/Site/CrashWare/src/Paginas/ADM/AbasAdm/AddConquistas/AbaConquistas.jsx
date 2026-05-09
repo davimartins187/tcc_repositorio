@@ -64,7 +64,7 @@ const AbaConquistas = () => {
                     </div>
 
                     {/* <div className={Style.ConquistaInputs}> */}
-                    <div className={Style.campoForm}>
+                    <div className={Style.campoFormDescricao}>
                         <label htmlFor="Descricao">Descricao</label>
                         <textarea
                             name="" id="" className={Style.Descricao}
@@ -75,7 +75,7 @@ const AbaConquistas = () => {
                         <p>Máx 300 caracteres</p>
                     </div>
 
-                    <div className={Style.campoForm}>
+                    <div className={Style.campoFormDescricao}>
                         <label htmlFor="Condicao">Condição</label>
                         <textarea
                             name="" id="" className={Style.Descricao}
