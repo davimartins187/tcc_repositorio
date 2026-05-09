@@ -13,9 +13,12 @@ const RotaPrivada = ({ children }) => {
     //const [id, setId] = useState(() => localStorage.getItem("id"));
     const [token_state, setToken] = useState(() => localStorage.getItem("token"));
     const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
+    const [dados, setDados] = useState(() =>
+        JSON.parse(localStorage.getItem("dados")) || null
+    );
 
     //Lista que contém todos os usestate
-    const set = [setToken,setRefresh];
+    const set = [setToken,setRefresh,setDados];
 
 
     //Verifico se o usuario tem token
