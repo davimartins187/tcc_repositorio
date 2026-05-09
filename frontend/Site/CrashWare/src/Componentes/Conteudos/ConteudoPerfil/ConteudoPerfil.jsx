@@ -24,7 +24,7 @@ const CONQUISTAS_MOCK = [
     { id: 6, titulo: 'Conquista de Hardware', descricao: 'Descrição super divertida sobre a aula concluída para adquirir a conquista.', tipo: 'hardware' },
 ]
 
-const ConteudoPerfil =  () => {
+const ConteudoPerfil = () => {
 
     const [dados, setDados] = useState(() =>
         JSON.parse(localStorage.getItem("dados")) || null
@@ -33,28 +33,27 @@ const ConteudoPerfil =  () => {
 
     const informacoes = localStorage.getItem("info")
 
-    if(informacoes == "false")
-    {
+    if (informacoes == "false") {
         //Faço a requisição no banco
         const cliente = new Usuario();
         cliente.perfil(setDados);
-        
+
     }
     //Pego as informações do usuario
-    const usuario =  JSON.parse(localStorage.getItem("dados"));
+    const usuario = JSON.parse(localStorage.getItem("dados"));
 
 
     //Trata a data do mês
     const DataCadastro = usuario?.criado_em;
 
     const formatarData = (DataCadastro) => {
-    const [dia, mes, ano] = DataCadastro.split('/');
-    const date = new Date(`${ano}-${mes}-${dia}`);
+        const [dia, mes, ano] = DataCadastro.split('/');
+        const date = new Date(`${ano}-${mes}-${dia}`);
 
-    const mesNome = date.toLocaleString('pt-BR', { month: 'long' });
+        const mesNome = date.toLocaleString('pt-BR', { month: 'long' });
 
-    return `Membro desde ${mesNome} de ${ano}`;
-};
+        return `Membro desde ${mesNome} de ${ano}`;
+    };
 
     //NAO MEXE AQUI GABRIEL
     //Retorna o valor do adm
@@ -65,12 +64,14 @@ const ConteudoPerfil =  () => {
     //   admin = "ADMIN"
     // }
 
-  
+
     //Navegação --> Permite eu levar o usuario para outras telas
     const Navegacao = useNavigate();
 
     // muda a foto
     const [foto, setFoto] = useState(usuario?.foto);
+    const [MudarFoto, setMudarFoto] = useState(false);
+    const [aberto, setAberto] = useState(false);
 
     //Cache da foto
     const [versaoFoto, setVersaoFoto] = useState(Date.now());
@@ -86,12 +87,12 @@ const ConteudoPerfil =  () => {
 
     const XpMax = 500;
     const Nivel = usuario?.nivel || 0;
-    const nome  = usuario?.nome  || "Usuário";
+    const nome = usuario?.nome || "Usuário";
 
-    const xpAtual    = xp % XpMax;
+    const xpAtual = xp % XpMax;
     const porcentagem = (xp / XpMax) * 100;
 
-    
+
     //  QUERO SABER QUEM FOI
     useEffect(() => {
         const informacoes = localStorage.getItem("info");
@@ -112,19 +113,17 @@ const ConteudoPerfil =  () => {
     }
 
 
-
-
     return (
         <>
             {/*Popup Padrão]*/}
-                {popup && (
-                    <PopUp
-                        tipo={popup.tipo}
-                        titulo={popup.titulo}
-                        mensagem={popup.mensagem}
-                        onFechar={() => setPopup(null)}
-                    />
-                )}
+            {popup && (
+                <PopUp
+                    tipo={popup.tipo}
+                    titulo={popup.titulo}
+                    mensagem={popup.mensagem}
+                    onFechar={() => setPopup(null)}
+                />
+            )}
 
 
             <div className={style.corpo}>
@@ -141,8 +140,20 @@ const ConteudoPerfil =  () => {
                             className={style.foto}
                             src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${usuario?.foto}?v=${versaoFoto}`}
                             alt="Foto de perfil"
-                            onClick={() => inputRef.current.click()}
+                            onClick={() => setMudarFoto(!MudarFoto)}
                         />
+
+                        {MudarFoto && (
+                            <div className={MudarFoto ? style.Aberto : style.Fechado}>
+                                <BotoesForm
+                                    texto="Mudar Foto"
+                                    onClick={() => inputRef.current.click()}
+                                />
+                                <BotoesForm
+                                    texto="Deletar Foto"
+                                />
+                            </div>
+                        )}
 
                         <input
                             type="file"
@@ -161,17 +172,15 @@ const ConteudoPerfil =  () => {
                                     const conteudo = new FormData();
                                     conteudo.append("foto", arquivo);
 
-                                    if(foto == 'default.png')
-                                    {
+                                    if (foto == 'default.png') {
                                         //Adiciono a foto
                                         const foto_usuario = new Usuario();
-                                        foto_usuario.adicionar_foto(conteudo,setFoto,setDados,setPopup);
-                                        
-                                    }else
-                                    {
+                                        foto_usuario.adicionar_foto(conteudo, setFoto, setDados, setPopup);
+
+                                    } else {
                                         //Altero a foto
                                         const foto_usuario = new Usuario();
-                                        foto_usuario.alterar_foto(conteudo,setFoto,setDados,setPopup,setVersaoFoto);
+                                        foto_usuario.alterar_foto(conteudo, setFoto, setDados, setPopup, setVersaoFoto);
 
                                     }
                                 }
@@ -273,7 +282,7 @@ const ConteudoPerfil =  () => {
                     </div>
 
                 </div>
-        
+
             </div>
         </>
     );
