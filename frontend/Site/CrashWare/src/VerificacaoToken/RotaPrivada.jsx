@@ -28,7 +28,7 @@ const RotaPrivada = ({ children }) => {
 
         //Vaerifico o token
         const usuario = new Api();
-        const token_vencido = await usuario.Verificar_Token(token,Navegacao,true)
+        const token_vencido = await usuario.Verificar_Token(token,Navegacao,true,null,set)
 
 
         //Verifico o Refresh Token

@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
 
         //Verifico o token
         const usuario = new Api();
-        await usuario.Verificar_Token(token,Navegacao)
+        await usuario.Verificar_Token(token,Navegacao,null,null,set)
 
 
     }
@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{token_state, refresh_token_state, setToken, setRefresh }}>
+        <AuthContext.Provider value={{token_state, refresh_token_state, setToken, setRefresh,set }}>
             {children}
         </AuthContext.Provider>
     );
