@@ -165,7 +165,7 @@ async def alterar_foto(foto : UploadFile = File(...),usuario = Depends(validar_t
             conteudo = await foto.read()
 
             ##URL Que vou mudar a foto
-            url = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}/{usuario.foto}"
+            url = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}/{nome_arquivo}"
 
 
             resposta = requests.put(
