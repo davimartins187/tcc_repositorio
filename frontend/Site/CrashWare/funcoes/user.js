@@ -125,10 +125,11 @@ export class Usuario
        
         }catch (error) 
         {
+            
             setPopup({
                 tipo: 'erro',
                 titulo: 'Sem conexão',
-                mensagem: error
+                mensagem: 'Não foi possível conectar ao servidor.'
             });
         }
 
@@ -253,7 +254,7 @@ export class Usuario
                     //Atualiza a tela
                     setDados(dados)
 
-                    //Atualizo a versão novoa da img para o site reconhecer
+                    //Atualizo a versão nova da img para o site reconhecer
                     setVersaoFoto(Date.now())
 
                     
@@ -282,5 +283,80 @@ export class Usuario
         }
        
 
-    }//Alterando Foto
+    }//Alterar Foto
+
+
+    async remover_foto(setDados,setFoto,setPopup)
+    {
+        //Pego o token
+        const token = localStorage.getItem("token")
+
+         setPopup({
+                tipo: 'aviso',
+                titulo: 'Foto',
+                mensagem: 'Removendo foto...'
+            });
+
+        await sleep(2000)
+        try
+        {
+            const response = await fetch("https://api-crashware.onrender.com/user/remover_foto",
+                {
+                    method: "DELETE",
+                    headers:
+                    {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+
+            if(response.ok)
+            {
+                const  resposta = await response.json();
+
+                setFoto(resposta.foto)
+
+                //Atualizo no LocalStorage:
+
+                //Pega os dados atuais
+                const dados = JSON.parse(localStorage.getItem("dados"));
+
+                //Atualiza apenas a foto
+                dados.foto = resposta.foto;
+
+                //Salva novamente
+                localStorage.setItem("dados", JSON.stringify(dados));
+
+                //Atualiza a tela
+                setDados(dados)
+
+                 setPopup({
+                    tipo: 'sucesso',
+                    titulo: 'Foto',
+                    mensagem: resposta.mensagem
+                });
+
+            }else
+            {
+                const erro = await response.json();
+
+                 setPopup({
+                    tipo: 'erro',
+                    titulo: 'Foto',
+                    mensagem: erro.detail
+                });
+
+            }
+        } catch (error) 
+        {
+            console.log("Erro na requisição:", error);
+
+            setPopup({
+                tipo: 'erro',
+                titulo: 'Sem conexão',
+                mensagem: 'Não foi possível conectar ao servidor.'
+            });
+        }
+        
+
+    }
 }//classe

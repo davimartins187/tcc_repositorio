@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends,HTTPException,UploadFile, File
 
+
 #Importando comandos do sql para o código.
 from sqlalchemy import  delete
 
@@ -198,6 +199,42 @@ async def alterar_foto(foto : UploadFile = File(...),usuario = Depends(validar_t
         ##Se não der certo eu retorno o erro, e dou rollback no banco.
         session.rollback()
         raise HTTPException(status_code=400, detail=str(exception))
+
+
+@user.delete('/remover_foto')
+async def remover_foto(usuario = Depends(validar_token),session = Depends(pegar_sessao)):
+    if usuario is None:
+        raise HTTPException(status_code=404,detail="Usuário não encontrado")
+    try:
+        ##Deleto a pasta que contem o id dele no bucket
+        url_delete = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}"
+        resposta = requests.delete(
+            url_delete,
+            headers={
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "apikey": SUPABASE_KEY,
+                "Content-Type": "application/json"
+            },
+            json={
+                "prefixes": [usuario.foto]
+            }
+        )
+        if (resposta.status_code > 199 and resposta.status_code < 300):
+            session.foto = 'default.png'
+            session.commit()
+            return{
+                "mensagem" : "Foto removida com sucesso",
+                "foto" : usuario.foto
+            }
+        else:
+            raise HTTPException(status_code=400, detail=resposta.text)
+    except Exception as exception:
+        ##Se não der certo eu retorno o erro, e dou rollback no banco.
+        session.rollback()
+        raise HTTPException(status_code=400, detail=str(exception))
+
+
+
 
 
 

@@ -149,7 +149,7 @@ const ConteudoPerfil = () => {
                                     onClick={() => inputRef.current.click()}
                                 />
                                 <BotoesForm
-                                    texto="Deletar Foto"
+                                    texto="Remover Foto"
                                 />
                             </div>
                         )}
