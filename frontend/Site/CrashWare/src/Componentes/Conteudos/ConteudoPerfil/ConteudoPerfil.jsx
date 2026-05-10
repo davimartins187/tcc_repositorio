@@ -70,11 +70,13 @@ const ConteudoPerfil = () => {
 
     // muda a foto
     const [foto, setFoto] = useState(usuario?.foto);
+    const [banner, setBanner] = useState(usuario?.foto);
     const [MudarFoto, setMudarFoto] = useState(false);
     const [aberto, setAberto] = useState(false);
 
     //Cache da foto
     const [versaoFoto, setVersaoFoto] = useState(Date.now());
+    const [versaoBanner, setVersaoBanner] = useState(Date.now());
 
     const inputRef = useRef();
 

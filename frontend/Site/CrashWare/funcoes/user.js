@@ -194,15 +194,21 @@ export class Usuario
             }else{
                 const erro = await response.json();
 
-                console.log(erro.detail)
-
-                alert("Erro na API ")
+                 setPopup({
+                    tipo: 'erro',
+                    titulo: 'Banner',
+                    mensagem: erro.detail
+                });
 
                 
             }
         }catch (error) 
         {
-            console.log("Erro na requisição:", error);
+            setPopup({
+                tipo: 'erro',
+                titulo: 'Sem conexão',
+                mensagem: 'Não foi possível conectar ao servidor.'
+            });
         }
     }//Adicionar_Foto
 
@@ -279,10 +285,13 @@ export class Usuario
 
         }catch (error) 
         {
-            console.log("Erro na requisição:", error);
+              setPopup({
+                    tipo: 'erro',
+                    titulo: 'Erro',
+                    mensagem: error
+            });
         }
-       
-
+        
     }//Alterar Foto
 
 
@@ -358,5 +367,244 @@ export class Usuario
         }
         
 
-    }
+    }//Remover Foto
+
+
+     async adicionar_banner(conteudo,setBanner,setDados,setPopup)
+    {
+        //Pego o token
+        const token = localStorage.getItem("token")
+
+        setPopup({
+                tipo: 'aviso',
+                titulo: 'Banner',
+                mensagem: 'Enviando informações...'
+            });
+
+        await sleep(2000)
+        
+        try{
+            const response = await fetch("https://api-crashware.onrender.com/user/adicionar_banner",
+                {
+                    method: "POST",
+                    headers:
+                    {
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: conteudo
+                });
+            
+            if(response.ok)
+            {
+                const resposta = await response.json();
+
+
+                //Atualiza o setBanner
+                setBanner(resposta.foto)
+
+                //Atualizo no LocalStorage
+                //Pega os dados atuais
+                const dados = JSON.parse(localStorage.getItem("dados"));
+
+                //Atualiza apenas a foto
+                dados.banner = resposta.banner;
+
+                //Salva novamente
+                localStorage.setItem("dados", JSON.stringify(dados));
+
+                //Atualiza a tela
+                setDados(dados)
+
+                
+                setPopup({
+                    tipo: 'sucesso',
+                    titulo: 'Sucesso',
+                    mensagem: 'Banner adicionado com Sucesso...'
+                });
+
+                
+
+            }else{
+                const erro = await response.json();
+
+                
+
+                 setPopup({
+                    tipo: 'erro',
+                    titulo: 'Banner',
+                    mensagem: erro.detail
+                });
+
+                
+            }
+        }catch (error) 
+        {
+             setPopup({
+                tipo: 'erro',
+                titulo: 'Sem conexão',
+                mensagem: 'Não foi possível conectar ao servidor.'
+            });
+        }
+    }//Adicionar_Banner
+
+
+    
+    async alterar_foto(conteudo,setBanner,setDados,setPopup,setVersaoBanner)
+    {
+        //Pego o token
+        const token = localStorage.getItem("token")
+
+         setPopup({
+                tipo: 'aviso',
+                titulo: 'Banner',
+                mensagem: 'Enviando informações...'
+            });
+
+        await sleep(2000)
+
+        try
+        {
+             const response = await fetch("https://api-crashware.onrender.com/user/alterar_banner",
+                {
+                    method: "PUT",
+                    headers:
+                    {
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: conteudo
+                });
+
+                if(response.ok)
+                {
+                    const resposta = await response.json();
+
+                    //Atualizo o setBanner
+                    setBanner(resposta.banner)
+
+                    //Atualizo no LocalStorage:
+
+                    //Pega os dados atuais
+                    const dados = JSON.parse(localStorage.getItem("dados"));
+
+                    //Atualiza apenas o Banner
+                    dados.banner = resposta.banner;
+
+                    //Salva novamente
+                    localStorage.setItem("dados", JSON.stringify(dados));
+
+                    //Atualiza a tela
+                    setDados(dados)
+
+                    //Atualizo a versão nova da img para o site reconhecer
+                    setVersaoBanner(Date.now())
+
+                    
+                    setPopup({
+                        tipo: 'sucesso',
+                        titulo: 'Sucesso',
+                        mensagem: 'Banner alterado com Sucesso...'
+                    });
+
+                }else
+                {
+                    const erro = await response.json();
+
+                    setPopup({
+                        tipo: 'erro',
+                        titulo: 'Erro',
+                        mensagem: erro.detail
+                    });
+                }
+
+
+
+        }catch (error) 
+        {
+            setPopup({
+                        tipo: 'erro',
+                        titulo: 'Erro',
+                        mensagem: error
+                    });
+        }
+       
+
+    }//Alterar Banner
+
+    async remover_banner(setDados,setBanner,setPopup)
+    {
+        //Pego o token
+        const token = localStorage.getItem("token")
+
+         setPopup({
+                tipo: 'aviso',
+                titulo: 'Banner',
+                mensagem: 'Removendo Banner...'
+            });
+
+        await sleep(2000)
+        try
+        {
+            const response = await fetch("https://api-crashware.onrender.com/user/remover_banner",
+                {
+                    method: "DELETE",
+                    headers:
+                    {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+
+            if(response.ok)
+            {
+                const  resposta = await response.json();
+
+                setBanner(resposta.banner)
+
+                //Atualizo no LocalStorage:
+
+                //Pega os dados atuais
+                const dados = JSON.parse(localStorage.getItem("dados"));
+
+                //Atualiza apenas o banner
+                dados.banner = resposta.banner;
+
+                //Salva novamente
+                localStorage.setItem("dados", JSON.stringify(dados));
+
+                //Atualiza a tela
+                setDados(dados)
+
+                 setPopup({
+                    tipo: 'sucesso',
+                    titulo: 'Banner',
+                    mensagem: resposta.mensagem
+                });
+
+            }else
+            {
+                const erro = await response.json();
+
+                 setPopup({
+                    tipo: 'erro',
+                    titulo: 'Banner',
+                    mensagem: erro.detail
+                });
+
+            }
+        } catch (error) 
+        {
+            console.log("Erro na requisição:", error);
+
+            setPopup({
+                tipo: 'erro',
+                titulo: 'Sem conexão',
+                mensagem: 'Não foi possível conectar ao servidor.'
+            });
+        }
+        
+
+    }//Remover Banner
+
+
+
+
 }//classe

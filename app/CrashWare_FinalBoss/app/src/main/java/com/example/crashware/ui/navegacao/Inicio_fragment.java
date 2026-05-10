@@ -76,6 +76,8 @@ public class Inicio_fragment extends Fragment {
         //Coleto as informações do usuário
         Perfil();
 
+
+
         //Verificando Token
         Verificar_Token();
 
@@ -132,9 +134,9 @@ public class Inicio_fragment extends Fragment {
 
         //funções que vão ser utilizadas
         carregarNomeFirebase();
-
         //Carrego a imagem
         carregarImagem();
+
 
         btnRetomar.setOnClickListener(new View.OnClickListener() {
             @Override
