@@ -150,6 +150,10 @@ const ConteudoPerfil = () => {
                                 />
                                 <BotoesForm
                                     texto="Remover Foto"
+                                    onClick={() => {
+                                        const foto_usuario = new Usuario();
+                                        foto_usuario.remover_foto(setFoto, setDados, setPopup);
+                                    }}
                                 />
                             </div>
                         )}

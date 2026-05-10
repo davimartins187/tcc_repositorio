@@ -90,6 +90,20 @@
     cursor: pointer;
 }
 
+.Aberto button{
+    background-color: var(--bg-principal) ;
+    color: var(--texto-principal);
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 12px;
+    
+}
+
+.Aberto button:hover{
+    transition: 0.2s;
+    transform: scale(1.03);
+}
+
 .Fechado{
     opacity: 0;
     transform: translateY(-10px) scale(1);

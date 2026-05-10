@@ -45,9 +45,9 @@ const AbaListarConquistas = () => {
                             </div>
                         ))}
                     </div>
-                </div>
-            </div>
-        </div>
+                </div> {/* Lista */}
+            </div> {/* Conteudos */}
+        </div> /* Separar Conteudos */
     )
 }
 
