@@ -1,0 +1,94 @@
+[
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\activity_container_software.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\activity_container_software.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\fragment_conquistas.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\fragment_conquistas.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\fragment_editar_anotacao.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\fragment_editar_anotacao.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\fragment_nova_anotacao.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\fragment_nova_anotacao.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\fragment_anotacoes.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\fragment_anotacoes.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\fragment_loja.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\fragment_loja.xml"
+    },
+    {
+        "merged": "com.example.crashware.app-mergeDebugResources-3:/layout/fragment_editar_anotacao.xml",
+        "source": "com.example.crashware.app-main-6:/layout/fragment_editar_anotacao.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\cadastro.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\cadastro.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\fragment_aula.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\fragment_aula.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\fragment_inicio.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\fragment_inicio.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\redefinir_senha.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\redefinir_senha.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\home.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\home.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\fragment_configuracoes.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\fragment_configuracoes.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\activity_confirmar_identidade.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\activity_confirmar_identidade.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\fragment_escolhatrilha.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\fragment_escolhatrilha.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\activity_modulo_hardware.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\activity_modulo_hardware.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\fragment_perfil.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\fragment_perfil.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\activity_envio_codigo_senha.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\activity_envio_codigo_senha.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\carregamento.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\carregamento.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\recuperar_senha.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\recuperar_senha.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\activity_modulo_software.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\activity_modulo_software.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\login.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\login.xml"
+    },
+    {
+        "merged": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-mergeDebugResources-3:\\layout\\activity_container_hardware.xml",
+        "source": "C:\\Users\\Frndo\\.gradle\\daemon\\9.3.1\\com.example.crashware.app-main-6:\\layout\\activity_container_hardware.xml"
+    }
+]
