@@ -151,8 +151,18 @@ const ConteudoPerfil = () => {
                                 <BotoesForm
                                     texto="Remover Foto"
                                     onClick={() => {
-                                        const foto_usuario = new Usuario();
-                                        foto_usuario.remover_foto(setDados, setFoto, setPopup);
+                                        if(foto == 'default.png')
+                                        {
+                                            setPopup({
+                                                tipo: 'erro',
+                                                titulo: 'Foto',
+                                                mensagem: 'Você precisa adicionar uma foto , para realizar essa ação'
+                                            });
+                                        }else{
+                                            const foto_usuario = new Usuario();
+                                            foto_usuario.remover_foto(setDados, setFoto, setPopup);
+                                        }
+                                        
                                     }}
                                 />
                             </div>

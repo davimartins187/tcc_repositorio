@@ -13,7 +13,6 @@ const CVerificacaoEmail = () => {
     //Instancionando a API para receber dados do usuário
     const usuario = JSON.parse(localStorage.getItem("dados"));
     
-
     
 
     //useState/variaveis
