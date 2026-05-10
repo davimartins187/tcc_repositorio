@@ -152,7 +152,7 @@ const ConteudoPerfil = () => {
                                     texto="Remover Foto"
                                     onClick={() => {
                                         const foto_usuario = new Usuario();
-                                        foto_usuario.remover_foto(setFoto, setDados, setPopup);
+                                        foto_usuario.remover_foto(setDados, setFoto, setPopup);
                                     }}
                                 />
                             </div>
