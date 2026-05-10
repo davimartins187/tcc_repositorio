@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+w<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -126,7 +126,7 @@
                 android:layout_width="375dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:minHeight="600dp"
+                android:minHeight="650dp"
                 android:padding="10dp"
                 android:background="@drawable/bg_cardanotacao"
                 app:layout_constraintEnd_toEndOf="parent"
