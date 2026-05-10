@@ -7,9 +7,11 @@
 /* ===== CONTAINER PRINCIPAL ===== */
 .corpo{
     height: 100%;
-    background-color: var(--bg-principal);
+    background-color: var(--bg-secundario);
     width: 100%;
     padding-top: 260px;
+    margin-bottom: 20px;
+    border-radius: 20px;
 }
 
 .MainEstilo {
@@ -19,7 +21,7 @@
     flex-direction: column;
     align-items: center;
     /* padding-top: 80px; */
-    background-color: var(--bg-principal);
+    background-color: var(--bg-secundario);
     font-family: "Montserrat", sans-serif;
     border-radius: 20px;
 }
@@ -336,8 +338,7 @@
     text-align: center;
     padding: 40px 20px;
     width: 100%;
-    background-color: #2E73C330;
-    background-color: var(--bg-principal);
+    background-color: var(--bg-secundario);
 }
 
 .Caixa {
@@ -425,14 +426,14 @@
 /* ===== RESPONSIVIDADE (max 700px) ===== */
 @media (max-width: 700px) {
     .MainEstilo {
-        padding-top: 40px;
+        padding-top: 70px ;
     }
 
     /* Hero */
     .Apresentacao {
         flex-direction: column-reverse;
         text-align: center;
-        padding: 24px 16px;
+        padding: 0px 0px;
         gap: 20px;
     }
 
@@ -499,7 +500,6 @@
         height: 140px;
     }
 
-    /* Software */
     .ConteudoSoftware {
         flex-direction: column;
         align-items: center;
@@ -518,7 +518,6 @@
         height: 140px;
     }
 
-    /* Aplicativo */
     .aplicativo {
         padding: 32px 16px;
         margin-top: 32px;
@@ -533,7 +532,6 @@
     }
 }
 
-/* ===== RESPONSIVIDADE (max 480px) ===== */
 @media (max-width: 600px) {
     .Apresentacao_btns {
         flex-direction: row;

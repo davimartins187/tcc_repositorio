@@ -35,7 +35,7 @@
             android:name=".ui.senha.EnvioCodigo_Senha"
             android:exported="false" />
         <activity
-            android:name=".ui.navegacao.carregamento"
+            android:name=".ui.login.Login"
             android:exported="false" />
         <activity
             android:name=".ui.navegacao.Home"
@@ -48,7 +48,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.login.Login"
+            android:name=".ui.navegacao.carregamento"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

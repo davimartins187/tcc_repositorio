@@ -9,7 +9,7 @@
 /* ===== LAYOUT ===== */
 
 .corpo {
-  min-height: 88.9vh;
+  min-height: 100vh;
   width: 80%;
   margin: auto;
   display: flex;
@@ -23,6 +23,7 @@
   max-width: 480px;
   text-align: center;
   background-color: var(--bg-terceiro);
+  border: 1px solid var(--texto-principal);
   padding: 28px;
   border-radius: 30px;
 }
@@ -33,12 +34,12 @@
   color: var(--texto-principal);
   font-size: clamp(2rem, 5vw, 3rem);
   font-family: "Montserrat", sans-serif;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .container h2{
   color: var(--texto-principal);
-  font-size: 27px;
+  font-size: 24px;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -52,7 +53,8 @@
   font: bold;
   padding-top: 10px;
   text-indent: 5px;
-  color: var(--texto-terceiro);
+  color: var(--texto-principal);
+  font-weight: 400;
 }
 
 
@@ -77,8 +79,6 @@
 
 .inputClasse:focus {
   outline: none;
-  border-color: var(--Borda-gradiente1);
-  box-shadow: 0 0 0 2px var(--Botao-gradiente3);
 }
 
 /* ===== SENHA ===== */
@@ -123,12 +123,12 @@
 /* ===== BOTÃO ===== */
 
 .btnEnviar {
-  width: 100%;
+  width: 70%;
   height: 55px;
 
-  background: linear-gradient(to right, var(--Botao-gradiente1), var(--Botao-gradiente2), var(--Botao-gradiente3));
+  background: var(--bg-principal);
+  border-radius: 30px;
   border: none;
-  border-radius: 6px;
 
   font-size: 20px;
   font-weight: bold;
@@ -152,9 +152,17 @@
 
 /* ===== RESPONSIVIDADE ===== */
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   .container {
     max-width: 100%;
+  }
+
+.container h1{
+  margin-bottom: 40px;
+}
+
+  .container h2{
+    font-size: 16px !important;
   }
 
   .inputClasse {

@@ -40,7 +40,7 @@
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.863);
     font-size: 22px;
     display: inline-block;
-    color: var(--texto-principal);
+    color: var(--texto-secundario);
     margin-left: 10px;
 
 
@@ -110,8 +110,8 @@
     .hamburguer{
         flex-direction: row;
         width: 100vw;
+        font-size: 20px !important;
         height: 5vh;
-        /* z-index: 999999; */
     }
     
 }

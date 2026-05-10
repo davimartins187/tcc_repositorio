@@ -37,3 +37,4 @@ async def adicionar_conquista(conquista : ConquistaSchema,session = Depends(pega
 
 
 
+

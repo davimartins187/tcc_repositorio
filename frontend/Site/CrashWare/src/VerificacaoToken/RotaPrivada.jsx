@@ -13,9 +13,12 @@ const RotaPrivada = ({ children }) => {
     //const [id, setId] = useState(() => localStorage.getItem("id"));
     const [token_state, setToken] = useState(() => localStorage.getItem("token"));
     const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
+    const [dados, setDados] = useState(() =>
+        JSON.parse(localStorage.getItem("dados")) || null
+    );
 
     //Lista que contém todos os usestate
-    const set = [setToken,setRefresh];
+    const set = [setToken,setRefresh,setDados];
 
 
     //Verifico se o usuario tem token
@@ -28,7 +31,7 @@ const RotaPrivada = ({ children }) => {
 
         //Vaerifico o token
         const usuario = new Api();
-        const token_vencido = await usuario.Verificar_Token(token,Navegacao,true)
+        const token_vencido = await usuario.Verificar_Token(token,Navegacao,true,null,set)
 
 
         //Verifico o Refresh Token

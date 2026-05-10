@@ -11,6 +11,11 @@ import verSenha_claro from '../../../fotos/claro/pode_ver_senha.svg';
 import esconderSenha_escuro from '../../../fotos/escuro/nao_pode_ver_senha_claro.svg';
 import verSenha_escuro from '../../../fotos/escuro/pode_ver_senha_claro.svg';
 
+import gitIconModoEscuro from "../../../fotos/GitHub.svg";
+import gitIconModoClaro from "../../../fotos/GitHub copy.svg";
+
+import googloIcon from "../../../fotos/google.png";
+
 import style from './ConteudoLogin.module.css';
 import { Api, sleep } from "../../../../funcoes/functions";
 
@@ -43,8 +48,8 @@ const ConteudoLogin = () => {
     const isClaro = tema === 'Claro';
 
     const iconeSenha = mostrar
-        ? (isClaro ? verSenha_claro : verSenha_escuro)
-        : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
+        ? (verSenha_claro)
+        : (esconderSenha_claro );
 
 
     const handleLogin = async () => {
@@ -70,14 +75,14 @@ const ConteudoLogin = () => {
             <div className={`${style.corpo} ${tema}`}>
                 <div className={style.container}>
 
-                    <h1>Login</h1>
+                    <h1>Entrar</h1>
 
                     <p>E-mail</p>
                     <CampoTexto
                         type="email"
                         ref={inputRef}
                         maxLength={200}
-                        placeholder="Email"
+                        placeholder="seu@gmail.com"
                         className={style.inputClasse}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -114,29 +119,22 @@ const ConteudoLogin = () => {
                     </div>
 
                     <BotoesForm
-                        texto="Logar"
+                        texto="Entrar"
                         tipo={TIPO_BOTAO.CADASTRO}
                         className={style.btnLogar}
                         onClick={handleLogin}
                     />
 
-                    {/* <div className={style.ou}>
-                        <hr />
-                        <p>OU</p>
-                        <hr />
-                    </div> */}
-
-                    {/* <Link to='/cadastro'>
-                        <BotoesForm
-                            texto="Cadastrar-se"
-                            tipo={TIPO_BOTAO.CADASTRO}
-                            className={style.btnLogar}
-                        />
-                    </Link> */}
                 </div>
-                    <p className={style.Cadastrar}>
-                        Não tem uma Conta? <Link to="/cadastro">Cadastre-se</Link>
-                    </p>
+                <p className={style.Cadastrar}>
+                    Não tem uma Conta? 
+                    <Link to="/cadastro">Cadastre-se</Link>
+                </p>
+
+                <div className={style.outrasFormasLogin}>
+                    <img src={tema === "Claro"? gitIconModoClaro : gitIconModoEscuro} alt="Icone Github" />
+                    <img src={googloIcon} alt="Icone google" />
+                </div>
             </div>
         </>
     );

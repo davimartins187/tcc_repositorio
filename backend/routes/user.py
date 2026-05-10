@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends,HTTPException,UploadFile, File
 
+
 #Importando comandos do sql para o código.
 from sqlalchemy import  delete
 
@@ -70,9 +71,7 @@ async def deletar_conta(usuario = Depends(validar_token),session = Depends(pegar
     try:
         if usuario.foto != "default.png":
             ##Deleto a pasta que contem o id dele no bucket
-
             url_delete = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}"
-
             resposta = requests.delete(
                 url_delete,
                 headers={
@@ -83,7 +82,7 @@ async def deletar_conta(usuario = Depends(validar_token),session = Depends(pegar
                 json={
                     "prefixes": [usuario.foto]
                 }
-            )
+                )
             if (resposta.status_code > 199 and resposta.status_code < 300):
                 pass
             else:
@@ -99,8 +98,6 @@ async def deletar_conta(usuario = Depends(validar_token),session = Depends(pegar
         session.rollback()
         raise HTTPException(status_code=400, detail=str(exception))
 
-
-
 ##############
 #Rota de adicionar foto
 @user.post('/adicionar_foto')
@@ -108,10 +105,10 @@ async def adicionar_foto(foto : UploadFile = File(...),usuario = Depends(validar
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     try:
+
         ##altero a foto no banco de dados:
         id = str(usuario.id_usuario) + '/'
-
-        nome_arquivo = id + foto.filename
+        nome_arquivo = id + "foto"
 
         ##Gero uma nova imagem no bucket
 
@@ -141,7 +138,8 @@ async def adicionar_foto(foto : UploadFile = File(...),usuario = Depends(validar
             ##Retorno mensagem de sucesso
             usuario.foto = nome_arquivo
             session.commit()
-            return {"mensagem": "Foto adicionada com sucesso!"}
+            return {"mensagem": "Foto adicionada com sucesso!",
+                    "foto": usuario.foto}
         else:
             ##Retorno o erro
             raise HTTPException(status_code=400,detail=resposta.text)
@@ -150,6 +148,98 @@ async def adicionar_foto(foto : UploadFile = File(...),usuario = Depends(validar
         ##Se não der certo eu retorno o erro, e dou rollback no banco.
         session.rollback()
         raise HTTPException(status_code=400, detail=str(exception))
+
+
+@user.put('/alterar_foto')
+async def alterar_foto(foto : UploadFile = File(...),usuario = Depends(validar_token),session =  Depends(pegar_sessao)):
+    if usuario is None:
+        raise HTTPException(status_code=404,detail="Usuário não encontrado")
+    try:
+        if usuario.foto !="default.png":
+
+            # #Trato o nome do arquivo
+            # id = str(usuario.id_usuario) + '/'
+            # nome_arquivo = id + foto.filename
+
+            ##Gero uma requisição no bucket
+            ##Pego a foto
+            conteudo = await foto.read()
+
+            ##URL Que vou mudar a foto
+            url = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}/{usuario.foto}"
+
+
+            resposta = requests.put(
+                url,
+                headers={
+                    "Authorization": f"Bearer {SUPABASE_KEY}",
+                    "apikey": SUPABASE_KEY,
+                    "Content-Type": foto.content_type,
+                    "x-upsert": "true"
+                },
+                data=conteudo
+            )
+
+            if resposta.status_code > 199 and resposta.status_code < 300:
+                return {
+                        "mensagem" : 'Foto alterada com sucesso',
+                        "foto" : usuario.foto
+                        }
+            else:
+                ##Retorno o erro
+                raise HTTPException(status_code=400, detail=resposta.text)
+
+
+        else:
+            ##Usuario não pode alterar a foto , sem ter adicionado uma
+            raise HTTPException(status_code=403,detail="Você não tem permissão para isso")
+
+
+    except Exception as exception:
+        ##Se não der certo eu retorno o erro, e dou rollback no banco.
+        session.rollback()
+        raise HTTPException(status_code=400, detail=str(exception))
+
+
+@user.delete('/remover_foto')
+async def remover_foto(usuario = Depends(validar_token),session = Depends(pegar_sessao)):
+    if usuario is None:
+        raise HTTPException(status_code=404,detail="Usuário não encontrado")
+    try:
+        ##Deleto a pasta que contem o id dele no bucket
+        url_delete = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}"
+        resposta = requests.delete(
+            url_delete,
+            headers={
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "apikey": SUPABASE_KEY,
+                "Content-Type": "application/json"
+            },
+            json={
+                "prefixes": [usuario.foto]
+            }
+        )
+        if (resposta.status_code > 199 and resposta.status_code < 300):
+            session.foto = 'default.png'
+            session.commit()
+            return{
+                "mensagem" : "Foto removida com sucesso",
+                "foto" : usuario.foto
+            }
+        else:
+            raise HTTPException(status_code=400, detail=resposta.text)
+    except Exception as exception:
+        ##Se não der certo eu retorno o erro, e dou rollback no banco.
+        session.rollback()
+        raise HTTPException(status_code=400, detail=str(exception))
+
+
+
+
+
+
+
+
 
 
 

@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom"
-import { PgInicial, PgCadastro, SobreNos, PgLogin, PgErro, PgRecuperarSenha, PgVerificacaoEmail, PgPerfil, PgAnotacoes, PgConfiguracoes, PgHome, PgTermos, PgAdm } from "./Paginas"
+import { PgInicial, PgCadastro, SobreNos, PgLogin, PgErro, PgRecuperarSenha, PgVerificacaoEmail, PgPerfil, PgAnotacoes, PgConfiguracoes, PgHome, PgTermos, PgAdm, AbaConquistas } from "./Paginas"
 import { LayoutPadrao, LayoutCadLogin, LayoutLogado, LalyoutADM } from "./Layouts"
 import { PgAlterarSenha } from "./Paginas/AlterarSenha"
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken"
+import { AbaListarConquistas } from "./Paginas/ADM/AbasAdm/AbaListarConquistas"
 
 
 
@@ -85,7 +86,18 @@ const Router = () => {
                         <PgAdm />
                     </RotaPrivada>
                 } />
-                
+
+                <Route path="criar-conquista" element={
+                    <RotaPrivada>
+                        <AbaConquistas />
+                    </RotaPrivada>
+                } />
+
+                <Route path="listar-conquistas" element={
+                    <RotaPrivada>
+                        <AbaListarConquistas />
+                    </RotaPrivada>
+                } />
             </Route>
         </Routes>
     )

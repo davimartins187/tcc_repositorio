@@ -6,8 +6,6 @@ import { PopUp } from '../../pop-up';
 
 import esconderSenha_claro from '../../../fotos/claro/nao_pode_ver_senha.svg';
 import verSenha_claro from '../../../fotos/claro/pode_ver_senha.svg';
-import esconderSenha_escuro from '../../../fotos/escuro/nao_pode_ver_senha_claro.svg';
-import verSenha_escuro from '../../../fotos/escuro/pode_ver_senha_claro.svg';
 
 
 import style from './ConteudoAlterarSenha.module.css'
@@ -52,12 +50,12 @@ const ConteudoAlterarSenha = () => {
     const isClaro = tema === 'Claro';
 
     const iconeSenha = mostrar
-        ? (isClaro ? verSenha_claro : verSenha_escuro)
-        : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
+        ? (verSenha_claro )
+        : (esconderSenha_claro );
 
     const iconeConfirmaSenha = mostrarConfimar
-        ? (isClaro ? verSenha_claro : verSenha_escuro)
-        : (isClaro ? esconderSenha_claro : esconderSenha_escuro);
+        ? ( verSenha_claro )
+        : (esconderSenha_claro );
 
 
 

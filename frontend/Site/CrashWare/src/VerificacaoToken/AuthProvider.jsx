@@ -17,9 +17,12 @@ const AuthProvider = ({ children }) => {
     //const [id_state, setId] = useState(() => localStorage.getItem("id"));
     const [token_state, setToken] = useState(() => localStorage.getItem("token"));
     const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
+    const [dados, setDados] = useState(() =>
+        JSON.parse(localStorage.getItem("dados")) || null
+    );
 
     //Lista que contém todos os usestate
-    const set = [setToken,setRefresh];
+    const set = [setToken,setRefresh,setDados];
 
     //Verifico se o usuario tem token
     const VerificarToken = async () => 
@@ -31,7 +34,7 @@ const AuthProvider = ({ children }) => {
 
         //Verifico o token
         const usuario = new Api();
-        await usuario.Verificar_Token(token,Navegacao)
+        await usuario.Verificar_Token(token,Navegacao,null,null,set)
 
 
     }
@@ -43,7 +46,7 @@ const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{token_state, refresh_token_state, setToken, setRefresh }}>
+        <AuthContext.Provider value={{token_state, refresh_token_state, setToken, setRefresh,set }}>
             {children}
         </AuthContext.Provider>
     );

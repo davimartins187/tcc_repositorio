@@ -12,93 +12,19 @@
     gap: 20px;
 }
 
-.barraLateral {
-    display: flex;
-    flex-direction: column;
-    background-color: #6C6A6A30;
-    border: 1px solid var(--texto-principal);
-    border-radius: 16px;
-    padding: 10px;
-    min-width: 15vw;
-
-    margin-top: 70px;
-    margin-bottom: 150px;
-    margin-left: 20px;
-}
-
-.barraLateral h1 {
-    font-family: "Montserrat";
-    color: var(--texto-principal);
-    font-size: 20px;
-    margin: 20px;
-    margin-bottom: 10px;
-}
-
-.barraLateral hr{
-    width: 90%;
-    margin: auto;
-    margin-bottom: 20px;
-}
-
-.itensBarraLateral {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-}
-
-.itemBarraLateral {
-    display: flex;
-    flex-direction: row;
-    padding-left : 20px;
-    height: 50px;
-    width: 90%;
-
-    background-color: var(--texto-principal); 
-    border: 1px solid black;
-    border-radius: 12px;
-    margin: 0px 20px 20px 20px;
-}
-
-.itemBarraLateral:hover {
-    transform: rotate(0.2deg) scale(1.04) translateY(-2px);
-    transition: 0.2s;
-}
-
-.itemBarraLateral img {
-    width: 16px;
-    text-align: center;
-    margin-bottom: 10px;
-    display: inline;
-}
-
-.itemBarraLateral span {
-    color: black;
-    font-size: 14px;
-    font-family: "Montserrat" !important;
-    font-weight: 800;
-    align-self: center;
-    display: inline;
-    margin-left: 10px;
-}
-
-.destaque span{
-    color: red !important;
-}
-
-.destaque div{
-    border: 1.21px solid red;
-}
-
 .Conteudos {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-items: center;
     align-self: center;
     margin: auto;
+    margin-top: 100px;
+
     background-color: #6C6A6A30;
+    border: 2px solid var(--texto-principal);
     border-radius: 16px;
 
-    width: 60vw;
+    width: 70%;
     height: auto;
 }
 
@@ -111,23 +37,40 @@
     margin: 20px 0px;
 }
 
-.parteEmail, .parteTelefone{
+.ConquistaInputs{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin: 40px auto;
-    width: 80%;
+    justify-self: flex-start;
+    align-items: start;
+    margin: 40px 30px 40px 40px;
+    width: 100%;
+    height: 79vh;
     gap: 6px;
 }
 
-.parteEmail label{
+/* .Margincima{
+    margin-top: 40px;
+} */
+
+.ConquistaInputs label{
     font-family: "Montserrat";
     color: var(--texto-principal);
     font-weight: 700;
+    margin-bottom: 8px;
 }
 
-.parteEmail input{
+.ConquistaInputs p{
+    font-family: "Montserrat";
+    color: var(--texto-principal);
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 2px;
+    text-align: end;
+    width: 24vw;
+}
+
+.ConquistaInputs input{
     margin-right: 60px;
     padding: 10px;
     padding-left: 30px;
@@ -136,7 +79,52 @@
 
     font-family: "Montserrat";
     font-weight: 500;
-    width: 16vw;
+    width: 24vw;
+}
+
+.ConquistaAtributos{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Descricao{
+    resize: none;
+    height: 19vh;
+    padding: 10px;
+    font-size: 16px;
+    width: 24vw;
+    border-radius: 8px;
+    
+    margin-right: 60px;
+    padding: 10px;
+    text-indent: 20px;
+    border-radius: 8px;
+    border: none;
+    
+    font-family: "Montserrat";
+    font-weight: 500;   
+    width: 24vw;
+}
+
+.RadioTipo{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    margin-top: 10px;
+    text-align: center;
+    align-items: center;
+    font: 500;
+    font-size: 22px;
+    gap: 10px;
+    margin: 10px;
+    width: 10vw;
+    cursor: pointer;
+}
+
+.RadioTipo img{
+    width: 25px;
 }
 
 .botoes{
@@ -179,64 +167,74 @@
 .campoForm {
     display: flex;
     flex-direction: column;
-    flex: 1 1 80px;
     gap: 4px;
-    width: 50%;
-}
-
-.alterarSenha{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.alterarSenha p{
-    font-family: "Montserrat";
-    color: var(--texto-principal);
-    font-weight: 700;
-    font-size: 18px;
-}
-
-.alterarSenha button{
-    background: linear-gradient(90deg, #101017, #06060A);
-    border: none;
-    color: white;
     width: 100%;
-    height: 40px;
-    border-radius: 12px;
-    padding: 10px;
-
-    font-family: "Montserrat";
-    font-weight: 700;
-    margin-top: 26px;
+    height: 20vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.alterarSenha button{
-    transform: scale(1.03) translateY(-4px);
-    transition: 0.4s;
-}
-
-.conectarContas{
+.campoFormDescricao{
     display: flex;
     flex-direction: column;
+    gap: 4px;
+    height: 30vh;
+    width: 100%;
+}
+
+.campoFormAtribustos{
+    width: 100%;
+    height: 100%;
+    justify-items: center;
     align-items: center;
-}
-
-.conectarContas h2{
     font-family: "Montserrat";
+    font-size: 25px;
+    font-weight: 500;
     color: var(--texto-principal);
-    font-weight: 700;
+    margin-top: 30px;
 }
 
-.conectarContas img{
-    width: 40px;
-    margin: 30px 10px;
+.campoFormAtribustos label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
 }
 
-.conectarContas img:hover{
-    transform: scale(1.20);
-    transition: 0.2s ease;
+.Recompensas{
+    gap: 20px;
+    margin-top: 20px;
+    text-align: center;
+    align-items: center;
+    font: 500;
+    font-size: 22px;
+    gap: 10px;
+    margin: 10px;
+    width: 20vw;
+    margin-top: 40px;
+}
+
+.Recompensas h3{
+    margin-bottom: 30px;
+}
+
+.Recompensas label{
+    margin-bottom: 8px;
+}
+
+.Recompensas input[type="number"]{
+    margin-right: 60px;
+    margin-bottom: 30px;
+    padding: 10px;
+    padding-left: 30px;
+    border-radius: 8px;
+    border: none;
+
+    font-family: "Montserrat";
+    font-weight: 500;
+    width: 20vw;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .fundoEscurecido {
@@ -339,27 +337,32 @@
     background-color: rgba(255, 255, 255, 0.16);
 }
 
+.botaoAdicionar{
+    /* padding: 10px; */
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 8px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    color: var(--texto-principal);
+    cursor: pointer;
+    background: linear-gradient(90deg, var(--BotaoADD-gradiente1), var(--BotaoADD-gradiente2));
+}
+
+.botaoAdicionar:disabled{
+    background: gray;
+    cursor: not-allowed;
+}
+
 @media (max-width: 970px) {
     .separarConteudos {
         flex-direction: column;
         align-items: center;
     }
 
-    .barraLateral {
-        width: 80vw;
-        min-width: unset;
-        margin: 20px;
-        flex-direction: column;
-        margin-top: 50px !important;
-    }
-
-    .barraLateral h1{
-        text-indent: 30px;
-    }
-
     .Conteudos {
-        min-width: 80vw;
-        flex-direction: column;
+        min-width: 50%;
+        flex-direction: wrap;
         margin-bottom: 30px;
     }
 
@@ -373,15 +376,71 @@
         margin: 0px auto 12px auto;
     }
 
-    .parteEmail, .parteTelefone{
+    .ConquistaInputs, .parteTelefone{
         width: 100%;
         flex-direction: column;
         padding: 0px;
         margin-bottom: 10px;
     }
 
-    .parteTelefone input, .parteEmail input{
+    .Descricao{
+        width: 80%;
+    }
+
+    .parteTelefone input, .ConquistaInputs input{
+        width: 80%;
+    }
+
+    .alterarSenha{
+        margin-top: 30px;
+    }
+    
+    .conectarContas h2{
+        font-size: 3.4vw !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .Conteudos {
         width: 100%;
+        flex-direction: wrap;
+        margin-bottom: 30px;
+    }
+
+.campoForm{
+    display: flex;
+    height: 40vh;
+    margin-bottom: 10px;
+}
+
+    .ConquistaInputs{
+        width: 100%;
+        flex-direction: column;
+        padding: 0px;
+    }
+
+.ConquistaInputs p{
+    font-family: "Montserrat";
+    color: var(--texto-principal);
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 2px;
+    text-align: end;
+    width: 34vw;
+}
+
+.campoFormDescricao{
+    margin-top: 10px;
+}
+
+    .Descricao{
+        width: 80%;
+        height: 15vh;
+        margin-top: 15px;
+    }
+
+    .parteTelefone input, .ConquistaInputs input{
+        width: 80%;
     }
 
     .alterarSenha{
