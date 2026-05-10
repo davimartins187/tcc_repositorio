@@ -10,6 +10,11 @@ import { Api, sleep } from "../../../../funcoes/functions"
 
 const CVerificacaoEmail = () => {
 
+    //Instancionando a API para receber dados do usuário
+    const usuario = JSON.parse(localStorage.getItem("dados"));
+    
+    
+
     //useState/variaveis
     const [timer, setTimer] = useState(0);
     const [loading, setLoading] = useState(false);

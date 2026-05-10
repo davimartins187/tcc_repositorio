@@ -70,11 +70,13 @@ const ConteudoPerfil = () => {
 
     // muda a foto
     const [foto, setFoto] = useState(usuario?.foto);
+    const [banner, setBanner] = useState(usuario?.foto);
     const [MudarFoto, setMudarFoto] = useState(false);
     const [aberto, setAberto] = useState(false);
 
     //Cache da foto
     const [versaoFoto, setVersaoFoto] = useState(Date.now());
+    const [versaoBanner, setVersaoBanner] = useState(Date.now());
 
     const inputRef = useRef();
 
@@ -150,6 +152,20 @@ const ConteudoPerfil = () => {
                                 />
                                 <BotoesForm
                                     texto="Remover Foto"
+                                    onClick={() => {
+                                        if(foto == 'default.png')
+                                        {
+                                            setPopup({
+                                                tipo: 'erro',
+                                                titulo: 'Foto',
+                                                mensagem: 'Você precisa adicionar uma foto , para realizar essa ação'
+                                            });
+                                        }else{
+                                            const foto_usuario = new Usuario();
+                                            foto_usuario.remover_foto(setDados, setFoto, setPopup);
+                                        }
+                                        
+                                    }}
                                 />
                             </div>
                         )}

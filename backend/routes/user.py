@@ -36,6 +36,7 @@ load_dotenv()
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
 SUPABASE_BUCKET = os.getenv("SUPABASE_BUCKET")
+SUPABASE_BUCKET2 = os.getenv("SUPABASE_BUCKET2")
 
 
 #ROTAS:
@@ -87,6 +88,25 @@ async def deletar_conta(usuario = Depends(validar_token),session = Depends(pegar
                 pass
             else:
                 raise HTTPException(status_code=400,detail=resposta.text)
+
+            if usuario.banner != "default.png":
+                ##Deleto a pasta que contem o id dele no bucket
+                url_delete = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET2}"
+                resposta = requests.delete(
+                    url_delete,
+                    headers={
+                        "Authorization": f"Bearer {SUPABASE_KEY}",
+                        "apikey": SUPABASE_KEY,
+                        "Content-Type": "application/json"
+                    },
+                    json={
+                        "prefixes": [usuario.banner]
+                    }
+                )
+                if (resposta.status_code > 199 and resposta.status_code < 300):
+                    pass
+                else:
+                    raise HTTPException(status_code=400, detail=resposta.text)
 
 
         session.query(Usuarios).filter(Usuarios.id_usuario == usuario.id_usuario).delete()
@@ -220,11 +240,146 @@ async def remover_foto(usuario = Depends(validar_token),session = Depends(pegar_
             }
         )
         if (resposta.status_code > 199 and resposta.status_code < 300):
-            session.foto = 'default.png'
+            usuario.foto = 'default.png'
             session.commit()
             return{
                 "mensagem" : "Foto removida com sucesso",
                 "foto" : usuario.foto
+            }
+        else:
+            raise HTTPException(status_code=400, detail=resposta.text)
+    except Exception as exception:
+        ##Se não der certo eu retorno o erro, e dou rollback no banco.
+        session.rollback()
+        raise HTTPException(status_code=400, detail=str(exception))
+
+##############
+#Rota de adicionar foto
+@user.post('/adicionar_banner')
+async def adicionar_banner(banner : UploadFile = File(...),usuario = Depends(validar_token),session = Depends(pegar_sessao)):
+    if usuario is None:
+        raise HTTPException(status_code=404,detail="Usuário não encontrado")
+    try:
+
+        ##altero o nome do banner
+        id = str(usuario.id_usuario) + '/'
+        nome_arquivo = id + "banner"
+
+        ##Gero uma nova imagem no bucket
+
+        ##Gero uma requisição
+
+        ##Pego a foto
+        conteudo = await banner.read()
+
+        ##URL DE UPLOAD
+        url_upload = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET2}/{nome_arquivo}"
+
+        #Headers da requisição
+        headers = {
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "apikey": SUPABASE_KEY,
+            "Content-Type": banner.content_type
+        }
+
+        #Requisição
+        resposta = requests.post(
+            url_upload,
+            headers=headers,
+            data=conteudo
+        )
+
+        if(resposta.status_code > 199 and resposta.status_code < 300):
+            ##Retorno mensagem de sucesso
+            usuario.banner = nome_arquivo
+            session.commit()
+            return {"mensagem": "Banner adicionada com sucesso!",
+                    "banner": usuario.banner}
+        else:
+            ##Retorno o erro
+            raise HTTPException(status_code=400,detail=resposta.text)
+
+    except Exception as exception:
+        ##Se não der certo eu retorno o erro, e dou rollback no banco.
+        session.rollback()
+        raise HTTPException(status_code=400, detail=str(exception))
+
+
+@user.put('/alterar_banner')
+async def alterar_banner(banner : UploadFile = File(...),usuario = Depends(validar_token),session =  Depends(pegar_sessao)):
+    if usuario is None:
+        raise HTTPException(status_code=404,detail="Usuário não encontrado")
+    try:
+        if usuario.banner !="default.png":
+
+            # #Trato o nome do arquivo
+            # id = str(usuario.id_usuario) + '/'
+            # nome_arquivo = id + foto.filename
+
+            ##Gero uma requisição no bucket
+            ##Pego a foto
+            conteudo = await banner.read()
+
+            ##URL Que vou mudar a foto
+            url = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET2}/{usuario.banner}"
+
+
+            resposta = requests.put(
+                url,
+                headers={
+                    "Authorization": f"Bearer {SUPABASE_KEY}",
+                    "apikey": SUPABASE_KEY,
+                    "Content-Type": banner.content_type,
+                    "x-upsert": "true"
+                },
+                data=conteudo
+            )
+
+            if resposta.status_code > 199 and resposta.status_code < 300:
+                return {
+                        "mensagem" : 'Banner alterado com sucesso',
+                        "banner" : usuario.banner
+                        }
+            else:
+                ##Retorno o erro
+                raise HTTPException(status_code=400, detail=resposta.text)
+
+
+        else:
+            ##Usuario não pode alterar a foto , sem ter adicionado uma
+            raise HTTPException(status_code=403,detail="Você não tem permissão para isso")
+
+
+    except Exception as exception:
+        ##Se não der certo eu retorno o erro, e dou rollback no banco.
+        session.rollback()
+        raise HTTPException(status_code=400, detail=str(exception))
+
+
+@user.delete('/remover_banner')
+async def remover_foto(usuario = Depends(validar_token),session = Depends(pegar_sessao)):
+    if usuario is None:
+        raise HTTPException(status_code=404,detail="Usuário não encontrado")
+    try:
+        ##Deleto a pasta que contem o id dele no bucket
+        url_delete = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET2}"
+        resposta = requests.delete(
+            url_delete,
+            headers={
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "apikey": SUPABASE_KEY,
+                "Content-Type": "application/json"
+            },
+            json={
+                "prefixes": [usuario.banner]
+            }
+        )
+        if (resposta.status_code > 199 and resposta.status_code < 300):
+            usuario.foto = 'default.png'
+            session.commit()
+            return{
+                "mensagem" : "Banner removido com sucesso",
+                "banner" : usuario.banner
             }
         else:
             raise HTTPException(status_code=400, detail=resposta.text)

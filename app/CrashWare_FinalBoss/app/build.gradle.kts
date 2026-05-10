@@ -50,6 +50,9 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation(libs.activity.ktx)
     //
+    //Faz o app carregar imagem com link
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    //
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

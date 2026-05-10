@@ -1,6 +1,8 @@
 package com.example.crashware.ui.perfil;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,9 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.crashware.R;
+import com.example.crashware.ui.api.User;
 import com.example.crashware.ui.navegacao.Inicio_fragment;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +36,9 @@ public class Perfil_Fragment extends Fragment {
     ShapeableImageView imgFotoPerfil, imgBanner;
 
     private ActivityResultLauncher<String[]> escolherImagem;
+
+    //Memória do app
+    SharedPreferences prefs;
 
     private FirebaseAuth auth;
     private DatabaseReference db;
@@ -66,6 +75,10 @@ public class Perfil_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //SharedPreferences
+        prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -171,7 +184,7 @@ public class Perfil_Fragment extends Fragment {
             }
         });//
 
-        carregarImagemLocal();
+        carregarImagem();
 
         return view;
 
@@ -181,58 +194,97 @@ public class Perfil_Fragment extends Fragment {
     private void setImage(Uri uri) {
         if (!isAdded()) return;
 
-        // Permissão persistente
-        requireContext().getContentResolver().takePersistableUriPermission(
-                uri,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION
-        );
+        //Pego a foto do banco
+        String foto = prefs.getString("foto", null);
 
-        if (tipoImagem.equals("perfil")) {
+        //Verifico se vai adicionar ou alterar
+        if("default.png".equals(foto))
+        {
+            //Add a foto
+            Toast.makeText(getContext(), "Adicionando Foto..", Toast.LENGTH_LONG).show();
+            User.Adicionar_Foto(requireContext(),prefs,uri,imgFotoPerfil);
 
-            imgFotoPerfil.setImageURI(uri);
 
-            requireContext()
-                    .getSharedPreferences("perfil", 0)
-                    .edit()
-                    .putString("fotoPerfil", uri.toString())
-                    .apply();
 
-        } else if (tipoImagem.equals("banner")) {
+        }else
+        {
+            //Altero a foto
+            Toast.makeText(getContext(), "Alterando Foto..", Toast.LENGTH_LONG).show();
+            User.Alterar_Foto(requireContext(),prefs,uri,imgFotoPerfil);
 
-            imgBanner.setImageURI(uri);
 
-            requireContext()
-                    .getSharedPreferences("perfil", 0)
-                    .edit()
-                    .putString("fotoBanner", uri.toString())
-                    .apply();
         }
+
+//        // Permissão persistente
+//        requireContext().getContentResolver().takePersistableUriPermission(
+//                uri,
+//                Intent.FLAG_GRANT_READ_URI_PERMISSION
+//        );
+//
+//        if (tipoImagem.equals("perfil")) {
+//
+//            imgFotoPerfil.setImageURI(uri);
+//
+//            requireContext()
+//                    .getSharedPreferences("perfil", 0)
+//                    .edit()
+//                    .putString("fotoPerfil", uri.toString())
+//                    .apply();
+//
+//        } else if (tipoImagem.equals("banner")) {
+//
+//            imgBanner.setImageURI(uri);
+//
+//            requireContext()
+//                    .getSharedPreferences("perfil", 0)
+//                    .edit()
+//                    .putString("fotoBanner", uri.toString())
+//                    .apply();
+//        }
     }
 
-    private void carregarImagemLocal() {
+    private void carregarImagem() {
         if (!isAdded()) return;
 
-        // FOTO PERFIL
-        String uriPerfil = requireContext()
-                .getSharedPreferences("perfil", 0)
-                .getString("fotoPerfil", null);
+        //Pego a foto
+        String fotoPerfil = prefs.getString("foto", null);
 
-        if (uriPerfil != null) {
-            try {
-                imgFotoPerfil.setImageURI(Uri.parse(uriPerfil));
-            } catch (Exception ignored) {}
-        }
+        //Salvo o link da foto
+        String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                + fotoPerfil
+                + "?t=" + System.currentTimeMillis();
 
-        // BANNER
-        String uriBanner = requireContext()
-                .getSharedPreferences("perfil", 0)
-                .getString("fotoBanner", null);
+        //Carrega a foto atual do usuario
+        Glide.with(requireContext())
+                .load(link_foto)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(imgFotoPerfil);
 
-        if (uriBanner != null) {
-            try {
-                imgBanner.setImageURI(Uri.parse(uriBanner));
-            } catch (Exception ignored) {}
-        }
+
+
+
+//        // FOTO PERFIL
+//        String uriPerfil = requireContext()
+//                .getSharedPreferences("perfil", 0)
+//                .getString("fotoPerfil", null);
+//
+//        if (uriPerfil != null) {
+//            try {
+//                imgFotoPerfil.setImageURI(Uri.parse(uriPerfil));
+//            } catch (Exception ignored) {}
+//        }
+//
+//        // BANNER
+//        String uriBanner = requireContext()
+//                .getSharedPreferences("perfil", 0)
+//                .getString("fotoBanner", null);
+//
+//        if (uriBanner != null) {
+//            try {
+//                imgBanner.setImageURI(Uri.parse(uriBanner));
+//            } catch (Exception ignored) {}
+//        }
     }
 
 

@@ -2,13 +2,22 @@ package com.example.crashware.ui.api;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.crashware.ui.login.Cadastro;
 import com.example.crashware.ui.login.Login;
 
 import org.json.JSONObject;
 
+import java.io.InputStream;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -16,7 +25,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Part;
 
 public class User {
 
@@ -120,5 +132,298 @@ public class User {
                 ).show();
             }
         });
+    }//Perfil
+
+
+    //Adicionar_Foto
+    public static class Adicionar_FotoResponse {
+        public String mensagem;
+        public String foto;
+       
     }
+
+    // INTERFACE da API:
+    public static interface foto {
+        @Multipart
+        @POST("/user/adicionar_foto")
+        Call<Adicionar_FotoResponse> adicionar(
+                @Header("Authorization") String token,
+                @Part MultipartBody.Part foto
+        );
+    }
+
+
+
+    public static void Adicionar_Foto(Context context, SharedPreferences prefs, Uri uri, ImageView imgfotoInicio) {
+        //Pego o valor do token
+        String token = prefs.getString("token", null);
+
+        //Preparo ele para enviar para o header da requisição
+        token = "Bearer " + token;
+
+        try {
+
+            //Pego as informações da foto
+            InputStream inputStream = context
+                    .getContentResolver()
+                    .openInputStream(uri);
+
+            byte[] bytes = new byte[inputStream.available()];
+            inputStream.read(bytes);
+
+
+            //Formato da foto
+            String type = context
+                    .getContentResolver()
+                    .getType(uri);
+
+
+            //Envio o formato da foto
+            RequestBody requestBody = RequestBody.create(
+                    MediaType.parse(type),
+                    bytes
+            );
+
+
+            MultipartBody.Part fotoPart = MultipartBody.Part.createFormData(
+                    "foto",
+                    "foto.jpg",
+                    requestBody
+            );
+
+            // Criando a API
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://api-crashware.onrender.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            //
+
+            // Fazendo que a interface da API seja utilizavel:
+            foto api = retrofit.create(foto.class);
+
+
+            // Monto a chamada da API:
+            Call<Adicionar_FotoResponse> requisicao = api.adicionar(token,fotoPart);
+
+            requisicao.enqueue(new Callback<Adicionar_FotoResponse>() {
+                @Override
+                public void onResponse(
+                        Call<Adicionar_FotoResponse> requisicao,
+                        retrofit2.Response<Adicionar_FotoResponse> resposta
+                ) {
+                    if (resposta.isSuccessful()) {
+                        //Se a requisição der certa
+
+                        //Pego os dados que a API enviou
+                        Adicionar_FotoResponse dados = resposta.body();
+
+                        String foto = dados.foto;
+
+                        //Edito  a foto no Shared Preferences
+                        prefs.edit()
+                                .putString("foto", foto)
+                                .apply();
+
+
+                        String link_foto =
+                                "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                                        + foto;
+
+                        Glide.with(context)
+                                .load(link_foto)
+                                .into(imgfotoInicio);
+
+                        Toast.makeText(context, dados.mensagem, Toast.LENGTH_LONG).show();
+                    } else {
+                        //Retorna erro caso a reqsição dar errado
+
+                        String erro = "Erro ao adicionar foto";
+
+                        try {
+                            String detail = resposta.errorBody().string();
+
+                            JSONObject json = new JSONObject(detail);
+
+
+                            if (detail != null) {
+                                erro = json.getString("detail");
+
+                            }
+                        } catch (Exception e) {
+                            // ignora, mantém mensagem padrão
+                        }
+
+                        //Aqui retorna o ERRO
+                        Toast.makeText(context, erro, Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Adicionar_FotoResponse> call, Throwable t) {
+                    // Caso deu erro na requisição
+                    // erro de conexão (internet, URL, servidor fora)
+                    Toast.makeText(
+                            context,
+                            "Erro de conexão: " + t.getMessage(),
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
+            });
+
+        } catch (Exception e) {
+            //Mostra o erro no logcat
+            e.printStackTrace();
+        }
+
+
+    }//Adicionar Foto
+
+    //Alterar Foto
+    public static class Alterar_FotoResponse {
+        public String mensagem;
+        public String foto;
+
+    }
+
+    // INTERFACE da API:
+    public static interface alterar_foto {
+        @Multipart
+        @PUT("/user/alterar_foto")
+        Call<Alterar_FotoResponse> alterar(
+                @Header("Authorization") String token,
+                @Part MultipartBody.Part foto
+        );
+    }
+
+
+
+    public static void Alterar_Foto(Context context, SharedPreferences prefs, Uri uri, ImageView img)
+    {
+
+        //Pego o valor do token
+        String token = prefs.getString("token", null);
+
+        //Preparo ele para enviar para o header da requisição
+        token = "Bearer " + token;
+
+        try {
+
+            //Pego as informações da foto
+            InputStream inputStream = context
+                    .getContentResolver()
+                    .openInputStream(uri);
+
+            byte[] bytes = new byte[inputStream.available()];
+            inputStream.read(bytes);
+
+
+            //Formato da foto
+            String type = context
+                    .getContentResolver()
+                    .getType(uri);
+
+
+            //Envio o formato da foto
+            RequestBody requestBody = RequestBody.create(
+                    MediaType.parse(type),
+                    bytes
+            );
+
+
+            MultipartBody.Part fotoPart = MultipartBody.Part.createFormData(
+                    "foto",
+                    "foto.jpg",
+                    requestBody
+            );
+
+            // Criando a API
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://api-crashware.onrender.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            //
+
+            // Fazendo que a interface da API seja utilizavel:
+            alterar_foto api = retrofit.create(alterar_foto.class);
+
+
+            // Monto a chamada da API:
+            Call<Alterar_FotoResponse> requisicao = api.alterar(token, fotoPart);
+
+            requisicao.enqueue(new Callback<Alterar_FotoResponse>() {
+                @Override
+                public void onResponse(
+                        Call<Alterar_FotoResponse> requisicao,
+                        retrofit2.Response<Alterar_FotoResponse> resposta
+                ) {
+                    if (resposta.isSuccessful()) {
+                        //Se a requisição der certa
+
+                        //Pego os dados que a API enviou
+                        Alterar_FotoResponse dados = resposta.body();
+
+                        String foto = dados.foto;
+
+
+                        String link_foto =
+                                "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                                        + foto
+                                        + "?t=" + System.currentTimeMillis();
+
+                        Glide.with(context)
+                                .load(link_foto)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(img);
+
+                        //Exibo a mensagem
+                        Toast.makeText(context, dados.mensagem, Toast.LENGTH_LONG).show();
+                    } else {
+                        //Retorna erro caso a reqsição dar errado
+
+                        String erro = "Erro ao alterar foto";
+
+                        try {
+                            String detail = resposta.errorBody().string();
+
+                            JSONObject json = new JSONObject(detail);
+
+
+                            if (detail != null) {
+                                erro = json.getString("detail");
+
+                            }
+                        } catch (Exception e) {
+                            // ignora, mantém mensagem padrão
+                        }
+
+                        //Aqui retorna o ERRO
+                        Toast.makeText(context, erro, Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Alterar_FotoResponse> call, Throwable t) {
+                    // Caso deu erro na requisição
+                    // erro de conexão (internet, URL, servidor fora)
+                    Toast.makeText(
+                            context,
+                            "Erro de conexão: " + t.getMessage(),
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
+            });
+        } catch (Exception e) {
+            //Mostra o erro no logcat
+            e.printStackTrace();
+        }
+
+    }//Alterar Foto
+
+
+
 }

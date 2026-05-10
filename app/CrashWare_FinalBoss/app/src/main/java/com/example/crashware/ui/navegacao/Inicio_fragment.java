@@ -19,6 +19,8 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.crashware.R;
 import com.example.crashware.ui.api.Auth;
 import com.example.crashware.ui.api.User;
@@ -32,6 +34,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Inicio_fragment extends Fragment {
 
@@ -59,6 +64,8 @@ public class Inicio_fragment extends Fragment {
     int nivel = 1;
 
 
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -66,30 +73,39 @@ public class Inicio_fragment extends Fragment {
 
         prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
 
-        //Verificando Token
-        Verificar_Token();
-
         //Coleto as informações do usuário
         Perfil();
 
+
+
+        //Verificando Token
+        Verificar_Token();
+
+
+
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance().getReference("usuarios");
-
-        escolherImagem = registerForActivityResult(
-                new ActivityResultContracts.OpenDocument(),
-                uri -> {
-                    if (uri == null || !isAdded()) return;
-
-                    requireContext().getContentResolver().takePersistableUriPermission(
-                            uri,
-                            Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    );
-
-                    setImage(uri);
-                }
-        );//função que salva a imagem escolhida para a variavel "uri"
+        //Carrega a imagem sempre que for para essa tela
 
     }
+
+
+
+//        escolherImagem = registerForActivityResult(
+//                new ActivityResultContracts.OpenDocument(),
+//                uri -> {
+//                    if (uri == null || !isAdded()) return;
+//
+//                    requireContext().getContentResolver().takePersistableUriPermission(
+//                            uri,
+//                            Intent.FLAG_GRANT_READ_URI_PERMISSION
+//                    );
+//
+////                    setImage(uri);
+//                }
+//        );//função que salva a imagem escolhida para a variavel "uri"
+
+
 
     @Nullable
     @Override
@@ -115,16 +131,11 @@ public class Inicio_fragment extends Fragment {
         txtXpInicio         = view.findViewById(R.id.txtXPInicio             );
 
 
+
         //funções que vão ser utilizadas
         carregarNomeFirebase();
-        carregarImagemLocal();
-
-
-
-
-
-
-
+        //Carrego a imagem
+        carregarImagem();
 
 
         btnRetomar.setOnClickListener(new View.OnClickListener() {
@@ -142,13 +153,13 @@ public class Inicio_fragment extends Fragment {
 //        txtAulasConcluidas.setText(AulasConcluidas);
 
 
-        imgfotoInicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                escolherImagem.launch(new String[]{"image/*"});
-            }
-        });//interação com a foto de inicio, alterando e executando a foto escolhida como atual
+//        imgfotoInicio.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view)
+//            {
+//                escolherImagem.launch(new String[]{"image/*"});
+//            }
+//        });//interação com a foto de inicio, alterando e executando a foto escolhida como atual
 
         btnRetomarS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,49 +237,97 @@ public class Inicio_fragment extends Fragment {
                 String nome = usuario.nome;
                 // int nivel = usuario.nivel;
 
+                String foto = usuario.foto;
+
+                //Salvo a foto no Shared Preferences
+                prefs.edit()
+                        .putString("foto", foto)
+                        .apply();
+
 
 
                 //Atualiza o Nome
                 txtNomeInicio.setText(nome);
-//                txtNivelInicio.setText(nivel);
+
+                //txtNivelInicio.setText(nivel);
+
             }
         });
     }
 
 
-    //função que
-    private void setImage(Uri uri) {
+    //função que altera foto
+//    private void setImage(Uri uri) {
+//        if (!isAdded()) return;
+//
+//
+//
+//        //Pego a foto do banco
+//        String foto = prefs.getString("foto", null);
+//
+//        //Verifico se vai adicionar ou alterar
+//        if("default.png".equals(foto))
+//        {
+//            //Add a foto
+//            Toast.makeText(getContext(), "Adicionando Foto..", Toast.LENGTH_LONG).show();
+//            User.Adicionar_Foto(requireContext(),prefs,uri,imgfotoInicio);
+//
+//        }else
+//        {
+//            //Altero a foto
+//            Toast.makeText(getContext(), "Alterando Foto..", Toast.LENGTH_LONG).show();
+//            User.Alterar_Foto(requireContext(),prefs,uri,imgfotoInicio);
+//        }
+
+
+
+        //imgfotoInicio.setImageURI(uri);
+
+//        // salva apenas enquanto app estiver instalado (persistente do Android)
+//        requireContext().getContentResolver().takePersistableUriPermission(
+//                uri,
+//                Intent.FLAG_GRANT_READ_URI_PERMISSION
+//        );
+
+
+
+//        getContext()
+//                .getSharedPreferences("perfil", 0)
+//                .edit()
+//                .putString("fotoPerfil", uri.toString())
+//                .apply();
+//    }
+
+    private void carregarImagem() {
         if (!isAdded()) return;
 
-        imgfotoInicio.setImageURI(uri);
+        //Pego a foto no  sharedPrefrences
+        String fotoPerfil = prefs.getString("foto", null);
 
-        // salva apenas enquanto app estiver instalado (persistente do Android)
-        requireContext().getContentResolver().takePersistableUriPermission(
-                uri,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION
-        );
 
-        getContext()
-                .getSharedPreferences("perfil", 0)
-                .edit()
-                .putString("fotoPerfil", uri.toString())
-                .apply();
-    }
+        //Salvo o link da foto
+        String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                + fotoPerfil
+                + "?t=" + System.currentTimeMillis();
 
-    private void carregarImagemLocal() {
-        if (!isAdded()) return;
+        //Carrega a foto atual do usuario
+        Glide.with(requireContext())
+                .load(link_foto)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(imgfotoInicio);
 
-        String uriString = requireContext()
-                .getSharedPreferences("perfil", 0)
-                .getString("fotoPerfil", null);
-
-        if (uriString != null) {
-            try {
-                imgfotoInicio.setImageURI(Uri.parse(uriString));
-            } catch (Exception ignored) {
-                // se falhar, apenas ignora
-            }
-        }
+//        String uriString = requireContext()
+//                .getSharedPreferences("perfil", 0)
+//                .getString("fotoPerfil", null);
+//
+//        if (uriString != null) {
+//            try {
+//                imgfotoInicio.setImageURI(Uri.parse(uriString));
+//            } catch (Exception ignored) {
+//                // se falhar, apenas ignora
+//            }
+//        }
     }
 
     // =========================

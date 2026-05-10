@@ -182,6 +182,7 @@ public class Configuracoes_Fragment extends Fragment {
                 prefs.edit()
                         .remove("token")
                         .remove("refresh_token")
+                        .remove("foto")
                         .apply();
 
                 //Vou para o login(futuramente para a tela de carregamento)

@@ -239,7 +239,7 @@ public class ConfirmarIdentidade extends AppCompatActivity {
 
                 }else{
                     //Se o codigo estiver errado
-                    String erro = "Erro no cadastro";
+                    String erro = "Código expirado ou invalido";
 
                     try {
                         String detail = resposta.errorBody().string();
