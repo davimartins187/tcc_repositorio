@@ -1,0 +1,14 @@
+from pydantic import BaseModel #Responsável para criar Schema
+from typing import Optional #Adiciona tipos primitivos para o Schema
+
+#SCHEMA ConquistaSchema
+class ConquistaSchema(BaseModel):
+    nome_conquista : str
+    tipo_conquista : str
+    descricao : str
+    moeda : int
+    xp : float
+    condicao_conquista : str
+
+
+    
