@@ -1,8 +1,0 @@
-com.example.crashware.app-pngs-0 C:\TCC\TCC_CrashWare\app\CrashWare\app\build\generated\res\pngs\debug
-com.example.crashware.app-res-1 C:\TCC\TCC_CrashWare\app\CrashWare\app\build\generated\res\processDebugGoogleServices
-com.example.crashware.app-updated_navigation_xml-2 C:\TCC\TCC_CrashWare\app\CrashWare\app\build\generated\updated_navigation_xml\debug
-com.example.crashware.app-packageDebugResources-3 C:\TCC\TCC_CrashWare\app\CrashWare\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.crashware.app-packageDebugResources-4 C:\TCC\TCC_CrashWare\app\CrashWare\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.crashware.app-debug-5 C:\TCC\TCC_CrashWare\app\CrashWare\app\build\intermediates\merged_res\debug\mergeDebugResources
-com.example.crashware.app-debug-6 C:\TCC\TCC_CrashWare\app\CrashWare\app\src\debug\res
-com.example.crashware.app-main-7 C:\TCC\TCC_CrashWare\app\CrashWare\app\src\main\res
