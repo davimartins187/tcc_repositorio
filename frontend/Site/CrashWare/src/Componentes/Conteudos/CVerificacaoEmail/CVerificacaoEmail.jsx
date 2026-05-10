@@ -34,8 +34,8 @@ const CVerificacaoEmail = () => {
 
     //Recebe Os dados
     const mensagem = location.state?.mensagem;
-    const email = usuario?.email;
-    const nome = usuario?.nome;
+    const email = location.state?.email;
+    const nome = location.state?.nome;
     const origem = location.state?.origem;
 
     
