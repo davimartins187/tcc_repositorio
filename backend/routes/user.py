@@ -220,7 +220,7 @@ async def remover_foto(usuario = Depends(validar_token),session = Depends(pegar_
             }
         )
         if (resposta.status_code > 199 and resposta.status_code < 300):
-            session.foto = 'default.png'
+            usuario.foto = 'default.png'
             session.commit()
             return{
                 "mensagem" : "Foto removida com sucesso",
