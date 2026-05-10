@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/fundo_claro">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@color/branco"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addAnotacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_voltar"
+                app:layout_constraintTop_toTopOf="@id/header"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <!-- Adicionar Anotacao -->
+                <ImageView
+                    android:id="@+id/imgVoltarConfig"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/seta_icon"
+                    app:layout_constraintStart_toStartOf="@id/addAnotacao"
+                    app:layout_constraintTop_toTopOf="@id/addAnotacao"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txtVoltar"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/righteous"
+                android:text="Voltar"
+                android:textColor="@color/azul"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@id/addAnotacao"
+                app:layout_constraintTop_toTopOf="@id/addAnotacao" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Titulo Conquistas -->
+        <TextView
+            android:id="@+id/txtConfiguracao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/righteous"
+            android:text="Conquistas"
+            android:textAllCaps="true"
+            android:textColor="@color/azul"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header" />
+
+        <ImageView
+            android:id="@+id/imgConfig"
+            android:layout_width="270dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="-16dp"
+            android:src="@drawable/configperfil_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtConfiguracao" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
