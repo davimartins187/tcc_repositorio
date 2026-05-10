@@ -35,4 +35,19 @@
 
     <color name="bg_vidro_transparente">#FFFFFF</color>
 
+    <style name="Theme.CrashWare.Gelo" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">#00BCD4</item>
+        <item name="android:colorBackground">#E0F7FA</item>
+    </style>
+
+    <style name="Theme.CrashWare.MeiaNoite" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="android:colorBackground">#0D0D0D</item>
+    </style>
+
+    <style name="Theme.CrashWare.Leitura" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">#FF9800</item>
+        <item name="android:colorBackground">#FFF3E0</item>
+    </style>
+
 </resources>

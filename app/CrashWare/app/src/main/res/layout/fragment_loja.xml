@@ -74,227 +74,229 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toldo" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cardPowerUp1"
-                android:layout_width="380dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:elevation="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="15dp"
-                android:background="@drawable/bg_cardefeitovidroconquistas"
-                app:layout_constraintTop_toBottomOf="@id/txtPowerUps"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardPowerUp1"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:elevation="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:background="@drawable/bg_cardefeitovidroconquistas"
+            app:layout_constraintTop_toBottomOf="@id/txtPowerUps"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/imgPowerUp1"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/podergelo_icon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <ImageView
-                    android:id="@+id/imgPowerUp1"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:src="@drawable/podergelo_icon"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/cardPowerUp1" />
-
-                <TextView
-                    android:id="@+id/txtPowerUp1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/righteous"
-                    android:text="Congele a sua ofensiva"
-                    android:textAllCaps="true"
-                    android:textColor="@color/azul"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/imgPowerUp1"
-                    app:layout_constraintTop_toTopOf="@id/imgPowerUp1" />
-
-                <TextView
-                    android:id="@+id/txtDescricaoPowerUp1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:text="Mantenha a ofensiva por 24 horas"
-                    android:textAllCaps="true"
-                    android:textColor="#62748E"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/imgPowerUp1"
-                    app:layout_constraintTop_toBottomOf="@id/txtPowerUp1" />
-
-                <ImageView
-                    android:id="@+id/imgDiamante1"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/diamante_icon"
-                    app:layout_constraintStart_toStartOf="@id/txtDescricaoPowerUp1"
-                    app:layout_constraintTop_toBottomOf="@id/txtDescricaoPowerUp1" />
-
-                <TextView
-                    android:id="@+id/txtValorPowerUp1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/righteous"
-                    android:text="400"
-                    android:textAllCaps="true"
-                    android:textColor="#3B5A97"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/imgDiamante1"
-                    app:layout_constraintTop_toTopOf="@id/imgDiamante1" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/btnComprarTema"
-                    android:layout_width="110dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/btn_comprarpowerup1"
-                    app:layout_constraintEnd_toEndOf="@id/txtPowerUp1"
-                    app:layout_constraintTop_toBottomOf="@id/txtDescricaoPowerUp1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="3dp"
-                        android:fontFamily="@font/righteous"
-                        android:text="Comprar"
-                        android:textAllCaps="true"
-                        android:textColor="@color/branco"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@id/btnComprarTema"
-                        app:layout_constraintTop_toTopOf="@id/btnComprarTema" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cardPowerUp2"
-                android:layout_width="380dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/bg_cardefeitovidroconquistas"
-                android:elevation="10dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="10dp"
-                android:paddingRight="5dp"
-                android:paddingBottom="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardPowerUp1">
-
-                <ImageView
-                    android:id="@+id/imgPowerUp2"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:src="@drawable/pocao_icon"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/cardPowerUp2" />
-
-                <TextView
-                    android:id="@+id/txtPowerUp2"
-                    android:layout_width="255dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/righteous"
-                    android:text="Booster"
-                    android:textAllCaps="true"
-                    android:textColor="@color/azul"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/imgPowerUp2"
-                    app:layout_constraintTop_toTopOf="@id/imgPowerUp2" />
-
-                <TextView
-                    android:id="@+id/txtDescricaoPowerUp2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:text="Ganhe XP em dobro por 24 horas"
-                    android:textAllCaps="true"
-                    android:textColor="#62748E"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/imgPowerUp2"
-                    app:layout_constraintTop_toBottomOf="@id/txtPowerUp2" />
-
-                <ImageView
-                    android:id="@+id/imgDiamante2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/diamante_icon"
-                    app:tint="#65910F"
-                    app:layout_constraintStart_toStartOf="@id/txtDescricaoPowerUp2"
-                    app:layout_constraintTop_toBottomOf="@id/txtDescricaoPowerUp2" />
-
-                <TextView
-                    android:id="@+id/txtValorPowerUp2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/righteous"
-                    android:text="600"
-                    android:textAllCaps="true"
-                    android:textColor="#65910F"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/imgDiamante2"
-                    app:layout_constraintTop_toTopOf="@id/imgDiamante2" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/btnComprarPowerUp2"
-                    android:layout_width="110dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/btn_comprarpowerup2"
-                    app:layout_constraintEnd_toEndOf="@id/txtPowerUp2"
-                    app:layout_constraintTop_toBottomOf="@id/txtDescricaoPowerUp2">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="3dp"
-                        android:fontFamily="@font/righteous"
-                        android:text="Comprar"
-                        android:textAllCaps="true"
-                        android:textColor="@color/branco"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@id/btnComprarPowerUp2"
-                        app:layout_constraintTop_toTopOf="@id/btnComprarPowerUp2" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="@id/cardPowerUp1" />
 
             <TextView
-                android:id="@+id/txtTemas"
+                android:id="@+id/txtPowerUp1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/righteous"
-                android:text="Temas"
+                android:text="Congele a sua ofensiva"
                 android:textAllCaps="true"
                 android:textColor="@color/azul"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/imgPowerUp1"
+                app:layout_constraintTop_toTopOf="@id/imgPowerUp1" />
+
+            <TextView
+                android:id="@+id/txtDescricaoPowerUp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Mantenha a ofensiva por 24 horas"
+                android:textAllCaps="true"
+                android:textColor="#62748E"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/imgPowerUp1"
+                app:layout_constraintTop_toBottomOf="@id/txtPowerUp1" />
+
+            <ImageView
+                android:id="@+id/imgDiamante1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/diamante_icon"
+                app:layout_constraintStart_toStartOf="@id/txtDescricaoPowerUp1"
+                app:layout_constraintTop_toBottomOf="@id/txtDescricaoPowerUp1" />
+
+            <TextView
+                android:id="@+id/txtValorPowerUp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/righteous"
+                android:text="400"
+                android:textAllCaps="true"
+                android:textColor="#3B5A97"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/imgDiamante1"
+                app:layout_constraintTop_toTopOf="@id/imgDiamante1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnComprarTema"
+                android:layout_width="110dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_comprarpowerup1"
+                app:layout_constraintEnd_toEndOf="@id/txtPowerUp1"
+                app:layout_constraintTop_toBottomOf="@id/txtDescricaoPowerUp1">
+
+                <TextView
+                    android:id="@+id/txtComprarOfensiva"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/righteous"
+                    android:text="Comprar"
+                    android:textAllCaps="true"
+                    android:textColor="@color/branco"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/btnComprarTema"
+                    app:layout_constraintTop_toTopOf="@id/btnComprarTema" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardPowerUp2"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_cardefeitovidroconquistas"
+            android:elevation="10dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardPowerUp1">
+
+            <ImageView
+                android:id="@+id/imgPowerUp2"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/pocao_icon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardPowerUp2" />
+                app:layout_constraintTop_toTopOf="@id/cardPowerUp2" />
+
+            <TextView
+                android:id="@+id/txtPowerUp2"
+                android:layout_width="255dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/righteous"
+                android:text="Booster"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/imgPowerUp2"
+                app:layout_constraintTop_toTopOf="@id/imgPowerUp2" />
+
+            <TextView
+                android:id="@+id/txtDescricaoPowerUp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Ganhe XP em dobro por 24 horas"
+                android:textAllCaps="true"
+                android:textColor="#62748E"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/imgPowerUp2"
+                app:layout_constraintTop_toBottomOf="@id/txtPowerUp2" />
+
+            <ImageView
+                android:id="@+id/imgDiamante2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/diamante_icon"
+                app:tint="#65910F"
+                app:layout_constraintStart_toStartOf="@id/txtDescricaoPowerUp2"
+                app:layout_constraintTop_toBottomOf="@id/txtDescricaoPowerUp2" />
+
+            <TextView
+                android:id="@+id/txtValorPowerUp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/righteous"
+                android:text="600"
+                android:textAllCaps="true"
+                android:textColor="#65910F"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/imgDiamante2"
+                app:layout_constraintTop_toTopOf="@id/imgDiamante2" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnComprarPowerUp2"
+                android:layout_width="110dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_comprarpowerup2"
+                app:layout_constraintEnd_toEndOf="@id/txtPowerUp2"
+                app:layout_constraintTop_toBottomOf="@id/txtDescricaoPowerUp2">
+
+                <TextView
+                    android:id="@+id/txtComprarBooster"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/righteous"
+                    android:text="Comprar"
+                    android:textAllCaps="true"
+                    android:textColor="@color/branco"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/btnComprarPowerUp2"
+                    app:layout_constraintTop_toTopOf="@id/btnComprarPowerUp2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtTemas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/righteous"
+            android:text="Temas"
+            android:textAllCaps="true"
+            android:textColor="@color/azul"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardPowerUp2" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cardTema1"
@@ -385,6 +387,7 @@
                 app:layout_constraintTop_toBottomOf="@id/txtDescricaoTema1">
 
                 <TextView
+                    android:id="@+id/txtComprarMeiaNoite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -489,6 +492,7 @@
                 app:layout_constraintTop_toBottomOf="@id/txtDescricaoTema2">
 
                 <TextView
+                    android:id="@+id/txtComprarGelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -593,6 +597,7 @@
                 app:layout_constraintTop_toBottomOf="@id/txtDescricaoTema3">
 
                 <TextView
+                    android:id="@+id/txtComprarLeitura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"

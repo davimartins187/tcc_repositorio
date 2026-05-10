@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@color/fundo_claro">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <!-- Header -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +31,7 @@
 
                 <!-- Adicionar Anotacao -->
                 <ImageView
-                    android:id="@+id/imgVoltarNovaAnotacao"
+                    android:id="@+id/imgVoltarConfig"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/seta_icon"
@@ -74,6 +69,19 @@
                 app:layout_constraintTop_toTopOf="@id/header" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp">
+
         <EditText
             android:id="@+id/txtTituloAnotacao"
             android:layout_width="375dp"
@@ -89,8 +97,7 @@
             android:textSize="18sp"
             android:letterSpacing="0.03"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/txtCriadoEm"
@@ -187,8 +194,8 @@ Em suma, conclui-se que a desvalorização da cultura africana está diretamente
                 app:layout_constraintHorizontal_bias="0.466"
                 app:layout_constraintStart_toStartOf="@id/cardAnotacao"
                 tools:layout_editor_absoluteY="5dp" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

@@ -103,7 +103,6 @@
                         android:textColor="@color/branco"
                         android:textSize="15sp"
                         android:lineSpacingExtra="2dp" />
-
                 </LinearLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -169,7 +168,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/battambang"
-                android:text="Motivação e Mentalidade"
+                android:text="Como vai funcionar esse curso?"
                 android:textColor="@color/azul"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@id/cardIntroducaoH"
@@ -197,13 +196,12 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/battambang"
-                android:text="Como vai funcionar esse curso?"
+                android:text="Motivação e Mentalidade"
                 android:textColor="@color/azul"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@id/cardIntroducaoH"
                 app:layout_constraintStart_toEndOf="@+id/imgLivro2M1H"
                 app:layout_constraintTop_toBottomOf="@id/txtTituloAula1M1H" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Card Fundamentos de Hardware -->
@@ -357,9 +355,6 @@
                 app:layout_constraintEnd_toEndOf="@id/cardFundamentosHardware"
                 app:layout_constraintStart_toEndOf="@+id/imgLivro4M2H"
                 app:layout_constraintTop_toBottomOf="@id/txtTituloAula3M2H" />
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Card Fundamentos de Hardware -->
@@ -576,7 +571,6 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"
             app:layout_constraintTop_toBottomOf="@id/cardComponentesInternos" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
