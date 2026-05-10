@@ -165,12 +165,10 @@
 
 body{
     background-color: var(--bg-principal);
-    /* background-position: center center; */
-        background-image: url('/FundoOriginal.svg');
-
+    background-image: url('/FundoOriginal.svg');
     background-size: cover;
-
     background-repeat: no-repeat;
+    
 }
 
 

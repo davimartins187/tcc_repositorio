@@ -6,6 +6,6 @@ export * from './ConteudoInicial';
 export * from './ConteudoLogin';
 export * from './ConteudoPerfil';
 export * from './ConteudoRecSenha';
-export * from './ConteudoRecSenha';
 export * from './ConteudoTermos';
 export * from './CVerificacaoEmail';
+export * from './ConteudoHardware'; 

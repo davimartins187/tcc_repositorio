@@ -1,4 +1,4 @@
-export * from './ADM'
+export * from './ADM';
 export * from './AlterarSenha';
 export * from './Anotacoes';
 export * from './cadastro';
@@ -12,3 +12,4 @@ export * from './RecuperarSenha';
 export * from './SobreNos';
 export * from './Termos';
 export * from './VerificacaoEmail';
+export * from './ConteudoHardware';

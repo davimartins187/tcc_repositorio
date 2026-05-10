@@ -9,7 +9,7 @@
 }
 
 .corpo {
-    width: 90vw;
+    width: 100vw;
     min-height: 100vh;
     background-color: var(--bg-quarto);
 
@@ -18,6 +18,7 @@
     justify-content: center;
     justify-self: center;
     font-family: "Montserrat", sans-serif;
+    padding-top: 120px;
 }
 
 .container {
@@ -187,10 +188,17 @@
     transform: scale(1.1);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
+    
+    .corpo{
+        width: 92vw;
+        padding-bottom: 30px;
+    }
+
     .container {
-        width: 90%;
-        margin-top: 120px;
+        width: 82%;
+        margin-top: 100px;
+        padding-bottom: 60px;
     }
 
     .inputClasse {

@@ -27,7 +27,7 @@
 }
 
 .sidebarOpen {
-  height: 10vh;
+  height: 14vh;
 }
 
 .sidebar nav {
@@ -80,7 +80,7 @@
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 710px) {
   .sidebarOpen {
     height: 100px;
   }

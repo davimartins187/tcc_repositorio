@@ -7,8 +7,8 @@
 }
 
 .corpo{
-  width: 90vw;
-  min-height: 125vh; 
+  width: 98vw;
+  min-height: 100vh; 
   background-color: var(--bg-quarto);
 
   display: flex;
@@ -16,11 +16,13 @@
   justify-content: center;
   justify-self: center;
   font-family: "Montserrat", sans-serif;
+  padding-top: 200px;
+  padding-bottom: 30px;
 }
 
 .container{
   width: 70%;
-  height: 100%;
+  height: 30%;
   max-width: 520px;
   text-align: center;
   align-self: center;
@@ -202,7 +204,7 @@ button
 @media (max-width: 600px) {
 
   .container{
-      width: 100%;
+      width: 80%;
   }
 
   .inputClasse {
@@ -220,7 +222,7 @@ button
   }
 
   .corpo{
-    padding-top: 60px;
+    /* padding-top: 60px; */
   }
   
   .logar{
