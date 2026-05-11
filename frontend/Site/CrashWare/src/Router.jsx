@@ -5,7 +5,6 @@ import { PgAlterarSenha } from "./Paginas/AlterarSenha"
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken"
 import { AbaListarConquistas } from "./Paginas/ADM/AbasAdm/AbaListarConquistas"
 
-import { PgInicial, PgCadastro, SobreNos, PgLogin, PgErro, PgRecuperarSenha, PgVerificacaoEmail, PgPerfil, PgAnotacoes, PgConfiguracoes, PgHome, PgTermos, PgAdm, AbaConquistas, PgConteudoHardware } from "./Paginas"; 
 import {
     LayoutPadrao,
     LayoutCadLogin,
@@ -17,7 +16,7 @@ import { PgAlterarSenha } from "./Paginas/AlterarSenha";
 
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken";
 
-import { AbaListarConquistas } from "./Paginas/ADM/AbasAdm/AbaListarConquistas";
+import  AbaListarConquistas  from "./Paginas/ADM/AbasAdm/AbaListarConquistas";
 
 const Router = () => {
     return (
