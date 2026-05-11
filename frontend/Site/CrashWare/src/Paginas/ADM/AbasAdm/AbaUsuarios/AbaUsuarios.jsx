@@ -6,11 +6,11 @@ import Style from './AbaUsuarios.module.css'
 
 const AbaUsuarios = () => {
 
-        const CONQUISTAS_MOCK = [
-            { id: 1, nome: 'Usuario', adm: 'Sim',deletar: 'Deletar' },
-        ]
-    
-        const [conquistas, setConquistas] = useState(CONQUISTAS_MOCK);
+    const CONQUISTAS_MOCK = [
+        { id: 1, nome: 'Usuario', adm: 'Sim', deletar: 'Deletar' },
+    ]
+
+    const [conquistas, setConquistas] = useState(CONQUISTAS_MOCK);
     return (
         <>
             <div className={Style.separarConteudos}>
@@ -29,15 +29,17 @@ const AbaUsuarios = () => {
                     </div>
 
                     <div className={Style.Lista}>
-                        <div className={Style.ListaConquistas}>
-                            {conquistas.map((c) => (
-                                <div 
-                                    key={c.id}
-                                >
 
-                                    <div>
-                                        <h6>{c.nome}</h6>
-                                        <p>Adm? {c.adm}</p>
+                        {conquistas.map((c) => (
+                            <div
+                                className={Style.ListaConquistas}
+                                key={c.id}
+                            >
+
+                                <div className={Style.ItensLista}>
+                                    <h6>{c.nome}</h6>
+                                    {/* <p>Adm? {c.adm}</p> */}
+                                    <div className={Style.Botoes}>
                                         <BotoesForm
                                             texto="Editar"
                                         />
@@ -45,9 +47,11 @@ const AbaUsuarios = () => {
                                             texto={c.deletar}
                                         />
                                     </div>
+
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
+
                     </div> {/* Lista */}
                 </div> {/* Conteudos */}
             </div> {/* Separar Conteudos */}
