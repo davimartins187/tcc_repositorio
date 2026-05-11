@@ -140,6 +140,15 @@ const Router = () => {
                     }
                 />
 
+                <Route
+                    path="usuarios"
+                    element={
+                        <RotaPrivada>
+                            <AbaUsuarios />
+                        </RotaPrivada>
+                    }
+                />
+
             </Route>
 
         </Routes>
