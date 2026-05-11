@@ -30,7 +30,7 @@ import os
 from dotenv import load_dotenv
 
 #Datetime
-import datetime
+from datetime import datetime 
 
 ##Carrego o .env
 load_dotenv()
