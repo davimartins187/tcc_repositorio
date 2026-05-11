@@ -276,7 +276,7 @@ export class Usuario
 
                     setPopup({
                         tipo: 'erro',
-                        titulo: 'Erro',
+                        titulo: 'Foto',
                         mensagem: erro.detail
                     });
                 }
@@ -400,7 +400,7 @@ export class Usuario
 
 
                 //Atualiza o setBanner
-                setBanner(resposta.foto)
+                setBanner(resposta.banner)
 
                 //Atualizo no LocalStorage
                 //Pega os dados atuais

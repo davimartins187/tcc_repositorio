@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-import { Routes, Route } from "react-router-dom";
-=======
 import { Routes, Route } from "react-router-dom"
 import { PgInicial, PgCadastro, SobreNos, PgLogin, PgErro, PgRecuperarSenha, PgVerificacaoEmail, PgPerfil, PgAnotacoes, PgConfiguracoes, PgHome, PgTermos, PgAdm, AbaConquistas, AbaUsuarios } from "./Paginas"
 import { LayoutPadrao, LayoutCadLogin, LayoutLogado, LalyoutADM } from "./Layouts"
 import { PgAlterarSenha } from "./Paginas/AlterarSenha"
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken"
 import { AbaListarConquistas } from "./Paginas/ADM/AbasAdm/AbaListarConquistas"
->>>>>>> 54509a38a8177e9f55f5fb87505df36d36cb253b
 
 import { PgInicial, PgCadastro, SobreNos, PgLogin, PgErro, PgRecuperarSenha, PgVerificacaoEmail, PgPerfil, PgAnotacoes, PgConfiguracoes, PgHome, PgTermos, PgAdm, AbaConquistas, PgConteudoHardware } from "./Paginas"; 
 import {
@@ -124,37 +120,6 @@ const Router = () => {
                     }
                 />
 
-<<<<<<< HEAD
-=======
-            </Route> {/* Layout Logado */}
-
-            <Route path="/" element={<LalyoutADM />}> {/* LayoutADM */}
-                
-                <Route path="adm" element={
-                    <RotaPrivada>
-                        <PgAdm />
-                    </RotaPrivada>
-                } />
-
-                <Route path="criar-conquista" element={
-                    <RotaPrivada>
-                        <AbaConquistas />
-                    </RotaPrivada>
-                } />
-
-                <Route path="listar-conquistas" element={
-                    <RotaPrivada>
-                        <AbaListarConquistas />
-                    </RotaPrivada>
-                } />
-
-                <Route path="usuarios" element={
-                    <RotaPrivada>
-                        <AbaUsuarios />
-                    </RotaPrivada>
-                }/>
-                
->>>>>>> 54509a38a8177e9f55f5fb87505df36d36cb253b
             </Route>
 
             {/* ADM */}

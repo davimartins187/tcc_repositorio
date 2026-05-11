@@ -189,6 +189,13 @@ public class Inicio_fragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        carregarImagem();
+    }
+
     private void PassarNivel()
     {
         nivel++;

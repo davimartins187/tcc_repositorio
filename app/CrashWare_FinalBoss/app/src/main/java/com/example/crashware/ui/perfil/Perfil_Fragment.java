@@ -116,14 +116,15 @@ public class Perfil_Fragment extends Fragment {
         imgFotoPerfil         = view.findViewById(R.id.imgFotoPerfil        );
         imgBanner             = view.findViewById(R.id.imgBanner            );
 
-        //Carrega a imagem
-        carregarImagem();
+
 
 //        txtNomePerfil.setText(Nome);
 //        txtPatente.setText(Patente);
 //        txtQuantDiasSeguidos.setText(Ofensiva);
 //        txtQuantXP.setText(XP);
 //        txtQuantGemas.setText(Gemas);
+
+
 
         txtVerTodasConquistas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,11 +190,18 @@ public class Perfil_Fragment extends Fragment {
             }
         });//
 
-
+        //Carrega a imagem
+        carregarImagem();
 
         return view;
 
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        carregarImagem();
     }
 
     private void setImage(Uri uri) {
@@ -291,6 +299,7 @@ public class Perfil_Fragment extends Fragment {
 //            } catch (Exception ignored) {}
 //        }
     }
+
 
 
 
