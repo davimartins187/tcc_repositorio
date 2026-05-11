@@ -196,7 +196,7 @@ export class Usuario
 
                  setPopup({
                     tipo: 'erro',
-                    titulo: 'Banner',
+                    titulo: 'Foto',
                     mensagem: erro.detail
                 });
 
@@ -449,7 +449,7 @@ export class Usuario
 
 
     
-    async alterar_foto(conteudo,setBanner,setDados,setPopup,setVersaoBanner)
+    async alterar_banner(conteudo,setBanner,setDados,setPopup,setVersaoBanner)
     {
         //Pego o token
         const token = localStorage.getItem("token")

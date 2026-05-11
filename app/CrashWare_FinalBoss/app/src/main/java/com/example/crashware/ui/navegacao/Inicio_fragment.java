@@ -77,7 +77,6 @@ public class Inicio_fragment extends Fragment {
         Perfil();
 
 
-
         //Verificando Token
         Verificar_Token();
 
@@ -244,7 +243,17 @@ public class Inicio_fragment extends Fragment {
                         .putString("foto", foto)
                         .apply();
 
+                //Salvo o link da foto
+                String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                        + foto
+                        + "?t=" + System.currentTimeMillis();
 
+                //Carrega a foto atual do usuario
+                Glide.with(requireContext())
+                        .load(link_foto)
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .into(imgfotoInicio);
 
                 //Atualiza o Nome
                 txtNomeInicio.setText(nome);

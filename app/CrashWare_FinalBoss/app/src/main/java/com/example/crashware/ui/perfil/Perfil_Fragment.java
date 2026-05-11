@@ -79,6 +79,10 @@ public class Perfil_Fragment extends Fragment {
         //SharedPreferences
         prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
 
+
+
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -112,7 +116,8 @@ public class Perfil_Fragment extends Fragment {
         imgFotoPerfil         = view.findViewById(R.id.imgFotoPerfil        );
         imgBanner             = view.findViewById(R.id.imgBanner            );
 
-
+        //Carrega a imagem
+        carregarImagem();
 
 //        txtNomePerfil.setText(Nome);
 //        txtPatente.setText(Patente);
@@ -184,7 +189,7 @@ public class Perfil_Fragment extends Fragment {
             }
         });//
 
-        carregarImagem();
+
 
         return view;
 
