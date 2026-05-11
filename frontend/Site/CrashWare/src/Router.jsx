@@ -5,13 +5,6 @@ import { PgAlterarSenha } from "./Paginas/AlterarSenha"
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken"
 import { AbaListarConquistas } from "./Paginas/ADM/AbasAdm/AbaListarConquistas"
 
-import {
-    LayoutPadrao,
-    LayoutCadLogin,
-    LayoutLogado,
-    LalyoutADM
-} from "./Layouts";
-
 import { PgAlterarSenha } from "./Paginas/AlterarSenha";
 
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken";
