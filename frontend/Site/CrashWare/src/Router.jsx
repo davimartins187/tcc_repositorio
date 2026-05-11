@@ -9,7 +9,6 @@ import { PgAlterarSenha } from "./Paginas/AlterarSenha";
 
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken";
 
-import  AbaListarConquistas  from "./Paginas/ADM/AbasAdm/AbaListarConquistas";
 
 const Router = () => {
     return (
