@@ -1,5 +1,7 @@
 import { Outlet, Link } from "react-router-dom"
+import { useState } from "react";
 import { Cabecalho, LinksCabecalho, Rodape, Tema } from "../../Componentes";
+import { Sidebar } from '../../Componentes/Cabecalho/barraLateral/sideBar';
 import Logo from '../../Logo/logo_sem_fundo.png';
 import Instagram from "../../fotos/Instagram.svg"
 import Whatsapp from "../../fotos/Whatsapp.svg"
@@ -9,11 +11,14 @@ import Style from './LayoutPadrao.module.css'
 const LayoutPadrao = () => {
 
     const DataATual = new Date().getFullYear();
-    
+    const [aberto, setAberto] = useState(false);
+
 
     return (
         <>
-            <Cabecalho />
+            <Cabecalho>
+                <Tema/>
+            </Cabecalho>
             <Outlet />
             <Rodape>
                 < div className={Style.corpo} >

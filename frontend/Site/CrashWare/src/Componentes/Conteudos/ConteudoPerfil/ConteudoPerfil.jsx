@@ -70,8 +70,9 @@ const ConteudoPerfil = () => {
 
     // muda a foto
     const [foto, setFoto] = useState(usuario?.foto);
-    const [banner, setBanner] = useState(usuario?.foto);
+    const [banner, setBanner] = useState(usuario?.banner);
     const [MudarFoto, setMudarFoto] = useState(false);
+    const [MudarBanner, setMudarBanner] = useState(false);
     const [aberto, setAberto] = useState(false);
 
     //Cache da foto
@@ -114,6 +115,9 @@ const ConteudoPerfil = () => {
         );
     }
 
+    const Davi = `https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/${usuario?.banner}?v=${versaoFoto}`;
+
+
     return (
         <>
             {/*Popup Padrão]*/}
@@ -130,12 +134,48 @@ const ConteudoPerfil = () => {
             <div className={style.corpo}>
 
                 {/* ── Banner ─────────────────────────────────────── */}
-                <div className={style.banner}>
+                <div className={style.banner}
+                // style={{
+                //     "--banner-img": `url(${Davi})`
+                // }}
+
+                >
+                    <img
+                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/default_banner.png`} alt=""
+                        onClick={() => setMudarBanner(!MudarBanner)}
+                    />
+
                 </div>
 
                 <div className={style.container}>
+                    {MudarBanner && (
+
+                        <div className={MudarBanner ? style.Aberto_Banner : style.Fechado}>
+                            <BotoesForm
+                                texto="Mudar Banner"
+                                onClick={() => inputRef.current.click()}
+                            />
+                            <BotoesForm
+                                texto="Remover Banner"
+                                onClick={() => {
+                                    if (foto == 'default.png') {
+                                        setPopup({
+                                            tipo: 'erro',
+                                            titulo: 'Foto',
+                                            mensagem: 'Você precisa adicionar uma foto , para realizar essa ação'
+                                        });
+                                    } else {
+                                        const foto_usuario = new Usuario();
+                                        foto_usuario.remover_foto(setDados, setFoto, setPopup);
+                                    }
+
+                                }}
+                            />
+                        </div>
+                    )}
 
 
+                    {/* ── Foto ─────────────────────────────────────── */}
                     <div className={style.apresentacao}>
                         <img
                             className={style.foto}
@@ -153,18 +193,17 @@ const ConteudoPerfil = () => {
                                 <BotoesForm
                                     texto="Remover Foto"
                                     onClick={() => {
-                                        if(foto == 'default.png')
-                                        {
+                                        if (foto == 'default.png') {
                                             setPopup({
                                                 tipo: 'erro',
                                                 titulo: 'Foto',
                                                 mensagem: 'Você precisa adicionar uma foto , para realizar essa ação'
                                             });
-                                        }else{
+                                        } else {
                                             const foto_usuario = new Usuario();
                                             foto_usuario.remover_foto(setDados, setFoto, setPopup);
                                         }
-                                        
+
                                     }}
                                 />
                             </div>
@@ -224,6 +263,7 @@ const ConteudoPerfil = () => {
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     {/* ── Cards de Stats ─────────────────────────── */}

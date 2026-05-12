@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../fotos/escuro/logo_sem_fundo.svg';
-import { Sidebar } from '../Cabecalho/barraLateral/sideBar';
 import Style from './Cabecalho.module.css';
 
 //Functions
@@ -12,7 +11,6 @@ import { Tema } from '../Tema';
 
 
 const Cabecalho = ({ children }) => {
-  const [aberto, setAberto] = useState(false);
 
   //Permite eu navegar entre paginas
   const Navegacao = useNavigate();
@@ -31,13 +29,10 @@ const Cabecalho = ({ children }) => {
             </Link>
           </div>
 
-          {/* <Tema /> */}
-          <button className={Style.hamburger} onClick={() => setAberto(!aberto)}>
-            {aberto ? <p>✕</p> : <p>☰</p>}
-          </button>
+          {children}
+
         </header>
 
-        <Sidebar aberto={aberto} onFechar={() => setAberto(false)} />
     </>
   );
 };

@@ -3,7 +3,6 @@
   pointer-events: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.2);
   z-index: 0;
   transition: opacity 0.3s ease;
 }
@@ -28,6 +27,7 @@
 
 .sidebarOpen {
   height: 14vh;
+  background: none;
 }
 
 .sidebar nav {
@@ -36,7 +36,8 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 4px;background-color: var(--Cabecalho);
+  gap: 4px;
+  background-color: var(--Cabecalho);
   border: 1px solid var(--texto-principal);
   border-radius: 16px;
   align-self: flex-end;

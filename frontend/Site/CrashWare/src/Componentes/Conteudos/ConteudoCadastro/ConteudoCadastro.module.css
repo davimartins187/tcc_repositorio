@@ -8,6 +8,7 @@
 
 .corpo{
   width: 98vw;
+  max-width: 90vw;
   min-height: 100vh; 
   background-color: var(--bg-quarto);
 
@@ -219,10 +220,6 @@ button
 
   .imgSenha {
       width: 18px;
-  }
-
-  .corpo{
-    /* padding-top: 60px; */
   }
   
   .logar{
