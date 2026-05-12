@@ -6,6 +6,10 @@ import Style from './AbaUsuarios.module.css'
 
 const AbaUsuarios = () => {
 
+    const usuario = JSON.parse(localStorage.getItem('dados'));
+
+    // const Nome = usuario?.nome;
+
     const CONQUISTAS_MOCK = [
         { id: 1, nome: 'Usuario', adm: 'Sim', deletar: 'Deletar' },
     ]
@@ -44,6 +48,7 @@ const AbaUsuarios = () => {
                                             texto="Editar"
                                         />
                                         <BotoesForm
+                                            className={Style.botaoDeletar}
                                             texto={c.deletar}
                                         />
                                     </div>

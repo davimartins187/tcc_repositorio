@@ -184,7 +184,7 @@
 
 .campoFormAtribustos{
     width: 100%;
-    height: 100%;
+    height: 90vh;
     justify-items: center;
     align-items: center;
     font-family: "Montserrat";
@@ -295,47 +295,6 @@
     transform: none;
 }
 
-.primeiroBotao, .segundoBotao{
-    width: 30%;
-    height: 36px;
-    background-color: var(--texto-principal);
-}
-
-.primeiroBotao{
-    width: 44%;
-    height: 40px;
-    background-color: transparent;
-    border: 1.5px solid #e05252;  
-    color: #e05252;
-    border-radius: 12px;
-    font-family: "Montserrat";
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.primeiroBotao:hover {
-    background-color: #e05252;
-    color: #ffffff;
-}
-.segundoBotao{
-    width: 44%;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-    border-radius: 12px;
-    font-family: "Montserrat";
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.segundoBotao:hover {
-    background-color: rgba(255, 255, 255, 0.16);
-}
 
 .botaoAdicionar{
     /* padding: 10px; */
@@ -347,6 +306,9 @@
     color: var(--texto-principal);
     cursor: pointer;
     background: linear-gradient(90deg, var(--BotaoADD-gradiente1), var(--BotaoADD-gradiente2));
+    justify-content: flex-end;
+    margin-top: 100px;
+    display: flex;
 }
 
 .botaoAdicionar:disabled{

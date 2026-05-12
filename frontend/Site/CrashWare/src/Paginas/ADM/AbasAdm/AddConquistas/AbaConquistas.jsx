@@ -32,13 +32,13 @@ const AbaConquistas = () => {
         const conquista = new Adm;
 
         //Chamo o método
-        conquista.adicionar_conquista(nomeConquista, opcao, descricaoConquista, moedas, xp, condicao,setPopup);
+        conquista.adicionar_conquista(nomeConquista, opcao, descricaoConquista, moedas, xp, condicao, setPopup);
 
     }
 
     return (
         <>
-        
+
             {/*Popup Padrão]*/}
             {popup && (
                 <PopUp
@@ -129,16 +129,17 @@ const AbaConquistas = () => {
                             onChange={(e) => setXP(e.target.value)}
                         />
                     </div>
-                    <BotoesForm
-                        className={Style.botaoAdicionar}
-                        texto="Adicionar"
-                        disabled={!botaoliberado}
-                        onClick={handleAdicionarConquista}
-                    />
+                                    <BotoesForm
+                    className={Style.botaoAdicionar}
+                    texto="Adicionar"
+                    disabled={!botaoliberado}
+                    onClick={handleAdicionarConquista}
+                />
+
                 </div>
-                {/* </div> */}
 
             </div>
+            
         </>
     )
 }

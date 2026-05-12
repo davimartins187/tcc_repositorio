@@ -62,19 +62,6 @@
     width: 28vw;
 }
 
-.botaoBuscar{
-    background: linear-gradient(90deg, var(--BotaoADD-gradiente1), var(--BotaoADD-gradiente2));
-    border: none;
-    color: var(--texto-principal);
-    width: 20%;
-    height: 5vh;
-    border-radius: 12px;
-    padding: 10px;
-    margin-right: 20px;
-
-    font-family: "Montserrat";
-    font-weight: 700;
-}
 
 .Lista{
     display: flex;
@@ -129,7 +116,20 @@
 
 .Botoes button{
     padding: 8px;
+    border-radius: 8px;
+}
 
+.botaoDeletar{
+    border: 2px solid red;
+    color: red;
+    background-color: transparent;
+}
+
+.botaoDeletar:hover{
+    background-color: red;
+    color: white;
+    border: 2px solid red;
+    transition: 0.50s;
 }
 
 .ListaConquistas:hover { 
