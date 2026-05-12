@@ -17,162 +17,113 @@ import android.widget.Toast;
 
 import com.example.crashware.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EditarAnotacao_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+
 public class EditarAnotacao_Fragment extends Fragment {
 
     SharedPreferences prefs;
 
     Button btnEditarAnotacao;
-
     EditText txtAnotacao, txtTituloAnotacao;
-
-    Boolean EstadoAnotacao;
-
     ImageView imgVoltarAnotacoes;
 
+    boolean EstadoAnotacao = false;
 
-
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
+    int position = -1;
 
     public EditarAnotacao_Fragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EditarAnotacao_Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EditarAnotacao_Fragment newInstance(String param1, String param2) {
-        EditarAnotacao_Fragment fragment = new EditarAnotacao_Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_editar_anotacao, container, false);
 
-        txtAnotacao        = view.findViewById(R.id.txtAnotacao          );
-        txtTituloAnotacao = view.findViewById(R.id.txtTituloAnotacao     );
-        btnEditarAnotacao  = view.findViewById(R.id.btnEditarAnotacao    );
-        imgVoltarAnotacoes = view.findViewById(R.id.imgVoltarConfig      );
-
-        EstadoAnotacao = (false);
-        txtAnotacao.setEnabled(false);
-        txtTituloAnotacao.setEnabled(false);
+        txtAnotacao = view.findViewById(R.id.txtAnotacao);
+        txtTituloAnotacao = view.findViewById(R.id.txtTituloAnotacao);
+        btnEditarAnotacao = view.findViewById(R.id.btnEditarAnotacao);
+        imgVoltarAnotacoes = view.findViewById(R.id.imgVoltarNovaAnotacao);
 
         prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
 
-// Recupera os dados salvos
-        String tituloSalvo = prefs.getString("Titulo", "");
-        String anotacaoSalva = prefs.getString("Anotacao", "");
+        // 🔥 pega posição do item clicado
+        if (getArguments() != null) {
+            position = getArguments().getInt("position", -1);
 
-// Coloca nos EditText
-        txtTituloAnotacao.setText(tituloSalvo);
-        txtAnotacao.setText(anotacaoSalva);
+            String titulo = getArguments().getString("titulo");
+            String conteudo = getArguments().getString("conteudo");
 
+            txtTituloAnotacao.setText(titulo);
+            txtAnotacao.setText(conteudo);
+        }
 
-        imgVoltarAnotacoes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                requireActivity()//puxa o fragment atual
-                        .getSupportFragmentManager()//acessa o gerenciador das fragments
-                        .popBackStack();//simula o botão "voltar" do celular
+        // travado inicialmente
+        txtAnotacao.setEnabled(false);
+        txtTituloAnotacao.setEnabled(false);
 
-            }
-        });// interação de click com a imagem de voltar retornando para a tela de anotações
+        // voltar
+        imgVoltarAnotacoes.setOnClickListener(v ->
+                requireActivity()
+                        .getSupportFragmentManager()
+                        .popBackStack()
+        );
 
+        // editar / salvar
+        btnEditarAnotacao.setOnClickListener(v -> {
 
+            if (!EstadoAnotacao) {
 
+                txtAnotacao.setEnabled(true);
+                txtTituloAnotacao.setEnabled(true);
+                txtAnotacao.requestFocus();
 
-        btnEditarAnotacao.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
+                btnEditarAnotacao.setText("Concluir");
+                EstadoAnotacao = true;
 
+                Toast.makeText(getContext(),
+                        "Edite sua anotação",
+                        Toast.LENGTH_SHORT).show();
 
-                if (!EstadoAnotacao)
-                {
-                    txtAnotacao.setEnabled(true);
-                    txtTituloAnotacao.setEnabled(true);
-                    txtAnotacao.requestFocus();
+            } else {
 
+                try {
+                    String novoTitulo = txtTituloAnotacao.getText().toString();
+                    String novoConteudo = txtAnotacao.getText().toString();
 
-                    btnEditarAnotacao.setText("Concluir");
-                    EstadoAnotacao = (true);
+                    String json = prefs.getString("lista_anotacoes", "[]");
+                    JSONArray array = new JSONArray(json);
 
-                    Toast.makeText(getContext(), "Edite sua Anotação", Toast.LENGTH_LONG).show();
+                    if (position != -1) {
 
-                }//Se Clicar no botão enquanto estiver com o texto trancado, torna editavel
+                        JSONObject obj = array.getJSONObject(position);
 
-                else
-                {
-                    //Váriaveis Salvas localmente
+                        obj.put("titulo", novoTitulo);
+                        obj.put("conteudo", novoConteudo);
 
-                    String Titulo = txtTituloAnotacao.getText().toString();
-                    String Anotacao = txtAnotacao.getText().toString();
+                        prefs.edit()
+                                .putString("lista_anotacoes", array.toString())
+                                .apply();
+                    }
 
-                    txtAnotacao.clearFocus();
                     txtAnotacao.setEnabled(false);
                     txtTituloAnotacao.setEnabled(false);
                     btnEditarAnotacao.setText("Editar");
+                    EstadoAnotacao = false;
 
-                    prefs.edit()
-                            .putString("Titulo", Titulo)
-                            .putString("Anotacao", Anotacao)
-                            .apply();
+                    Toast.makeText(getContext(),
+                            "Edição salva!",
+                            Toast.LENGTH_SHORT).show();
 
-                    txtAnotacao.setText(Anotacao);
-                    txtTituloAnotacao.setText(Titulo);
-                    EstadoAnotacao = (false);
-
-
-
-
-
-
-
-                    Toast.makeText(getContext(), "Edição Salva! ", Toast.LENGTH_LONG).show();
-                }//Senão ou se estiver editavel e clicar torna o texto trancado novamente(Emoji de TOP)
-
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        });//Interação com o botão de Editar/Concluir para alteração da anotação
-
-
-
-
+        });
 
         return view;
-        //
     }
 }

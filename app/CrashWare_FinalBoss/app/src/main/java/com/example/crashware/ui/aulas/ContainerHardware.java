@@ -15,6 +15,8 @@ public class ContainerHardware extends AppCompatActivity {
 
     private Fragment Aula1Hardware    = new Aula();
 
+    private Fragment Exercicios = new FragmentExercicios();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,6 +38,8 @@ public class ContainerHardware extends AppCompatActivity {
                     .replace(R.id.fragmentSoftware_Container, Aula1Hardware)
                     .commit();
         }
+
+
 
     }
 

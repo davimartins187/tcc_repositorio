@@ -34,7 +34,6 @@
                 android:layout_height="85dp"
                 android:padding="2dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/faustao"
                 app:layout_constraintStart_toStartOf="@id/header"
                 app:layout_constraintTop_toTopOf="@id/header"
                 app:shapeAppearanceOverlay="@style/CircleImage"
@@ -48,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/righteous"
-                android:text="Davidson"
+                android:text=""
                 android:textColor="#0F172A"
                 android:textSize="28sp"
                 app:layout_constraintStart_toEndOf="@id/imgFotoInicio"
@@ -435,15 +434,13 @@
                     app:layout_constraintStart_toStartOf="@id/cardModuloSoftware"
                     app:layout_constraintTop_toBottomOf="@id/cardModuloSoftware">
 
-<!--                    <ImageView-->
-<!--                        android:id="@+id/imgHardware"-->
-<!--                        android:layout_width="70dp"-->
-<!--                        android:layout_height="70dp"-->
-<!--                        android:src="@drawable/softwarehome_icon"-->
-<!--                        android:layout_marginTop="2dp"-->
-<!--                        app:layout_constraintStart_toStartOf="@id/cardModuloHardware"-->
-<!--                        app:layout_constraintTop_toTopOf="@id/cardModuloHardware" />-->
-
+                    <ImageView
+                        android:id="@+id/imgRaposa"
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/raposa_icon"
+                        app:layout_constraintStart_toStartOf="@id/cardDiasConsecutivos"
+                        app:layout_constraintTop_toTopOf="@id/cardDiasConsecutivos" />
                     <TextView
                         android:id="@+id/txtDiasConsecutivos"
                         android:layout_width="wrap_content"

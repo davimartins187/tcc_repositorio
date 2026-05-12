@@ -88,7 +88,7 @@ public class Configuracoes_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_configuracoes, container, false);
 
-        imgVoltarConfig = view.findViewById(R.id.imgVoltarConfig);
+        imgVoltarConfig = view.findViewById(R.id.imgVoltarNovaAnotacao);
         imgGelo = view.findViewById(R.id.imgGelo);
         imgLeitura = view.findViewById(R.id.imgLeitura);
         imgMeiaNoite = view.findViewById(R.id.imgMeiaNoite);

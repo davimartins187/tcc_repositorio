@@ -3,26 +3,19 @@ package com.example.crashware.ui.aulas;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import com.example.crashware.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Aula#newInstance} factory method to
+ * Use the {@link FragmentExercicios#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Aula extends Fragment {
-
-    ImageView imgVoltarAula;
-
-    Button btnFazerExercicio;
+public class FragmentExercicios extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +26,7 @@ public class Aula extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Aula() {
+    public FragmentExercicios() {
         // Required empty public constructor
     }
 
@@ -43,11 +36,11 @@ public class Aula extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Aula.
+     * @return A new instance of fragment Fragment_Exercicios.
      */
     // TODO: Rename and change types and number of parameters
-    public static Aula newInstance(String param1, String param2) {
-        Aula fragment = new Aula();
+    public static FragmentExercicios newInstance(String param1, String param2) {
+        FragmentExercicios fragment = new FragmentExercicios();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,43 +61,7 @@ public class Aula extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_aula, container, false);
-
-        imgVoltarAula = view.findViewById(R.id.imgVoltarNovaAnotacao);
-        btnFazerExercicio = view.findViewById(R.id.btnFazerExercicio);
-
-        btnFazerExercicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                getParentFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentHardware_Container, new FragmentExercicios())
-                        .addToBackStack(null)
-                        .commit();
-
-
-            }
-
-            private FragmentManager getSupportFragmentManager() {
-                return null;
-            }
-        });//
-
-        imgVoltarAula.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                requireActivity()
-                        .getOnBackPressedDispatcher()
-                        .onBackPressed();
-
-            }
-        });//
-
-
-
-
+        View view = inflater.inflate(R.layout.fragment_exercicios, container, false);
 
 
         return view;

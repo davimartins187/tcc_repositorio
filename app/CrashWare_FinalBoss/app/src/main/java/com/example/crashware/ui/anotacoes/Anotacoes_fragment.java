@@ -18,13 +18,26 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 
 import com.example.crashware.ui.navegacao.Inicio_fragment;
 import com.example.crashware.R;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 
 public class Anotacoes_fragment extends Fragment {
 
+    private ArrayList<Anotacao> listaAnotacoes = new ArrayList<>();
+
+    RecyclerView rvListaAnotaoes;
+
+    Anotacao_Adapter adapter;
     SharedPreferences prefs;
 
     EditText txtbarraPesquisa;
@@ -80,41 +93,53 @@ public class Anotacoes_fragment extends Fragment {
 
         imgAddAnotacoes  = view.findViewById(R.id.imgAddAnotacoes   );
         txtbarraPesquisa = view.findViewById(R.id.txtBarraPesquisa  );
-        cardAnotacao1    = view.findViewById(R.id.cardAnotacao1     );
-        cardAnotacao2    = view.findViewById(R.id.cardAnotacao2     );
-        cardAnotacao3    = view.findViewById(R.id.cardAnotacao3     );
-        txtTitulo1       = view.findViewById(R.id.txtTituloAnotacao1);
-        txtConteudo1     = view.findViewById(R.id.txtConteudo1      );
-        txtTitulo2 = view.findViewById(R.id.txtTituloAnotacao2      );
-        txtConteudo2 = view.findViewById(R.id.txtConteudo2          );
+        rvListaAnotaoes = view.findViewById(R.id.recyclerView);
+
+        // 1. LayoutManager primeiro
+        rvListaAnotaoes.setLayoutManager(
+                new LinearLayoutManager(getContext())
+        );
+
+// 2. Adapter depois
+        adapter = new Anotacao_Adapter(listaAnotacoes, new Anotacao_Adapter.OnItemClickListener() {
+            @Override
+            public void onClick(Anotacao anotacao, int position)
+            {
+                EditarAnotacao_Fragment fragment = new EditarAnotacao_Fragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("titulo", anotacao.getTitulo());
+                bundle.putString("conteudo", anotacao.getConteudo());
+                bundle.putInt("position", position); // 👈 ESSENCIAL
+
+                fragment.setArguments(bundle);
+
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }});
+
+        rvListaAnotaoes.setAdapter(adapter);
+
+
+
 
 
         prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
 
-// Recupera os dados salvos
+        // Recupera os dados salvos
         String tituloSalvo = prefs.getString("Titulo", "");
         String anotacaoSalva = prefs.getString("Anotacao", "");
         String NovaAnotacaoSalva2 = prefs.getString("NovaAnotacao2","");
         String NovoTituloAnotacaoSalvo2 = prefs.getString("TituloNovaAnotacao2","");
 
-// Coloca nos EditText
-        txtTitulo1.setText(tituloSalvo);
-        txtConteudo1.setText(anotacaoSalva);
+        // Coloca nos EditText
+//        txtTitulo1.setText(tituloSalvo);
+//        txtConteudo1.setText(anotacaoSalva);
 
-//        txtTitulo2.setText(NovoTituloAnotacaoSalvo2);
-//        txtConteudo2.setText(NovaAnotacaoSalva2);
-//
-//
-//        if (NovaAnotacaoSalva2 != null || NovoTituloAnotacaoSalvo2 != null)
-//        {
-//            cardAnotacao2.setVisibility(VISIBLE);
-//        }
-//        else
-//        {
-//            //
-//            cardAnotacao2.setVisibility(INVISIBLE);
-//            //card 2 invisivel pra mexer dps
-//        }
+
 
 
 
@@ -134,73 +159,55 @@ public class Anotacoes_fragment extends Fragment {
             }
         });//Interação com a imagem, levando a tela de adicionar nova anotação
 
-        cardAnotacao1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Fragment EditarFragmento = new EditarAnotacao_Fragment();
-
-                getParentFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, EditarFragmento)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });//Interação com a imagem, levando a tela de editar anotação
-
-
-        cardAnotacao2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Fragment EditarFragmento = new EditarAnotacao_Fragment();
-
-                getParentFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, EditarFragmento)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });//Interação com a imagem, levando a tela de editar anotação
-
-        cardAnotacao3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Fragment EditarFragmento = new EditarAnotacao_Fragment();
-
-                getParentFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, EditarFragmento)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });//Interação com a imagem, levando a tela de editar anotação
-
-        /*imgLayoutLogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Fragment novoFragmento = new Inicio_fragment();
-
-                getParentFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, novoFragmento)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });// */
 
 
         return view;
 
     }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
 
+        carregarAnotacoes();
 
+        if (adapter != null)
+        {
+            adapter.notifyDataSetChanged();
+        }
+    }
 
-    private FragmentManager getSupportFragmentManager()
+    private void carregarAnotacoes()
     {
 
-        return null;
-    }//
+
+        try
+        {
+            SharedPreferences prefs =
+                    requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
+
+            String json = prefs.getString("lista_anotacoes", "[]");
+
+            JSONArray array = new JSONArray(json);
+
+            listaAnotacoes.clear();
+
+            for (int i = 0; i < array.length(); i++)
+            {
+                JSONObject obj = array.getJSONObject(i);
+
+                String titulo = obj.getString("titulo");
+                String conteudo = obj.getString("conteudo");
+
+                listaAnotacoes.add(
+                        new Anotacao(titulo, conteudo)
+                );
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 }

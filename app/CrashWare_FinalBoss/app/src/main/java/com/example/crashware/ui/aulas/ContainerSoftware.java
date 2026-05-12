@@ -16,6 +16,8 @@ public class ContainerSoftware extends AppCompatActivity {
 
     private Fragment Aula1Software    = new Aula();
 
+    private Fragment Exercicio = new FragmentExercicios();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +29,15 @@ public class ContainerSoftware extends AppCompatActivity {
             return insets;
         });
 
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null)
+        {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentSoftware_Container, Aula1Software)
                     .commit();
         }
+
+
+
 
 
 

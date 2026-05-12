@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+
 import com.example.crashware.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +29,10 @@ import com.example.crashware.R;
  * create an instance of this fragment.
  */
 public class NovaAnotacao_Fragment extends Fragment {
+
+    private ArrayList<Anotacao> listaAnotacoes = new ArrayList<>();
+
+
 
     SharedPreferences prefs;
 
@@ -77,10 +88,11 @@ public class NovaAnotacao_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_nova_anotacao, container, false);
 
-        imgVoltarNovaAnotacao = view.findViewById(R.id.imgVoltarConfig);
+        imgVoltarNovaAnotacao = view.findViewById(R.id.imgVoltarNovaAnotacao);
         btnSalvarNovaAnotacao = view.findViewById(R.id.btnSalvarNovaAnotacao);
         txtNovaAnotacao       = view.findViewById(R.id.txtNovaAnotacao      );
         txtTituloNovaAnotacao = view.findViewById(R.id.txtTituloNovaAnotacao);
+
 
         prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
 
@@ -92,29 +104,36 @@ public class NovaAnotacao_Fragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                try
+                {
+                    String titulo = txtTituloNovaAnotacao.getText().toString();
+                    String conteudo = txtNovaAnotacao.getText().toString();
 
+                    String json =
+                            prefs.getString("lista_anotacoes", "[]");
 
-                String NovaAnotacao2 = txtNovaAnotacao.getText().toString();
-                String TituloNovaAnotacao2 = txtTituloNovaAnotacao.getText().toString();
+                    JSONArray array = new JSONArray(json);
 
+                    JSONObject objeto = new JSONObject();
 
-                prefs.edit()
-                        .putString("Titulo", TituloNovaAnotacao2)
-                        .putString("Anotacao", NovaAnotacao2)
-                        .apply();
+                    objeto.put("titulo", titulo);
+                    objeto.put("conteudo", conteudo);
 
+                    array.put(objeto);
 
-                Fragment novoFragmento = new Anotacoes_fragment();
+                    prefs.edit()
+                            .putString("lista_anotacoes", array.toString())
+                            .apply();
 
-                getParentFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, novoFragmento)
-                        .addToBackStack(null)
-                        .commit();
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
 
-
-
-
+                requireActivity()
+                        .getSupportFragmentManager()
+                        .popBackStack();
             }
         });//Interação com botão de salvar nova anotação, levando para a tela geral de anotações e transcrevendo os textos dos EditText para strings a serem salvas no banco
 
@@ -143,4 +162,6 @@ public class NovaAnotacao_Fragment extends Fragment {
 
         return view;
     }
+
+
 }

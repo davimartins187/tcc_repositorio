@@ -244,7 +244,7 @@
                 app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
                 app:layout_constraintEnd_toEndOf="@id/cardFundamentosHardware"/>
 
-            <!-- Imagem Livro -->
+            <!-- Imagem Play -->
             <ImageView
                 android:id="@+id/imgLivro1M2H"
                 android:layout_width="30dp"

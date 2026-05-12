@@ -41,13 +41,13 @@
     <!-- robo -->
     <ImageView
         android:id="@+id/robo"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
         android:layout_marginStart="125dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="125dp"
         android:contentDescription="logo"
-        android:src="@drawable/chatizinho_bot"
+        android:src="@drawable/raposa_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo" />
