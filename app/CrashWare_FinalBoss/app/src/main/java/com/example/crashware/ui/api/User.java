@@ -223,7 +223,7 @@ public class User {
                         //Edito  a foto no Shared Preferences
                         prefs.edit()
                                 .putString("foto", foto)
-                                .apply();
+                                .commit();
 
 
                         String link_foto =
@@ -334,6 +334,7 @@ public class User {
 
             MultipartBody.Part fotoPart = MultipartBody.Part.createFormData(
                     "foto",
+                    //Alterar o nome do arquivo
                     "foto.jpg",
                     requestBody
             );
@@ -367,11 +368,15 @@ public class User {
 
                         String foto = dados.foto;
 
+                        //Edito  a foto no Shared Preferences
+                        prefs.edit()
+                                .putString("foto", foto)
+                                .commit();
 
                         String link_foto =
                                 "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
-                                        + foto
-                                        + "?t=" + System.currentTimeMillis();
+                                        + foto;
+//                                        System.currentTimeMillis();
 
                         Glide.with(context)
                                 .load(link_foto)

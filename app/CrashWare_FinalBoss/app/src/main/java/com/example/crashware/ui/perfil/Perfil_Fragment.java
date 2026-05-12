@@ -79,8 +79,8 @@ public class Perfil_Fragment extends Fragment {
         //SharedPreferences
         prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
 
-
-
+        //Crrego a foto assim que a tela foi incializada
+        Foto();
 
 
         if (getArguments() != null) {
@@ -117,8 +117,12 @@ public class Perfil_Fragment extends Fragment {
         imgBanner             = view.findViewById(R.id.imgBanner            );
 
 
+        //Pego os dados no SharedPreferences
+        String Nome = prefs.getString("nome", null);
 
-//        txtNomePerfil.setText(Nome);
+
+
+        txtNomePerfil.setText(Nome);
 //        txtPatente.setText(Patente);
 //        txtQuantDiasSeguidos.setText(Ofensiva);
 //        txtQuantXP.setText(XP);
@@ -197,11 +201,34 @@ public class Perfil_Fragment extends Fragment {
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//
+//        carregarImagem();
+//    }
 
-        carregarImagem();
+    private void Foto(){
+        User.Perfil(requireContext(), prefs, new User.PerfilCallback()
+        {
+            @Override
+            public void sucesso(User.PerfilResponse usuario) {
+
+                String foto = usuario.foto;
+
+                //Salvo o link da foto
+                String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                        + foto
+                        + "?t=" + System.currentTimeMillis();
+
+                //Carrega a foto atual do usuario
+                Glide.with(requireContext())
+                        .load(link_foto)
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .into(imgFotoPerfil);
+            }
+        });
     }
 
     private void setImage(Uri uri) {
@@ -219,7 +246,8 @@ public class Perfil_Fragment extends Fragment {
 
 
 
-        }else
+        }
+        else
         {
             //Altero a foto
             Toast.makeText(getContext(), "Alterando Foto..", Toast.LENGTH_LONG).show();
@@ -264,8 +292,8 @@ public class Perfil_Fragment extends Fragment {
 
         //Salvo o link da foto
         String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
-                + fotoPerfil
-                + "?t=" + System.currentTimeMillis();
+                + fotoPerfil;
+//                + "?t=" + System.currentTimeMillis();
 
         //Carrega a foto atual do usuario
         Glide.with(requireContext())

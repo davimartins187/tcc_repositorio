@@ -40,6 +40,8 @@ import android.widget.Toast;
 
 public class Inicio_fragment extends Fragment {
 
+    private SharedPreferences.OnSharedPreferenceChangeListener listenerFoto;
+
     private TextView txtNomeInicio, txtAulasConcluidas, txtOfensiva, txtNivelInicio, txtXpInicio;
     private ShapeableImageView imgfotoInicio;
 
@@ -73,12 +75,14 @@ public class Inicio_fragment extends Fragment {
 
         prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
 
+        //Verificando Token
+        Verificar_Token();
+
         //Coleto as informações do usuário
         Perfil();
 
 
-        //Verificando Token
-        Verificar_Token();
+
 
 
 
@@ -134,8 +138,16 @@ public class Inicio_fragment extends Fragment {
         //funções que vão ser utilizadas
         carregarNomeFirebase();
         //Carrego a imagem
-        carregarImagem();
+        listenerFoto = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                if (key.equals("foto")) {
+                    carregarImagem();
+                }
+            }
+        };
 
+        prefs.registerOnSharedPreferenceChangeListener(listenerFoto);
 
         btnRetomar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,7 +205,7 @@ public class Inicio_fragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        carregarImagem();
+        Perfil();
     }
 
     private void PassarNivel()
@@ -245,10 +257,11 @@ public class Inicio_fragment extends Fragment {
 
                 String foto = usuario.foto;
 
-                //Salvo a foto no Shared Preferences
+                //Salvo os dados no sharedPreferences
                 prefs.edit()
                         .putString("foto", foto)
-                        .apply();
+                        .putString("nome",nome)
+                        .commit();
 
                 //Salvo o link da foto
                 String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
@@ -386,12 +399,16 @@ public class Inicio_fragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
 
-        if (auth.getCurrentUser() != null && nomeListener != null) {
-            db.child(auth.getCurrentUser().getUid())
-                    .removeEventListener(nomeListener);
+        if (prefs != null && listenerFoto != null) {
+            prefs.unregisterOnSharedPreferenceChangeListener(listenerFoto);
         }
 
-        txtNomeInicio = null;
-        imgfotoInicio = null;
+//        if (auth.getCurrentUser() != null && nomeListener != null) {
+//            db.child(auth.getCurrentUser().getUid())
+//                    .removeEventListener(nomeListener);
+//        }
+//
+//        txtNomeInicio = null;
+//        imgfotoInicio = null;
     }
 }
