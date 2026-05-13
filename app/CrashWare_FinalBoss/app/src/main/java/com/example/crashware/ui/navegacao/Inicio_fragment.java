@@ -79,6 +79,8 @@ public class Inicio_fragment extends Fragment {
         // Coleto as informações do usuário
         Perfil();
 
+
+        
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance().getReference("usuarios");
     }
@@ -212,12 +214,24 @@ public class Inicio_fragment extends Fragment {
 
                 String nome = usuario.nome;
 
+
+                Integer nivel = usuario.nivel;
+                String banner = usuario.banner;
+                //Float xp = usuario.xp;
+
+
                 String foto = usuario.foto;
 
                 // Salvo os dados no SharedPreferences
                 prefs.edit()
                         .putString("foto", foto)
+
                         .putString("nome", nome)
+
+                        .putString("nome",nome)
+                        .putString("banner",banner)
+                        .putInt("nivel",nivel)
+
                         .commit();
 
                 // Link da foto
