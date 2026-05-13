@@ -1,3 +1,4 @@
+import { Sidebar } from '../../Componentes/Cabecalho/barraLateral/sideBar';
 import { Outlet, Link } from "react-router-dom"
 import { useState } from "react"
 import { Cabecalho } from "../../Componentes"
@@ -53,10 +54,16 @@ const LalyoutADM = () => {
     };
 
     const [abrirConquistas, setAbrirConquistas] = useState(false);
+    const [aberto, setAberto] = useState(false);
 
     return (
         <>
-            <Cabecalho />
+            <Cabecalho>
+                <button className={Style.hamburger} onClick={() => setAberto(!aberto)}>
+                    {aberto ? <p>✕</p> : <p>☰</p>}
+                </button>
+                <Sidebar aberto={aberto} onFechar={() => setAberto(false)} />
+            </Cabecalho>
 
             <div className={Style.separarConteudos}>
 

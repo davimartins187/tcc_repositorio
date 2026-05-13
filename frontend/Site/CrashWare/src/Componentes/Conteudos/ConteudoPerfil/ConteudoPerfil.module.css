@@ -100,7 +100,8 @@
     position: absolute;
     flex-direction: column;
     justify-content: center;
-    justify-self: flex-end;
+    z-index: 1;
+    
 }
 
 .Aberto button{
@@ -213,7 +214,7 @@
     text-align: center;
 }
 
-.Conquistas, .Compras, .Gemas {
+.Conquistas, .Patente, .Gemas {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -232,7 +233,7 @@
     transform: translateY(-2px); 
 }
 
-.Compras:hover{ 
+.Patente:hover{ 
     border: 2px solid rgba(114, 214, 119, 0.4);
     transform: translateY(-2px); 
 }
@@ -242,24 +243,28 @@
     transform: translateY(-2px); 
 }
 
-.Conquistas img, .Compras img, .Gemas img 
+.Conquistas img, .Patente img, .Gemas img 
 {
     width: 30px; height: 30px;
     object-fit: contain;
     transition: 0.28s;
 }
 
-.Conquistas:hover img, .Compras:hover img, .Gemas:hover img{ 
+.Conquistas:hover img, .Patente:hover img, .Gemas:hover img{ 
     transform: scale(1.2) rotate(-5deg); 
 }
 
-.Conquistas p, .Compras p, .Gemas p {
+.Conquistas p, .Patente p, .Gemas p {
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--texto-principal);
     opacity: 0.6;
+}
+
+.Patente h1{
+    font-size: 30px;
 }
 
 .Historico_Compras {

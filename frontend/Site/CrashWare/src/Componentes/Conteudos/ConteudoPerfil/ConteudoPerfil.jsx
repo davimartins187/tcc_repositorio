@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import FotoPadrao from '../../../fotos/FotoPerfilPadrao.jpeg'
 import iconConquistas from '../../../fotos/Conquistas.svg'
-import iconBolsa from '../../../fotos/Compras.svg'
+import iconOfensiva from '../../../fotos/Ofensiva.svg'
 import iconGema from '../../../fotos/Gemas.svg'
 import iconTema from '../../../fotos/Item_tema.svg'
 
@@ -42,6 +42,9 @@ const ConteudoPerfil = () => {
     //Pego as informações do usuario
     const usuario = JSON.parse(localStorage.getItem("dados"));
 
+    //Patente
+    const Patente = usuario?.patente || "Beta";
+
 
     //Trata a data do mês
     const DataCadastro = usuario?.criado_em;
@@ -80,6 +83,7 @@ const ConteudoPerfil = () => {
     const [versaoBanner, setVersaoBanner] = useState(Date.now());
 
     const inputRef = useRef();
+    const inputBanner = useRef();
 
     const [ofensiva, setOfensiva] = useState(0);
     const [xp, setXp] = useState(usuario?.xp || 0);
@@ -115,7 +119,6 @@ const ConteudoPerfil = () => {
         );
     }
 
-    const Davi = `https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/${usuario?.banner}?v=${versaoFoto}`;
 
 
     return (
@@ -134,14 +137,9 @@ const ConteudoPerfil = () => {
             <div className={style.corpo}>
 
                 {/* ── Banner ─────────────────────────────────────── */}
-                <div className={style.banner}
-                // style={{
-                //     "--banner-img": `url(${Davi})`
-                // }}
-
-                >
+                <div className={style.banner}>
                     <img
-                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/default_banner.png`} alt=""
+                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${usuario?.banner}?v=${versaoBanner}`} alt="Banner Perfil"
                         onClick={() => setMudarBanner(!MudarBanner)}
                     />
 
@@ -153,26 +151,58 @@ const ConteudoPerfil = () => {
                         <div className={MudarBanner ? style.Aberto_Banner : style.Fechado}>
                             <BotoesForm
                                 texto="Mudar Banner"
-                                onClick={() => inputRef.current.click()}
+                                onClick={() => inputBanner.current.click()}
                             />
                             <BotoesForm
                                 texto="Remover Banner"
                                 onClick={() => {
-                                    if (foto == 'default.png') {
+                                    if (banner == 'default.png') {
                                         setPopup({
                                             tipo: 'erro',
                                             titulo: 'Foto',
                                             mensagem: 'Você precisa adicionar uma foto , para realizar essa ação'
                                         });
                                     } else {
-                                        const foto_usuario = new Usuario();
-                                        foto_usuario.remover_foto(setDados, setFoto, setPopup);
+                                        const banner_usuario = new Usuario();
+                                        banner_usuario.remover_banner(setDados, setBanner, setPopup);
                                     }
-
                                 }}
                             />
                         </div>
                     )}
+
+                    {/* Banner */}
+                    <input
+                        type="file"
+                        className={style.escondido}
+                        ref={inputBanner}
+                        accept='image/*'
+                        onChange={(e) => {
+                            const arquivo = e.target.files[0];
+                            if (arquivo) {
+                                //Salva por enqaunto a imagem no navegador
+                                // const novaFoto = URL.createObjectURL(arquivo);
+                                // setFoto(novaFoto);
+
+
+                                //Salvo como arquivo
+                                const conteudo = new FormData();
+                                conteudo.append("banner", arquivo);
+
+                                if (banner == 'default.png') {
+                                    //Adiciono a foto
+                                    const banner_usuario = new Usuario();
+                                    banner_usuario.adicionar_banner(conteudo, setBanner, setDados, setPopup);
+
+                                } else {
+                                    //Altero a foto
+                                    const banner_usuario = new Usuario();
+                                    banner_usuario.alterar_banner(conteudo, setBanner, setDados, setPopup, setVersaoBanner);
+
+                                }
+                            }
+                        }}
+                    />
 
 
                     {/* ── Foto ─────────────────────────────────────── */}
@@ -209,6 +239,7 @@ const ConteudoPerfil = () => {
                             </div>
                         )}
 
+                        {/* Foto */}
                         <input
                             type="file"
                             className={style.escondido}
@@ -277,11 +308,11 @@ const ConteudoPerfil = () => {
                             </div>
                         </div>
 
-                        <div className={style.Compras}>
-                            <img src={iconBolsa} alt="Compras" />
+                        <div className={style.Patente}>
+                            <img src={iconOfensiva} alt="Compras" />
                             <div>
-                                {totalCompras}
-                                <p>Compras</p>
+                                <h1>{Patente}</h1>
+                                <p>Patente</p>
                             </div>
                         </div>
 

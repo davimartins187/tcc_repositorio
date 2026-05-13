@@ -1,4 +1,3 @@
-export * from './ConteudoAdm';
 export * from './ConteudoAnotacoes';
 export * from './ConteudoCadastro';
 export * from './ConteudoHome';
