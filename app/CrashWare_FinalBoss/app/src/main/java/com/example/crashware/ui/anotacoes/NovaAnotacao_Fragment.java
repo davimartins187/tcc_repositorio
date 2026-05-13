@@ -42,7 +42,6 @@ public class NovaAnotacao_Fragment extends Fragment {
 
     Button btnSalvarNovaAnotacao;
 
-    String txtNovaAnotacaoSalva, txtTituloNovaAnotacaoSalvo;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -55,15 +54,6 @@ public class NovaAnotacao_Fragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NovaAnotacao_Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static NovaAnotacao_Fragment newInstance(String param1, String param2) {
         NovaAnotacao_Fragment fragment = new NovaAnotacao_Fragment();
         Bundle args = new Bundle();
@@ -88,6 +78,7 @@ public class NovaAnotacao_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_nova_anotacao, container, false);
 
+        //Iniciando o Layout no Código
         imgVoltarNovaAnotacao = view.findViewById(R.id.imgVoltarNovaAnotacao);
         btnSalvarNovaAnotacao = view.findViewById(R.id.btnSalvarNovaAnotacao);
         txtNovaAnotacao       = view.findViewById(R.id.txtNovaAnotacao      );
@@ -137,11 +128,12 @@ public class NovaAnotacao_Fragment extends Fragment {
             }
         });//Interação com botão de salvar nova anotação, levando para a tela geral de anotações e transcrevendo os textos dos EditText para strings a serem salvas no banco
 
-        imgVoltarNovaAnotacao.setOnClickListener(new View.OnClickListener() {
+        imgVoltarNovaAnotacao.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
-                requireActivity()//puxa o fragemnt atual
+                requireActivity()//puxa o fragment atual
                         .getSupportFragmentManager()//acessa o gerenciador das fragments
                         .popBackStack();//simula o botão "voltar" do celular
 

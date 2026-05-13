@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.crashware.R;
+import com.example.crashware.ui.anotacoes.NovaAnotacao_Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,9 +78,13 @@ public class Aula extends Fragment {
             @Override
             public void onClick(View view)
             {
+                //Cria o novo caminho para fragmento
+                Fragment novoFragmento = new FragmentExercicios();
+
+                //Sobrepoe a tela do fragment para a de exercicios
                 getParentFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragmentHardware_Container, new FragmentExercicios())
+                        .replace(R.id.fragmentSoftware_Container, novoFragmento)
                         .addToBackStack(null)
                         .commit();
 
@@ -89,18 +94,20 @@ public class Aula extends Fragment {
             private FragmentManager getSupportFragmentManager() {
                 return null;
             }
-        });//
+        });//interação com o botão de "Fazer Exercicios"
 
         imgVoltarAula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
+                //Seleciona a fragment atual
                 requireActivity()
+                        //Simula o Clique do botão voltar do celular
                         .getOnBackPressedDispatcher()
                         .onBackPressed();
 
             }
-        });//
+        });//interação com a imagem de voltar
 
 
 

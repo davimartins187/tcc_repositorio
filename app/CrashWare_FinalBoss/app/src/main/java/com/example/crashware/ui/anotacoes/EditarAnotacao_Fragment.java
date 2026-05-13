@@ -23,12 +23,13 @@ import org.json.JSONObject;
 
 public class EditarAnotacao_Fragment extends Fragment {
 
+    //Objetos Utilizados
     SharedPreferences prefs;
-
     Button btnEditarAnotacao;
     EditText txtAnotacao, txtTituloAnotacao;
     ImageView imgVoltarAnotacoes;
 
+    //Váriaveis utilizadas
     boolean EstadoAnotacao = false;
 
     int position = -1;
@@ -39,18 +40,21 @@ public class EditarAnotacao_Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
 
         View view = inflater.inflate(R.layout.fragment_editar_anotacao, container, false);
 
+        //Inicia o Layout no Código
         txtAnotacao = view.findViewById(R.id.txtAnotacao);
         txtTituloAnotacao = view.findViewById(R.id.txtTituloAnotacao);
         btnEditarAnotacao = view.findViewById(R.id.btnEditarAnotacao);
         imgVoltarAnotacoes = view.findViewById(R.id.imgVoltarNovaAnotacao);
 
+        //Inicia o Shared Preferences
         prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
 
-        // 🔥 pega posição do item clicado
+        // pega posição do item clicado
         if (getArguments() != null) {
             position = getArguments().getInt("position", -1);
 
