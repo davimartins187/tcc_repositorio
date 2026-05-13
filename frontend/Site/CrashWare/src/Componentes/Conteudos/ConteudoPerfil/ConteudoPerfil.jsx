@@ -113,18 +113,19 @@ const ConteudoPerfil = () => {
 
         const onVisible = () => {
 
+        //Atualiza os dados do usuario, sempre que a pagina for acessada
         if (!document.hidden) {
             const cliente = new Usuario();
             cliente.perfil(setDados);
             usuario = JSON.parse(localStorage.getItem("dados"));
         }
-    };
+        };
 
-    document.addEventListener("visibilitychange", onVisible);
+        document.addEventListener("visibilitychange", onVisible);
 
-    return () => {
-        document.removeEventListener("visibilitychange", onVisible);
-    };
+        return () => {
+            document.removeEventListener("visibilitychange", onVisible);
+        };
 
     }, []);
 
