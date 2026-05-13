@@ -10,14 +10,13 @@
 
 .banner {
     width: 100%;
-        height: 30vh;
-        top: 0;
-        object-fit: cover;
-        position: absolute;
-        overflow: hidden;
-            background-size: cover;
-            background-position: center;
-        opacity: 0.3;
+    height: 30vh;
+    top: 0;
+    object-fit: cover;
+    position: absolute;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
     background-image: var(--banner-img);    
     }
 
@@ -26,13 +25,13 @@
         position: absolute;
         bottom: 0; left: 0; right: 0;
         height: 80px;
-        background: linear-gradient(to bottom, transparent, var(--bg-principal));
+
 }
 
 .banner img {
     width: 100%; height: 100%;
     object-fit: cover;
-    opacity: 0.3;
+    /* opacity: 0.90; */
 }
 
 .container {
