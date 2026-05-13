@@ -297,7 +297,7 @@ async def adicionar_banner(banner : UploadFile = File(...),usuario = Depends(val
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     try:
-        if usuario.banner == 'default_banner.png':
+        if usuario.banner == 'default.png':
             raise HTTPException(status_code=404,detail="Banner não encontrado")
         else:
             ##altero o nome do banner
@@ -350,7 +350,7 @@ async def alterar_banner(banner : UploadFile = File(...),usuario = Depends(valid
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     try:
-        if usuario.banner == 'default_banner.png':
+        if usuario.banner == 'default.png':
                 raise HTTPException(status_code=404, detail="Banner não encontrado")
         else:
             # Removo a foto anterior
@@ -429,7 +429,7 @@ async def remover_banner(usuario = Depends(validar_token),session = Depends(pega
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     try:
-        if usuario.banner == 'default_banner.png':
+        if usuario.banner == 'default.png':
             raise HTTPException(status_code=404, detail="Banner não encontrado")
         else:
             ##Deleto a pasta que contem o id dele no bucket
@@ -448,7 +448,7 @@ async def remover_banner(usuario = Depends(validar_token),session = Depends(pega
             if (resposta.status_code > 199 and resposta.status_code < 300):
                 #Se der certo a requisição:
 
-                usuario.banner = 'default_banner.png'
+                usuario.banner = 'default.png'
                 session.commit()
                 return{
                     "mensagem" : "Banner removido com sucesso",

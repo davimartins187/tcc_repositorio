@@ -120,7 +120,6 @@ const ConteudoPerfil = () => {
     }
 
 
-
     return (
         <>
             {/*Popup Padrão]*/}
@@ -139,7 +138,7 @@ const ConteudoPerfil = () => {
                 {/* ── Banner ─────────────────────────────────────── */}
                 <div className={style.banner}>
                     <img
-                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${usuario?.banner}?v=${versaoBanner}`} alt="Banner Perfil"
+                        src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/${usuario?.banner}?v=${versaoBanner}`} alt="Banner do usuário"
                         onClick={() => setMudarBanner(!MudarBanner)}
                     />
 
@@ -159,8 +158,8 @@ const ConteudoPerfil = () => {
                                     if (banner == 'default.png') {
                                         setPopup({
                                             tipo: 'erro',
-                                            titulo: 'Foto',
-                                            mensagem: 'Você precisa adicionar uma foto , para realizar essa ação'
+                                            titulo: 'Banner',
+                                            mensagem: 'Você precisa adicionar uma banner , para realizar essa ação'
                                         });
                                     } else {
                                         const banner_usuario = new Usuario();
@@ -266,6 +265,37 @@ const ConteudoPerfil = () => {
                                         //Altero a foto
                                         const foto_usuario = new Usuario();
                                         foto_usuario.alterar_foto(conteudo, setFoto, setDados, setPopup, setVersaoFoto);
+
+                                    }
+                                }
+                            }}
+                        />
+
+                        <input
+                            type="file"
+                            className={style.escondido}
+                            ref={inputBanner}
+                            accept='image/*'
+                            onChange={(e) => {
+                                const arquivo = e.target.files[0];
+                                if (arquivo) {
+                                    //Salva por enqaunto a imagem no navegador
+                                    // const novaFoto = URL.createObjectURL(arquivo);
+                                    // setFoto(novaFoto);
+
+                                    //Salvo como arquivo
+                                    const conteudo = new FormData();
+                                    conteudo.append("banner", arquivo);
+
+                                    if (banner == 'default.png') {
+                                        //Adiciono o banner
+                                        const banner_usuario = new Usuario();
+                                        banner_usuario.adicionar_banner(conteudo, setBanner, setDados, setPopup);
+
+                                    } else {
+                                        //Altero o banner
+                                        const banner_usuario = new Usuario();
+                                        banner_usuario.alterar_banner(conteudo, setBanner, setDados, setPopup, setVersaoBanner);
 
                                     }
                                 }
