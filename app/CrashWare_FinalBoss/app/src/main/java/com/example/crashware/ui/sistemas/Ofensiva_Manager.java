@@ -187,12 +187,4 @@ public class Ofensiva_Manager {
 }
 
 
-//COLOCAR DEPOIS NO INICIO_FRAGMENT- ONCREATEVIEW
 
-//Chamar função Ofensiva
-//Ofensiva_Manager ofensivaManager =
-//        new Ofensiva_Manager(requireContext());
-//
-//int ofensiva = ofensivaManager.verificarOfensiva();
-//
-//        txtOfensiva.setText(ofensiva + " dias");

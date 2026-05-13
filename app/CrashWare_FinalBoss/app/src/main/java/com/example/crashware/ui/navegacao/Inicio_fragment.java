@@ -80,7 +80,7 @@ public class Inicio_fragment extends Fragment {
         Perfil();
 
 
-        
+
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance().getReference("usuarios");
     }
@@ -109,6 +109,14 @@ public class Inicio_fragment extends Fragment {
         // funções que vão ser utilizadas
         carregarNomeFirebase();
 
+
+        //Chamar função Ofensiva
+        Ofensiva_Manager ofensivaManager =
+                new Ofensiva_Manager(requireContext());
+
+        int ofensiva = ofensivaManager.verificarOfensiva();
+
+        txtOfensiva.setText(ofensiva + " dias");
 
 
 
