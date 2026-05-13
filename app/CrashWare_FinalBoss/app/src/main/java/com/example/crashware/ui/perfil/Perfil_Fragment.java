@@ -1,7 +1,6 @@
 package com.example.crashware.ui.perfil;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,7 +20,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.crashware.R;
 import com.example.crashware.ui.api.User;
-import com.example.crashware.ui.navegacao.Inicio_fragment;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +33,9 @@ public class Perfil_Fragment extends Fragment {
 
     ShapeableImageView imgFotoPerfil, imgBanner;
 
-    private ActivityResultLauncher<String[]> escolherImagem;
+    private ActivityResultLauncher<String[]> escolherFoto;
+
+    private ActivityResultLauncher<String[]> escolherBanner;
 
     //Memória do app
     SharedPreferences prefs;
@@ -90,11 +90,19 @@ public class Perfil_Fragment extends Fragment {
 
         }
 
-        escolherImagem = registerForActivityResult(
+        escolherFoto = registerForActivityResult(
                 new ActivityResultContracts.OpenDocument(),
                 uri -> {
                     if (uri != null) {
                         setImage(uri);
+                    }
+                }
+        );
+        escolherBanner = registerForActivityResult(
+                new ActivityResultContracts.OpenDocument(),
+                uri -> {
+                    if (uri != null) {
+                        setBanner(uri);
                     }
                 }
         );
@@ -179,7 +187,7 @@ public class Perfil_Fragment extends Fragment {
             public void onClick(View v)
             {
                 tipoImagem = "perfil";
-                escolherImagem.launch(new String[]{"image/*"});
+                escolherFoto.launch(new String[]{"image/*"});
 
             }
         });//
@@ -189,13 +197,16 @@ public class Perfil_Fragment extends Fragment {
             public void onClick(View v)
             {
                 tipoImagem = "banner";
-                escolherImagem.launch(new String[]{"image/*"});
+                escolherBanner.launch(new String[]{"image/*"});
 
             }
         });//
 
         //Carrega a imagem
         carregarImagem();
+
+        //Carrego o Banner
+        carregarBanner();
 
         return view;
 
@@ -214,11 +225,19 @@ public class Perfil_Fragment extends Fragment {
             @Override
             public void sucesso(User.PerfilResponse usuario) {
 
+                String email = usuario.email;
+
                 String foto = usuario.foto;
+                String banner = usuario.banner;
 
                 //Salvo o link da foto
                 String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
                         + foto
+                        + "?t=" + System.currentTimeMillis();
+
+                //Salvo o link do banner
+                String link_banner =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/"
+                        + banner
                         + "?t=" + System.currentTimeMillis();
 
                 //Carrega a foto atual do usuario
@@ -227,6 +246,13 @@ public class Perfil_Fragment extends Fragment {
                         .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .into(imgFotoPerfil);
+
+                //Carrega o banner atual do usuario
+                Glide.with(requireContext())
+                        .load(link_banner)
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .into(imgBanner);
             }
         });
     }
@@ -245,7 +271,6 @@ public class Perfil_Fragment extends Fragment {
             User.Adicionar_Foto(requireContext(),prefs,uri,imgFotoPerfil);
 
 
-
         }
         else
         {
@@ -256,32 +281,29 @@ public class Perfil_Fragment extends Fragment {
 
         }
 
-//        // Permissão persistente
-//        requireContext().getContentResolver().takePersistableUriPermission(
-//                uri,
-//                Intent.FLAG_GRANT_READ_URI_PERMISSION
-//        );
-//
-//        if (tipoImagem.equals("perfil")) {
-//
-//            imgFotoPerfil.setImageURI(uri);
-//
-//            requireContext()
-//                    .getSharedPreferences("perfil", 0)
-//                    .edit()
-//                    .putString("fotoPerfil", uri.toString())
-//                    .apply();
-//
-//        } else if (tipoImagem.equals("banner")) {
-//
-//            imgBanner.setImageURI(uri);
-//
-//            requireContext()
-//                    .getSharedPreferences("perfil", 0)
-//                    .edit()
-//                    .putString("fotoBanner", uri.toString())
-//                    .apply();
-//        }
+
+    }
+
+    private void setBanner(Uri uri) {
+        if (!isAdded()) return;
+
+        //Pego o banner
+        String banner = prefs.getString("banner", null);
+
+        //Verifico se vai adicionar ou alterar
+        if ("default.png".equals(banner)) {
+            //Add o banner
+            Toast.makeText(getContext(), "Adicionando Banner...", Toast.LENGTH_LONG).show();
+            User.Adicionar_Banner(requireContext(), prefs, uri, imgBanner);
+
+
+        } else {
+            //Altero o banner
+            Toast.makeText(getContext(), "Alterando Banner...", Toast.LENGTH_LONG).show();
+            User.Alterar_Banner(requireContext(), prefs, uri, imgBanner );
+
+
+        }
     }
 
     private void carregarImagem() {
@@ -292,8 +314,8 @@ public class Perfil_Fragment extends Fragment {
 
         //Salvo o link da foto
         String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
-                + fotoPerfil;
-//                + "?t=" + System.currentTimeMillis();
+                + fotoPerfil
+                + "?t=" + System.currentTimeMillis();
 
         //Carrega a foto atual do usuario
         Glide.with(requireContext())
@@ -302,34 +324,27 @@ public class Perfil_Fragment extends Fragment {
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(imgFotoPerfil);
 
-
-
-
-//        // FOTO PERFIL
-//        String uriPerfil = requireContext()
-//                .getSharedPreferences("perfil", 0)
-//                .getString("fotoPerfil", null);
-//
-//        if (uriPerfil != null) {
-//            try {
-//                imgFotoPerfil.setImageURI(Uri.parse(uriPerfil));
-//            } catch (Exception ignored) {}
-//        }
-//
-//        // BANNER
-//        String uriBanner = requireContext()
-//                .getSharedPreferences("perfil", 0)
-//                .getString("fotoBanner", null);
-//
-//        if (uriBanner != null) {
-//            try {
-//                imgBanner.setImageURI(Uri.parse(uriBanner));
-//            } catch (Exception ignored) {}
-//        }
     }
 
+    private void carregarBanner() {
+        if (!isAdded()) return;
+
+        //Pego a foto
+        String bannerPerfil = prefs.getString("banner", null);
+
+        //Salvo o link da foto
+        String link_banner =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/"
+                + bannerPerfil
+                + "?t=" + System.currentTimeMillis();
+
+        //Carrega o banner atual do usuario
+        Glide.with(requireContext())
+                .load(link_banner)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(imgBanner);
 
 
-
+    }
 
 }

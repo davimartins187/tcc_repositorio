@@ -429,6 +429,298 @@ public class User {
 
     }//Alterar Foto
 
+    //Adicionar_Banner
+    public static class Adicionar_BannerResponse {
+        public String mensagem;
+        public String banner;
+
+    }
+
+    // INTERFACE da API:
+    public static interface banner {
+        @Multipart
+        @POST("/user/adicionar_banner")
+        Call<Adicionar_BannerResponse> adicionar(
+                @Header("Authorization") String token,
+                @Part MultipartBody.Part banner
+        );
+    }
 
 
-}
+
+    public static void Adicionar_Banner(Context context, SharedPreferences prefs, Uri uri, ImageView img) {
+        //Pego o valor do token
+        String token = prefs.getString("token", null);
+
+        //Preparo ele para enviar para o header da requisição
+        token = "Bearer " + token;
+
+        try {
+
+            //Pego as informações do banner
+            InputStream inputStream = context
+                    .getContentResolver()
+                    .openInputStream(uri);
+
+            byte[] bytes = new byte[inputStream.available()];
+            inputStream.read(bytes);
+
+
+            //Formato do banner
+            String type = context
+                    .getContentResolver()
+                    .getType(uri);
+
+
+            //Envio o formato do banner
+            RequestBody requestBody = RequestBody.create(
+                    MediaType.parse(type),
+                    bytes
+            );
+
+
+            MultipartBody.Part bannerPart = MultipartBody.Part.createFormData(
+                    "banner",
+                    "banner.jpg",
+                    requestBody
+            );
+
+            // Criando a API
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://api-crashware.onrender.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            //
+
+            // Fazendo que a interface da API seja utilizavel:
+            banner api = retrofit.create(banner.class);
+
+
+            // Monto a chamada da API:
+            Call<Adicionar_BannerResponse> requisicao = api.adicionar(token, bannerPart);
+
+            requisicao.enqueue(new Callback<Adicionar_BannerResponse>() {
+                @Override
+                public void onResponse(
+                        Call<Adicionar_BannerResponse> requisicao,
+                        retrofit2.Response<Adicionar_BannerResponse> resposta
+                ) {
+                    if (resposta.isSuccessful()) {
+                        //Se a requisição der certa
+
+                        //Pego os dados que a API enviou
+                        Adicionar_BannerResponse dados = resposta.body();
+
+                        String banner = dados.banner;
+
+                        //Altero o banner no Shared Preferences
+                        prefs.edit()
+                                .putString("banner", banner)
+                                .commit();
+
+
+                        String link_banner =
+                                "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/"
+                                        + banner;
+
+                        Glide.with(context)
+                                .load(link_banner)
+                                .into(img);
+
+                        Toast.makeText(context, dados.mensagem, Toast.LENGTH_LONG).show();
+                    } else {
+                        //Retorna erro caso a reqsição dar errado
+
+                        String erro = "Erro ao adicionar banner";
+
+                        try {
+                            String detail = resposta.errorBody().string();
+
+                            JSONObject json = new JSONObject(detail);
+
+
+                            if (detail != null) {
+                                erro = json.getString("detail");
+
+                            }
+                        } catch (Exception e) {
+                            // ignora, mantém mensagem padrão
+                        }
+
+                        //Aqui retorna o ERRO
+                        Toast.makeText(context, erro, Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Adicionar_BannerResponse> call, Throwable t) {
+                    // Caso deu erro na requisição
+                    // erro de conexão (internet, URL, servidor fora)
+                    Toast.makeText(
+                            context,
+                            "Erro de conexão: " + t.getMessage(),
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
+            });
+
+        } catch (Exception e) {
+            //Mostra o erro no logcat
+            e.printStackTrace();
+        }
+
+    }//Adicionar banner
+
+
+    //Alterar Foto
+    public static class Alterar_BannerResponse {
+        public String mensagem;
+        public String banner;
+
+    }
+
+    // INTERFACE da API:
+    public static interface alterar_banner {
+        @Multipart
+        @PUT("/user/alterar_banner")
+        Call<Alterar_BannerResponse> alterar(
+                @Header("Authorization") String token,
+                @Part MultipartBody.Part banner
+        );
+    }
+
+
+
+    public static void Alterar_Banner(Context context, SharedPreferences prefs, Uri uri, ImageView img)
+    {
+
+        //Pego o valor do token
+        String token = prefs.getString("token", null);
+
+        //Preparo ele para enviar para o header da requisição
+        token = "Bearer " + token;
+
+        try {
+
+            //Pego as informações do banner
+            InputStream inputStream = context
+                    .getContentResolver()
+                    .openInputStream(uri);
+
+            byte[] bytes = new byte[inputStream.available()];
+            inputStream.read(bytes);
+
+
+            //Formato do banner
+            String type = context
+                    .getContentResolver()
+                    .getType(uri);
+
+
+            //Envio o formato do banner
+            RequestBody requestBody = RequestBody.create(
+                    MediaType.parse(type),
+                    bytes
+            );
+
+
+            MultipartBody.Part bannerPart = MultipartBody.Part.createFormData(
+                    "banner",
+                    //Alterar o nome do arquivo
+                    "banner.jpg",
+                    requestBody
+            );
+
+            // Criando a API
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://api-crashware.onrender.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            //
+
+            // Fazendo que a interface da API seja utilizavel:
+            alterar_banner api = retrofit.create(alterar_banner.class);
+
+
+            // Monto a chamada da API:
+            Call<Alterar_BannerResponse> requisicao = api.alterar(token, bannerPart);
+
+            requisicao.enqueue(new Callback<Alterar_BannerResponse>() {
+                @Override
+                public void onResponse(
+                        Call<Alterar_BannerResponse> requisicao,
+                        retrofit2.Response<Alterar_BannerResponse> resposta
+                ) {
+                    if (resposta.isSuccessful()) {
+                        //Se a requisição der certa
+
+                        //Pego os dados que a API enviou
+                        Alterar_BannerResponse dados = resposta.body();
+
+                        String banner = dados.banner;
+
+                        //Edito  o banner no Shared Preferences
+                        prefs.edit()
+                                .putString("banner", banner)
+                                .commit();
+
+                        String link_banner =
+                                "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/"
+                                        + banner;
+//                                        System.currentTimeMillis();
+
+                        Glide.with(context)
+                                .load(link_banner)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(img);
+
+                        //Exibo a mensagem
+                        Toast.makeText(context, dados.mensagem, Toast.LENGTH_LONG).show();
+                    } else {
+                        //Retorna erro caso a reqsição dar errado
+
+                        String erro = "Erro ao alterar banner";
+
+                        try {
+                            String detail = resposta.errorBody().string();
+
+                            JSONObject json = new JSONObject(detail);
+
+
+                            if (detail != null) {
+                                erro = json.getString("detail");
+
+                            }
+                        } catch (Exception e) {
+                            // ignora, mantém mensagem padrão
+                        }
+
+                        //Aqui retorna o ERRO
+                        Toast.makeText(context, erro, Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Alterar_BannerResponse> call, Throwable t) {
+                    // Caso deu erro na requisição
+                    // erro de conexão (internet, URL, servidor fora)
+                    Toast.makeText(
+                            context,
+                            "Erro de conexão: " + t.getMessage(),
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
+            });
+        } catch (Exception e) {
+            //Mostra o erro no logcat
+            e.printStackTrace();
+        }
+
+    }//Alterar Banner
+
+}//User
