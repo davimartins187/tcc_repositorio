@@ -100,13 +100,32 @@ const ConteudoPerfil = () => {
     const porcentagem = (xp / XpMax) * 100;
 
 
-    //  QUERO SABER QUEM FOI
+    // //  QUERO SABER QUEM FOI
+    // useEffect(() => {
+    //     const informacoes = localStorage.getItem("info");
+    //     if (informacoes === "false") {
+    //         const user = new Usuario();
+    //         user.perfil(setDados);
+    //     }
+    // }, []);
+
     useEffect(() => {
-        const informacoes = localStorage.getItem("info");
-        if (informacoes === "false") {
-            const user = new Usuario();
-            user.perfil(setDados);
+
+        const onVisible = () => {
+
+        if (!document.hidden) {
+            const cliente = new Usuario();
+            cliente.perfil(setDados);
+            usuario = JSON.parse(localStorage.getItem("dados"));
         }
+    };
+
+    document.addEventListener("visibilitychange", onVisible);
+
+    return () => {
+        document.removeEventListener("visibilitychange", onVisible);
+    };
+
     }, []);
 
     if (!usuario) {

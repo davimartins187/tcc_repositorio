@@ -198,13 +198,13 @@ public class Perfil_Fragment extends Fragment {
 
     }
 
-//    @Override
-//    public void onResume() s
-//    {
-//        super.onResume();
-//
-//        carregarImagem();
-//    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        Foto();
+    }
 
     private void Foto(){
         User.Perfil(requireContext(), prefs, new User.PerfilCallback()
