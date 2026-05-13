@@ -145,7 +145,7 @@ export class Usuario
         setPopup({
                 tipo: 'aviso',
                 titulo: 'Foto',
-                mensagem: 'Enviando informações...'
+                mensagem: 'Adicionando Foto...'
             });
 
         await sleep(2000)
@@ -222,7 +222,7 @@ export class Usuario
          setPopup({
                 tipo: 'aviso',
                 titulo: 'Foto',
-                mensagem: 'Enviando informações...'
+                mensagem: 'Alterando Foto...'
             });
 
         await sleep(2000)
@@ -378,7 +378,7 @@ export class Usuario
         setPopup({
                 tipo: 'aviso',
                 titulo: 'Banner',
-                mensagem: 'Enviando informações...'
+                mensagem: 'Adicionando Banner...'
             });
 
         await sleep(2000)
@@ -457,7 +457,7 @@ export class Usuario
          setPopup({
                 tipo: 'aviso',
                 titulo: 'Banner',
-                mensagem: 'Enviando informações...'
+                mensagem: 'Alterando Banner...'
             });
 
         await sleep(2000)
