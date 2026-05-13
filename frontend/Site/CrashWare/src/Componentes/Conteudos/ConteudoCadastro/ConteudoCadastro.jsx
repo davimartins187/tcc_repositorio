@@ -27,7 +27,7 @@ const ConteudoCadstro = () => {
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmaSenha] = useState();
     const [mostrar, setMostrar] = useState(false);
-    const [mostrarConfimar, setMostrarConfimar] = useState(false);  
+    const [mostrarConfimar, setMostrarConfimar] = useState(false);
     const [tema, setTema] = useState(localStorage.getItem('TemaSelecionado') || 'Claro');
     const [popup, setPopup] = useState(null);
 
@@ -63,13 +63,17 @@ const ConteudoCadstro = () => {
         usuario.cadastrar(nome, email, senha, confirmarSenha, setPopup, Navegacao);
     }
 
-        const iconeSenha = mostrar
-            ? (verSenha_claro )
-            : (esconderSenha_claro );
-    
-        const iconeConfirmaSenha = mostrarConfimar
-            ? ( verSenha_claro )
-            : (esconderSenha_claro );
+    const iconeSenha = mostrar
+        ? (verSenha_claro)
+        : (esconderSenha_claro);
+
+    const iconeConfirmaSenha = mostrarConfimar
+        ? (verSenha_claro)
+        : (esconderSenha_claro);
+
+    const Cadastrar = () => {
+        handleCadastro()
+    }
 
     return (
         <>
@@ -83,7 +87,13 @@ const ConteudoCadstro = () => {
             )}
 
             <div className={`${style.corpo} ${tema}`}>
-                <div className={style.container}>
+                <div className={style.container}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" && !e.repeat) {
+                            Cadastrar();
+                        }
+                    }}
+                >
 
                     <h1>Cadastre-se</h1>
 
@@ -129,22 +139,22 @@ const ConteudoCadstro = () => {
                     </div>
 
                     <p>Confirme a Senha</p>
-                        <div className={style.senhaWrapper}>
-                            <CampoTexto
-                                type={mostrarConfimar ? "text" : "password"}
-                                className={style.inputClasse}
-                                placeholder="Confirme sua Senha*"
-                                value={confirmarSenha}
-                                onChange={(e) => setConfirmaSenha(e.target.value)}
-                                maxLength={30}
-                            />
-                            <img
-                                src={iconeConfirmaSenha}
-                                alt="ver senha"
-                                className={style.imgSenha}
-                                onClick={() => setMostrarConfimar(!mostrarConfimar)}
-                            />
-                        </div>
+                    <div className={style.senhaWrapper}>
+                        <CampoTexto
+                            type={mostrarConfimar ? "text" : "password"}
+                            className={style.inputClasse}
+                            placeholder="Confirme sua Senha*"
+                            value={confirmarSenha}
+                            onChange={(e) => setConfirmaSenha(e.target.value)}
+                            maxLength={30}
+                        />
+                        <img
+                            src={iconeConfirmaSenha}
+                            alt="ver senha"
+                            className={style.imgSenha}
+                            onClick={() => setMostrarConfimar(!mostrarConfimar)}
+                        />
+                    </div>
 
                     <BotoesForm
                         texto="Cadastrar"
@@ -169,7 +179,7 @@ const ConteudoCadstro = () => {
                 </p>
 
                 <div className={style.outrasFormasCadastro}>
-                    <img src={tema === "Claro"? gitIconModoClaro : gitIconModoEscuro} alt="Icone Github" />
+                    <img src={tema === "Claro" ? gitIconModoClaro : gitIconModoEscuro} alt="Icone Github" />
                     <img src={googloIcon} alt="Icone google" />
                 </div>
             </div>

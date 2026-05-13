@@ -61,6 +61,10 @@ const ConteudoLogin = () => {
 
     };
 
+    const Logar = () =>{
+        handleLogin()
+    }
+
     return (
         <>
             {popup && (
@@ -73,7 +77,13 @@ const ConteudoLogin = () => {
             )}
 
             <div className={`${style.corpo} ${tema}`}>
-                <div className={style.container}>
+                <div className={style.container}
+                    onKeyDown={(e)=>{
+                        if(e.key === "Enter" && !e.repeat){
+                            Logar();
+                        }
+                    }}
+                >
 
                     <h1>Entrar</h1>
 
