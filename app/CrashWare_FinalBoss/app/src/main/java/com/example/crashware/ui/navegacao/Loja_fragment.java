@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.crashware.R;
+import com.example.crashware.ui.sistemas.Ofensiva_Manager;
 
 
 public class Loja_fragment extends Fragment {
@@ -169,6 +170,18 @@ public class Loja_fragment extends Fragment {
                 {
                     gemas= gemas - 600;
                     PowerUpAdquirido.show();
+
+                    //importa a classe de ofensiva com suas funções
+                    Ofensiva_Manager ofensivaManager =
+                            new Ofensiva_Manager(requireContext());
+
+                    //aciona a função de comprar um congelamento
+                    ofensivaManager.adicionarCongelamento();
+                    //
+
+                    //Para mostrar a quantidade de congelamentos
+                    //int congelamentos = ofensivaManager.getCongelamentos();
+
                     //txtComprarBooster.setText("Adquirido");
                 }//Se o usuário possuir 600 ou mais gemas, prossegue com a compra
 
