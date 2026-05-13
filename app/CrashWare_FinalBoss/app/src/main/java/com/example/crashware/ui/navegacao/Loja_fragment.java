@@ -19,8 +19,11 @@ import com.example.crashware.ui.sistemas.Ofensiva_Manager;
 
 public class Loja_fragment extends Fragment {
 
+    //Objetos que serão Utilizados
     TextView txtComprarTemaMeiaNoite, txtComprarGelo, txtComprarBooster,
             txtComprarOfensiva, txtComprarLeitura;
+
+    //Váriaveis que serão Utilizadas
 
     int gemas;
 
@@ -68,17 +71,22 @@ public class Loja_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_loja, container, false);
 
+
+        //Iniciando os Objetos do Layout
         txtComprarLeitura       = view.findViewById(R.id.txtComprarLeitura  );
         txtComprarBooster       = view.findViewById(R.id.txtComprarBooster  );
         txtComprarOfensiva      = view.findViewById(R.id.txtComprarOfensiva );
         txtComprarGelo          = view.findViewById(R.id.txtComprarGelo     );
         txtComprarTemaMeiaNoite = view.findViewById(R.id.txtComprarMeiaNoite);
 
+        //Criando os Toasts que serão Utilizados
         Toast temaAdquirido     = Toast.makeText(getContext(), "Tema Adquirido    ", Toast.LENGTH_LONG);
         Toast SaldoInsuficiente = Toast.makeText(getContext(), "Saldo Insuficiente", Toast.LENGTH_LONG);
         Toast PowerUpAdquirido = Toast.makeText(getContext(), "PowerUp Adquirido  ", Toast.LENGTH_LONG);
 
+        //Gemas Temporárias para teste
         gemas = 5500;
+        //A serem substituidas pelas gemas do usuário logado
 
 
         txtComprarTemaMeiaNoite.setOnClickListener(new View.OnClickListener()
@@ -93,6 +101,7 @@ public class Loja_fragment extends Fragment {
                     txtComprarTemaMeiaNoite.setText("Adquirido");
                     txtComprarGelo.setEnabled(false);
                 }//Se o usuário possuir 1500 ou mais gemas, prossegue com a compra
+                //E torna o Botão Indisponivel para compra novamente, alterando o texto para "Adquirido"
 
                 else
                 {
@@ -100,7 +109,7 @@ public class Loja_fragment extends Fragment {
                 }//Senão retorna saldo insuficiente
 
             }
-        });//
+        });//Interação com o Botão de Comprar o Tema meia Noite
 
         txtComprarGelo.setOnClickListener(new View.OnClickListener()
         {
@@ -114,6 +123,7 @@ public class Loja_fragment extends Fragment {
                     txtComprarGelo.setText("Adquirido");
                     txtComprarGelo.setEnabled(false);
                 }//Se o usuário possuir 1500 ou mais gemas, prossegue com a compra
+                //E torna o Botão Indisponivel para compra novamente, alterando o texto para "Adquirido"
 
                 else
                 {
@@ -121,7 +131,7 @@ public class Loja_fragment extends Fragment {
                 }//Senão retorna saldo insuficiente
 
             }
-        });//
+        });//Interação com o Botão de Comprar o Tema Gelo
 
         txtComprarLeitura.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +144,7 @@ public class Loja_fragment extends Fragment {
                     txtComprarLeitura.setText("Adquirido");
                     txtComprarLeitura.setEnabled(false);
                 }//Se o usuário possuir 1500 ou mais gemas, prossegue com a compra
+                //E torna o Botão Indisponivel para compra novamente, alterando o texto para "Adquirido"
 
                 else
                 {
@@ -141,7 +152,7 @@ public class Loja_fragment extends Fragment {
                 }//Senão retorna saldo insuficiente
 
             }
-        });//
+        });//Interação com o Botão de Comprar o Tema Leitura
 
         txtComprarBooster.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,8 +162,9 @@ public class Loja_fragment extends Fragment {
                 {
                     gemas= gemas - 600;
                     PowerUpAdquirido.show();
-                    //txtComprarBooster.setText("Adquirido");
-                }//Se o usuário possuir 400 ou mais gemas, prossegue com a compra
+                    //mostra o Toast de PowerUp Adquirido
+                }//Se o Usuário possuir 600 ou mais gemas, prossegue com a compra
+
 
                 else
                 {
@@ -160,7 +172,7 @@ public class Loja_fragment extends Fragment {
                 }//Senão retorna saldo insuficiente
 
             }
-        });//
+        });//Interação com o Botão de Comprar Booster de XP?
 
         txtComprarOfensiva.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,6 +182,7 @@ public class Loja_fragment extends Fragment {
                 {
                     gemas= gemas - 600;
                     PowerUpAdquirido.show();
+                    //Mostra o Toast de Power Up Adquirido
 
                     //importa a classe de ofensiva com suas funções
                     Ofensiva_Manager ofensivaManager =
@@ -182,7 +195,6 @@ public class Loja_fragment extends Fragment {
                     //Para mostrar a quantidade de congelamentos
                     //int congelamentos = ofensivaManager.getCongelamentos();
 
-                    //txtComprarBooster.setText("Adquirido");
                 }//Se o usuário possuir 600 ou mais gemas, prossegue com a compra
 
                 else
@@ -192,7 +204,7 @@ public class Loja_fragment extends Fragment {
 
 
             }
-        });//
+        });////Interação com o Botão de Comprar Congelamentos
 
 
         return view;

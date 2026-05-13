@@ -27,6 +27,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 
 public class Perfil_Fragment extends Fragment {
 
+    //Objetos que vão ser utilizados
     TextView txtNomePerfil, txtQuantXP, txtPatente, txtVerTodasConquistas;
 
     ImageView imgConfigPerfil;
@@ -48,8 +49,7 @@ public class Perfil_Fragment extends Fragment {
 
 
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -114,6 +114,7 @@ public class Perfil_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
+        //Inicia o Layout no Código
         txtNomePerfil         = view.findViewById(R.id.txtNomePerfil        );
         txtPatente            = view.findViewById(R.id.txtPatente           );
         txtQuantXP            = view.findViewById(R.id.txtQuantXP           );
@@ -167,21 +168,6 @@ public class Perfil_Fragment extends Fragment {
             }
         });// interação com a imagem que leva para a tela de configurações
 
-        /*imgLayoutLogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Fragment novoFragmento = new Inicio_fragment();
-
-                getParentFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, novoFragmento)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });// interação com a imagem que leva de volta para a home/tela de inicio*/
-
-
         imgFotoPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -190,7 +176,7 @@ public class Perfil_Fragment extends Fragment {
                 escolherFoto.launch(new String[]{"image/*"});
 
             }
-        });//
+        });//Interação com a foto de perfil
 
         imgBanner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,7 +186,7 @@ public class Perfil_Fragment extends Fragment {
                 escolherBanner.launch(new String[]{"image/*"});
 
             }
-        });//
+        });//Interação com o Banner
 
         //Carrega a imagem
         carregarImagem();
@@ -213,7 +199,8 @@ public class Perfil_Fragment extends Fragment {
     }
 
 //    @Override
-//    public void onResume() {
+//    public void onResume() s
+//    {
 //        super.onResume();
 //
 //        carregarImagem();

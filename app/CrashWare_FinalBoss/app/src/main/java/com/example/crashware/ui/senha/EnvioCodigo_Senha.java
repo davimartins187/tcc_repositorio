@@ -107,6 +107,7 @@ public class EnvioCodigo_Senha extends AppCompatActivity {
         });//
 
 
+        //Iniciando o Layout no código
         txtCodigo       = findViewById(R.id.txtCodigoVerificacao);
         txtNomeEmail    = findViewById(R.id.txtNomeEmail        );
         txtTempoEnviar  = findViewById(R.id.txtTempoEnviar      );
@@ -117,8 +118,10 @@ public class EnvioCodigo_Senha extends AppCompatActivity {
         //Pega o email da outra tela
         emailUsuario = getIntent().getStringExtra("email_usuario");
 
+        //Se o emailUsuario trazido da outra tela for diferente de null, ou seja, Existir, procede com a validação
         if (emailUsuario != null)
         {
+            //Faz o Email do usuário aparecer no texto da tela
             txtNomeEmail.setText(emailUsuario);
         }
 
@@ -127,11 +130,12 @@ public class EnvioCodigo_Senha extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+                //Torna o botão Indisponivel e inicia as Funções
                 btnEnviarCod.setEnabled(false);
                 EnviarCodigo();
                 iniciarTimer();
             }
-        });//
+        });//Interação com o Botão de Enviar Código
 
         btnVerificarCod.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,9 +143,11 @@ public class EnvioCodigo_Senha extends AppCompatActivity {
             {
 
                 VerificarEmail();
+                //Executa a função com verificação de Email
 
             }
-        });//
+        });//Interação com o botão de verificar email
+
     }//
 
     private void iniciarTimer()
@@ -191,7 +197,7 @@ public class EnvioCodigo_Senha extends AppCompatActivity {
         if (codigo.length() != 6 || !codigo.matches("\\d+")) {
             Toast.makeText(EnvioCodigo_Senha.this, "Código inválido (6 números)", Toast.LENGTH_LONG).show();
             return;
-        }//Código tem que ter 6 caracteres e não pode passar disso, e o só aceita número, não pode letra
+        }//Código tem que ter 6 caracteres e não pode passar disso, e só aceita número, não pode letra
 
 
         //Mensagem caso passa da validaçao:

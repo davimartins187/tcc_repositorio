@@ -33,9 +33,10 @@ import java.util.ArrayList;
 
 public class Anotacoes_fragment extends Fragment {
 
+    //Váriaveis e Funções que serão utilizadas e iniciadas no código
     private ArrayList<Anotacao> listaAnotacoes = new ArrayList<>();
 
-    RecyclerView rvListaAnotaoes;
+    RecyclerView rvListaAnotacoes;
 
     Anotacao_Adapter adapter;
     SharedPreferences prefs;
@@ -93,51 +94,54 @@ public class Anotacoes_fragment extends Fragment {
 
         imgAddAnotacoes  = view.findViewById(R.id.imgAddAnotacoes   );
         txtbarraPesquisa = view.findViewById(R.id.txtBarraPesquisa  );
-        rvListaAnotaoes = view.findViewById(R.id.recyclerView);
+        rvListaAnotacoes = view.findViewById(R.id.recyclerView);
 
-        // 1. LayoutManager primeiro
-        rvListaAnotaoes.setLayoutManager(
-                new LinearLayoutManager(getContext())
-        );
+        //LayoutManager para atualizar a cada anotação
+        rvListaAnotacoes.setLayoutManager(new LinearLayoutManager(getContext()));
 
-// 2. Adapter depois
-        adapter = new Anotacao_Adapter(listaAnotacoes, new Anotacao_Adapter.OnItemClickListener() {
+        // 2. Adapter depois
+        adapter = new Anotacao_Adapter(listaAnotacoes, new Anotacao_Adapter.OnItemClickListener()
+        {
             @Override
             public void onClick(Anotacao anotacao, int position)
             {
+                //Leva para o fragment usado para editar anotações
                 EditarAnotacao_Fragment fragment = new EditarAnotacao_Fragment();
 
+                //ao ir para o fragment, puxa as informações necessárias para alterar o correto
                 Bundle bundle = new Bundle();
                 bundle.putString("titulo", anotacao.getTitulo());
                 bundle.putString("conteudo", anotacao.getConteudo());
-                bundle.putInt("position", position); // 👈 ESSENCIAL
+                bundle.putInt("position", position); // puxa a posição na arraylist da anotação selecionada
 
                 fragment.setArguments(bundle);
 
+
+                //Tramite de troca de fragmento
                 getParentFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, fragment)
                         .addToBackStack(null)
                         .commit();
-            }});
+            }
+        });//Interação com A anotação desejada da lista
 
-        rvListaAnotaoes.setAdapter(adapter);
+        //Selecionando o adapter para a ArrayList
+        rvListaAnotacoes.setAdapter(adapter);
 
 
 
 
 
-        prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
+//        //Iniciando o SharedPreferences que contém as anotações
+//        prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
+//
+//        // Recupera os dados salvos
+//        String tituloSalvo = prefs.getString("Titulo", "");
+//        String anotacaoSalva = prefs.getString("Anotacao", "");
+//        String NovaAnotacaoSalva2 = prefs.getString("NovaAnotacao2","");
+//        String NovoTituloAnotacaoSalvo2 = prefs.getString("TituloNovaAnotacao2","");
 
-        // Recupera os dados salvos
-        String tituloSalvo = prefs.getString("Titulo", "");
-        String anotacaoSalva = prefs.getString("Anotacao", "");
-        String NovaAnotacaoSalva2 = prefs.getString("NovaAnotacao2","");
-        String NovoTituloAnotacaoSalvo2 = prefs.getString("TituloNovaAnotacao2","");
-
-        // Coloca nos EditText
-//        txtTitulo1.setText(tituloSalvo);
-//        txtConteudo1.setText(anotacaoSalva);
 
 
 

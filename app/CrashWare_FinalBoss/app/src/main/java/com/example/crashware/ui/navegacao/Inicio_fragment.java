@@ -36,6 +36,7 @@ import java.util.Calendar;
 
 public class Inicio_fragment extends Fragment {
 
+    //Iniciando as váriaveis, Objetos e funções que vão ser utilizadas
     private SharedPreferences.OnSharedPreferenceChangeListener listenerFoto;
 
     private TextView txtNomeInicio, txtAulasConcluidas, txtOfensiva, txtNivelInicio, txtXpInicio;
@@ -182,9 +183,10 @@ public class Inicio_fragment extends Fragment {
 
         String XpAtual = XpParaBarra + "/" + BarraProgressoNivel.getMax() + "XP";
         txtXpInicio.setText(XpAtual);
-    }
+    }//Função utilizada ao Passar de Nivel
 
-    private void BarraXp() {
+    private void BarraXp()
+    {
 
         XpParaBarra += 50;
 
@@ -198,7 +200,7 @@ public class Inicio_fragment extends Fragment {
 
         String XpAtual = XpParaBarra + "/" + BarraProgressoNivel.getMax() + "XP";
         txtXpInicio.setText(XpAtual);
-    }
+    }//Função utilizada para Alterar a Barra de XP
 
 
     // =========================
@@ -265,7 +267,8 @@ public class Inicio_fragment extends Fragment {
     // CARREGAR IMAGEM
     // =========================
 
-    private void carregarImagem() {
+    private void carregarImagem()
+    {
 
         if (!isAdded()) return;
 
