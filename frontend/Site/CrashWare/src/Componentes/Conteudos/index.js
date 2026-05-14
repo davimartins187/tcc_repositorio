@@ -9,3 +9,4 @@ export * from './ConteudoTermos';
 export * from './CVerificacaoEmail';
 export * from './ConteudoHardware'; 
 export * from './ConteudoSoftware';
+export * from './conteudoAulas';
