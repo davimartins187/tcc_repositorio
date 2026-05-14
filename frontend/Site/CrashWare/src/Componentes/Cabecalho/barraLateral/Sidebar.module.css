@@ -37,7 +37,7 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  background-color: var(--Cabecalho);
+  background-color: var(--bg-secundario);
   border: 1px solid var(--texto-principal);
   border-radius: 16px;
   align-self: flex-end;
@@ -46,7 +46,7 @@
 
 .link {
   padding: 8px 12px;
-  color: var(--texto-principal);
+  color: var(--texto-principal) !important;
   text-decoration: none;
   border-radius: 6px;
   font-family: "Exo 2", sans-serif;

@@ -8,3 +8,4 @@ export * from './ConteudoRecSenha';
 export * from './ConteudoTermos';
 export * from './CVerificacaoEmail';
 export * from './ConteudoHardware'; 
+export * from './ConteudoSoftware';

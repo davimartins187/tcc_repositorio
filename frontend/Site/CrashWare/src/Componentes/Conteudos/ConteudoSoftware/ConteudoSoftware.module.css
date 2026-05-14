@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-*{
+* {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
 }
 
-.corpo{
-    width: 100vw;
+.corpo {
+    width: 98vw;
     padding-top: 230px;
     padding-bottom: 40px;
 
@@ -19,15 +19,13 @@
     font-family: "Montserrat";
 }
 
-.apresentacao{
+.apresentacao {
     display: flex;
     flex-direction: column;
-
-    width: 600px ;
-
+    width: 600px;
 }
 
-.apresentacao .parte1{
+.apresentacao .parte1 {
     background-color: var(--bg-secundario);
     padding: 20px;
     border-radius: 20px;
@@ -39,7 +37,7 @@
     align-self: center;
 }
 
-.titulo{
+.titulo {
     display: flex;
     margin-bottom: 30px;
 
@@ -47,36 +45,36 @@
     text-align: center;
 }
 
-.titulo div{
+.titulo div {
     margin-left: 30px;
 }
 
-.titulo div h1{
-    font-family: 40px;
-    color: #16a34a;
+.titulo div h1 {
+    font-size: 40px;
+    color: #2563eb; 
 }
 
-.titulo div h2{
+.titulo div h2 {
     margin-top: 10px;
     font-size: 22px;
     width: 80%;
     color: var(--texto-principal);
     text-align: center;
-
     justify-self: center;
 }
 
-.titulo img{
+.titulo img {
     width: 8vw;
+    max-width: 100px;
 }
 
-.parte1 p{
+.parte1 p {
     color: var(--texto-secundario);
     font-weight: 500;
     text-align: center;
 }
 
-.apresentacao .parte2{
+.apresentacao .parte2 {
     background-color: var(--bg-secundario);
     padding: 20px;
     border-radius: 20px;
@@ -90,40 +88,47 @@
     align-self: center;
 }
 
-.parte2 img{
-    width: 10vw;
-    
+.parte2 div{
     align-self: center;
 }
 
-.parte2 hr{
+.parte2 div img {
+    width: 8vw;
+    max-width: 90px;
+    align-self: center;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.parte2 hr {
     color: var(--texto-principal);
     width: 90%;
     margin-bottom: 40px;
-
     align-self: center;
 }
 
-.parte2 p{
+.parte2 p {
     text-align: center;
     color: var(--texto-secundario);
     font-weight: 500;
 }
 
-.conteudos{
+.conteudos {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 600px ;
+    width: 600px;
 }
 
-.conteudos hr{
+.conteudos hr {
     width: 90%;
     justify-self: center;
     margin-bottom: 20px;
 }
 
-.introducao, .fundamentos, .componentes{
+.introducao,
+.fundamentos,
+.componentes {
     margin-bottom: 60px;
     background-color: var(--bg-secundario);
     padding: 20px;
@@ -133,22 +138,26 @@
     display: flex;
     flex-direction: column;
 
-    align-items: center;    
+    align-items: center;
     width: 95%;
     max-width: 700px;
 }
 
-.introducao{
+.introducao {
     max-height: 240px !important;
 }
 
-.introducao h1, .fundamentos h1, .componentes h1{
+.introducao h1,
+.fundamentos h1,
+.componentes h1 {
     color: var(--texto-principal);
     text-align: center;
     margin-bottom: 10px;
 }
 
-.introducao div, .fundamentos div, .componentes div{
+.introducao div,
+.fundamentos div,
+.componentes div {
     display: flex;
     width: 80%;
     justify-content: space-between;
@@ -156,134 +165,158 @@
     margin-bottom: 30px;
 }
 
-.introducao div:hover, .fundamentos div:hover, .componentes div:hover{
+.introducao div:hover,
+.fundamentos div:hover,
+.componentes div:hover {
     transform: scale(1.03);
     transition: 0.3s ease;
     text-decoration: underline;
     color: var(--texto-principal);
 }
 
-.introducao img, .fundamentos img, .componentes img{
+.introducao img,
+.fundamentos img,
+.componentes img {
     width: 30px;
     height: 30px;
     object-fit: contain;
 }
 
-.introducao a, .fundamentos a, .componentes a{
+.introducao a,
+.fundamentos a,
+.componentes a {
     color: var(--texto-principal);
     text-decoration: none !important;
     font-weight: 600;
 }
 
-.introducao a, .fundamentos a, .componentes a{
+.item {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.item:hover {
+    transform: scale(1.03);
+    transition: 0.3s ease;
+}
+
+.item img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.item a {
     color: var(--texto-principal);
     text-decoration: none !important;
     font-weight: 600;
 }
 
-@media (max-width: 1310px){
-
-    .corpo{
+@media (max-width: 1310px) {
+    .corpo {
         flex-direction: column;
         align-items: center;
         padding-top: 300px;
         width: 95vw;
     }
 
-    .apresentacao{
+    .apresentacao {
         width: 95%;
         margin-bottom: 50px;
     }
 
-    .conteudos{
+    .conteudos {
         width: 95%;
         margin-right: 0px;
     }
 
     .parte1,
-    .parte2{
+    .parte2 {
         width: 100%;
         min-width: unset;
     }
 
-    .titulo img{
+    .titulo img {
         width: 90px;
     }
 
-    .parte2 img{
+    .parte2 img {
         width: 120px;
     }
 }
 
-@media (max-width: 768px){
-
-    .corpo{
+@media (max-width: 768px) {
+    .corpo {
         padding-top: 280px;
     }
 
-    .titulo{
+    .titulo {
         flex-direction: column;
         gap: 20px;
     }
 
-    .titulo div{
+    .titulo div {
         margin-left: 0;
     }
 
-    .titulo div h1{
+    .titulo div h1 {
         font-size: 32px;
     }
 
-    .titulo div h2{
+    .titulo div h2 {
         width: 100%;
         font-size: 18px;
     }
 
     .parte1 p,
-    .parte2 p{
+    .parte2 p {
         font-size: 15px;
         line-height: 1.6;
     }
 
     .introducao,
     .fundamentos,
-    .componentes{
+    .componentes {
         width: 100%;
         padding: 15px;
     }
 
     .introducao div,
     .fundamentos div,
-    .componentes div{
+    .componentes div {
         width: 95%;
         gap: 15px;
     }
 
     .introducao a,
     .fundamentos a,
-    .componentes a{
+    .componentes a {
         font-size: 14px;
     }
 
     .introducao h1,
     .fundamentos h1,
-    .componentes h1{
+    .componentes h1 {
         font-size: 28px;
     }
 }
 
-@media (max-width: 480px){
-
-    .corpo{
+@media (max-width: 480px) {
+    .corpo {
         width: 100%;
         padding-top: 100px;
     }
 
-    .apresentacao{
+    .apresentacao {
         width: 100%;
     }
 
-    .conteudos{
+    .conteudos {
         width: 100%;
     }
 
@@ -291,45 +324,45 @@
     .parte2,
     .introducao,
     .fundamentos,
-    .componentes{
+    .componentes {
         border-radius: 15px;
         padding: 15px;
     }
 
-    .titulo div h1{
+    .titulo div h1 {
         font-size: 26px;
     }
 
-    .titulo div h2{
+    .titulo div h2 {
         font-size: 15px;
     }
 
     .parte1 p,
-    .parte2 p{
+    .parte2 p {
         font-size: 14px;
     }
 
     .introducao h1,
     .fundamentos h1,
-    .componentes h1{
+    .componentes h1 {
         font-size: 24px;
     }
 
     .introducao div,
     .fundamentos div,
-    .componentes div{
+    .componentes div {
         width: 100%;
     }
 
     .introducao a,
     .fundamentos a,
-    .componentes a{
+    .componentes a {
         font-size: 13px;
     }
 
     .introducao img,
     .fundamentos img,
-    .componentes img{
+    .componentes img {
         width: 25px;
         height: 25px;
     }
