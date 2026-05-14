@@ -1,9 +1,12 @@
 import Style from "./conteudoHardware.module.css";
 
 import hardwareIcon from "../../../fotos/hardware.svg";
-import certoIcon from "../../../fotos/certo.png";
+import certoIcon from "../../../fotos/certo.svg";
 import playIcon from "../../../fotos/play.svg";
+import arduinoIcon from "../../../fotos/arduino.svg";
 
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const conteudoHardware_Introducao = [
     { descricao: "Motivação e mentalidade", to: ""},
@@ -26,10 +29,28 @@ const ConteudoHardware_Componentes = [
     { descricao: "Placa de vídeo (GPU)", to: ""},
 ]
 
-const Item_ConteudoHardware = ({ }) => {
-    return(
-        <div>
-            
+const Item_ConteudoHardware = ({descricao, to}) => {
+
+    const [jaFez, setJaFez] = useState(false);
+
+    function alternarStatus() {
+        setJaFez(!jaFez);
+    }
+
+    return (
+        <div 
+            className={Style.item}
+        >
+
+            <img 
+                onClick={alternarStatus}
+                src={jaFez ? certoIcon : playIcon} 
+                alt="você já fez?" 
+            />
+
+            <Link to={to}>
+                <p>{descricao}</p>
+            </Link>
         </div>
     );
 };
@@ -44,10 +65,34 @@ const ConteudoHardware = () => {
 
                     <div className={Style.parte1}>
 
+                        <div className={Style.titulo}>
+                            <img src={hardwareIcon} alt="Icone de hardware" />
+                            <div>
+                                <h1>HARDWARE</h1>
+                                
+                                <h2>Desvende a arquitetura das máquinas de forma acessível</h2>
+                            </div>
+                        </div>
+
+                        <p>
+                            Este percurso apresenta os 
+                            <span>fundamentos do hardware e da estrutura dos computadores.</span>
+
+                            Durante os módulos, você aprenderá sobre processador, memória RAM, armazenamento, placa-mãe e outros componentes essenciais.
+
+                            Ao longo do curso, entenderá como as peças se comunicam, como identificar componentes e os conceitos básicos da arquitetura de computadores.
+                        </p>
+                          
                     </div>
 
                     <div className={Style.parte2}>
+                        <img src={arduinoIcon} alt="Simbolo do arduino" />
 
+                        <hr />
+                        
+                        <p>
+                            Novos conteúdos de Arduino e Eletrônica estão chegando. Neles, você aprenderá a montar circuitos básicos e programar comandos simples para controlar componentes eletrônicos. 
+                        </p>
                     </div>
 
                 </section>
@@ -56,14 +101,44 @@ const ConteudoHardware = () => {
 
                     <div className={Style.introducao}>
 
+                        <h1>1 - Introdução</h1>
+                        <hr />
+
+                            {conteudoHardware_Introducao.map((item, index) => (
+                                <Item_ConteudoHardware
+                                    key={index}
+                                    descricao={item.descricao}
+                                    to={item.to}
+                                />
+                            ))}
                     </div>
 
-                    <div className={Style.Fundamentos}>
+                    <div className={Style.fundamentos}>
 
+                        <h1>2 - Fundamentos</h1>
+                        <hr />
+
+                            {conteudoHardware_Fundamentos.map((item, index) => (
+                                <Item_ConteudoHardware
+                                    key={index}
+                                    descricao={item.descricao}
+                                    to={item.to}
+                                />
+                            ))}
                     </div>
 
-                    <div className={Style.Componentes}>
+                    <div className={Style.componentes}>
 
+                            <h1>3 - Componentes</h1>
+                            <hr />
+
+                                {ConteudoHardware_Componentes.map((item, index) => (
+                                    <Item_ConteudoHardware
+                                        key={index}
+                                        descricao={item.descricao}
+                                        to={item.to}
+                                    />
+                                ))}
                     </div>
 
                 </section>

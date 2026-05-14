@@ -17,6 +17,8 @@ const LayoutLogado = () => {
                     {aberto ? <p>✕</p> : <p>☰</p>}
                 </button>
                 <Sidebar aberto={aberto} onFechar={() => setAberto(false)} />
+
+                    
             </Cabecalho>
             <Outlet />
         </>
