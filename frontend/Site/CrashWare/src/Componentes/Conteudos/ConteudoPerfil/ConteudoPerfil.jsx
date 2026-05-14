@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
-import FotoPadrao from '../../../fotos/FotoPerfilPadrao.jpeg'
-import iconConquistas from '../../../fotos/Conquistas.svg'
-import iconOfensiva from '../../../fotos/Ofensiva.svg'
-import iconGema from '../../../fotos/Gemas.svg'
-import iconTema from '../../../fotos/Item_tema.svg'
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import FotoPadrao from '../../../fotos/FotoPerfilPadrao.jpeg';
+import iconConquistas from '../../../fotos/Conquistas.svg';
+import iconOfensiva from '../../../fotos/Ofensiva.svg';
+import iconGema from '../../../fotos/Gemas.svg';
+import iconTema from '../../../fotos/Item_tema.svg';
+import hardwareIcon from '../../../fotos/hardware.svg';
+import softwareIcon from '../../../fotos/software.svg';
 
 import style from './ConteudoPerfil.module.css'
 import { useNavigate } from "react-router-dom"
@@ -345,6 +348,8 @@ const ConteudoPerfil = () => {
                             </div>
                         </div>
 
+                        <div></div>
+
                     </div>
 
                     {/* ── Cards de Stats ─────────────────────────── */}
@@ -417,8 +422,41 @@ const ConteudoPerfil = () => {
                         </div>
                     </div>
 
-                </div>
+                    {/* <div className={style.trilhas}>
 
+                        <div className={style.trilhaHardware}>
+
+                            <img src={hardwareIcon} alt="simbolo do hardware" />
+
+                            <div className={style.informacoesHardware}>
+                                <h1>Hardware</h1>
+                                <p>Desvende a arquitetura das máquinas de forma acessivel</p>
+                            </div>
+
+                            <Link to="/hardware">
+                                <button>Explorar</button>
+                            </Link>
+                        
+                        </div>
+
+                        <div className={style.trilhaSoftware}>
+
+                            <img src={softwareIcon} alt="Simbolo de software" />
+
+                                <div className={style.informacoesSoftware}>
+                                    <h1>software</h1>
+                                    <p>Decifre a linguagem dos sitemas de forma intuitiva</p>
+                                </div>
+
+                            <Link to="/software">
+                                <button>Explorar</button>
+                            </Link>
+
+                        </div>
+                        
+                    </div> */}
+
+                </div>
             </div>
         </>
     );
