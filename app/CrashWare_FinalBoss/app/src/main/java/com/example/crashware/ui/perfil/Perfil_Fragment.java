@@ -28,6 +28,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 public class Perfil_Fragment extends Fragment {
 
     //Objetos que vão ser utilizados
+    private SharedPreferences.OnSharedPreferenceChangeListener listenerFoto;
+
+    private SharedPreferences.OnSharedPreferenceChangeListener listenerBanner;
     TextView txtNomePerfil, txtQuantXP, txtPatente, txtVerTodasConquistas;
 
     ImageView imgConfigPerfil;
@@ -130,6 +133,34 @@ public class Perfil_Fragment extends Fragment {
         String Nome = prefs.getString("nome", null);
 
 
+        // Listener da foto
+        listenerFoto = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+                if (key.equals("foto")) {
+                    carregarImagem();
+                }
+            }
+        };
+
+        // Listener do banner
+
+        listenerBanner = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+                if (key.equals("banner")) {
+                    carregarBanner();
+                }
+            }
+        };
+
+        prefs.registerOnSharedPreferenceChangeListener(listenerBanner);
+
+        prefs.registerOnSharedPreferenceChangeListener(listenerFoto);
+
+
 
         txtNomePerfil.setText(Nome);
 //        txtPatente.setText(Patente);
@@ -198,13 +229,13 @@ public class Perfil_Fragment extends Fragment {
 
     }
 
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-
-        Foto();
-    }
+//    @Override
+//    public void onResume()
+//    {
+//        super.onResume();
+//
+//        Foto();
+//    }
 
     private void Foto(){
         User.Perfil(requireContext(), prefs, new User.PerfilCallback()
