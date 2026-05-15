@@ -3,6 +3,8 @@ import { Outlet, Link } from "react-router-dom"
 import { useState } from "react"
 import { Cabecalho } from "../../Componentes"
 
+import Seta from '../../fotos/Seta.png';
+
 import perfilModoClaro from "../../fotos/claro/login_icon_claro.svg";
 import perfilModoEscuro from "../../fotos/escuro/login_icon.svg";
 
@@ -40,7 +42,7 @@ const LalyoutADM = () => {
         { id: 3, descricao: "Conquistas", acao: 'conquistas' },
         { id: 4, descricao: "Usuarios", acao: null, to: '/usuarios' },
         { id: 5, descricao: "Notificações", acao: 'notificacoes' },
-        { id: 6, descricao: "Matérias", acao: 'cosmeticos' },
+        { id: 6, descricao: "Materias", acao: 'Materias' },
     ];
 
     const ItemBarraLateral = ({ descricao, img, onClick, to }) => {
@@ -54,6 +56,7 @@ const LalyoutADM = () => {
     };
 
     const [abrirConquistas, setAbrirConquistas] = useState(false);
+    const [abrirMaterias, setAbrirMaterias] = useState(false);
     const [aberto, setAberto] = useState(false);
 
     return (
@@ -80,6 +83,8 @@ const LalyoutADM = () => {
                                     onClick={() => {
                                         if (item.descricao === "Conquistas") {
                                             setAbrirConquistas(!abrirConquistas);
+                                        }else if(item.descricao === "Materias"){
+                                            setAbrirMaterias(!abrirMaterias);
                                         } else if (item.acao) {
                                             setPopupAtivo(item.acao);
                                         }
@@ -95,9 +100,17 @@ const LalyoutADM = () => {
                                     <Link to="/listar-conquistas">
                                         Lista de Conquistas
                                     </Link>
-                                </div>
+                                </div>)}
 
-                                )}
+                                {item.descricao === "Materias" && abrirMaterias && (<div className={Style.sanfona}>
+                                    <Link to="/criar-materias">
+                                        Criar Materia
+                                    </Link>
+
+                                    <Link to="listar-materias">
+                                        Listar Materias
+                                    </Link>
+                                </div>)}
                             </div>
                         ))}
                     </div>

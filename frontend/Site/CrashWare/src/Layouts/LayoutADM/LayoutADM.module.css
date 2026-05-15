@@ -72,6 +72,12 @@
     margin-left: 10px;
 }
 
+.itemBarraLateral img{
+    margin-left: 100px;
+    width: 40px;
+    height: 40px;
+}
+
 .sanfona{
     display: flex;
     flex-direction: column;

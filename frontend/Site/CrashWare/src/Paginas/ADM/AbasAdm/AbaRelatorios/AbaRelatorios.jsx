@@ -5,7 +5,7 @@ const AbaRelatorios = () =>{
         <>
             <div className={Style.separarConteudos}>
                 <div className={Style.Conteudos}>
-                    oi
+                    
                 </div>
             </div>
         </>

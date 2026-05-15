@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 import { PgInicial, PgCadastro, SobreNos, PgLogin, PgErro, PgRecuperarSenha, PgVerificacaoEmail, PgPerfil, PgAnotacoes, PgConfiguracoes, PgHome, PgTermos, AbaConquistas, AbaUsuarios, PgConteudoHardware, PgAlterarSenha, AbaRelatorios, PgConteudoSoftware } from "./Paginas"
-import { LayoutPadrao, LayoutCadLogin, LayoutLogado, LalyoutADM } from "./Layouts"
+import { LayoutPadrao, LayoutCadLogin, LayoutADM } from "./Layouts"
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken"
 import { AbaListarConquistas } from "./Paginas/ADM/AbasAdm/AbaListarConquistas"
 
@@ -23,15 +23,6 @@ const Router = () => {
                     }
                 />
 
-                <Route path="sobre-nos" element={<SobreNos />} />
-
-                <Route path="*" element={<PgErro />} />
-
-            </Route>
-
-            {/* Cadastro/Login */}
-            <Route path="/" element={<LayoutCadLogin />}>
-
                 <Route
                     path="cadastro"
                     element={
@@ -51,11 +42,10 @@ const Router = () => {
                 />
 
                 <Route path="recuperar-senha" element={<PgRecuperarSenha />} />
-
                 <Route path="verificacao-email" element={<PgVerificacaoEmail />} />
-
                 <Route path="alterar-senha" element={<PgAlterarSenha />} />
-
+                <Route path="sobre-nos" element={<SobreNos />} />
+                <Route path="*" element={<PgErro />} />
             </Route>
 
             {/* Layout Logado */}
@@ -111,8 +101,8 @@ const Router = () => {
                     element={
                         <RotaPrivada>
                             <PgConteudoHardware />
-                        </RotaPrivada>   
-                } />
+                        </RotaPrivada>
+                    } />
 
                 <Route
                     path="software"
@@ -144,7 +134,7 @@ const Router = () => {
             </Route>
 
             {/* ADM */}
-            <Route path="/" element={<LalyoutADM />}>
+            <Route path="/" element={<LayoutADM />}>
 
                 <Route
                     path="relatorio"

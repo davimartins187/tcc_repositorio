@@ -12,8 +12,8 @@ const CVerificacaoEmail = () => {
 
     //Instancionando a API para receber dados do usuário
     const usuario = JSON.parse(localStorage.getItem("dados"));
-    
-    
+
+
 
     //useState/variaveis
     const [timer, setTimer] = useState(0);
@@ -22,7 +22,7 @@ const CVerificacaoEmail = () => {
     const [codigo, setCodigo] = useState("");
     const [enviarcodigo, setEnviarCodigo] = useState(false);
     const [erro, setErro] = useState("");
-    const [podeNavegar, setPodeNavegar] = useState(false);
+    const podeNavegar = useRef(false);
     const [mostrarModal, setMostrarModal] = useState(false);
 
     //Variavel da popup
@@ -38,69 +38,45 @@ const CVerificacaoEmail = () => {
     const nome = location.state?.nome;
     const origem = location.state?.origem;
 
-    
+
     //Nome maiusculo
     const nomeM = nome?.toUpperCase() || "";
 
-  
-    
+
+
     //Block de navegação
+
+    useEffect(() => {
+        if (!location.state?.email) {
+            Navegacao(origem || "/login");
+        }
+    }, []);
+
     useEffect(() => {
         const handleBeforeUnload = (e) => {
-            if (!podeNavegar) {
+            if (!podeNavegar.current) {
                 e.preventDefault();
                 e.returnValue = "";
             }
         };
-        
+
         window.addEventListener("beforeunload", handleBeforeUnload);
         return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-    }, [podeNavegar]);
-    
+    }, []);
+
     useEffect(() => {
+        if (podeNavegar.current) return;
+
         const handlePopState = () => {
-            if (!podeNavegar) {
-                window.history.pushState(null, "", window.location.href);
-                setMostrarModal(true);
-            }
+            window.history.pushState(null, "", window.location.href);
+            setMostrarModal(true);
         };
-        
+
         window.history.pushState(null, "", window.location.href);
         window.addEventListener("popstate", handlePopState);
-        
+
         return () => window.removeEventListener("popstate", handlePopState);
-    }, [podeNavegar]);
-    
-    
-    // Proteção da URL Reenviar para cadastro
-    // useEffect(() => {
-    //     Origens
-    //     const origemCadastro = origem == "/cadastro";
-    //     const origemRecSenha = origem == "/recuperar-senha"
-
-    //     if (origemCadastro) {
-    //         if(!email && !mensagem){
-    //             Navegacao('/cadastro');
-    //         }
-    //     }
-    //     else if (origemRecSenha){
-    //         if(!email){
-    //             Navegacao("/login");
-    //         }
-    //     }
-    //     else{
-    //         Navegacao("/login")
-    //     }
-
-
-    // }, [origem, email, Navegacao]);
-
-    //Automação
-    // useEffect(() => {
-    //     if (codigo.length === 6 && !verificando) {
-    //         handleVericarEmail()
-    //     }
-    // }, [codigo]);
+    }, [])
 
     //Temporizador
     useEffect(() => {
@@ -114,22 +90,20 @@ const CVerificacaoEmail = () => {
     }, [timer]);
 
     //Função de reenviar o código
-    const ReenviarCodigo = async () => 
-    {
+    const ReenviarCodigo = async () => {
         //Instâncio o objeto 
         const usuario = new Api();
 
         //Chamo o método
-        usuario.Enviar_Codigo(email,setPopup,loading,timer,setLoading,setTimer,setEnviarCodigo);
+        usuario.Enviar_Codigo(email, setPopup, loading, timer, setLoading, setTimer, setEnviarCodigo);
 
     }
 
-    const handleVericarEmail = async () => 
-    {
+    const handleVericarEmail = async () => {
         const usuario = new Api();
-        usuario.Verificar_Codigo(email,codigo,setPopup,setPodeNavegar,Navegacao)
+        usuario.Verificar_Codigo(email, codigo, setPopup, setPodeNavegar, Navegacao)
     }
-    
+
 
     return (
         <>
@@ -147,11 +121,12 @@ const CVerificacaoEmail = () => {
                 <div className={style.modalOverlay}>
                     <div className={style.modal}>
                         <h4>Tem certeza que deseja sair? O processo pode ser perdido.</h4>
-                        <BotoesForm onClick={() => {
-                            setMostrarModal(false);
-                            setPodeNavegar(true);
-                            // blocker.proceed();
-                        }}
+                        <BotoesForm
+                            onClick={() => {
+                                setMostrarModal(false);
+                                podeNavegar.current = true;
+                                Navegacao(origem || "/recuperar-senha")
+                            }}
                             className={style.btnSair}
                             texto="Sair"
                         />
@@ -205,7 +180,7 @@ const CVerificacaoEmail = () => {
                         disabled={!enviarcodigo || loading}
                     />
                 </div>
-            </div>
+            </div >
         </>
     )
 }
