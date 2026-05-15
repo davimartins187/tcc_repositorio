@@ -28,7 +28,7 @@ const ModeloExecicios = ({ descPergunta , opcao1, opcao2, opcao3, opcao4, numero
     );
 };
 
-const modeloBase = (
+const ModeloBase = (
     
     {tituloAula,
     xpGanho,
@@ -103,4 +103,4 @@ const modeloBase = (
     );
 };
 
-export { modeloBase };
+export { ModeloBase };
