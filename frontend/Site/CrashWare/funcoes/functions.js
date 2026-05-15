@@ -617,6 +617,13 @@ export class Api
 
     async Verificar_Token(token,refresh_token,Navegacao,privado = null,set = null)
     {
+        if(!token)
+        {
+            
+            Navegacao("/")
+            return;
+            
+        }
         try {
             const response = await fetch("https://api-crashware.onrender.com/auth/verificar_token",
                 {
