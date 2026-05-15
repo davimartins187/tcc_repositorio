@@ -619,10 +619,15 @@ export class Api
     {
         if(!token)
         {
-            
-            Navegacao("/")
-            return;
-            
+            if(privado == true)
+            {
+                Navegacao("/")
+                return;
+            }else
+            {
+                //Ignora
+                return;
+            }
         }
         try {
             const response = await fetch("https://api-crashware.onrender.com/auth/verificar_token",
