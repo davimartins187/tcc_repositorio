@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 import { PgInicial, PgCadastro, SobreNos, PgLogin, PgErro, PgRecuperarSenha, PgVerificacaoEmail, PgPerfil, PgAnotacoes, PgConfiguracoes, PgHome, PgTermos, AbaConquistas, AbaUsuarios, PgConteudoHardware, PgAlterarSenha, AbaRelatorios, PgConteudoSoftware } from "./Paginas"
-import { LayoutPadrao, LayoutCadLogin, LayoutADM } from "./Layouts"
+import { LayoutPadrao, LayoutADM, LayoutLogado } from "./Layouts"
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken"
 import { AbaListarConquistas } from "./Paginas/ADM/AbasAdm/AbaListarConquistas"
 

@@ -27,7 +27,7 @@ import { Adm } from '../../../funcoes/adm';
 import { PopUp } from "../../Componentes/pop-up";
 import Style from "./LayoutADM.module.css"
 
-const LalyoutADM = () => {
+const LayoutADM = () => {
     const Links = [
         { label: "Usuários", to: "/usuario" },
         { label: "Conquistas", to: "/conquistas" },
@@ -123,4 +123,4 @@ const LalyoutADM = () => {
     )
 }
 
-export { LalyoutADM }
+export { LayoutADM }
