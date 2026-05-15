@@ -1,2 +1,2 @@
-export * from "./Modelo base";
+export * from "./modelo base";
 export * from "./comoFuncionaEssecurso";
