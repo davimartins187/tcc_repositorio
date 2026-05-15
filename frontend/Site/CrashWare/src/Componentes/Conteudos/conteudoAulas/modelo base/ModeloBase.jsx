@@ -103,4 +103,4 @@ const modeloBase = (
     );
 };
 
-export { ModeloBase };
+export { modeloBase };
