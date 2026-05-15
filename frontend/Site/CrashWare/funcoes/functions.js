@@ -615,138 +615,174 @@ export class Api
         }
     }//Alterar_Senha
 
-    async Verificar_Token(token,Navegacao,privado = null,refresh = null,set = null)
+    async Verificar_Token(token,refresh_token,Navegacao,privado = null,set = null)
     {
+        try {
+            const response = await fetch("https://api-crashware.onrender.com/auth/verificar_token",
+                {
+                    method: "POST",
+                    headers:
+                    {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })//
 
-        if (!token) 
-        {
-            //Verifica em qual tela esta
-            if (privado != null)
+            if (!response.ok) {
+                //Token se expirou ou token invalido!
+
+                //Pego o erro
+                const erro = await response.json();
+
+
+                if(erro.detail == "Acesso Negado")
+                {
+                    //Coleto as variáveis do useState
+                    const setToken = set[0];
+                    const setRefresh = set[1];
+                    const setDados = set[2];
+
+                    //Saio da conta automaticamente
+                    await SairDaConta(setToken,setRefresh,setDados);
+
+                    return;
+                }
+                //Verifico o refresh_token
+                await this.VerificarRefreshToken(refresh_token,Navegacao,privado)
+
+                return;
+                     
+            }else 
             {
-                Navegacao('/');
-                privado = null
+                if(privado == null)
+                {
+                     //Leva para a tela de PERFIL 
+                    Navegacao('/perfil');
+                }
+               
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }//Verifica Token
+    
+
+
+    async VerificarRefreshToken(refresh_token,Navegacao,privado,set)
+    {
+        try
+        {
+            const response = await fetch("https://api-crashware.onrender.com/auth/verificar_refresh_token",
+                {
+                    method: "POST",
+                    headers:
+                    {
+                        "Authorization": `Bearer ${refresh_token}`
+                    }
+                })//
+            
+            if (!response.ok) {
+                //Refresh_Token se expirou ou Refresh_token invalido!
+
+                if (privado == true)
+                {
+                    //Coleto as variáveis do useState
+                    const setToken = set[0];
+                    const setRefresh = set[1];
+                    const setDados = set[2];
+
+                    //Saio da conta automaticamente
+                    await SairDaConta(setToken,setRefresh,setDados);
+
+                    return;
+                }
+                //Continua na tela
+                return;  
+                        
             }else
             {
-                //Ignora
+                //Refresh_Token valido
+
+                //Faço um novo acess_token
+                await this.Refresh_Token(refresh_token)
+
+                if (privado == true)
+                {
+                    //Ignoro, deixo ele na tela que está
+                }else{
+                    //Levo para a tela de PERFIL
+
+                    Navegacao('/perfil')
+                }
             }
-        } 
-        else 
-            {
-                //Validação de token
-                try {
-                    const response = await fetch("https://api-crashware.onrender.com/auth/verificar_token",
-                        {
-                            method: "POST",
-                            headers:
-                            {
-                                "Authorization": `Bearer ${token}`
-                            }
-                        })//
+        }catch (error) 
+        {
+            console.log(error)
+        }
+         
 
-                    if (!response.ok) {
-                        //const erro = await response.json();
-                        //console.log(erro.detail)
+    }//Verificar Refresh Token
 
-                        //Token se expirou!
-
-
-
-                        if(refresh != null)
-                        {
-                           
-                            //Coleto as variáveis do useState
-                            // const setId = set[0];
-                            const setToken = set[0];
-                            const setRefresh = set[1];
-                            const setDados = set[2];
-
-                            //Retiro o token do usuario
-                            await SairDaConta(setToken,setRefresh,setDados);
-
-
-                        }else
-                        {
-                            //Coleto as variáveis do useState
-                            // const setId = set[0];
-                            const setToken = set[0];
-                            const setRefresh = set[1];
-                            const setDados = set[2];
-
-                            //Retiro o token do usuario
-                            await SairDaConta(setToken,setRefresh,setDados);
-                            
-                            return true
-                        }  
+    async Refresh_Token(refresh_token)
+    {
+        try
+        {
+            const response = await fetch("https://api-crashware.onrender.com/auth/refresh_token",
+                {
+                    method: "POST",
+                    headers:
+                    {
+                        "Authorization": `Bearer ${refresh_token}`
                     }
-                    else {
-                        if(refresh == null)
-                        {
-                            // const dados = await response.json();
+                })//
 
-                            // const id = dados.id
+            if(response.ok)
+            {
+                //Novo token gerado com sucesso
 
-                            // //Guardo o ID do user
-                            // localStorage.setItem("id", id)
+                const dados = await response.json();
 
-                            // setId(id); // atualiza React na hora
+                const token = dados.token;
 
-                            //Fica automaticamente logado
 
-                            if (privado == null)
-                            {
-                                //Leva para a tela HOME automaticamente
-                                Navegacao('/perfil');
-                            }
-
-                        }else
-                        {
-                            //Verifico o refresh_token
-
-                            //Pego o id
-                            // const id = localStorage.getItem("id");
-
-                            //Gero um novo token
-                            try
-                            {
-                                const response_refresh = await fetch("https://api-crashware.onrender.com/auth/refresh_token",
-                                {
-                                    method: "GET",
-                                    headers:{
-                                        "Authorization": `Bearer ${token}`
-                                    }
-                                })//
-
-                                if (!response_refresh.ok)
-                                {
-                                    const erro = await response_refresh.json();
-
-                                    console.log("Erro da API", erro.detail)
-                                }else
-                                {
-                                    const dados = await response_refresh.json();
-
-                                    const token = dados.token;
-
-                                    localStorage.setItem("token",token)
-
-                                    const setToken = set[0];
-
-                                    setToken(token)
-                                    
-                                }
-
-                            }catch (error) {
-                                console.log("Erro da requisição ",error)
-                            }        
-                        }
-                }
-
-                } catch (error) {
-                    console.log(error)
-                }
+                //Guardo no localStorage
+                localStorage.setItem("token", token)
             }
-    }//Verifica Token
+        }catch (error) 
+        {
+            console.log(error)
+        }
+    }//Refresh Token
+
+
+
+
 
 }//classe
 
+//  if(refresh != null)
+//                         {
+                        
+//                             //Coleto as variáveis do useState
+//                             // const setId = set[0];
+//                             const setToken = set[0];
+//                             const setRefresh = set[1];
+//                             const setDados = set[2];
 
+//                             //Retiro o token do usuario
+//                             await SairDaConta(setToken,setRefresh,setDados);
+
+
+//                         }else
+//                         {
+//                             //Coleto as variáveis do useState
+//                             // const setId = set[0];
+//                             const setToken = set[0];
+//                             const setRefresh = set[1];
+//                             const setDados = set[2];
+
+//                             //Retiro o token do usuario
+//                             await SairDaConta(setToken,setRefresh,setDados);
+                            
+//                             return true
+//                         }  

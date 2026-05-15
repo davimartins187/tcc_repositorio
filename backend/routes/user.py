@@ -18,7 +18,7 @@ from routes.auth import auth
 user = APIRouter(prefix="/user",tags=["usuario"])
 
 #Importando dependencias
-from dependences import pegar_sessao , validar_token
+from dependences import pegar_sessao ,  validar_token
 
 
 #Funcionalidas para enviar codigo para o email
@@ -68,7 +68,7 @@ async def  perfil(usuario = Depends(validar_token)):
 
 ######################
 @user.delete('/deletar_conta')
-async def deletar_conta(usuario = Depends(validar_token),session = Depends(pegar_sessao)):
+async def deletar_conta(usuario = Depends(validar_token), session = Depends(pegar_sessao)):
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     #Verifico se ele tem foto no bucket
@@ -124,7 +124,7 @@ async def deletar_conta(usuario = Depends(validar_token),session = Depends(pegar
 ##############
 #Rota de adicionar foto
 @user.post('/adicionar_foto')
-async def adicionar_foto(foto : UploadFile = File(...),usuario = Depends(validar_token),session = Depends(pegar_sessao)):
+async def adicionar_foto(foto : UploadFile = File(...), usuario = Depends(validar_token), session = Depends(pegar_sessao)):
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     try:
@@ -174,7 +174,7 @@ async def adicionar_foto(foto : UploadFile = File(...),usuario = Depends(validar
 
 
 @user.put('/alterar_foto')
-async def alterar_foto(foto : UploadFile = File(...),usuario = Depends(validar_token),session =  Depends(pegar_sessao)):
+async def alterar_foto(foto : UploadFile = File(...), usuario = Depends(validar_token), session =  Depends(pegar_sessao)):
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     try:
@@ -253,7 +253,7 @@ async def alterar_foto(foto : UploadFile = File(...),usuario = Depends(validar_t
 
 
 @user.delete('/remover_foto')
-async def remover_foto(usuario = Depends(validar_token),session = Depends(pegar_sessao)):
+async def remover_foto(usuario = Depends(validar_token), session = Depends(pegar_sessao)):
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     try:
@@ -290,7 +290,7 @@ async def remover_foto(usuario = Depends(validar_token),session = Depends(pegar_
 ##############
 #Rota de adicionar Banner
 @user.post('/adicionar_banner')
-async def adicionar_banner(banner : UploadFile = File(...),usuario = Depends(validar_token),session = Depends(pegar_sessao)):
+async def adicionar_banner(banner : UploadFile = File(...), usuario = Depends(validar_token), session = Depends(pegar_sessao)):
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     try:
@@ -340,7 +340,7 @@ async def adicionar_banner(banner : UploadFile = File(...),usuario = Depends(val
 
 ###Rota de alterar Banner
 @user.put('/alterar_banner')
-async def alterar_banner(banner : UploadFile = File(...),usuario = Depends(validar_token),session =  Depends(pegar_sessao)):
+async def alterar_banner(banner : UploadFile = File(...), usuario = Depends(validar_token), session =  Depends(pegar_sessao)):
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     try:
@@ -416,7 +416,7 @@ async def alterar_banner(banner : UploadFile = File(...),usuario = Depends(valid
 
 ##### Rota de remover banner
 @user.delete('/remover_banner')
-async def remover_banner(usuario = Depends(validar_token),session = Depends(pegar_sessao)):
+async def remover_banner(usuario = Depends(validar_token), session = Depends(pegar_sessao)):
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
     try:

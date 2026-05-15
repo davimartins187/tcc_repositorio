@@ -1,3 +1,5 @@
+from contextlib import nullcontext
+
 from fastapi import APIRouter, Depends,HTTPException
 
 
@@ -9,7 +11,7 @@ from models.usuarios_oauth import UsuariosOauth
 auth = APIRouter(prefix="/auth",tags=["autenticação"])
 
 #Importando dependencias
-from dependences import pegar_sessao,  validar_token
+from dependences import pegar_sessao,  validar_refresh_token , validar_token
 
 #Importando a CRIPTOGRAFIA
 from security import criptografia
@@ -83,9 +85,9 @@ def enviar_email(codigo, destinario):
 
 #################
 
-def gerar_token(id_usuario, validade = timedelta(hours = 1)):
+def gerar_token(id_usuario,tipo, validade = timedelta(hours = 1)):
     data_expiracao = datetime.now(timezone.utc) + validade
-    informacoes = {"sub" : str(id_usuario) , "exp" : data_expiracao.timestamp()}
+    informacoes = {"sub" : str(id_usuario) , "exp" : data_expiracao.timestamp(),"tipo" : tipo}
     token = jwt.encode(informacoes, SECRET_KEY, ALGORITIMO)
     return  token
 
@@ -165,8 +167,8 @@ async def login(dados : UsuarioLoginSchema , session = Depends(pegar_sessao)):
                 "nome" : usuario.nome_usuario
             })
         else:
-            acess_token = gerar_token(usuario.id_usuario)
-            refresh_token = gerar_token(usuario.id_usuario, validade=timedelta(days=7))
+            acess_token = gerar_token(usuario.id_usuario,tipo="access")
+            refresh_token = gerar_token(usuario.id_usuario, validade=timedelta(days=7),tipo="refresh")
             return {
                 "token" : acess_token,
                 "refresh_token" : refresh_token,
@@ -204,16 +206,21 @@ async def alterar_senha(dados: UsuarioLoginSchema, session = Depends(pegar_sessa
 async def verificar_token (usuario = Depends(validar_token)):
     return usuario
 
+##Rota de verificação do refresh token
+@auth.post("/verificar_refresh_token")
+async def verificar_refresh_token (usuario = Depends(validar_refresh_token)):
+    return usuario
+
 
 ############################
 
 ##Rota do Refresh_Token
-@auth.get("refresh_token")
-async def refresh_token(usuario = Depends(validar_token) ,session = Depends(pegar_sessao)):
-    usuario = session.query(Usuarios).filter(Usuarios.id_usuario == usuario.id_usuario)
+@auth.post("/refresh_token")
+async def refresh_token(usuario = Depends(validar_refresh_token), session = Depends(pegar_sessao)):
+    usuario = session.query(Usuarios).filter(Usuarios.id_usuario == usuario.id_usuario).first()
     if usuario is None:
-        raise HTTPException(status_code=404,detail="Usuário não encontrado")
-    token = gerar_token(usuario.id_usuario)
+        raise HTTPException(status_code=401,detail="Token expirado ou inválido")
+    token = gerar_token(usuario.id_usuario,tipo="access")
     return {
         "token" : token,
         "token_type" : "bearer"

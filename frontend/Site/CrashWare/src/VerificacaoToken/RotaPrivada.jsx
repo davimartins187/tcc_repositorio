@@ -29,16 +29,11 @@ const RotaPrivada = ({ children }) => {
         const refresh_token = localStorage.getItem("refresh_token")
 
 
-        //Vaerifico o token
+        //Verifico o token
         const usuario = new Api();
-        const token_vencido = await usuario.Verificar_Token(token,Navegacao,true,null,set)
+        await usuario.Verificar_Token(token,refresh_token,Navegacao,true,set)
 
 
-        //Verifico o Refresh Token
-        if (token_vencido == true)
-        {
-            usuario.Verificar_Token(refresh_token,Navegacao,true,true,set)
-        }
     }
     
     //Sempre que a rota for chamada, eu verifico o token
