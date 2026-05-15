@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Style from "./ConteudoConfiguracoes.module.css";
 
@@ -39,6 +39,11 @@ const ConteudoConfiguracoes = () => {
     const [tema, setTema] = useState(localStorage.getItem('TemaSelecionado') || 'Claro');
     const [popupAtivo, setPopupAtivo] = useState(null); // null | 'sair' | 'desativar' | 'excluir'
     const [popup, setPopup] = useState(null);
+    //Navegação --> Permite eu levar o usuario para outras telas
+    const Navegacao = useNavigate();
+    
+
+
 
     useEffect(() => {
         const checarTema = (e) => setTema(e.detail);
@@ -53,6 +58,9 @@ const ConteudoConfiguracoes = () => {
     const [dados, setDados] = useState(() =>
         JSON.parse(localStorage.getItem("dados")) || null
     );
+
+    //Lista que contém todos os usestate
+    const set = [setToken,setRefresh,setDados];
 
     //Pego as informações do usuario
     const usuario = JSON.parse(localStorage.getItem("dados"));
@@ -92,9 +100,15 @@ const ConteudoConfiguracoes = () => {
 
                 setPopupAtivo(null);
 
+
                 //Deleto a conta
-                const usuario = new Usuario;
-                await usuario.deletar_conta(setToken, setRefresh, setDados,setPopup)
+                const user = new Usuario(
+                    localStorage.getItem("token"),
+                    localStorage.getItem("refresh_token"),
+                    Navegacao,
+                    set
+                );
+                await user.deletar_conta(setToken, setRefresh, setDados,setPopup)
             },
             segundoClick: () => setPopupAtivo(null),
         },

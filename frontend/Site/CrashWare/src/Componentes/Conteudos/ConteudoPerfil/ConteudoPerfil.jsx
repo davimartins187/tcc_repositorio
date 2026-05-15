@@ -11,7 +11,7 @@ import softwareIcon from '../../../fotos/software.svg';
 import style from './ConteudoPerfil.module.css'
 import { useNavigate } from "react-router-dom"
 
-import { SairDaConta } from '../../../../funcoes/functions'
+import { Api, SairDaConta } from '../../../../funcoes/functions'
 import { BotoesForm } from '../../Botoes/BotaoForm/BotaoForm'
 import { Usuario } from '../../../../funcoes/user'
 
@@ -29,17 +29,29 @@ const CONQUISTAS_MOCK = [
 
 const ConteudoPerfil = () => {
 
+     //Navegação --> Permite eu levar o usuario para outras telas
+    const Navegacao = useNavigate();
+
+    const token = localStorage.getItem("token");
+    const refresh_token = localStorage.getItem("refresh_token");
+
+    //Uso useState para o react renderizar as informações
+    const [token_state, setToken] = useState(() => localStorage.getItem("token"));
+    const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
     const [dados, setDados] = useState(() =>
         JSON.parse(localStorage.getItem("dados")) || null
     );
 
+    //Lista que contém todos os usestate
+    const set = [setToken,setRefresh,setDados];
+    
 
     const informacoes = localStorage.getItem("info")
 
     if (informacoes == "false") {
         //Faço a requisição no banco
-        const cliente = new Usuario();
-        cliente.perfil(setDados);
+        const user = new Usuario(token,refresh_token,Navegacao,set);
+        user.perfil(setDados);
 
     }
     //Pego as informações do usuario
@@ -71,8 +83,7 @@ const ConteudoPerfil = () => {
     // }
 
 
-    //Navegação --> Permite eu levar o usuario para outras telas
-    const Navegacao = useNavigate();
+   
 
     // muda a foto
     const [foto, setFoto] = useState(usuario?.foto);
@@ -118,8 +129,8 @@ const ConteudoPerfil = () => {
 
         //Atualiza os dados do usuario, sempre que a pagina for acessada
         if (!document.hidden) {
-            const cliente = new Usuario();
-            cliente.perfil(setDados);
+            const user = new Usuario(token,refresh_token,Navegacao,set);
+            user.perfil(setDados);
             usuario = JSON.parse(localStorage.getItem("dados"));
         }
         };
@@ -185,7 +196,7 @@ const ConteudoPerfil = () => {
                                             mensagem: 'Você precisa adicionar uma banner , para realizar essa ação'
                                         });
                                     } else {
-                                        const banner_usuario = new Usuario();
+                                        const banner_usuario = new Usuario(token,refresh_token,Navegacao,set);
                                         banner_usuario.remover_banner(setDados, setBanner, setPopup);
                                     }
                                 }}
@@ -213,12 +224,12 @@ const ConteudoPerfil = () => {
 
                                 if (banner == 'default.png') {
                                     //Adiciono a foto
-                                    const banner_usuario = new Usuario();
+                                    const banner_usuario = new Usuario(token,refresh_token,Navegacao,set);
                                     banner_usuario.adicionar_banner(conteudo, setBanner, setDados, setPopup);
 
                                 } else {
                                     //Altero a foto
-                                    const banner_usuario = new Usuario();
+                                    const banner_usuario = new Usuario(token,refresh_token,Navegacao,set);
                                     banner_usuario.alterar_banner(conteudo, setBanner, setDados, setPopup, setVersaoBanner);
 
                                 }
@@ -252,7 +263,7 @@ const ConteudoPerfil = () => {
                                                 mensagem: 'Você precisa adicionar uma foto , para realizar essa ação'
                                             });
                                         } else {
-                                            const foto_usuario = new Usuario();
+                                            const foto_usuario = new Usuario(token,refresh_token,Navegacao,set);
                                             foto_usuario.remover_foto(setDados, setFoto, setPopup);
                                         }
 
@@ -281,12 +292,12 @@ const ConteudoPerfil = () => {
 
                                     if (foto == 'default.png') {
                                         //Adiciono a foto
-                                        const foto_usuario = new Usuario();
+                                        const foto_usuario = new Usuario(token,refresh_token,Navegacao,set);
                                         foto_usuario.adicionar_foto(conteudo, setFoto, setDados, setPopup);
 
                                     } else {
                                         //Altero a foto
-                                        const foto_usuario = new Usuario();
+                                        const foto_usuario = new Usuario(token,refresh_token,Navegacao,set);
                                         foto_usuario.alterar_foto(conteudo, setFoto, setDados, setPopup, setVersaoFoto);
 
                                     }
@@ -312,12 +323,12 @@ const ConteudoPerfil = () => {
 
                                     if (banner == 'default.png') {
                                         //Adiciono o banner
-                                        const banner_usuario = new Usuario();
+                                        const banner_usuario = new Usuario(token,refresh_token,Navegacao,set);
                                         banner_usuario.adicionar_banner(conteudo, setBanner, setDados, setPopup);
 
                                     } else {
                                         //Altero o banner
-                                        const banner_usuario = new Usuario();
+                                        const banner_usuario = new Usuario(token,refresh_token,Navegacao,set);
                                         banner_usuario.alterar_banner(conteudo, setBanner, setDados, setPopup, setVersaoBanner);
 
                                     }

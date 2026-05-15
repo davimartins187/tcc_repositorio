@@ -22,7 +22,7 @@ const CVerificacaoEmail = () => {
     const [codigo, setCodigo] = useState("");
     const [enviarcodigo, setEnviarCodigo] = useState(false);
     const [erro, setErro] = useState("");
-    const podeNavegar = useRef(false);
+    const setPodeNavegar = useRef(false);
     const [mostrarModal, setMostrarModal] = useState(false);
 
     //Variavel da popup

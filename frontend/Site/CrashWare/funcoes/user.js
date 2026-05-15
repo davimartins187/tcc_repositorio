@@ -1,20 +1,25 @@
-import { sleep } from "./functions";
+import { Api, sleep } from "./functions";
 
 export class Usuario
 {
 
     //Parâmetros do método construtor
-     constructor(setDados = null,setPopup = null, Navegacao = null,)
+     constructor(token = null,refresh_token = null, Navegacao = null,set = null,setPopup = null)
     {
-        this.setPopup = setPopup;
+        this.token = token;
+        this.refresh_token = refresh_token;
         this.Navegacao = Navegacao;
-        this.setDados = setDados;
+        this.set = set;
+        this.setPopup = setPopup;
+        
+        
     }
 
     async perfil(setDados)
     {
-        //Pego o token
-        const token = localStorage.getItem("token")
+        //Verifico o token
+        const usuario = new Api;
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
         try
         {
             const response = await fetch("https://api-crashware.onrender.com/user/",
@@ -22,7 +27,7 @@ export class Usuario
                     method: "GET",
                     headers:
                     {
-                        "Authorization": `Bearer ${token}`
+                        "Authorization": `Bearer ${this.token}`
                     }
                 })
 
@@ -65,6 +70,10 @@ export class Usuario
 
     async deletar_conta(setToken,setRefresh,setDados,setPopup)
     {
+
+        //Verifico o token
+        const usuario = new Api;
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
 
         setPopup({
                 tipo: 'aviso',
@@ -139,6 +148,10 @@ export class Usuario
 
     async adicionar_foto(conteudo,setFoto,setDados,setPopup)
     {
+        //Verifico o token
+        const usuario = new Api;
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+
         //Pego o token
         const token = localStorage.getItem("token")
 
@@ -216,6 +229,10 @@ export class Usuario
 
     async alterar_foto(conteudo,setFoto,setDados,setPopup,setVersaoFoto)
     {
+        //Verifico o token
+        const usuario = new Api;
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+
         //Pego o token
         const token = localStorage.getItem("token")
 
@@ -297,6 +314,10 @@ export class Usuario
 
     async remover_foto(setDados,setFoto,setPopup)
     {
+        //Verifico o token
+        const usuario = new Api;
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+
         //Pego o token
         const token = localStorage.getItem("token")
 
@@ -372,6 +393,10 @@ export class Usuario
 
      async adicionar_banner(conteudo,setBanner,setDados,setPopup)
     {
+        //Verifico o token
+        const usuario = new Api;
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+
         //Pego o token
         const token = localStorage.getItem("token")
 
@@ -451,6 +476,10 @@ export class Usuario
     
     async alterar_banner(conteudo,setBanner,setDados,setPopup,setVersaoBanner)
     {
+        //Verifico o token
+        const usuario = new Api;
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+
         //Pego o token
         const token = localStorage.getItem("token")
 
@@ -532,6 +561,10 @@ export class Usuario
 
     async remover_banner(setDados,setBanner,setPopup)
     {
+        //Verifico o token
+        const usuario = new Api;
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+        
         //Pego o token
         const token = localStorage.getItem("token")
 
