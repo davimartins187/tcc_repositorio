@@ -43,7 +43,7 @@ const ConteudoPerfil = () => {
 
     }
     //Pego as informações do usuario
-    const usuario = JSON.parse(localStorage.getItem("dados"));
+    let usuario = JSON.parse(localStorage.getItem("dados"));
 
     //Patente
     const Patente = usuario?.patente || "Beta";

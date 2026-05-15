@@ -1,4 +1,4 @@
-import Style from "./conteudoSoftware.module.css";
+import Style from "./ConteudoSoftware.module.css";
 
 import softwareIcon from "../../../fotos/software.svg";
 import certoIcon from "../../../fotos/certo.svg";
