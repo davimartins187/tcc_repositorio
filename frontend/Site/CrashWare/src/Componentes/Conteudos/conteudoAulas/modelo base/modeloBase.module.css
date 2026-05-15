@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.corpo {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 24px;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding-top: 270px;
+    
+}
+
+.separarConteudos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1 1 320px;
+    max-width: 620px;
+    align-self: flex-start;
+}
+
+.parteCima {
+    border: 1.4px solid var(--texto-principal);
+    border-radius: 16px;
+    background-color: var(--bg-secundario);
+    padding: 24px 28px;
+}
+
+.parteCima h1 {
+    font-family: "Montserrat", sans-serif;
+    color: var(--texto-principal);
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.parteCima p {
+    font-family: "Montserrat", sans-serif;
+    color: var(--cor-primaria);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+}
+
+.parteBaixo {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-secundario);
+    border: 1px solid var(--texto-principal);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.containerVideo {
+    width: 100%;
+}
+
+.Video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    display: block;
+    border-bottom: 1px solid var(--texto-principal);
+    background: #000;
+}
+
+.trocarAula {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 20px;
+}
+
+.trocarAula a {
+    text-decoration: none;
+    color: var(--texto-principal);
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.trocarAula a:hover {
+    opacity: 1;
+    color: var(--cor-primaria);
+    text-decoration: underline;
+}
+
+.parteLado {
+    min-width: 400px;
+    max-width: 800px;
+    min-height: 300px;
+    background-color: var(--bg-secundario);
+    border: 1px solid var(--texto-principal);
+    border-radius: 16px;
+    padding: 20px;
+    color: var(--texto-secundario);
+    font-family: "Montserrat", sans-serif;
+    align-self: flex-start;
+}
+
+.parteLado h1 {
+    text-align: center;
+    color: var(--texto-principal);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.parteLado hr {
+    margin-bottom: 16px;
+    border-color: var(--texto-principal);
+    opacity: 0.4;
+}
+
+.parteLado h2 {
+    color: var(--texto-principal);
+    text-align: center;
+    margin: 16px 0;
+    font-size: 15px;
+}
+
+.parteLado p {
+    text-align: center;
+    text-indent: 0;
+    line-height: 1.5;
+}
+
+.parteLado .butaozinho {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.parteLado .butaozinho button {
+    background-color: var(--Botao-gradiente1) !important;
+    border: none;
+    color: white;
+    width: 100%;
+    max-width: 260px;
+    height: 40px;
+    border-radius: 12px;
+    padding: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.parteLado .butaozinho button:hover {
+    transform: scale(1.03) translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Exercícios ──────────────────────────────────── */
+.exercicio {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.exercicio p {
+    text-align: left;
+    text-indent: 0;
+    color: var(--texto-principal);
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.exercicio button {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--bg-secundario);
+    border: 1px solid var(--texto-principal);
+    border-radius: 10px;
+    color: var(--texto-principal);
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.exercicio button:hover:not(:disabled) {
+    border-color: var(--cor-primaria);
+    background: var(--bg-terciario );
+}
+
+.exercicio button:disabled {
+    cursor: default;
+}
+
+.selecionado {
+    border-color: var(--cor-primaria) !important;
+    background: rgba(119, 114, 214, 0.12) !important;
+}
+
+.correta {
+    border-color: #4ec864 !important;
+    background: rgba(78, 200, 100, 0.12) !important;
+    color: #4ec864 !important;
+}
+
+.errada {
+    border-color: #e05c5c !important;
+    background: rgba(224, 92, 92, 0.12) !important;
+    color: #e05c5c !important;
+}
+
+.verificarRespostabtn{
+    background-color: var(--cor-terciaria-hover) !important;
+    color: white !important;
+    width: 70% !important;
+    font-size: 15px;
+
+    margin-top: 30px;
+    margin-bottom: 10px;
+    align-self: center !important;
+    text-align: center !important;
+    border: 1px solid var(--borda) !important;
+}
+
+@media (max-width: 900px) {
+    .corpo {
+        flex-direction: column;
+        align-items: center;
+        padding: 16px;
+    }
+
+    .separarConteudos {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .parteLado {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .corpo {
+        padding: 10px;
+        padding-bottom: 50px;
+    }
+
+    .parteCima h1 {
+        font-size: 18px;
+    }
+}

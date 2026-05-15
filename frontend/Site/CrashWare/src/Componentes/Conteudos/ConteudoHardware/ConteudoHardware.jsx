@@ -9,8 +9,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const conteudoHardware_Introducao = [
-    { descricao: "Motivação e mentalidade", to: ""},
-    { descricao: "Como vai funcionar esse curso?", to: ""}
+    { descricao: "Motivação e mentalidade", to: "/MotivacaoMentalidade"},
+    { descricao: "Como vai funcionar esse curso?", to: "/comoFunciona"}
 ];
 
 const conteudoHardware_Fundamentos = [

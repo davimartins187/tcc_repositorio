@@ -1,4 +1,4 @@
-import { ComoFunciona } from "../../Componentes";
+import { ComoFunciona } from "../../../../Componentes";
 
 const PgComoFunciona = () => {
     return (

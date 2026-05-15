@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom"
-import { PgInicial, PgCadastro, SobreNos, PgLogin, PgErro, PgRecuperarSenha, PgVerificacaoEmail, PgPerfil, PgAnotacoes, PgConfiguracoes, PgHome, PgTermos, AbaConquistas, AbaUsuarios, PgConteudoHardware, PgAlterarSenha, AbaRelatorios, PgConteudoSoftware, PgComoFunciona } from "./Paginas"
+import { PgInicial, PgCadastro, SobreNos, PgLogin, PgErro, PgRecuperarSenha, PgVerificacaoEmail, PgPerfil, PgAnotacoes, PgConfiguracoes, PgHome, PgTermos, AbaConquistas, AbaUsuarios, PgConteudoHardware, PgAlterarSenha, AbaRelatorios, PgConteudoSoftware } from "./Paginas"
 import { LayoutPadrao, LayoutCadLogin, LayoutLogado, LalyoutADM } from "./Layouts"
 import { AuthProvider, RotaPrivada } from "./VerificacaoToken"
 import { AbaListarConquistas } from "./Paginas/ADM/AbasAdm/AbaListarConquistas"
 
-
+import { PgComoFunciona, PgMotivacaoMentalidade } from "./Paginas"
 
 
 const Router = () => {
@@ -124,7 +124,7 @@ const Router = () => {
                 />
 
                 <Route 
-                    path="comofunciona" 
+                    path="comoFunciona" 
                     element={
                         <RotaPrivada>
                             <PgComoFunciona />
@@ -132,6 +132,14 @@ const Router = () => {
                     }
                 />
 
+                <Route
+                    path="MotivacaoMentalidade"
+                    element={
+                        <RotaPrivada>
+                            <PgMotivacaoMentalidade />
+                        </RotaPrivada>
+                    }
+                />
                 
             </Route>
 

@@ -30,6 +30,9 @@
   --cor-secundaria: #4a7ce9;
   --cor-secundaria-hover: #1d4ed8;
 
+  --cor-terciaria: #0ea5a0;     
+  --cor-terciaria-hover: #0c8a86;  
+
   --borda: #BABABA;
 
   /* Pop-Up claro */
@@ -93,6 +96,9 @@
 
   --cor-secundaria: #22d3ee;
   --cor-secundaria-hover: #67e8f9;
+
+  --cor-terciaria: #3b82c4;        
+  --cor-terciaria-hover: #2563a8;  
   
   --borda: #334155;
   

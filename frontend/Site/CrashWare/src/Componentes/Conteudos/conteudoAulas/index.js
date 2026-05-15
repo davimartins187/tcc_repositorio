@@ -1,2 +1,4 @@
 export * from "./modelo base";
-export * from "./comoFuncionaEssecurso";
+
+export * from "./aulasHardware/comoFuncionaEssecurso";
+export * from "./aulasHardware/motivaçãoMentalidade";
