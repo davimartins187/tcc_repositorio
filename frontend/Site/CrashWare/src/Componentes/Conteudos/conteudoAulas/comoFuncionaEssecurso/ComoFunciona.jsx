@@ -3,6 +3,10 @@
 import Style from "./comoFunciona.module.css";
 import { ModeloBase } from "../modelo base";
 
-const ComoFunciona = () => {
-    <modeloBase />
-}
+const ComoFunciona = () => (
+    <ModeloBase />
+);
+
+export { ComoFunciona };
+
+//DAVI EU VOU T MATAR CARA
