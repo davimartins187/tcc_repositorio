@@ -23,15 +23,6 @@ const Router = () => {
                     }
                 />
 
-                <Route path="sobre-nos" element={<SobreNos />} />
-
-                <Route path="*" element={<PgErro />} />
-
-            </Route>
-
-            {/* Cadastro/Login */}
-            <Route path="/" element={<LayoutCadLogin />}>
-
                 <Route
                     path="cadastro"
                     element={
@@ -51,11 +42,10 @@ const Router = () => {
                 />
 
                 <Route path="recuperar-senha" element={<PgRecuperarSenha />} />
-
                 <Route path="verificacao-email" element={<PgVerificacaoEmail />} />
-
                 <Route path="alterar-senha" element={<PgAlterarSenha />} />
-
+                <Route path="sobre-nos" element={<SobreNos />} />
+                <Route path="*" element={<PgErro />} />
             </Route>
 
             {/* Layout Logado */}
@@ -111,8 +101,8 @@ const Router = () => {
                     element={
                         <RotaPrivada>
                             <PgConteudoHardware />
-                        </RotaPrivada>   
-                } />
+                        </RotaPrivada>
+                    } />
 
                 <Route
                     path="software"
@@ -123,8 +113,8 @@ const Router = () => {
                     }
                 />
 
-                <Route 
-                    path="comofunciona" 
+                <Route
+                    path="comofunciona"
                     element={
                         <RotaPrivada>
                             <PgComoFunciona />
@@ -132,7 +122,7 @@ const Router = () => {
                     }
                 />
 
-                
+
             </Route>
 
             {/* ADM */}

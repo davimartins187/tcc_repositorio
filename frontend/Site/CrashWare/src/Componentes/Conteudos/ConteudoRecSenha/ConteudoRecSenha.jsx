@@ -59,13 +59,19 @@ const ConteudoRecSenha = () => {
             )}
 
 
-            <div className={style.corpo}>
+            <div className={style.corpo}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.repeat) {
+                        VerificarEmail()
+                    }
+                }}
+            >
                 <div className={style.container}>
                     <h1>Esqueci Minha Senha</h1>
 
                     <div className={style.opcoes}>
                         <label>
-                            <CampoTexto name="opcao" value="Email" type="radio"  className={style.radio}
+                            <CampoTexto name="opcao" value="Email" type="radio" className={style.radio}
                                 checked={opcao === "Email"}
                                 onChange={(e) => setOpcao(e.target.value)}
                             />
