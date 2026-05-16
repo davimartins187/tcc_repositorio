@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Usuario } from "../../../../funcoes/user";
 import style from "./ConteudoHome.module.css";
 
@@ -16,9 +16,19 @@ const anotacaoItens = [
 ];
 
 const ConteudoHome = () => {
-    const [dados, setDados] = useState(
-        () => JSON.parse(localStorage.getItem("dados")) || null
+    //Navegação --> Permite eu levar o usuario para outras telas
+    const Navegacao = useNavigate();
+
+    //Pego os states
+    const [token_state, setToken] = useState(() => localStorage.getItem("token"));
+    const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
+    const [dados, setDados] = useState(() =>
+        JSON.parse(localStorage.getItem("dados")) || null
     );
+
+    //Lista que contém todos os usestate
+    const set = [setToken,setRefresh,setDados];
+
 
     useEffect(() => {
         const onVisible = () => {
@@ -69,6 +79,11 @@ const ConteudoHome = () => {
                         className={style.foto}
                         src={`https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/${usuario?.foto}`}
                         alt="Foto de perfil"
+                        onClick={() =>{
+                            Navegacao('/perfil')
+                        }
+                            
+                    }
                     />
 
                     <div className={style.headerTexto}>

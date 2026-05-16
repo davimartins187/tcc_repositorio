@@ -17,7 +17,8 @@
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    background-image: var(--banner-img);    
+    background-image: var(--banner-img);  
+    cursor: pointer;  
     }
 
     .banner::after {

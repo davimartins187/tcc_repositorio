@@ -14,6 +14,7 @@
     flex-direction: column;
     gap: 14px;
     padding: 24px 20px 60px;
+    padding-top: 100px;
     max-width: 1020px;
     margin: 0 auto;
     font-family: 'Montserrat', sans-serif;
@@ -49,6 +50,7 @@
     border: 3px solid var(--cor-primaria);
     box-shadow: 0 0 16px rgba(119, 114, 214, 0.3);
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 .headerTexto {

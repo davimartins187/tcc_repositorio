@@ -43,10 +43,12 @@ export function handleRedirect(Navegacao)
 
     if(!token)
     {
+        //Levo para a tela Inicial
         Navegacao("/")
     }else
     {
-        Navegacao("/perfil")
+        //Levo para home
+        Navegacao("/home")
     }
 }
 
