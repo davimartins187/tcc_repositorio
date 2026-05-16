@@ -34,7 +34,7 @@ const ConteudoHome = () => {
     const usuario = JSON.parse(localStorage.getItem("dados"));
 
     const XpMax = 500;
-    const xp = usuario?.xp || 350;
+    const [xp, setXp] = useState(usuario?.xp || 0); 
     const Nivel = usuario?.nivel || 8;
     const xpAtual = xp % XpMax;
     const porcentagem = (xpAtual / XpMax) * 100;

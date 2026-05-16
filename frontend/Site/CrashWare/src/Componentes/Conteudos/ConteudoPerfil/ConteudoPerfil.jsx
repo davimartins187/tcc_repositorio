@@ -100,7 +100,7 @@ const ConteudoPerfil = () => {
     const inputBanner = useRef();
 
     const [ofensiva, setOfensiva] = useState(0);
-    const [xp, setXp] = useState(usuario?.xp || 0);
+    const [xp, setXp] = useState(usuario?.xp || 0); 
     const [conquistas, setConquistas] = useState(CONQUISTAS_MOCK);
     const [totalCompras, setTotalCompras] = useState(0);
     const [totalGemas, setTotalGemas] = useState(0);
