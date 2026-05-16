@@ -74,12 +74,9 @@ public class Inicio_fragment extends Fragment {
 
         prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
 
-        // Verificando Token
-        Verificar_Token();
 
         // Coleto as informações do usuário
         Perfil();
-
 
 
         auth = FirebaseAuth.getInstance();
@@ -107,8 +104,6 @@ public class Inicio_fragment extends Fragment {
         btnRetomar          = view.findViewById(R.id.btnRetomar);
         txtXpInicio         = view.findViewById(R.id.txtXPInicio);
 
-        // funções que vão ser utilizadas
-        carregarNomeFirebase();
 
 
         //Chamar função Ofensiva
@@ -207,10 +202,10 @@ public class Inicio_fragment extends Fragment {
     // TOKEN
     // =========================
 
-    private void Verificar_Token() {
 
-        Auth.verificarToken(requireContext(), prefs, true);
-    }
+
+
+
 
     // =========================
     // PERFIL
@@ -218,47 +213,56 @@ public class Inicio_fragment extends Fragment {
 
     private void Perfil() {
 
-        User.Perfil(requireContext(), prefs, new User.PerfilCallback() {
+        Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
+
             @Override
-            public void sucesso(User.PerfilResponse usuario) {
+            public void onSuccess() {
+                //Se token for valido executo a requisição
 
-                String nome = usuario.nome;
+                User.Perfil(requireContext(), prefs, new User.PerfilCallback() {
+
+                    @Override
+                    public void sucesso(User.PerfilResponse usuario) {
+
+                        String nome = usuario.nome;
 
 
-                Integer nivel = usuario.nivel;
-                String banner = usuario.banner;
-                //Float xp = usuario.xp;
+                        Integer nivel = usuario.nivel;
+                        String banner = usuario.banner;
+                        //Float xp = usuario.xp;
 
 
-                String foto = usuario.foto;
+                        String foto = usuario.foto;
 
-                // Salvo os dados no SharedPreferences
-                prefs.edit()
-                        .putString("foto", foto)
+                        // Salvo os dados no SharedPreferences
+                        prefs.edit()
+                                .putString("foto", foto)
 
-                        .putString("nome", nome)
+                                .putString("nome", nome)
 
-                        .putString("nome",nome)
-                        .putString("banner",banner)
-                        .putInt("nivel",nivel)
+                                .putString("nome",nome)
+                                .putString("banner",banner)
+                                .putInt("nivel",nivel)
 
-                        .commit();
+                                .commit();
 
-                // Link da foto
-                String link_foto =
-                        "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
-                                + foto
-                                + "?t=" + System.currentTimeMillis();
+                        // Link da foto
+                        String link_foto =
+                                "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                                        + foto
+                                        + "?t=" + System.currentTimeMillis();
 
-                // Carrega foto
-                Glide.with(requireContext())
-                        .load(link_foto)
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .into(imgfotoInicio);
+                        // Carrega foto
+                        Glide.with(requireContext())
+                                .load(link_foto)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(imgfotoInicio);
 
-                // Atualiza nome
-                txtNomeInicio.setText(nome);
+                        // Atualiza nome
+                        txtNomeInicio.setText(nome);
+                    }
+                });
             }
         });
     }
@@ -284,42 +288,6 @@ public class Inicio_fragment extends Fragment {
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(imgfotoInicio);
-    }
-
-    // =========================
-    // FIREBASE (NOME)
-    // =========================
-
-    private void carregarNomeFirebase() {
-
-        if (auth.getCurrentUser() == null) return;
-
-        String uid = auth.getCurrentUser().getUid();
-
-        nomeListener = new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                if (!isAdded()) return;
-
-                if (snapshot.exists()) {
-
-                    // Caso queira usar futuramente
-                    // String nome_firebase = snapshot.child("nome").getValue(String.class);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-                if (isAdded()) {
-                    txtNomeInicio.setText("Erro");
-                }
-            }
-        };
-
-        db.child(uid).addValueEventListener(nomeListener);
     }
 
     // =========================

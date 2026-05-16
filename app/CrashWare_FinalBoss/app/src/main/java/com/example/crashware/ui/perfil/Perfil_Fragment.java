@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.crashware.R;
+import com.example.crashware.ui.api.Auth;
 import com.example.crashware.ui.api.User;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -238,42 +239,50 @@ public class Perfil_Fragment extends Fragment {
 //    }
 
     private void Foto(){
-        User.Perfil(requireContext(), prefs, new User.PerfilCallback()
-        {
+        Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
+
             @Override
-            public void sucesso(User.PerfilResponse usuario) {
+            public void onSuccess()
+            {
+                //Se token for valido executo a requisição
+                User.Perfil(requireContext(), prefs, new User.PerfilCallback()
+                {
+                    @Override
+                    public void sucesso(User.PerfilResponse usuario) {
 
-                String email = usuario.email;
+                        String email = usuario.email;
 
-                String foto = usuario.foto;
-                String banner = usuario.banner;
+                        String foto = usuario.foto;
+                        String banner = usuario.banner;
 
-                //Salvo o link da foto
-                String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
-                        + foto
-                        + "?t=" + System.currentTimeMillis();
+                        //Salvo o link da foto
+                        String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                                + foto
+                                + "?t=" + System.currentTimeMillis();
 
-                //Salvo o link do banner
-                String link_banner =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/"
-                        + banner
-                        + "?t=" + System.currentTimeMillis();
+                        //Salvo o link do banner
+                        String link_banner =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/"
+                                + banner
+                                + "?t=" + System.currentTimeMillis();
 
-                //Carrega a foto atual do usuario
-                Glide.with(requireContext())
-                        .load(link_foto)
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .into(imgFotoPerfil);
+                        //Carrega a foto atual do usuario
+                        Glide.with(requireContext())
+                                .load(link_foto)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(imgFotoPerfil);
 
-                //Carrega o banner atual do usuario
-                Glide.with(requireContext())
-                        .load(link_banner)
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .into(imgBanner);
+                        //Carrega o banner atual do usuario
+                        Glide.with(requireContext())
+                                .load(link_banner)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(imgBanner);
+                    }
+                });//Perfil
             }
-        });
-    }
+        });//Verificar Token
+    }//Foto
 
     private void setImage(Uri uri) {
         if (!isAdded()) return;
@@ -282,20 +291,34 @@ public class Perfil_Fragment extends Fragment {
         String foto = prefs.getString("foto", null);
 
         //Verifico se vai adicionar ou alterar
-        if("default.png".equals(foto))
-        {
+        if("default.png".equals(foto)) {
             //Add a foto
             Toast.makeText(getContext(), "Adicionando Foto..", Toast.LENGTH_LONG).show();
-            User.Adicionar_Foto(requireContext(),prefs,uri,imgFotoPerfil);
 
+            //Verifico o token
+            Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
 
-        }
-        else
+                @Override
+                public void onSuccess() {
+                    //Se token for valido executo a requisição
+                    User.Adicionar_Foto(requireContext(), prefs, uri, imgFotoPerfil);
+
+                }
+            });
+        }else
         {
             //Altero a foto
             Toast.makeText(getContext(), "Alterando Foto..", Toast.LENGTH_LONG).show();
-            User.Alterar_Foto(requireContext(),prefs,uri,imgFotoPerfil);
 
+            //Verifico o token
+            Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
+
+                @Override
+                public void onSuccess() {
+                    //Se token for valido executo a requisição
+                    User.Alterar_Foto(requireContext(),prefs,uri,imgFotoPerfil);
+                }
+            });
 
         }
 
@@ -312,15 +335,31 @@ public class Perfil_Fragment extends Fragment {
         if ("default.png".equals(banner)) {
             //Add o banner
             Toast.makeText(getContext(), "Adicionando Banner...", Toast.LENGTH_LONG).show();
-            User.Adicionar_Banner(requireContext(), prefs, uri, imgBanner);
+
+            //Verifico o token
+            Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
+
+                @Override
+                public void onSuccess() {
+                    //Se token for valido executo a requisição
+                    User.Adicionar_Banner(requireContext(), prefs, uri, imgBanner);
+                }
+            });
+
 
 
         } else {
             //Altero o banner
             Toast.makeText(getContext(), "Alterando Banner...", Toast.LENGTH_LONG).show();
-            User.Alterar_Banner(requireContext(), prefs, uri, imgBanner );
+            //Verifico o token
+            Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
 
-
+                @Override
+                public void onSuccess() {
+                    //Se token for valido executo a requisição
+                    User.Alterar_Banner(requireContext(), prefs, uri, imgBanner );
+                }
+            });
         }
     }
 
