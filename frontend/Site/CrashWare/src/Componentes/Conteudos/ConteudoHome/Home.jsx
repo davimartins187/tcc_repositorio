@@ -16,6 +16,11 @@ const anotacaoItens = [
 ];
 
 const ConteudoHome = () => {
+
+    //Pego os tokens
+    const token = localStorage.getItem("token");
+    const refresh_token = localStorage.getItem("refresh_token");
+
     //Navegação --> Permite eu levar o usuario para outras telas
     const Navegacao = useNavigate();
 
@@ -29,8 +34,19 @@ const ConteudoHome = () => {
     //Lista que contém todos os usestate
     const set = [setToken,setRefresh,setDados];
 
+    const informacoes = localStorage.getItem("info")
+
+    //Pego todas as informações do usuario
+    if (informacoes == "false") {
+        //Faço a requisição no banco
+        const user = new Usuario(token,refresh_token,Navegacao,set);
+        user.perfil(setDados);
+
+    }
+
 
     useEffect(() => {
+        //Atualiza os dados do usuario, sempre que a pagina for acessada
         const onVisible = () => {
             if (!document.hidden) {
                 const cliente = new Usuario();
@@ -41,11 +57,12 @@ const ConteudoHome = () => {
         return () => document.removeEventListener("visibilitychange", onVisible);
     }, []);
 
+    //Pega os dados do usuario
     const usuario = JSON.parse(localStorage.getItem("dados"));
 
     const XpMax = 500;
     const [xp, setXp] = useState(usuario?.xp || 0); 
-    const Nivel = usuario?.nivel || 8;
+    const Nivel =  8;
     const xpAtual = xp % XpMax;
     const porcentagem = (xpAtual / XpMax) * 100;
     const nome = usuario?.nome || "Davidson";
@@ -59,15 +76,15 @@ const ConteudoHome = () => {
         proximoModulo: "Introdução ao Hardware",
     };
 
-    if (!usuario) {
-        return (
-            <div className={style.corpo} style={{ justifyContent: "center" }}>
-                <span style={{ color: "#8b90a0", letterSpacing: "0.1em", fontSize: "13px" }}>
-                    CARREGANDO...
-                </span>
-            </div>
-        );
-    }
+    // if (!usuario) {
+    //     return (
+    //         <div className={style.corpo} style={{ justifyContent: "center" }}>
+    //             <span style={{ color: "#8b90a0", letterSpacing: "0.1em", fontSize: "13px" }}>
+    //                 CARREGANDO...
+    //             </span>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className={style.corpo}>

@@ -1,16 +1,48 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Style from './Sidebar.module.css';
 import { Tema } from '../../Tema';
+import { Usuario } from '../../../../funcoes/user';
+import { useState } from 'react';
 
 const Sidebar = ({ aberto, onFechar }) => {
-  const location = useLocation();
+    //Navegação --> Permite eu levar o usuario para outras telas
+    const Navegacao = useNavigate();
 
-  const links = [
-    { label: 'ADM', to: '/relatorio' },
-    { label: 'Sobre o TCC', to: '/tcc' },
-    { label: 'Termos de serviço', to: '/termos' },
-    { label: 'Configurações', to: '/configuracoes' },
-  ];
+    const token = localStorage.getItem("token");
+    const refresh_token = localStorage.getItem("refresh_token");
+
+    //Uso useState para o react renderizar as informações
+    const [token_state, setToken] = useState(() => localStorage.getItem("token"));
+    const [refresh_token_state, setRefresh] = useState(() => localStorage.getItem("refresh_token"));
+    const [dados, setDados] = useState(() =>
+        JSON.parse(localStorage.getItem("dados")) || null
+    );
+
+    //Lista que contém todos os usestate
+    const set = [setToken,setRefresh,setDados];
+
+
+    //Pego as informações do usuario
+    let usuario = JSON.parse(localStorage.getItem("dados"));
+
+    //Pego o valor do adm
+    const admin = usuario?.adm;
+
+    const location = useLocation();
+
+    const links = [
+      { label: 'Sobre o TCC', to: '/tcc' },
+      { label: 'Termos de serviço', to: '/termos' },
+      { label: 'Configurações', to: '/configuracoes' },
+    ];
+
+
+
+    if(admin == true)
+    {
+      links.push({ label: 'ADM', to: '/relatorio' })
+    }
+  
 
   return (
     <>

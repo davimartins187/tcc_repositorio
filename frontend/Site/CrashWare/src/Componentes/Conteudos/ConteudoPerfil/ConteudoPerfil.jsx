@@ -46,14 +46,6 @@ const ConteudoPerfil = () => {
     const set = [setToken,setRefresh,setDados];
     
 
-    const informacoes = localStorage.getItem("info")
-
-    if (informacoes == "false") {
-        //Faço a requisição no banco
-        const user = new Usuario(token,refresh_token,Navegacao,set);
-        user.perfil(setDados);
-
-    }
     //Pego as informações do usuario
     let usuario = JSON.parse(localStorage.getItem("dados"));
 
@@ -107,7 +99,7 @@ const ConteudoPerfil = () => {
     const [popup, setPopup] = useState(null);
 
     const XpMax = 500;
-    const Nivel = usuario?.nivel || 0;
+    const Nivel =  0;
     const nome = usuario?.nome || "Usuário";
 
     const xpAtual = xp % XpMax;
