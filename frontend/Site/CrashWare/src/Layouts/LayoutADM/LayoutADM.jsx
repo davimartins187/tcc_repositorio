@@ -103,11 +103,11 @@ const LayoutADM = () => {
                                 </div>)}
 
                                 {item.descricao === "Materias" && abrirMaterias && (<div className={Style.sanfona}>
-                                    <Link to="/criar-materias">
+                                    <Link to="/criar-materia">
                                         Criar Materia
                                     </Link>
 
-                                    <Link to="listar-materias">
+                                    <Link to="/listar-materias">
                                         Listar Materias
                                     </Link>
                                 </div>)}

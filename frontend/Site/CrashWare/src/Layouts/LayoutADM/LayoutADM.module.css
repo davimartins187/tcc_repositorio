@@ -54,7 +54,7 @@
     background-color: var(--texto-principal); 
     border: 1px solid black;
     border-radius: 12px;
-    margin: 0px 20px 20px 20px;
+    margin: 0px 20px 14px 20px;
 }
 
 .itemBarraLateral:hover {
