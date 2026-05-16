@@ -508,7 +508,7 @@ export class Api
                 //const refresh_token = localStorage.getItem("refresh_token")
 
                 //Aqui envia para a tela de HOME:
-                Navegacao("/perfil");
+                Navegacao("/home");
             }
 
         } catch (error) {
@@ -667,8 +667,8 @@ export class Api
             {
                 if(privado == null)
                 {
-                     //Leva para a tela de PERFIL 
-                    Navegacao('/perfil');
+                     //Leva para a tela HOME 
+                    Navegacao('/home');
                 }
                
             }
@@ -706,6 +706,7 @@ export class Api
                     //Saio da conta automaticamente
                     await SairDaConta(setToken,setRefresh,setDados);
 
+
                     return;
                 }
                 //Continua na tela
@@ -722,9 +723,9 @@ export class Api
                 {
                     //Ignoro, deixo ele na tela que está
                 }else{
-                    //Levo para a tela de PERFIL
+                    //Levo para a tela HOME
 
-                    Navegacao('/perfil')
+                    Navegacao('/home')
                 }
             }
         }catch (error) 
@@ -772,29 +773,4 @@ export class Api
 
 }//classe
 
-//  if(refresh != null)
-//                         {
-                        
-//                             //Coleto as variáveis do useState
-//                             // const setId = set[0];
-//                             const setToken = set[0];
-//                             const setRefresh = set[1];
-//                             const setDados = set[2];
 
-//                             //Retiro o token do usuario
-//                             await SairDaConta(setToken,setRefresh,setDados);
-
-
-//                         }else
-//                         {
-//                             //Coleto as variáveis do useState
-//                             // const setId = set[0];
-//                             const setToken = set[0];
-//                             const setRefresh = set[1];
-//                             const setDados = set[2];
-
-//                             //Retiro o token do usuario
-//                             await SairDaConta(setToken,setRefresh,setDados);
-                            
-//                             return true
-//                         }  
