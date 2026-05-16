@@ -1,7 +1,7 @@
 ##Importando tabelas
 
 from models import Usuarios, UsuariosOauth, Patente
-from models.gamificacao import Nivel
+
 
 #Importando A conexao com o Banco de dados
 from database.connection import engine
@@ -27,13 +27,12 @@ session = Session()
 
 
 try:
-    pass
+    # session.query(Usuarios).filter(Usuarios.patente_id == 1).update({"patente_id" : 2})
+    # session.query(Patente).filter(Patente.id_patente == 1).delete()
+    patente = Patente("Beta",0)
 except Exception as exception:
     session.rollback()
     raise  exception
-
-
-
 
 
 

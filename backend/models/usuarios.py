@@ -37,7 +37,6 @@ class Usuarios(Base):
     moedas = Column(Integer,default=0,server_default=text("0"))
     xp = Column(Float,default=0,server_default=text("0.0"))
     patente_id = Column(Integer, ForeignKey("patente.id_patente"), nullable=False, default=1, server_default=text("1"))
-    nivel_id = Column(Integer,ForeignKey("nivel.id_nivel"),default=1,server_default=text('1'))
     codigo = Column(String(6),nullable=True)
     codigo_expirado_em = Column(DateTime(timezone=True),nullable=True)
 
@@ -50,11 +49,10 @@ class Usuarios(Base):
     # Criando relação com objetos (relationship)
     oauths = relationship("UsuariosOauth",backref="usuarios")
     patentes = relationship("Patente", backref="usuarios")
-    niveis = relationship("Nivel",backref="usuarios")
 
     # Criando atributos PARA O PYTHON (Naõ altera nada no banco de dados)
     #nivel_id
-    def __init__(self,nome_usuario,email,senha_hash,patente_id = 1,nivel_id=1,telefone = None,foto = 'default.png',banner="default.png",email_verificado=False,ativo=True,admin=False,coin=0,xp = 0,codigo = codigo, codigo_expirado_em = codigo_expirado_em):
+    def __init__(self,nome_usuario,email,senha_hash,telefone = None,patente_id = 1,foto = 'default.png',banner="default.png",email_verificado=False,ativo=True,admin=False,coin=0,xp = 0,codigo = codigo, codigo_expirado_em = codigo_expirado_em):
         self.nome_usuario = nome_usuario
         self.email = email
         self.telefone = telefone
@@ -67,7 +65,6 @@ class Usuarios(Base):
         self.coin = coin
         self.xp = xp
         self.patente_id = patente_id
-        self.nivel_id = nivel_id
         self.codigo = codigo
         self.codigo_expirado_em = codigo_expirado_em
 
