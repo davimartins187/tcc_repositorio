@@ -65,7 +65,7 @@ const CVerificacaoEmail = () => {
     }, []);
 
     useEffect(() => {
-        if (podeNavegar.current) return;
+        if (setPodeNavegar.current) return;
 
         const handlePopState = () => {
             window.history.pushState(null, "", window.location.href);

@@ -43,7 +43,7 @@ const AbaListarConquistas = () => {
 
             for (let n = 0; n < quantidade_conquistas; n++ )
             {
-                CONQUISTAS_MOCK.push({titulo: conquistas[n].nome_conquista, descricao: conquistas[n].descricao, tipo: conquistas[n].tipo_conquista , condicao : conquistas[n].condicao_conquista})
+                CONQUISTAS_MOCK.push({id : conquistas[n].id_conquista ,titulo: conquistas[n].nome_conquista, descricao: conquistas[n].descricao, tipo: conquistas[n].tipo_conquista , condicao : conquistas[n].condicao_conquista})
                 
             }
                 
@@ -69,7 +69,7 @@ const AbaListarConquistas = () => {
         }
 
         const resultado = conquistasInterface.filter((c) =>
-        `${c.titulo} ${c.descricao} ${c.tipo} ${c.condicao}`
+        `${c.id}${c.titulo} ${c.descricao} ${c.tipo} ${c.condicao}`
         .toLowerCase()
         .includes(texto)
         );
@@ -111,6 +111,7 @@ const AbaListarConquistas = () => {
                             >
 
                                 <div className={Style.ItensLista}>
+                                    <h4>{c.id}</h4>
                                     <h3>{c.titulo}</h3>
                                     <p>Desc: {c.descricao}</p>
                                     <p>Tipo: {c.tipo}</p>

@@ -638,6 +638,56 @@ export class Usuario
     }//Remover Banner
 
 
+    async conquista(id_conquista,setPopup)
+    {
+        //Pego o token
+        const token = localStorage.getItem("token")
 
+        try
+        {
+            const response = await fetch("https://api-crashware.onrender.com/achievement/",
+                { 
+                    method: "POST",
+                    headers:
+                    {
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: id_conquista
+                });
+
+                if (response.status == 409)
+                {
+                    //Ignora
+                }
+
+                if (response.ok)
+                {
+                    const dados = await response.json();
+
+                    const nome_conquista = dados.nome_conquista;
+                    const descricao = dados.descricao;
+                    const tipo_conquista = dados.tipo_conquista;
+
+                    //Exibo SetpopupConquista
+                     setPopup({
+                        tipo: 'sucesso',
+                        titulo: nome_conquista,
+                        mensagem: descricao
+                    });
+                    
+
+                }else
+                {
+                    const erro = await response.json();
+
+                    console.log(erro)
+                }
+
+            
+        }catch (error) 
+        {
+            console.log(error);
+        }
+    }
 
 }//classe

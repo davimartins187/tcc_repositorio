@@ -8,6 +8,8 @@ import hardwareIcon from "../../../fotos/hardware.svg";
 import softwareIcon from "../../../fotos/software.svg";
 import iconOfensiva from "../../../fotos/Ofensiva.svg";
 
+import { PopUp } from '../../pop-up';
+
 // felipe depois tenque substituir pelos dados da API
 const anotacaoItens = [
     { id: 1, titulo: "Metas para os estudos", data: "01/04/2026" },
@@ -16,6 +18,9 @@ const anotacaoItens = [
 ];
 
 const ConteudoHome = () => {
+
+    //Popup
+    const [popup, setPopup] = useState(null);
 
     //Pego os tokens
     const token = localStorage.getItem("token");
@@ -38,10 +43,14 @@ const ConteudoHome = () => {
 
     //Pego todas as informações do usuario
     if (informacoes == "false") {
+
         //Faço a requisição no banco
         const user = new Usuario(token,refresh_token,Navegacao,set);
         user.perfil(setDados);
 
+         //Conquista ao logar
+        // user.conquista(,setPopup)
+         
     }
 
 
@@ -87,6 +96,17 @@ const ConteudoHome = () => {
     // }
 
     return (
+
+        <>
+            {popup && (
+                <PopUp
+                    tipo={popup.tipo}
+                    titulo={popup.titulo}
+                    mensagem={popup.mensagem}
+                    onFechar={() => setPopup(null)}
+                />
+            )}
+
         <div className={style.corpo}>
 
             <div className={style.header}>
@@ -200,6 +220,7 @@ const ConteudoHome = () => {
             </div>
 
         </div>
+    </>    
     );
 };
 
