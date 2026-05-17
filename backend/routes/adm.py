@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends,HTTPException
-
+from sqlalchemy import select
 
 #Importando tabelas:
 from models.gamificacao import Conquista
@@ -31,6 +31,22 @@ async def adicionar_conquista(conquista : ConquistaSchema,session = Depends(pega
             ##Se não der certo eu retorno o erro, e dou rollback no banco.
             session.rollback()
             raise HTTPException(status_code=400,detail=str(exception))
+
+
+@adm.get('/listar_conquista')
+async def listar_conquista(session = Depends(pegar_sessao)):
+    ##Retorna os valores em dicionario dentro de uma lista.
+    conquistas = session.execute(
+        select(
+            Conquista.nome_conquista,
+            Conquista.descricao,
+            Conquista.tipo_conquista,
+            Conquista.condicao_conquista
+        )
+    ).mappings().all()
+    if conquistas is None:
+        raise HTTPException(status_code=204,detail="Não existe conquistas no banco de dados")
+    return {"conquistas" : conquistas}
 
 
 
