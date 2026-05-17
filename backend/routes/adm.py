@@ -44,7 +44,7 @@ async def listar_conquista(session = Depends(pegar_sessao)):
             Conquista.condicao_conquista
         )
     ).mappings().all()
-    if conquistas is None:
+    if not conquistas :
         raise HTTPException(status_code=204,detail="Não existe conquistas no banco de dados")
     return {"conquistas" : conquistas}
 
