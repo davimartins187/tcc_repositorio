@@ -29,10 +29,12 @@ async def achievement_login(dados : AchievementSchema,usuario = Depends(validar_
             session.add(usuario_conquista)
             session.commit()
 
+            conquista_usuario = session.query(Usuario_Conquista).filter(Usuario_Conquista.usuario_id == usuario.id_usuario,Usuario_Conquista.conquista_id == dados.conquista_id).first()
+
             return {
-                "nome_conquista" : Usuario_Conquista.conquistas.nome_conquista,
-                "descricao": Usuario_Conquista.conquistas.descricao,
-                "tipo_conquista": Usuario_Conquista.conquistas.tipo_conquista
+                "nome_conquista" : conquista_usuario.conquistas.nome_conquista,
+                "descricao": conquista_usuario.conquistas.descricao,
+                "tipo_conquista": conquista_usuario.conquistas.tipo_conquista
                     }
         except Exception as exception:
             ##Se não der certo eu retorno o erro, e dou rollback no banco.
