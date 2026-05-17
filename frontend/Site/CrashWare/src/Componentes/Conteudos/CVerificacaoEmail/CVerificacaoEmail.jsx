@@ -54,7 +54,7 @@ const CVerificacaoEmail = () => {
 
     useEffect(() => {
         const handleBeforeUnload = (e) => {
-            if (!podeNavegar.current) {
+            if (!setPodeNavegar.current) {
                 e.preventDefault();
                 e.returnValue = "";
             }

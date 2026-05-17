@@ -48,8 +48,8 @@ const ConteudoHome = () => {
         const user = new Usuario(token,refresh_token,Navegacao,set);
         user.perfil(setDados);
 
-         //Conquista ao logar
-        // user.conquista(,setPopup)
+        //Conquista ao logar
+        user.conquista(9,setPopup)
          
     }
 

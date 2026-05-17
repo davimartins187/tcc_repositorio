@@ -638,7 +638,7 @@ export class Usuario
     }//Remover Banner
 
 
-    async conquista(id_conquista,setPopup)
+    async conquista(conquista_id,setPopup)
     {
         //Pego o token
         const token = localStorage.getItem("token")
@@ -647,12 +647,14 @@ export class Usuario
         {
             const response = await fetch("https://api-crashware.onrender.com/achievement/",
                 { 
+                     
                     method: "POST",
                     headers:
                     {
-                        "Authorization": `Bearer ${token}`
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
                     },
-                    body: id_conquista
+                    body:  JSON.stringify({conquista_id})
                 });
 
                 if (response.status == 409)
@@ -680,7 +682,7 @@ export class Usuario
                 {
                     const erro = await response.json();
 
-                    console.log(erro)
+                    console.log(erro.detail)
                 }
 
             
