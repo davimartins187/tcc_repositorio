@@ -1,24 +1,66 @@
 import { BotoesForm, CampoTexto } from "../../../../Componentes"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Style from "./AbaListarConquistas.module.css"
+import { Adm } from "../../../../../funcoes/adm";
+import { PopUp } from '../../../../Componentes/pop-up';
 
 const AbaListarConquistas = () => {
+     //Popup
+    const [popup, setPopup] = useState(null);
 
-    const CONQUISTAS_MOCK = [
-        { id: 1, titulo: 'Conquista de Software', descricao: 'Descrição super divertida sobre a aula concluída para adquirir a conquista.', tipo: 'software' },
-        { id: 2, titulo: 'Conquista de Hardware', descricao: 'Descrição super divertida sobre a aula concluída para adquirir a conquista.', tipo: 'hardware' },
-        { id: 3, titulo: 'Conquista de Hardware', descricao: 'Descrição super divertida sobre a aula concluída para adquirir a conquista.', tipo: 'hardware' },
-        { id: 4, titulo: 'Conquista de Software', descricao: 'Descrição super divertida sobre a aula concluída para adquirir a conquista.', tipo: 'software' },
-        { id: 5, titulo: 'Conquista de Hardware', descricao: 'Descrição super divertida sobre a aula concluída para adquirir a conquista.', tipo: 'hardware' },
-        { id: 6, titulo: 'Conquista de Hardware', descricao: 'Descrição super divertida sobre a aula concluída para adquirir a conquista.', tipo: 'hardware' },
-    ]
-
-    const [conquistas, setConquistas] = useState(CONQUISTAS_MOCK);
+    //Buscas
     const [buscar, setBuscar] = useState("");
+
+    let [conquistasInterface, setConquistas] = useState([]);
+
+    useEffect( () => {  
+        carregarConquistas();
+
+    }, []);
+
+    async function carregarConquistas() 
+        {
+            //Listo conquistas no banco de dados
+            const adm = new Adm;
+            await adm.listar_conquista(setPopup);
+
+            //Pego as conquistar em uma array
+            const conquistas = JSON.parse(localStorage.getItem("conquistas")) || [];
+
+            //Interace das conquistas
+            const CONQUISTAS_MOCK = []
+
+            //Pego a quantidade de consquistas
+            let quantidade_conquistas = conquistas.length
+
+            //Adiciono as conquistas na interface
+
+            for (let n = 0; n < quantidade_conquistas; n++ )
+            {
+                CONQUISTAS_MOCK.push({titulo: conquistas[n].nome_conquista, descricao: conquistas[n].descricao, tipo: conquistas[n].tipo_conquista , condicao : conquistas[n].condicao_conquista})
+                
+            }
+                
+
+            setConquistas(CONQUISTAS_MOCK);
+
+            console.log("conquistas:", conquistas);
+            console.log("conquistasMock:", conquistasMock);
+        }
+    
+
     return (
+         <>
+            {popup && (
+                <PopUp
+                    tipo={popup.tipo}
+                    titulo={popup.titulo}
+                    mensagem={popup.mensagem}
+                    onFechar={() => setPopup(null)}
+                />
+            )}
         <div className={Style.separarConteudos}>
             <div className={Style.Conteudos}>
-                {/* EU ODEIO MEDIA SLA OQ */}
                 <h1>Conquistas</h1>
                 <div className={Style.Buscar}>
                     <CampoTexto
@@ -33,7 +75,7 @@ const AbaListarConquistas = () => {
 
                 <div className={Style.Lista}>
                     <div>
-                        {conquistas.map((c) => (
+                        {conquistasInterface.map((c) => (
                             <div className={Style.ListaConquistas}
                                 key={c.id}
                             >
@@ -41,13 +83,16 @@ const AbaListarConquistas = () => {
                                 <div>
                                     <h6>{c.titulo}</h6>
                                     <p>{c.descricao}</p>
+                                    <p>{c.tipo}</p>
+                                    <p>{c.condicao}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
-                </div> {/* Lista */}
+                </div> 
             </div> {/* Conteudos */}
-        </div> /* Separar Conteudos */
+        </div> 
+        </>
     )
 }
 

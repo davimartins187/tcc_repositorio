@@ -69,4 +69,63 @@ export class Adm
         }//catch
 
     }//add_conquista
+
+
+    async listar_conquista(setPopup)
+    {
+         setPopup({
+                    tipo: 'aviso',
+                    titulo: 'Conquistas',
+                    mensagem: 'Listando conquistas...'
+                });
+
+        try
+        {
+            const response = await fetch("https://api-crashware.onrender.com/adm/listar_conquista",
+                 {
+                    method: "GET"
+                 });
+
+        
+            if (response.status == 204)
+            {
+                //Se não existir conquistas...
+
+                //Pego o erro
+                const erro = await response.json();
+
+                setPopup({
+                    tipo: 'erro',
+                    titulo: 'Conquistas',
+                    mensagem: erro.detail
+                });
+
+            }else
+            {
+                //Se requisição der certo
+                const resposta = await response.json();
+
+                //Pego as conquistas
+                const conquistas = await resposta.conquistas;
+
+                //Guardo as conquistas no LocalStorage
+                localStorage.setItem("conquistas", JSON.stringify(conquistas));
+
+            }
+
+
+        }catch(error) 
+        {
+             setPopup({
+                    tipo: 'erro',
+                    titulo: 'Erro De Conexão',
+                    mensagem: 'Tente novamente mais tarde...'
+                });
+            //Erro de conexão
+            console.log("Erro:", error);
+            
+
+        }//catch
+            
+    }//Listar Conquistas
 }//classe
