@@ -226,8 +226,6 @@ public class Inicio_fragment extends Fragment {
 
                         String nome = usuario.nome;
 
-
-                        Integer nivel = usuario.nivel;
                         String banner = usuario.banner;
                         //Float xp = usuario.xp;
 
