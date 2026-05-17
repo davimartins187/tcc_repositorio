@@ -9,20 +9,23 @@ achievement = APIRouter(prefix="/achievement",tags=["conquistas"])
 #Importando dependencias
 from dependences import pegar_sessao, validar_token
 
+#Importando Schemas
+from schemas.AchievementSchema import AchievementSchema
+
 
 #ROTAS
 @achievement.post('/')
-async def achievement_login(conquista_id : int,usuario = Depends(validar_token)):
+async def achievement_login(dados : AchievementSchema,usuario = Depends(validar_token)):
     if usuario is None:
         raise HTTPException(status_code=404,detail="Usuário não encontrado")
-    if conquista_id is None:
+    if dados.conquista_id is None:
         raise HTTPException(status_code=404, detail="Conquista_ID não encontrado")
 
-    conquista_usuario = session.query(Usuario_Conquista).filter(Usuario_Conquista.usuario_id == usuario.id_usuario, Usuario_Conquista.conquista_id == conquista_id).first()
+    conquista_usuario = session.query(Usuario_Conquista).filter(Usuario_Conquista.usuario_id == usuario.id_usuario, Usuario_Conquista.conquista_id == dados.conquista_id).first()
     if conquista_usuario is None:
         try:
             ##Vinculo a conquista com o usuário
-            usuario_conquista = Usuario_Conquista(conquista_id,usuario.id_usuario)
+            usuario_conquista = Usuario_Conquista(dados.conquista_id,usuario.id_usuario)
             session.add(usuario_conquista)
             session.commit()
 

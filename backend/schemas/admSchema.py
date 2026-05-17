@@ -10,5 +10,8 @@ class ConquistaSchema(BaseModel):
     xp : float
     condicao_conquista : str
 
+    class Config:
+        from_attributes = True
+
 
     
