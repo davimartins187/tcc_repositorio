@@ -38,6 +38,7 @@ async def listar_conquista(session = Depends(pegar_sessao)):
     ##Retorna os valores em dicionario dentro de uma lista.
     conquistas = session.execute(
         select(
+            Conquista.id_conquista,
             Conquista.nome_conquista,
             Conquista.descricao,
             Conquista.tipo_conquista,

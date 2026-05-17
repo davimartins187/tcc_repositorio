@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from routes.auth import auth
 from routes.user import user
 from routes.adm import adm
+from routes.achievement import achievement
 import os #Acessa outros arquivos
 from dotenv import load_dotenv # Le import arquivo .env
 #CORS:
@@ -46,6 +47,8 @@ crashware.include_router(auth)
 crashware.include_router(user)
 
 crashware.include_router(adm)
+
+crashware.include_router(achievement)
 
 
 #Alembic

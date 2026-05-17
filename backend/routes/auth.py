@@ -20,7 +20,6 @@ from security import criptografia
 from schemas.UsuarioSchema import CadastroSchema, VerificarEmailSchema , EmailSchema , UsuarioLoginSchema
 
 
-
 #Biblioteca que gera números aletórios:
 from random import randint
 

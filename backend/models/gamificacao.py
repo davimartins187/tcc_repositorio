@@ -2,6 +2,7 @@
 from encodings.punycode import selective_find
 
 from sqlalchemy import Column, Integer, Float, String, Text, ForeignKey, UniqueConstraint,DateTime, text
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 #Importando a Base declarativa
@@ -70,6 +71,10 @@ class Usuario_Conquista(Base):
     __table_args__ = (
         UniqueConstraint("usuario_id", "conquista_id"),
     )
+
+    # Criando relação com objetos (relationship)
+    conquistas = relationship("Conquista", backref="usuarios_conquistas")
+    usuarios = relationship("Usuarios", backref="usuarios_conquistas")
 
     # Criando atributos PARA O PYTHON (Não altera nada no banco de dados)
     def __init__(self,conquista_id,usuario_id):
