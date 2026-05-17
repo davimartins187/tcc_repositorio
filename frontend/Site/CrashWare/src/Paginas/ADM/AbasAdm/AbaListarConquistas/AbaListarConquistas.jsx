@@ -13,7 +13,13 @@ const AbaListarConquistas = () => {
 
     let [conquistasInterface, setConquistas] = useState([]);
 
+    //
+    let [conquistasExibidas, setConquistasExibidas] = useState([]);
+
+
+
     useEffect( () => {  
+        //Quando a pag for carregada
         carregarConquistas();
 
     }, []);
@@ -42,11 +48,34 @@ const AbaListarConquistas = () => {
             }
                 
 
-            setConquistas(CONQUISTAS_MOCK);
+            //Conquistas no total
+            setConquistas(CONQUISTAS_MOCK)
 
-            console.log("conquistas:", conquistas);
-            console.log("conquistasMock:", conquistasMock);
+            //Conquistas exibidas
+            setConquistasExibidas(CONQUISTAS_MOCK);
+
         }
+
+
+    function Buscar(texto)
+    {
+
+        texto = texto.toLowerCase().trim();
+
+        if(texto === "")
+        {
+            setConquistasExibidas(conquistasInterface);
+            return;
+        }
+
+        const resultado = conquistasInterface.filter((c) =>
+        `${c.titulo} ${c.descricao} ${c.tipo} ${c.condicao}`
+        .toLowerCase()
+        .includes(texto)
+        );
+
+        setConquistasExibidas(resultado);
+    }
     
 
     return (
@@ -70,12 +99,13 @@ const AbaListarConquistas = () => {
                     <BotoesForm
                         className={Style.botaoBuscar}
                         texto="Buscar"
+                        onClick={() => Buscar(buscar)}
                     />
                 </div>
 
                 <div className={Style.Lista}>
                     <div>
-                        {conquistasInterface.map((c) => (
+                        {conquistasExibidas.map((c) => (
                             <div className={Style.ListaConquistas}
                                 key={c.id}
                             >
