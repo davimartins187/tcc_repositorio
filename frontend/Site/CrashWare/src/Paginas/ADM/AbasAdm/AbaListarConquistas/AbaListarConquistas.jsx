@@ -110,11 +110,11 @@ const AbaListarConquistas = () => {
                                 key={c.id}
                             >
 
-                                <div>
-                                    <h6>{c.titulo}</h6>
-                                    <p>{c.descricao}</p>
-                                    <p>{c.tipo}</p>
-                                    <p>{c.condicao}</p>
+                                <div className={Style.ItensLista}>
+                                    <h3>{c.titulo}</h3>
+                                    <p>Desc: {c.descricao}</p>
+                                    <p>Tipo: {c.tipo}</p>
+                                    <p>Condição: {c.condicao}</p>
                                 </div>
                             </div>
                         ))}

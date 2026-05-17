@@ -105,9 +105,8 @@
     font-family: "Montserrat";
 }
 
-.ListaConquistas h6{
-    font-size: 20px;
-}
+/* .ListaConquistas h6{
+} */
 
 .ListaConquistas:hover { 
     border-color: var(--borda);
@@ -115,12 +114,27 @@
     transition: 0.2s;
 }
 
-.ConquistaAtributos{
-    width: 35%;
+.ItensLista{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    height: 10vh;
+    width: 100vw;
 }
+
+.ItensLista h3{
+    font-size: 20px;
+    width: 5vw;
+    margin: 5px;
+}
+
+.ItensLista p{
+    font-size: 20px;
+    margin: 5px;
+    max-width: 15vw;
+}
+
+
 
 
 @media (max-width: 860px) {
