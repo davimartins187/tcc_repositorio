@@ -2,7 +2,7 @@
 from encodings.punycode import selective_find
 
 from sqlalchemy import Column, Integer, Float, String, Text, ForeignKey, UniqueConstraint,DateTime, text
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 from sqlalchemy.sql import func
 
 #Importando a Base declarativa
@@ -63,8 +63,8 @@ class Usuario_Conquista(Base):
 
     #Campos da tabela
     id_usuario_conquista = Column(Integer,primary_key=True,autoincrement=True)
-    conquista_id = Column(Integer,ForeignKey("conquista.id_conquista"),nullable=False)
-    usuario_id = Column(Integer,ForeignKey("usuario.id_usuario"),nullable=False)
+    conquista_id = Column(Integer,ForeignKey("conquista.id_conquista",ondelete="CASCADE"),nullable=False)
+    usuario_id = Column(Integer,ForeignKey("usuario.id_usuario",ondelete="CASCADE"),nullable=False)
     conquistada_em = Column(DateTime,server_default=func.now())
 
     #Isso impede de ter conquistas duplicadas para o usuario
@@ -73,8 +73,14 @@ class Usuario_Conquista(Base):
     )
 
     # Criando relação com objetos (relationship)
-    conquistas = relationship("Conquista", backref="usuarios_conquistas")
-    usuarios = relationship("Usuarios", backref="usuarios_conquistas")
+    conquistas = relationship("Conquista", backref=backref(
+            "usuarios_conquistas",
+            cascade="all, delete-orphan",
+            passive_deletes=True))
+    usuarios = relationship("Usuarios", backref=backref(
+            "usuarios_conquistas",
+            cascade="all, delete-orphan",
+            passive_deletes=True))
 
     # Criando atributos PARA O PYTHON (Não altera nada no banco de dados)
     def __init__(self,conquista_id,usuario_id):
