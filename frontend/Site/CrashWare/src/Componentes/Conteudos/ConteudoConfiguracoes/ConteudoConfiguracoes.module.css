@@ -32,7 +32,11 @@
     color: var(--texto-principal);
     font-size: 20px;
     margin: 20px;
+    margin-left: 0px;
     margin-bottom: 10px;
+    width: 100%;
+    text-indent: 0px;
+    text-align: center;
 }
 
 .barraLateral hr{
@@ -56,7 +60,7 @@
     width: 90%;
     cursor: pointer;
 
-    background-color: var(--bg-secundario); 
+    background-color: rgba(255, 255, 255, 0.904); 
     border: 1px solid black;
     border-radius: 12px;
     margin: 0px 20px 20px 20px;
@@ -75,7 +79,7 @@
 }
 
 .itemBarraLateral span {
-    color: var(--texto-principal);
+    color: black;
     font-size: 14px;
     font-family: "Montserrat" !important;
     font-weight: 800;
@@ -373,9 +377,10 @@
     }
 
     .Conteudos {
-        min-width: 80vw;
+        min-width: 90vw;
         flex-direction: column;
         margin-bottom: 30px;
+
     }
 
     .botoes{
@@ -393,7 +398,9 @@
         flex-direction: column;
         padding: 0px;
         margin-bottom: 10px;
+
     }
+
 
     .parteTelefone input, .parteEmail input{
         width: 100%;
@@ -405,5 +412,12 @@
     
     .conectarContas h2{
         font-size: 3.4vw !important;
+    }
+}
+
+@media (max-width: 500px){
+
+    .barraLateral h1{
+        text-align: center;
     }
 }

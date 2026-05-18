@@ -8,12 +8,12 @@
 
 .corpo {
     width: 98vw;
-    padding-top: 270px;
+    padding-top: 240px;
     padding-bottom: 40px;
 
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-self: center;
     flex-wrap: wrap;
 
     font-family: "Montserrat";
@@ -159,7 +159,7 @@
 .fundamentos div,
 .componentes div {
     display: flex;
-    width: 80%;
+    width: 70%;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
@@ -252,7 +252,7 @@
 
 @media (max-width: 768px) {
     .corpo {
-        padding-top: 280px;
+        padding-top: 200px !important;
     }
 
     .titulo {
@@ -282,7 +282,7 @@
     .introducao,
     .fundamentos,
     .componentes {
-        width: 100%;
+        width: 90%;
         padding: 15px;
     }
 

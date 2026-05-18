@@ -8,12 +8,12 @@
 
 .corpo{
     width: 98vw;
-    padding-top: 270px;
+    padding-top: 200px !important;
     padding-bottom: 40px;
 
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-self: center;
     flex-wrap: wrap;
 
     font-family: "Montserrat";
@@ -294,6 +294,7 @@
     .componentes{
         border-radius: 15px;
         padding: 15px;
+        width: 90%;
     }
 
     .titulo div h1{

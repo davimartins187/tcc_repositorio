@@ -13,6 +13,7 @@
     flex-wrap: wrap;
     gap: 24px;
     padding: 24px;
+    
     justify-content: center;
     align-items: flex-start;
 
@@ -97,8 +98,7 @@
 }
 
 .parteLado {
-    min-width: 400px;
-    max-width: 800px;
+    width: 100%;
     min-height: 300px;
     background-color: var(--bg-secundario);
     border: 1px solid var(--texto-principal);
@@ -243,6 +243,7 @@
     .corpo {
         flex-direction: column;
         align-items: center;
+        padding-top: 200px !important;
         padding: 16px;
     }
 
@@ -254,7 +255,6 @@
     .parteLado {
         flex: none;
         width: 100%;
-        max-width: 100%;
     }
 }
 

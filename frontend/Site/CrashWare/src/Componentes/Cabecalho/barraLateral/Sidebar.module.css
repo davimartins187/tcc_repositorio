@@ -26,7 +26,7 @@
 }
 
 .sidebarOpen {
-  height: 14vh;
+  height: 14vh;  
   background: none;
 }
 
@@ -70,6 +70,7 @@
 }
 
 @media (max-width: 1200px) {
+  
   .sidebar nav {
     width: 90%;
     padding: 20;
@@ -87,7 +88,7 @@
   }
 
   .sidebar{
-    margin-top: 40px;
+    margin-top: 0px;
   }
 
   .sidebar nav {
