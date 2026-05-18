@@ -18,6 +18,8 @@ export class Adm
 
         await sleep(2000);
 
+        
+
         try
         {
             const response = await fetch("https://api-crashware.onrender.com/adm/adicionar_conquista",
