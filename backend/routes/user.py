@@ -20,6 +20,9 @@ user = APIRouter(prefix="/user",tags=["usuario"])
 #Importando dependencias
 from dependences import pegar_sessao ,  validar_token
 
+#Importano SCHEMAS
+from schemas.GamificacaoSchema import RecursoSchema
+
 
 #Funcionalidas para enviar codigo para o email
 import smtplib
@@ -450,6 +453,24 @@ async def remover_banner(usuario = Depends(validar_token), session = Depends(peg
         ##Se não der certo eu retorno o erro, e dou rollback no banco.
         session.rollback()
         raise HTTPException(status_code=400, detail=str(exception))
+#############
+
+#Rota de ganhar XP
+@user.post('/xp')
+async def ganhar_xp(dados : RecursoSchema,usuario = Depends(validar_token),session = Depends(pegar_sessao)):
+    if usuario is None:
+        raise HTTPException(status_code=404,detail="Usuário não encontrado")
+    if dados.xp == 0:
+        return
+    try:
+        usuario.xp += dados.xp
+        session.commit()
+    except Exception as exception:
+        ##Se não der certo eu retorno o erro, e dou rollback no banco.
+        session.rollback()
+        raise HTTPException(status_code=400, detail=str(exception))
+
+
 
 
 

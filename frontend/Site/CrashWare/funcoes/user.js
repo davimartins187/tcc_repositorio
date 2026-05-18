@@ -669,8 +669,10 @@ export class Usuario
                     const nome_conquista = dados.nome_conquista;
                     const descricao = dados.descricao;
                     const tipo_conquista = dados.tipo_conquista;
+                    const moeda_bonus = dados.moeda_bonus;
+                    const xp_bonus = dados.xp_bonus;
 
-                    //Exibo SetpopupConquista
+                    //Exibo SetpopupConquista(alterar para o popup estilizado DAVISON)
                      setPopup({
                         tipo: 'sucesso',
                         titulo: nome_conquista,
@@ -691,5 +693,41 @@ export class Usuario
             console.log(error);
         }
     }
+
+    async adicionar_xp(xp)
+    {
+         //Pego o token
+        const token = localStorage.getItem("token")
+
+         try
+        {
+            const response = await fetch("https://api-crashware.onrender.com/user/xp",
+                { 
+                     
+                    method: "POST",
+                    headers:
+                    {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    },
+                    body:  JSON.stringify({xp})
+                });
+
+
+            if(!response.ok)
+            {
+                //Se a requisição não for sucedida
+                const erro = await response.json();
+
+                console.log(erro.detail)
+            }
+
+        }catch (error) 
+        {
+            console.log(error);
+        }
+
+
+    }//adicionar_xp
 
 }//classe

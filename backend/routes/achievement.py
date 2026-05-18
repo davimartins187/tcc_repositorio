@@ -34,7 +34,9 @@ async def achievement_login(dados : AchievementSchema,usuario = Depends(validar_
             return {
                 "nome_conquista" : conquista_usuario.conquistas.nome_conquista,
                 "descricao": conquista_usuario.conquistas.descricao,
-                "tipo_conquista": conquista_usuario.conquistas.tipo_conquista
+                "tipo_conquista": conquista_usuario.conquistas.tipo_conquista,
+                "moeda_bonus" : conquista_usuario.conquistas.moeda_bonus,
+                "xp_bonus" : conquista_usuario.conquistas.xp_bonus
                     }
         except Exception as exception:
             ##Se não der certo eu retorno o erro, e dou rollback no banco.
