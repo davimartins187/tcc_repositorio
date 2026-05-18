@@ -11,6 +11,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +37,7 @@ public class Anotacoes_fragment extends Fragment {
 
     //Váriaveis e Funções que serão utilizadas e iniciadas no código
     private ArrayList<Anotacao> listaAnotacoes = new ArrayList<>();
+    private ArrayList<Anotacao> listaOriginal = new ArrayList<>();
 
     RecyclerView rvListaAnotacoes;
 
@@ -112,6 +115,9 @@ public class Anotacoes_fragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("titulo", anotacao.getTitulo());
                 bundle.putString("conteudo", anotacao.getConteudo());
+                bundle.putString("dataCriacao", anotacao.getDataCriacao());
+                bundle.putString("dataEdicao", anotacao.getDataEdicao());
+
                 bundle.putInt("position", position); // puxa a posição na arraylist da anotação selecionada
 
                 fragment.setArguments(bundle);
@@ -129,24 +135,25 @@ public class Anotacoes_fragment extends Fragment {
         //Selecionando o adapter para a ArrayList
         rvListaAnotacoes.setAdapter(adapter);
 
+        txtbarraPesquisa.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s)
+            {
 
+            }//função após mudar o texto
 
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
 
+            }//Função antes de mudar o texto
 
-//        //Iniciando o SharedPreferences que contém as anotações
-//        prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
-//
-//        // Recupera os dados salvos
-//        String tituloSalvo = prefs.getString("Titulo", "");
-//        String anotacaoSalva = prefs.getString("Anotacao", "");
-//        String NovaAnotacaoSalva2 = prefs.getString("NovaAnotacao2","");
-//        String NovoTituloAnotacaoSalvo2 = prefs.getString("TituloNovaAnotacao2","");
-
-
-
-
-
-
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                filtrarAnotacoes(s.toString());
+            }//Quando houver alteração no texto da barra, executa função de pesquisa
+        });//Função ao interagir com a barra de pesquisa
 
 
         imgAddAnotacoes.setOnClickListener(new View.OnClickListener() {
@@ -168,6 +175,47 @@ public class Anotacoes_fragment extends Fragment {
         return view;
 
     }
+
+    //Método usado para pesquisa de anotações
+    private void filtrarAnotacoes(String texto)
+    {
+        // Limpa a lista exibida
+        listaAnotacoes.clear();
+
+        // Se a barra estiver vazia
+        if(texto.isEmpty())
+        {
+            // Mostra tudo novamente
+            listaAnotacoes.addAll(listaOriginal);
+        }
+        else
+        {
+            // Deixa tudo minúsculo
+            texto = texto.toLowerCase().trim();
+
+            // Percorre todas as anotações
+            for(Anotacao anotacao : listaOriginal)
+            {
+                // Verifica título e conteúdo
+                String titulo = anotacao.getTitulo();
+                String conteudo = anotacao.getConteudo();
+
+                if(titulo != null && conteudo != null)
+                {
+                    if(titulo.toLowerCase().contains(texto)
+                            ||
+                            conteudo.toLowerCase().contains(texto))
+                    {
+                        listaAnotacoes.add(anotacao);
+                    }
+                }
+            }
+        }
+
+        // Atualiza o RecyclerView
+        adapter.notifyDataSetChanged();
+    }
+
     @Override
     public void onResume()
     {
@@ -195,6 +243,7 @@ public class Anotacoes_fragment extends Fragment {
             JSONArray array = new JSONArray(json);
 
             listaAnotacoes.clear();
+            listaOriginal.clear();
 
             for (int i = 0; i < array.length(); i++)
             {
@@ -202,10 +251,17 @@ public class Anotacoes_fragment extends Fragment {
 
                 String titulo = obj.getString("titulo");
                 String conteudo = obj.getString("conteudo");
+                String dataCriacao =
+                        obj.optString("dataCriacao", "Sem data");
 
-                listaAnotacoes.add(
-                        new Anotacao(titulo, conteudo)
-                );
+                String dataEdicao =
+                        obj.optString("dataEdicao", "Nunca editado");
+
+                Anotacao anotacao =
+                        new Anotacao(titulo, conteudo, dataCriacao, dataEdicao);
+
+                listaAnotacoes.add(anotacao);
+                listaOriginal.add(anotacao);
             }
         }
         catch (Exception e)

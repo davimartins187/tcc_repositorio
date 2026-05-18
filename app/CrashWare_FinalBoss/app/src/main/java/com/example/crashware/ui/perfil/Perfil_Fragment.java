@@ -12,9 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.crashware.ui.sistemas.XP_Manager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -32,11 +34,15 @@ public class Perfil_Fragment extends Fragment {
     private SharedPreferences.OnSharedPreferenceChangeListener listenerFoto;
 
     private SharedPreferences.OnSharedPreferenceChangeListener listenerBanner;
-    TextView txtNomePerfil, txtQuantXP, txtPatente, txtVerTodasConquistas;
+    TextView txtNomePerfil, txtQuantXP, txtPatente, txtVerTodasConquistas, txtNivelPerfil, txtQuantGemas;
 
     ImageView imgConfigPerfil;
 
     ShapeableImageView imgFotoPerfil, imgBanner;
+
+    ProgressBar BarraProgressoPerfil;
+
+    XP_Manager XP_Manager;
 
     private ActivityResultLauncher<String[]> escolherFoto;
 
@@ -83,7 +89,10 @@ public class Perfil_Fragment extends Fragment {
         //SharedPreferences
         prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
 
-        //Crrego a foto assim que a tela foi incializada
+        //Inicializando classe de XP
+        XP_Manager = new XP_Manager(requireContext());
+
+        //Carrego a foto assim que a tela foi incializada
         Foto();
 
 
@@ -121,17 +130,25 @@ public class Perfil_Fragment extends Fragment {
         //Inicia o Layout no Código
         txtNomePerfil         = view.findViewById(R.id.txtNomePerfil        );
         txtPatente            = view.findViewById(R.id.txtPatente           );
-        txtQuantXP            = view.findViewById(R.id.txtQuantXP           );
+        txtQuantGemas         = view.findViewById(R.id.txtQuantGemas        );
+        txtQuantXP            = view.findViewById(R.id.txtXPPerfil          );
         txtVerTodasConquistas = view.findViewById(R.id.txtVerTodasConquistas);
         imgFotoPerfil         = view.findViewById(R.id.imgFotoPerfil        );
         imgConfigPerfil       = view.findViewById(R.id.imgConfigPerfil      );
         imgBanner             = view.findViewById(R.id.imgBanner            );
-        imgFotoPerfil         = view.findViewById(R.id.imgFotoPerfil        );
-        imgBanner             = view.findViewById(R.id.imgBanner            );
+        txtNivelPerfil        = view.findViewById(R.id.txtNivelPerfil       );
+        BarraProgressoPerfil = view.findViewById(R.id.barraProgressoPerfil  );
 
 
         //Pego os dados no SharedPreferences
         String Nome = prefs.getString("nome", null);
+        String Patente = prefs.getString("patente", "Iniciante");
+        int Gemas = prefs.getInt("moedas", 0);
+        int Nivel = XP_Manager.getNivel();
+        float Xp = XP_Manager.getXp();
+
+        //função que atualiza o progresso do xp
+        atualizarXp();
 
 
         // Listener da foto
@@ -162,12 +179,15 @@ public class Perfil_Fragment extends Fragment {
         prefs.registerOnSharedPreferenceChangeListener(listenerFoto);
 
 
-
+        //Atualizando as informações do Usuário
         txtNomePerfil.setText(Nome);
-//        txtPatente.setText(Patente);
+        txtPatente.setText(Patente);
+        txtNivelPerfil.setText("Nível " + String.valueOf(Nivel));
+        txtQuantGemas.setText(String.valueOf(Gemas));
+
 //        txtQuantDiasSeguidos.setText(Ofensiva);
-//        txtQuantXP.setText(XP);
-//        txtQuantGemas.setText(Gemas);
+
+
 
 
 
@@ -230,13 +250,26 @@ public class Perfil_Fragment extends Fragment {
 
     }
 
-//    @Override
-//    public void onResume()
-//    {
-//        super.onResume();
-//
-//        Foto();
-//    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        atualizarXp();
+
+    }
+
+    private void atualizarXp()
+    {
+        int nivel = XP_Manager.getNivel();
+
+        int xp = (int) XP_Manager.getXp();
+
+        txtNivelPerfil.setText("Nível " + nivel);
+
+        txtQuantXP.setText(xp + "/" + BarraProgressoPerfil.getMax() + " XP");
+
+        BarraProgressoPerfil.setProgress(xp);
+    }
 
     private void Foto(){
 
