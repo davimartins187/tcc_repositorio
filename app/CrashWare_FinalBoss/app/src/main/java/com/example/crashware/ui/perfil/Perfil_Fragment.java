@@ -178,7 +178,6 @@ public class Perfil_Fragment extends Fragment {
 
         prefs.registerOnSharedPreferenceChangeListener(listenerFoto);
 
-
         //Atualizando as informações do Usuário
         txtNomePerfil.setText(Nome);
         txtPatente.setText(Patente);
@@ -273,42 +272,56 @@ public class Perfil_Fragment extends Fragment {
 
     private void Foto(){
 
-        //Se token for valido executo a requisição
-        User.Perfil(requireContext(), prefs, new User.PerfilCallback()
-        {
+        //Verifico o token
+        Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
+
             @Override
-            public void sucesso(User.PerfilResponse usuario) {
+            public void onSuccess() {
+                //Se token for valido executo a requisição
+                User.Perfil(requireContext(), prefs, new User.PerfilCallback()
+                {
+                    @Override
+                    public void sucesso(User.PerfilResponse usuario) {
 
-                String email = usuario.email;
+                        String nome= usuario.nome;
+                        String foto = usuario.foto;
+                        String banner = usuario.banner;
 
-                String foto = usuario.foto;
-                String banner = usuario.banner;
 
-                //Salvo o link da foto
-                String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
-                        + foto
-                        + "?t=" + System.currentTimeMillis();
+                        txtNomePerfil.setText(nome);
 
-                //Salvo o link do banner
-                String link_banner =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/"
-                        + banner
-                        + "?t=" + System.currentTimeMillis();
 
-                //Carrega a foto atual do usuario
-                Glide.with(requireContext())
-                        .load(link_foto)
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .into(imgFotoPerfil);
 
-                //Carrega o banner atual do usuario
-                Glide.with(requireContext())
-                        .load(link_banner)
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .into(imgBanner);
-            }
-        });//Perfil
+                        //Salvo o link da foto
+                        String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                                + foto
+                                + "?t=" + System.currentTimeMillis();
+
+                        //Salvo o link do banner
+                        String link_banner =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/"
+                                + banner
+                                + "?t=" + System.currentTimeMillis();
+
+                        //Carrega a foto atual do usuario
+                        Glide.with(requireContext())
+                                .load(link_foto)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(imgFotoPerfil);
+
+                        //Carrega o banner atual do usuario
+                        Glide.with(requireContext())
+                                .load(link_banner)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(imgBanner);
+                    }
+                });//Perfil
+
+            }//
+        });//Token
+
+
     }//Foto
 
     private void setImage(Uri uri) {
