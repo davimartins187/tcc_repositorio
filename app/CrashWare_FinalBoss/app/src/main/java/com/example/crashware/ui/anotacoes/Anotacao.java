@@ -2,16 +2,24 @@ package com.example.crashware.ui.anotacoes;
 
 public class Anotacao
 {
-    //Váriaveis presentes na anotação
+    // Variáveis presentes na anotação
     private String titulo;
     private String conteudo;
 
+    private String dataCriacao;
+    private String dataEdicao;
+
     // CONSTRUTOR
-    public Anotacao(String titulo, String conteudo)
+    public Anotacao(String titulo,
+                    String conteudo,
+                    String dataCriacao,
+                    String dataEdicao)
     {
-        //linkando as variáveis com seus construtores
         this.titulo = titulo;
         this.conteudo = conteudo;
+
+        this.dataCriacao = dataCriacao;
+        this.dataEdicao = dataEdicao;
     }
 
     // GETTERS
@@ -23,5 +31,36 @@ public class Anotacao
     public String getConteudo()
     {
         return conteudo;
+    }
+
+    public String getDataCriacao()
+    {
+        return dataCriacao;
+    }
+
+    public String getDataEdicao()
+    {
+        return dataEdicao;
+    }
+
+    // SETTERS
+    public void setTitulo(String titulo)
+    {
+        this.titulo = titulo;
+    }
+
+    public void setConteudo(String conteudo)
+    {
+        this.conteudo = conteudo;
+    }
+
+    public void setDataCriacao(String dataCriacao)
+    {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public void setDataEdicao(String dataEdicao)
+    {
+        this.dataEdicao = dataEdicao;
     }
 }
