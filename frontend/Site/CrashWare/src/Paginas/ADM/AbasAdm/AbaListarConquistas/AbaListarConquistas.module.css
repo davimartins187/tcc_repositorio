@@ -10,6 +10,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    height: 110vh;
 }
 
 .Conteudos {
@@ -18,7 +19,7 @@
     justify-items: center;
     align-self: center;
     margin: auto;
-    margin-top: 110px;
+    margin-top: 100px;
 
     background-color: #6C6A6A30;
     border: 2px solid var(--texto-principal);
@@ -27,6 +28,8 @@
     width: 65vw;
     height: auto;
     margin-bottom: 30px;
+    font-family: "Montserrat";
+
 }
 
 .Conteudos h1{
@@ -83,16 +86,22 @@
     border: 1px solid var(--texto-principal);
     border-radius: 16px;
     width: 60vw;
+    max-height: 50vh;
+    overflow-y: auto;
     height: auto;
     align-self: center;
     padding: 10px;
     margin: 20px;
+
+    scrollbar-width: none;
+    font-family: "Montserrat";
+
 }
 
 .ListaConquistas{
     background-color: var(--input-bg);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     padding: 10px;
     border-radius: 20px;
@@ -118,24 +127,64 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
-    height: 10vh;
-    width: 100vw;
+    width: 100%;
 }
 
 .ItensLista h3{
-    font-size: 20px;
-    width: 5vw;
+    font-size: 25px;
+    width: 40vw;
     margin: 5px;
 }
 
-.ItensLista p{
+.ItensLista h6{
     font-size: 20px;
+    font-family: "Montserrat";
+    
     margin: 5px;
-    max-width: 15vw;
+    width: 100%;
+    /* max-width: 15vw; */
+    text-align: end;
 }
 
+.ItensLista span{
+    
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 17px;
+    align-content: center;
+}
 
+.sanfona{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--borda);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color:black;
+    color: white;
+    gap: 10px;
+    /* justify-content: space-between; */
+}
 
+.sanfona h5{
+    display: flex;
+    flex-direction: row;
+    /* color: blueviolet; */
+    font-size: 25px;
+    justify-content: space-between;
+    margin: 0 0 4px 0;
+}
+
+.sanfona p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.Coluna1{
+    width: 50%;
+}
 
 @media (max-width: 860px) {
     /* .separarConteudos {
@@ -210,16 +259,17 @@
     .Buscar input{
         width: 60vw;
         justify-content: center;
-    }   
+    }
 
     .Lista{
         width: 90vw;
         justify-content: center;
+        max-width: 100%;
     }
 
     .itemBarraLateral {
         width: 100%;
-        height: 5vhvh;
+        height: 5vh;
         margin: 0px auto 12px auto;
     }
 
