@@ -32,7 +32,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import android.animation.ObjectAnimator;
+import android.view.animation.DecelerateInterpolator;
+import android.animation.ValueAnimator;
+
 import java.util.Calendar;
+
+import com.example.crashware.ui.sistemas.XP_Manager;
+
 
 public class Inicio_fragment extends Fragment {
 
@@ -56,9 +63,11 @@ public class Inicio_fragment extends Fragment {
 
     Button btnRetomar;
 
-    int XpParaBarra = 350;
+    XP_Manager XP_Manager;
 
-    int nivel = 1;
+//    Float XpParaBarra;
+//
+//    int nivel ;
 
     // =========================
     // OFENSIVA
@@ -77,6 +86,8 @@ public class Inicio_fragment extends Fragment {
 
         // Coleto as informações do usuário
         Perfil();
+
+        XP_Manager = new XP_Manager(requireContext());
 
 
         auth = FirebaseAuth.getInstance();
@@ -104,6 +115,8 @@ public class Inicio_fragment extends Fragment {
         btnRetomar          = view.findViewById(R.id.btnRetomar);
         txtXpInicio         = view.findViewById(R.id.txtXPInicio);
 
+        // Atualiza a interface de XP e nível
+        atualizarInterfaceXp();
 
 
         //Chamar função Ofensiva
@@ -113,6 +126,7 @@ public class Inicio_fragment extends Fragment {
         int ofensiva = ofensivaManager.verificarOfensiva();
 
         txtOfensiva.setText(ofensiva + " dias");
+
 
 
 
@@ -131,8 +145,11 @@ public class Inicio_fragment extends Fragment {
 
         btnRetomar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                BarraXp();
+            public void onClick(View view)
+            {
+                XP_Manager.adicionarXp(50);
+
+                atualizarInterfaceXp();
             }
         });
 
@@ -168,34 +185,52 @@ public class Inicio_fragment extends Fragment {
     // XP / NÍVEL
     // =========================
 
-    private void PassarNivel() {
-
-        nivel++;
-
-        txtNivelInicio.setText("Nivel " + nivel);
-
-        BarraProgressoNivel.setProgress(0);
-
-        String XpAtual = XpParaBarra + "/" + BarraProgressoNivel.getMax() + "XP";
-        txtXpInicio.setText(XpAtual);
-    }//Função utilizada ao Passar de Nivel
-
-    private void BarraXp()
+    private void atualizarInterfaceXp()
     {
+        int nivel = XP_Manager.getNivel();
 
-        XpParaBarra += 50;
+        int xp = (int) XP_Manager.getXp();
 
-        while (XpParaBarra >= BarraProgressoNivel.getMax()) {
+        txtNivelInicio.setText("Nível " + nivel);
 
-            XpParaBarra -= BarraProgressoNivel.getMax();
-            PassarNivel();
-        }
+        // Animação da Barra de XP
+        ObjectAnimator animacaoBarra = ObjectAnimator.ofInt
+                (
+                BarraProgressoNivel,
+                "progress",
+                BarraProgressoNivel.getProgress(),
+                xp
+                );
 
-        BarraProgressoNivel.setProgress(XpParaBarra);
+        animacaoBarra.setDuration(700);
 
-        String XpAtual = XpParaBarra + "/" + BarraProgressoNivel.getMax() + "XP";
-        txtXpInicio.setText(XpAtual);
-    }//Função utilizada para Alterar a Barra de XP
+        animacaoBarra.setInterpolator(new DecelerateInterpolator());
+
+        animacaoBarra.start();
+
+
+        // Animação para o texto de XP
+        ValueAnimator animacaoTexto = ValueAnimator.ofInt(
+                Integer.parseInt(
+                        txtXpInicio.getText()
+                                .toString()
+                                .split("/")[0]
+                                .replace(" XP", "")
+                ),
+                xp
+        );
+
+        animacaoTexto.setDuration(700);
+
+        animacaoTexto.addUpdateListener(animation -> {
+
+            int valorAtual = (int) animation.getAnimatedValue();
+
+            txtXpInicio.setText(valorAtual + "/" + BarraProgressoNivel.getMax() + " XP");
+        });
+
+        animacaoTexto.start();
+    }//
 
 
     // =========================
@@ -234,7 +269,7 @@ public class Inicio_fragment extends Fragment {
 
                             .putString("nome",nome)
                             .putString("banner",banner)
-                            .putInt("nivel",nivel)
+                            .putInt("nivel", XP_Manager.getNivel())
 
                             .commit();
 

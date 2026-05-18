@@ -14,20 +14,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import com.example.crashware.R;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NovaAnotacao_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class NovaAnotacao_Fragment extends Fragment {
 
     private ArrayList<Anotacao> listaAnotacoes = new ArrayList<>();
@@ -40,6 +40,7 @@ public class NovaAnotacao_Fragment extends Fragment {
 
     EditText txtNovaAnotacao, txtTituloNovaAnotacao;
 
+    TextView txtDataCriacao;
     Button btnSalvarNovaAnotacao;
 
 
@@ -83,10 +84,13 @@ public class NovaAnotacao_Fragment extends Fragment {
         btnSalvarNovaAnotacao = view.findViewById(R.id.btnSalvarNovaAnotacao);
         txtNovaAnotacao       = view.findViewById(R.id.txtNovaAnotacao      );
         txtTituloNovaAnotacao = view.findViewById(R.id.txtTituloNovaAnotacao);
+        txtDataCriacao        = view.findViewById(R.id.txtDataCriacao       );
 
 
         prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
 
+        String dataAtual = pegarDataAtual();
+        txtDataCriacao.setText(String.valueOf(dataAtual));
 
 
 
@@ -109,6 +113,8 @@ public class NovaAnotacao_Fragment extends Fragment {
 
                     objeto.put("titulo", titulo);
                     objeto.put("conteudo", conteudo);
+                    objeto.put("dataCriacao", pegarDataAtual());
+                    objeto.put("dataEdicao", "Nunca editado");
 
                     array.put(objeto);
 
@@ -138,22 +144,17 @@ public class NovaAnotacao_Fragment extends Fragment {
                         .popBackStack();//simula o botão "voltar" do celular
 
             }
-        });//interação de click com a imagem de voltar retornando para a tela de anotações
-
-
-
-
-
-
-
-
-
-
-
-
+        });//interação de clique com a imagem de voltar retornando para a tela de anotações
 
         return view;
     }
 
+    private String pegarDataAtual()
+    {
+        SimpleDateFormat formato =
+                new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+
+        return formato.format(new Date());
+    }
 
 }

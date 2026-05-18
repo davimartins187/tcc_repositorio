@@ -2,6 +2,8 @@ package com.example.crashware.ui.navegacao;
 
 import static android.app.ProgressDialog.show;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,7 +27,10 @@ public class Loja_fragment extends Fragment {
 
     //Váriaveis que serão Utilizadas
 
-    int gemas;
+    int Gemas;
+
+    //Memória do app
+    SharedPreferences prefs;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -58,6 +63,9 @@ public class Loja_fragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //SharedPreferences
+        prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -84,9 +92,9 @@ public class Loja_fragment extends Fragment {
         Toast SaldoInsuficiente = Toast.makeText(getContext(), "Saldo Insuficiente", Toast.LENGTH_LONG);
         Toast PowerUpAdquirido = Toast.makeText(getContext(), "PowerUp Adquirido  ", Toast.LENGTH_LONG);
 
-        //Gemas Temporárias para teste
-        gemas = 5500;
+
         //A serem substituidas pelas gemas do usuário logado
+        Gemas = prefs.getInt("moedas", 0);
 
 
         txtComprarTemaMeiaNoite.setOnClickListener(new View.OnClickListener()
@@ -94,9 +102,9 @@ public class Loja_fragment extends Fragment {
             @Override
             public void onClick(View view)
             {
-                if (gemas>=1500)
+                if (Gemas>=1500)
                 {
-                    gemas= gemas - 1500;
+                    Gemas= Gemas - 1500;
                     temaAdquirido.show();
                     txtComprarTemaMeiaNoite.setText("Adquirido");
                     txtComprarGelo.setEnabled(false);
@@ -116,9 +124,9 @@ public class Loja_fragment extends Fragment {
             @Override
             public void onClick(View view)
             {
-                if (gemas>=1500)
+                if (Gemas>=1500)
                 {
-                    gemas= gemas - 1500;
+                    Gemas= Gemas - 1500;
                     temaAdquirido.show();
                     txtComprarGelo.setText("Adquirido");
                     txtComprarGelo.setEnabled(false);
@@ -137,9 +145,9 @@ public class Loja_fragment extends Fragment {
             @Override
             public void onClick(View view)
             {
-                if (gemas>=1500)
+                if (Gemas>=1500)
                 {
-                    gemas= gemas - 1500;
+                    Gemas= Gemas - 1500;
                     temaAdquirido.show();
                     txtComprarLeitura.setText("Adquirido");
                     txtComprarLeitura.setEnabled(false);
@@ -158,9 +166,9 @@ public class Loja_fragment extends Fragment {
             @Override
             public void onClick(View view)
             {
-                if (gemas>=600)
+                if (Gemas>=600)
                 {
-                    gemas= gemas - 600;
+                    Gemas= Gemas - 600;
                     PowerUpAdquirido.show();
                     //mostra o Toast de PowerUp Adquirido
                 }//Se o Usuário possuir 600 ou mais gemas, prossegue com a compra
@@ -178,9 +186,9 @@ public class Loja_fragment extends Fragment {
             @Override
             public void onClick(View view)
             {
-                if (gemas>=600)
+                if (Gemas>=600)
                 {
-                    gemas= gemas - 600;
+                    Gemas= Gemas - 600;
                     PowerUpAdquirido.show();
                     //Mostra o Toast de Power Up Adquirido
 
