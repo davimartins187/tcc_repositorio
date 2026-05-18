@@ -19,7 +19,7 @@ export class Usuario
     {
         //Verifico o token
         const usuario = new Api;
-        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,this.set,true);
         try
         {
             const response = await fetch("https://api-crashware.onrender.com/user/",
@@ -73,7 +73,7 @@ export class Usuario
 
         //Verifico o token
         const usuario = new Api;
-        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,this.set,true);
 
         setPopup({
                 tipo: 'aviso',
@@ -150,7 +150,7 @@ export class Usuario
     {
         //Verifico o token
         const usuario = new Api;
-        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,this.set,true);
 
         //Pego o token
         const token = localStorage.getItem("token")
@@ -231,7 +231,7 @@ export class Usuario
     {
         //Verifico o token
         const usuario = new Api;
-        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,this.set,true);
 
         //Pego o token
         const token = localStorage.getItem("token")
@@ -316,7 +316,7 @@ export class Usuario
     {
         //Verifico o token
         const usuario = new Api;
-        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,this.set,true);
 
         //Pego o token
         const token = localStorage.getItem("token")
@@ -395,7 +395,7 @@ export class Usuario
     {
         //Verifico o token
         const usuario = new Api;
-        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,this.set,true);
 
         //Pego o token
         const token = localStorage.getItem("token")
@@ -478,7 +478,7 @@ export class Usuario
     {
         //Verifico o token
         const usuario = new Api;
-        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,this.set,true);
 
         //Pego o token
         const token = localStorage.getItem("token")
@@ -563,7 +563,7 @@ export class Usuario
     {
         //Verifico o token
         const usuario = new Api;
-        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,true,this.set);
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,this.set,true);
         
         //Pego o token
         const token = localStorage.getItem("token")
@@ -640,6 +640,10 @@ export class Usuario
 
     async conquista(conquista_id,setPopup)
     {
+        //Verifico o token
+        const usuario = new Api;
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,this.set,true);
+
         //Pego o token
         const token = localStorage.getItem("token")
 
@@ -696,6 +700,12 @@ export class Usuario
 
     async adicionar_xp(xp)
     {
+
+        //Verifico o token
+        const usuario = new Api;
+        usuario.Verificar_Token(this.token,this.refresh_token,this.Navegacao,this.set,true);
+
+
          //Pego o token
         const token = localStorage.getItem("token")
 
