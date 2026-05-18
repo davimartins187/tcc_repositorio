@@ -124,7 +124,7 @@ const CVerificacaoEmail = () => {
                         <BotoesForm
                             onClick={() => {
                                 setMostrarModal(false);
-                                podeNavegar.current = true;
+                                setPodeNavegar.current = true;
                                 Navegacao(origem || "/recuperar-senha")
                             }}
                             className={style.btnSair}

@@ -45,6 +45,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    
 }
 
 .itemBarraLateral {
@@ -53,6 +54,7 @@
     padding-left : 20px;
     height: 50px;
     width: 90%;
+    cursor: pointer;
 
     background-color: var(--bg-secundario); 
     border: 1px solid black;
@@ -80,6 +82,7 @@
     align-self: center;
     display: inline;
     margin-left: 10px;
+    
 }
 
 .destaque span{
@@ -243,6 +246,7 @@
 .conectarContas img{
     width: 40px;
     margin: 30px 10px;
+    cursor: pointer;
 }
 
 .conectarContas img:hover{

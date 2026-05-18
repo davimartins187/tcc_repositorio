@@ -304,13 +304,13 @@ export class Api
                     await sleep(3000)  /*-> Faz que espere 3 segundos*/
 
                     if(rec_senha == "false"){
-                        setPodeNavegar(true)
+                        setPodeNavegar.current = true;
                         Navegacao("/login")
                         // , { replace: true }
                     }else
                     {
                         //Leva para a pag de rec_senha
-                        setPodeNavegar(true)
+                        setPodeNavegar.current = true;
                         Navegacao("/alterar-senha",
                         {
                         state:{
