@@ -617,7 +617,7 @@ export class Api
         }
     }//Alterar_Senha
 
-    async Verificar_Token(token,refresh_token,Navegacao,privado = null,set = null)
+    async Verificar_Token(token,refresh_token,Navegacao,set = null,privado = null)
     {
         if(!token)
         {
@@ -661,7 +661,7 @@ export class Api
                     return;
                 }
                 //Verifico o refresh_token
-                await this.VerificarRefreshToken(refresh_token,Navegacao,privado)
+                await this.VerificarRefreshToken(refresh_token,Navegacao,privado,set)
 
                 return;
                      
@@ -676,7 +676,7 @@ export class Api
             }
 
         } catch (error) {
-            console.log(error)
+            //console.log(error)
         }
     }//Verifica Token
     
@@ -732,7 +732,7 @@ export class Api
             }
         }catch (error) 
         {
-            console.log(error)
+            //console.log(error)
         }
          
 
@@ -765,7 +765,7 @@ export class Api
             }
         }catch (error) 
         {
-            console.log(error)
+            //console.log(error)
         }
     }//Refresh Token
 

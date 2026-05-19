@@ -248,50 +248,58 @@ public class Inicio_fragment extends Fragment {
 
     private void Perfil() {
 
-            User.Perfil(requireContext(), prefs, new User.PerfilCallback() {
+        //Verifico o token
+        Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
 
-                @Override
-                public void sucesso(User.PerfilResponse usuario) {
+            @Override
+            public void onSuccess() {
+                //Se token for valido executo a requisição
+                User.Perfil(requireContext(), prefs, new User.PerfilCallback() {
 
-                    String nome = usuario.nome;
+                    @Override
+                    public void sucesso(User.PerfilResponse usuario) {
 
-                    String banner = usuario.banner;
-                    //Float xp = usuario.xp;
+                        String nome = usuario.nome;
+
+                        String banner = usuario.banner;
+                        //Float xp = usuario.xp;
 
 
-                    String foto = usuario.foto;
+                        String foto = usuario.foto;
 
-                    // Salvo os dados no SharedPreferences
-                    prefs.edit()
-                            .putString("foto", foto)
+                        // Salvo os dados no SharedPreferences
+                        prefs.edit()
+                                .putString("foto", foto)
+                                .putString("nome", nome)
+                                .putString("banner",banner)
+                                .putInt("nivel", XP_Manager.getNivel())
 
-                            .putString("nome", nome)
+                                .commit();
 
-                            .putString("nome",nome)
-                            .putString("banner",banner)
-                            .putInt("nivel", XP_Manager.getNivel())
+                        // Link da foto
+                        String link_foto =
+                                "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                                        + foto
+                                        + "?t=" + System.currentTimeMillis();
 
-                            .commit();
+                        // Carrega foto
+                        Glide.with(requireContext())
+                                .load(link_foto)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(imgfotoInicio);
 
-                    // Link da foto
-                    String link_foto =
-                            "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
-                                    + foto
-                                    + "?t=" + System.currentTimeMillis();
+                        // Atualiza nome
+                        txtNomeInicio.setText(nome);
+                    }
+                });//Perfil
 
-                    // Carrega foto
-                    Glide.with(requireContext())
-                            .load(link_foto)
-                            .skipMemoryCache(true)
-                            .diskCacheStrategy(DiskCacheStrategy.NONE)
-                            .into(imgfotoInicio);
+            }//
+        });//Token
 
-                    // Atualiza nome
-                    txtNomeInicio.setText(nome);
-                }
-            });
 
-    }
+
+    }//Perfil
 
     // =========================
     // CARREGAR IMAGEM
